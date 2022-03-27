@@ -1,0 +1,31 @@
+require:
+  - rubocop-minitest
+  - rubocop-rails
+  - rubocop-rake
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 3.1.0
+  NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*
+
+Style/Documentation:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
