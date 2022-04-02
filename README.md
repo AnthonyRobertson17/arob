@@ -1,24 +1,75 @@
-# README
+# Lift-O-Tracker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A super simple workout tracker.
+## App Info
 
-Things you may want to cover:
+| Tool                                      | Version |
+| ----------------------------------------- | ------- |
+| [Ruby](https://www.ruby-lang.org/en/)     | 3.1.1   |
+| [Rails](https://rubyonrails.org/)         | 7.0.2.3 |
+| [PostgreSQL](https://www.postgresql.org/) | 13.5    |
 
-* Ruby version
+## Dev Setup
 
-* System dependencies
+NOTE: These setup steps are currently all tailored for development on MacOS. If you wish to
+contribute using a non-MacOS device, please reach out and we can get you sorted out. If you manage to get it sorted out yourself, please consider opening a PR with your setup steps!
 
-* Configuration
+### Dependancies
 
-* Database creation
+#### Recommendations
 
-* Database initialization
+* Use [Homebrew](https://brew.sh/) to install mac specific tooling such as `rbenv`
 
-* How to run the test suite
+* Use [rbenv](https://github.com/rbenv/rbenv) to manage local ruby versions
 
-* Services (job queues, cache servers, search engines, etc.)
+#### Necessary Dependancies*
 
-* Deployment instructions
+* Ruby installed locally (see the [.ruby_version](.ruby-version) file for the current version)
 
-* ...
+* [Bundler](https://bundler.io/) installed locally for the current ruby version
+
+* [PostgreSQL](https://www.postgresql.org/) version `13.5`
+
+### Setup Instructions
+
+Note: All these steps should be executed from the root of the project folder unless otherwise specified
+
+1. Run `bundle install` to ensure that all necessary ruby gem dependancies are installed
+2. Create a local postgres server running version `13.5`
+3. Run `rails db:create db:migrate` to create and migrate your local database
+4. Run `rails server` to run the app
+
+### Running Tests
+
+#### Rails Tests
+
+To run tests simply run the command:
+
+    rails test
+
+#### Linting
+
+To check for lint issues you can simply run:
+
+    rubocop
+
+#### Security Tests
+
+You can run the security CI tests yourself with:
+
+    bundle exec bundler-audit --update
+
+and
+
+    bundle exec brakeman -q -w2
+
+#### FactoryBot Tests
+
+CI currently checks to ensure that all declared factories can be built without error. You can run this test yourself
+with the command:
+
+    bundle exec rake factory_bot:lint
+
+### Deployment
+
+Currently, this app is not deployed anywhere! It's still in development!
