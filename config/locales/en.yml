@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+  workout:
+    flash:
+      success:
+        create: "Workout was successfully created."
+        update: "Workout was successfully updated."
+        destroy: "Workout was successfully destroyed."
