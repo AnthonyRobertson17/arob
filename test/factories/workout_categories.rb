@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :workout_category do
-    name { "MyString" }
+    name
   end
 end

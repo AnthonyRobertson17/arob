@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_09_040934) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_10_045410) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -27,6 +27,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_09_040934) do
     t.datetime "updated_at", null: false
     t.datetime "started_at"
     t.datetime "completed_at"
+    t.bigint "workout_category_id"
+    t.index ["workout_category_id"], name: "index_workouts_on_workout_category_id"
   end
 
+  add_foreign_key "workouts", "workout_categories"
 end

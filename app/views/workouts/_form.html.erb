@@ -1,8 +1,8 @@
 <%= form_with(model: workout) do |form| %>
   <% if workout.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(workout.errors.count, "error") %> prohibited this workout from being saved:</h2>
 
+    <div class="alert alert-danger" role="alert">
+      <h4><%= t("form_error_heading", count: workout.errors.count)%></h4>
       <ul>
         <% workout.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,12 +11,24 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :workout_category, class: "form-label" %>
+    <%= form.collection_select(
+      :workout_category_id,
+      WorkoutCategory.all,
+      :id,
+      :name,
+      { prompt: t("workout.form.workout_category_prompt") },
+      { class: "form-select" }
+    ) %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

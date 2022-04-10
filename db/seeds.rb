@@ -8,6 +8,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-WorkoutCategory.create([{ name: "Cardio" }, { name: "Chest" }])
+workout_categories = WorkoutCategory.create!([{ name: "Legs" }, { name: "Chest" }])
 
-Workout.create([{ name: "Leg Day" }])
+Workout.create!([{ name: "Leg Day", workout_category: workout_categories.first }])
