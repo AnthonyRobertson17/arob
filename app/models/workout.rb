@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Workout < ApplicationRecord
+  validates :name, presence: true
+
   def started?
     started_at.present?
   end

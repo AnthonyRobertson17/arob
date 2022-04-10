@@ -6,3 +6,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+WorkoutCategory.create([{ name: "Cardio" }, { name: "Chest" }])
+
+Workout.create([{ name: "Leg Day" }])

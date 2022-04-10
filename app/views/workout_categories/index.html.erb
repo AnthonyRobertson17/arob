@@ -1,0 +1,18 @@
+<% if notice %>
+  <div class="alert alert-success" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
+
+<h1>Workout categories</h1>
+
+<div id="workout_categories">
+  <% @workout_categories.each do |workout_category| %>
+    <%= render workout_category %>
+    <p>
+      <%= link_to "Show this workout category", workout_category %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New workout category", new_workout_category_path %>

@@ -3,6 +3,11 @@
 require "test_helper"
 
 class WorkoutTest < ActiveSupport::TestCase
+  test "name is required" do
+    workout = build :workout, name: ""
+    assert_predicate workout, :invalid?
+  end
+
   test "new workouts are not started or completed" do
     workout = build :workout
 

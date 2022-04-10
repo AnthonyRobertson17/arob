@@ -37,3 +37,9 @@ en:
         create: "Workout was successfully created."
         update: "Workout was successfully updated."
         destroy: "Workout was successfully destroyed."
+  workout_category:
+    flash:
+      success:
+        create: "Workout Category was successfully created."
+        update: "Workout Category was successfully updated."
+        destroy: "Workout Category was successfully destroyed."

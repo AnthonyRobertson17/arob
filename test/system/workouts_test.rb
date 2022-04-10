@@ -4,7 +4,7 @@ require "application_system_test_case"
 
 class WorkoutsTest < ApplicationSystemTestCase
   setup do
-    @workout = workouts(:one)
+    @workout = create(:workout)
   end
 
   test "visiting the index" do
