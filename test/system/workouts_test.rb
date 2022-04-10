@@ -13,10 +13,13 @@ class WorkoutsTest < ApplicationSystemTestCase
   end
 
   test "should create workout" do
+    workout_category = create :workout_category
+
     visit workouts_url
     click_on "New workout"
 
-    fill_in "Name", with: @workout.name
+    fill_in "Name", with: "Random workout name"
+    select workout_category.name, from: "workout_workout_category_id"
     click_on "Create Workout"
 
     assert_text "Workout was successfully created"
