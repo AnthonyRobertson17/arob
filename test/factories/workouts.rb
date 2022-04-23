@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :workout do
-    name { "WorkoutName" }
+    name
+    workout_category
   end
 
   trait :started do

@@ -31,7 +31,20 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    models:
+      workout: Workout
+      workout_category: Workout Category
+    attributes:
+      workout:
+        workout_category: "Workout Category"
+  form_error_heading:
+    zero: "No errors"
+    one: "1 error:"
+    other: "%{count} errors:"
   workout:
+    form:
+      workout_category_prompt: "-- Select --"
     flash:
       success:
         create: "Workout was successfully created."

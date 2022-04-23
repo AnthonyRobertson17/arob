@@ -17,7 +17,7 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
     click_on "New workout category"
 
     fill_in "Name", with: "Random Name"
-    click_on "Create Workout category"
+    click_on "Create Workout Category"
 
     assert_text "Workout Category was successfully created"
     click_on "Back"
@@ -28,7 +28,7 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
     click_on "Edit this workout category", match: :first
 
     fill_in "Name", with: "New workout name"
-    click_on "Update Workout category"
+    click_on "Update Workout Category"
 
     assert_text "Workout Category was successfully updated"
     click_on "Back"

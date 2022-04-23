@@ -18,8 +18,10 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create workout" do
+    workout_category = create :workout_category
+
     assert_difference("Workout.count") do
-      post workouts_url, params: { workout: { name: "New workout name" } }
+      post workouts_url, params: { workout: { name: "New workout name", workout_category_id: workout_category.id } }
     end
 
     assert_redirected_to workout_url(Workout.last)
