@@ -30,7 +30,6 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
   activerecord:
     models:
       workout: Workout
@@ -56,3 +55,7 @@ en:
         create: "Workout Category was successfully created."
         update: "Workout Category was successfully updated."
         destroy: "Workout Category was successfully destroyed."
+  navbar:
+    title: "Lift-O-Tracker"
+    workouts: "Workouts"
+    workout_categories: "Workout Categories"
