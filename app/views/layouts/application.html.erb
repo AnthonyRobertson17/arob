@@ -11,10 +11,8 @@
   </head>
 
   <body>
-    <div class="container-xxl">
-      <%= link_to "Workouts", workouts_path %>
-      <%= link_to "Workout Categories", workout_categories_path %>
-
+    <%= render "layouts/navbar" %>
+    <div class="container">
       <%= yield %>
     </div>
   </body>
