@@ -1,13 +1,6 @@
 # Lift-O-Tracker
 
 A super simple workout tracker.
-## App Info
-
-| Tool                                      | Version |
-| ----------------------------------------- | ------- |
-| [Ruby](https://www.ruby-lang.org/en/)     | 3.1.1   |
-| [Rails](https://rubyonrails.org/)         | 7.0.2.3 |
-| [PostgreSQL](https://www.postgresql.org/) | 13.5    |
 
 ## Dev Setup
 
