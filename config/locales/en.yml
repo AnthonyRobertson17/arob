@@ -30,6 +30,7 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  app_name: "Lift-O-Tracker"
   activerecord:
     models:
       workout: Workout
@@ -41,6 +42,8 @@ en:
     zero: "No errors"
     one: "1 error:"
     other: "%{count} errors:"
+  home:
+    recent_workouts: "Recent Workouts"
   workout:
     form:
       workout_category_prompt: "-- Select --"
@@ -56,6 +59,5 @@ en:
         update: "Workout Category was successfully updated."
         destroy: "Workout Category was successfully destroyed."
   navbar:
-    title: "Lift-O-Tracker"
     workouts: "Workouts"
     workout_categories: "Workout Categories"

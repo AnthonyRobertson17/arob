@@ -1,0 +1,13 @@
+<h1 class="display-3 mt-4 mb-5"><%= t(:app_name) %></h1>
+<h2><%= t(:recent_workouts) %></h2>
+<div id="workouts">
+  <% @recent_workouts.each_with_index do |workout, i| %>
+    <% unless i.zero? %>
+      <hr>
+    <% end %>
+    <%= render workout %>
+    <p>
+      <%= link_to "Show this workout", workout %>
+    </p>
+  <% end %>
+</div>
