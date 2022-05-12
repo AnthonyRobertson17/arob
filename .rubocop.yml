@@ -8,6 +8,12 @@ AllCops:
   TargetRubyVersion: 3.1.0
   NewCops: enable
 
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
 Metrics/BlockLength:
   Exclude:
     - config/**/*
