@@ -49,9 +49,9 @@ en:
       workout_category_prompt: "-- Select --"
     show:
       start: "Start workout"
-      edit: "Edit this workout"
+      edit: "Edit workout"
       back: "Back to workouts"
-      destroy: "Destroy this workout"
+      destroy: "Destroy workout"
     flash:
       success:
         create: "Workout was successfully created."
