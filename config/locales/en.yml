@@ -58,6 +58,8 @@ en:
         update: "Workout was successfully updated."
         destroy: "Workout was successfully destroyed."
         started: "Workout was successfully started."
+      error:
+        already_started: "Workout has already started."
   workout_categories:
     flash:
       success:
