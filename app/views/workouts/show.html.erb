@@ -3,9 +3,9 @@
 <%= render @workout %>
 
 <div>
-  <%= link_to "Complete workout", workouts_path %>
-  <%= link_to "Edit this workout", edit_workout_path(@workout) %> |
-  <%= link_to "Back to workouts", workouts_path %>
+  <%= link_to t(".start"), start_workout_path(@workout) %>
+  <%= link_to t(".edit"), edit_workout_path(@workout) %> |
+  <%= link_to t(".back"), workouts_path %>
 
-  <%= button_to "Destroy this workout", @workout, method: :delete %>
+  <%= button_to t(".destroy"), @workout, method: :delete %>
 </div>
