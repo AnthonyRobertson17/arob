@@ -23,11 +23,11 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_predicate workout, :started?
   end
 
-  test "start! does not override existing started_at value" do
+  test "start! raises AlreadyStartedError if already started" do
     start_time = 2.days.ago
     workout = create :workout, started_at: start_time
 
-    workout.start!
+    assert_raises(Workout::AlreadyStartedError) { workout.start! }
 
     assert_equal start_time, workout.started_at
   end

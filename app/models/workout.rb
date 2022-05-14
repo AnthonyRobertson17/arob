@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Workout < ApplicationRecord
+  class AlreadyStartedError < StandardError; end
+
   belongs_to :workout_category
 
   validates :name, presence: true
@@ -8,7 +10,7 @@ class Workout < ApplicationRecord
   scope :completed, -> { where.not(completed_at: nil) }
 
   def start!
-    return if started?
+    raise AlreadyStartedError if started?
 
     update!(started_at: Time.now.utc)
   end
