@@ -7,6 +7,12 @@ class Workout < ApplicationRecord
 
   scope :completed, -> { where.not(completed_at: nil) }
 
+  def start!
+    return if started?
+
+    update!(started_at: Time.now.utc)
+  end
+
   def started?
     started_at.present?
   end
