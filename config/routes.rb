@@ -2,7 +2,11 @@
 
 Rails.application.routes.draw do
   resources :workout_categories
-  resources :workouts
+  resources :workouts do
+    member do
+      patch "start", to: "workouts/start#update"
+    end
+  end
 
   root "home#index"
 end
