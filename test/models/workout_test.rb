@@ -24,12 +24,14 @@ class WorkoutTest < ActiveSupport::TestCase
   end
 
   test "start! raises AlreadyStartedError if already started" do
-    start_time = 2.days.ago
-    workout = create :workout, started_at: start_time
+    freeze_time do
+      start_time = 2.days.ago
+      workout = create :workout, started_at: start_time
 
-    assert_raises(Workout::AlreadyStartedError) { workout.start! }
+      assert_raises(Workout::AlreadyStartedError) { workout.start! }
 
-    assert_equal start_time, workout.started_at
+      assert_equal start_time, workout.started_at
+    end
   end
 
   test "started? is true when started_at is set" do
