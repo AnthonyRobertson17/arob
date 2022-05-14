@@ -15,6 +15,25 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_not workout.completed?
   end
 
+  test "start! sets started_at if not already set" do
+    workout = create :workout
+    assert_not workout.started?
+
+    workout.start!
+    assert_predicate workout, :started?
+  end
+
+  test "start! raises AlreadyStartedError if already started" do
+    freeze_time do
+      start_time = 2.days.ago
+      workout = create :workout, started_at: start_time
+
+      assert_raises(Workout::AlreadyStartedError) { workout.start! }
+
+      assert_equal start_time, workout.started_at
+    end
+  end
+
   test "started? is true when started_at is set" do
     workout = build :workout, :started
 

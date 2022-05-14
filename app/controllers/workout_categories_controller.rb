@@ -24,7 +24,7 @@ class WorkoutCategoriesController < ApplicationController
     @workout_category = WorkoutCategory.new(workout_category_params)
 
     if @workout_category.save
-      redirect_to @workout_category, notice: I18n.t("workout_category.flash.success.create")
+      redirect_to @workout_category, notice: I18n.t("workout_categories.flash.success.create")
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class WorkoutCategoriesController < ApplicationController
   # PATCH/PUT /workout_categories/1
   def update
     if @workout_category.update(workout_category_params)
-      redirect_to @workout_category, notice: I18n.t("workout_category.flash.success.update")
+      redirect_to @workout_category, notice: I18n.t("workout_categories.flash.success.update")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +42,7 @@ class WorkoutCategoriesController < ApplicationController
   # DELETE /workout_categories/1
   def destroy
     @workout_category.destroy
-    redirect_to workout_categories_url, notice: I18n.t("workout_category.flash.success.destroy")
+    redirect_to workout_categories_url, notice: I18n.t("workout_categories.flash.success.destroy")
   end
 
   private

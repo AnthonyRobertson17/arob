@@ -44,15 +44,23 @@ en:
     other: "%{count} errors:"
   home:
     recent_workouts: "Recent Workouts"
-  workout:
+  workouts:
     form:
       workout_category_prompt: "-- Select --"
+    show:
+      start: "Start workout"
+      edit: "Edit workout"
+      back: "Back to workouts"
+      destroy: "Destroy workout"
     flash:
       success:
         create: "Workout was successfully created."
         update: "Workout was successfully updated."
         destroy: "Workout was successfully destroyed."
-  workout_category:
+        started: "Workout was successfully started."
+      error:
+        already_started: "Workout has already started."
+  workout_categories:
     flash:
       success:
         create: "Workout Category was successfully created."
