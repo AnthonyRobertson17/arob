@@ -29,6 +29,7 @@
             %>
           </li>
         </ul>
+        <div id="user_email" class="mx-2"><%= current_user.email %></div>
         <%= button_to t("navbar.logout"),
             destroy_user_session_path,
             method: :delete,
