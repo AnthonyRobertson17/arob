@@ -4,7 +4,10 @@ require "test_helper"
 
 class HomeControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get root_url
+    user = create :user
+    sign_in user
+
+    get authenticated_root_url
     assert_response :success
   end
 end

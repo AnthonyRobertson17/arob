@@ -11,3 +11,23 @@ module ActiveSupport
     parallelize(workers: :number_of_processors)
   end
 end
+
+module ActionDispatch
+  class IntegrationTest
+    include Devise::Test::IntegrationHelpers
+  end
+end
+
+module ActionDispatch
+  class SystemTestCase
+    include Warden::Test::Helpers
+    def login(email:, password: "password12345")
+      visit new_user_session_url
+
+      fill_in "Email", with: email
+      fill_in "Password", with: password
+
+      click_on "Log in"
+    end
+  end
+end

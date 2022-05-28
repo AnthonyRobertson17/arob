@@ -4,6 +4,8 @@ require "test_helper"
 
 class WorkoutsControllerTest < ActionDispatch::IntegrationTest
   setup do
+    user = create :user
+    sign_in user
     @workout = create(:workout)
   end
 
