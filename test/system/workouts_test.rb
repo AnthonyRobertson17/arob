@@ -4,6 +4,8 @@ require "application_system_test_case"
 
 class WorkoutsTest < ApplicationSystemTestCase
   setup do
+    user = create :user
+    login email: user.email
     @workout = create(:workout)
   end
 

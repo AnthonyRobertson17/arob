@@ -4,6 +4,8 @@ require "application_system_test_case"
 
 class WorkoutCategoriesTest < ApplicationSystemTestCase
   setup do
+    user = create :user
+    login email: user.email
     @workout_category = create(:workout_category)
   end
 

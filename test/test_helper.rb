@@ -20,7 +20,6 @@ end
 
 module ActionDispatch
   class SystemTestCase
-    include Warden::Test::Helpers
     def login(email:, password: "password12345")
       visit new_user_session_url
 

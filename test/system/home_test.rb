@@ -4,6 +4,9 @@ require "application_system_test_case"
 
 class HomeTest < ApplicationSystemTestCase
   setup do
+    user = create :user
+    login email: user.email
+
     create :workout, name: "nah dog"
     create :workout, :started, name: "nope"
     create :workout, :completed, name: "oh yeah"
