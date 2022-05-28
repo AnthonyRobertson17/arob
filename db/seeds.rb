@@ -8,6 +8,11 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+User.create!(
+  email: "dev@test.test",
+  password: "password12345",
+)
+
 legs_category = WorkoutCategory.create!(name: "Legs")
 chest_category = WorkoutCategory.create!(name: "Chest")
 
