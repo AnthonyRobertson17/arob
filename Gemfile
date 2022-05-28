@@ -56,6 +56,9 @@ gem "sassc-rails"
 # Abort requests that are taking too long [https://github.com/sharpstone/rack-timeout]
 gem "rack-timeout"
 
+# User authentication [https://github.com/heartcombo/devise]
+gem "devise"
+
 group :development, :test do
   gem "brakeman"
   gem "bundler-audit"
