@@ -33,7 +33,8 @@
         <%= button_to t("navbar.logout"),
             destroy_user_session_path,
             method: :delete,
-            class: "btn btn-outline-danger"
+            class: "btn btn-outline-danger",
+            "data-turbo": "false" # TODO figure out how to get devise to work well with turbo
         %>
       </div>
     </div>
