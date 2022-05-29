@@ -1,33 +1,42 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
-    <%= link_to t("app_name"), root_path, class: "navbar-brand"%>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#main_navbar"
-      aria-controls="main_navbar"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="main_navbar">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <%= link_to t("navbar.workouts"),
-              workouts_path,
-              class: "nav-link #{active_class(workouts_path)}",
-              "aria-current": "page"
-          %>
-        </li>
-        <li class="nav-item">
-          <%= link_to t("navbar.workout_categories"),
-              workout_categories_path,
-              class: "nav-link #{active_class(workout_categories_path)}"
-          %>
-        </li>
-      </ul>
+<% if user_signed_in? %>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <%= link_to t("app_name"), root_path, class: "navbar-brand"%>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#main_navbar"
+        aria-controls="main_navbar"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="main_navbar">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <%= link_to t("navbar.workouts"),
+                workouts_path,
+                class: "nav-link #{active_class(workouts_path)}",
+                "aria-current": "page"
+            %>
+          </li>
+          <li class="nav-item">
+            <%= link_to t("navbar.workout_categories"),
+                workout_categories_path,
+                class: "nav-link #{active_class(workout_categories_path)}"
+            %>
+          </li>
+        </ul>
+        <div id="user_email" class="mx-2"><%= current_user.email %></div>
+        <%= button_to t("navbar.logout"),
+            destroy_user_session_path,
+            method: :delete,
+            class: "btn btn-outline-danger",
+            "data-turbo": "false" # TODO figure out how to get devise to work well with turbo
+        %>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+<% end %>

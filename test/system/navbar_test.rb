@@ -3,6 +3,11 @@
 require "application_system_test_case"
 
 class NavbarTest < ApplicationSystemTestCase
+  setup do
+    user = create :user
+    login email: user.email
+  end
+
   test "clicking the site name brings user to root" do
     visit workouts_url
     click_on "Lift-O-Tracker"

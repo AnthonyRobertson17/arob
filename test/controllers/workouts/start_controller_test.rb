@@ -4,6 +4,11 @@ require "test_helper"
 
 module Workouts
   class StartControllerTest < ActionDispatch::IntegrationTest
+    setup do
+      user = create :user
+      sign_in user
+    end
+
     test "update redirects to the workout show page" do
       workout = create :workout
 

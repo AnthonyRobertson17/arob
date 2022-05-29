@@ -67,5 +67,6 @@ en:
         update: "Workout Category was successfully updated."
         destroy: "Workout Category was successfully destroyed."
   navbar:
+    logout: "Logout"
     workouts: "Workouts"
     workout_categories: "Workout Categories"
