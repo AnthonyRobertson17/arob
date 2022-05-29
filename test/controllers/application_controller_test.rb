@@ -8,12 +8,16 @@ class TestController < ApplicationController
   end
 end
 
-class HomeControllerTest < ActionDispatch::IntegrationTest
+class ApplicationControllerTest < ActionDispatch::IntegrationTest
   setup do
     Rails.application.routes.draw do
       devise_for :users
       get "/test", to: "test#index"
     end
+  end
+
+  teardown do
+    Rails.application.reload_routes!
   end
 
   test "does nothing when authenticated" do
