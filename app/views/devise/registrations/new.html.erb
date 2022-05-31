@@ -1,32 +1,30 @@
-<div data-turbo="false">
-  <h2><%= t(".sign_up") %></h2>
-
+<div class="justify-content-center align-items-center mt-5 mx-auto px-4 small-width", data-turbo="false">
+  <h1 class="text-primary text-center mb-4"><%= t(:app_name) %></h1>
+  <h3 class="text-secondary text-center"><%= t(".sign_up") %></h3>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email, class: "d-block" %>
+    <div class="mb-3">
+      <%= f.label :email, class: "form-label text-primary d-block" %>
       <%= render "devise/shared/form_error", attribute: :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
     </div>
 
-    <div class="field">
-      <div>
-        <%= f.label :password %>
+    <div class="mb-3">
+      <div class="text-primary">
+        <%= f.label :password, class: "form-label" %>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> <%= t(".characters_minimum") %>)</em>
         <% end %>
       </div>
       <%= render "devise/shared/form_error", attribute: :password %>
-      <%= f.password_field :password, autocomplete: "new-password" %>
+      <%= f.password_field :password, class: "form-control", autocomplete: "new-password" %>
     </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation, class: "d-block" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <div class="mb-3">
+      <%= f.label :password_confirmation, class: "form-label d-block text-primary" %>
+      <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
     </div>
 
-    <div class="actions">
-      <%= f.submit t(".sign_up") %>
-    </div>
+    <%= f.submit t(".sign_up"), class: "btn btn-primary" %>
   <% end %>
 
   <%= render "devise/shared/links" %>
