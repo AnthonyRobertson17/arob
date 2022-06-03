@@ -1,25 +1,27 @@
-<div data-turbo="false">
-  <h2>Log in</h2>
+<div class="justify-content-center align-items-center mt-5 mx-auto px-4 small-width" data-turbo="false">
+  <h1 class="text-primary text-center mb-4"><%= t(:app_name) %></h1>
+  <h3 class="text-secondary text-center"><%= t(:log_in) %></h3>
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <div class="mb-3">
+      <%= f.label :email , class: "form-label text-primary d-block"%>
+      <%= render "devise/shared/form_error", attribute: :email %>
+      <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
     </div>
 
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
+    <div class="mb-3">
+      <%= f.label :password, class: "form-label text-primary d-block" %>
+      <%= f.password_field :password, class: "form-control", autocomplete: "current-password" %>
     </div>
 
     <% if devise_mapping.rememberable? %>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+      <div class="mb-3 form-check">
+        <%= f.check_box :remember_me, class: "form-check-input" %>
+        <%= f.label :remember_me, class: "form-check-label" %>
       </div>
     <% end %>
 
     <div class="actions">
-      <%= f.submit "Log in" %>
+      <%= f.submit t(:log_in), class: "btn btn-primary" %>
     </div>
   <% end %>
 

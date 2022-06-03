@@ -26,7 +26,7 @@ module ActionDispatch
       fill_in "Email", with: email
       fill_in "Password", with: password
 
-      click_on "Log in"
+      click_on "Log In"
     end
   end
 end
