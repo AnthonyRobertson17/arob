@@ -30,7 +30,7 @@ class AuthenticationTest < ApplicationSystemTestCase
     fill_in "Password", with: "password12345"
     fill_in "Password confirmation", with: "password12345"
 
-    click_on "Sign up"
+    click_on "Sign Up"
 
     assert_text "foo@test.test"
     assert_text "Welcome! You have signed up successfully."
