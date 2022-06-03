@@ -1,6 +1,6 @@
 <div class="justify-content-center align-items-center mt-5 mx-auto px-4 small-width", data-turbo="false">
   <h1 class="text-primary text-center mb-4"><%= t(:app_name) %></h1>
-  <h3 class="text-secondary text-center"><%= t(".sign_up") %></h3>
+  <h3 class="text-secondary text-center"><%= t(:sign_up) %></h3>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <div class="mb-3">
       <%= f.label :email, class: "form-label text-primary d-block" %>
@@ -24,7 +24,7 @@
       <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password" %>
     </div>
 
-    <%= f.submit t(".sign_up"), class: "btn btn-primary" %>
+    <%= f.submit t(:sign_up), class: "btn btn-primary" %>
   <% end %>
 
   <%= render "devise/shared/links" %>

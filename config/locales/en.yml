@@ -31,6 +31,8 @@
 
 en:
   app_name: "Lift-O-Tracker"
+  log_in: "Log In"
+  sign_up: "Sign Up"
   activerecord:
     models:
       workout: Workout
