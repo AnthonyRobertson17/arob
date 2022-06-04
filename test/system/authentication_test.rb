@@ -40,7 +40,7 @@ class AuthenticationTest < ApplicationSystemTestCase
   test "can visit sign up from login page" do
     visit new_user_session_url
 
-    click_on "Sign up"
+    click_on "Sign Up"
     assert_current_path new_user_registration_path
   end
 end
