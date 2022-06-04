@@ -25,12 +25,12 @@ class WorkoutTest < ActiveSupport::TestCase
 
   test "start! raises AlreadyStartedError if already started" do
     freeze_time do
-      start_time = 2.days.ago
-      workout = create :workout, started_at: start_time
+      original_time = 2.days.ago
+      workout = create :workout, started_at: original_time
 
       assert_raises(Workout::AlreadyStartedError) { workout.start! }
 
-      assert_equal start_time, workout.started_at
+      assert_equal original_time, workout.reload.started_at
     end
   end
 
@@ -53,7 +53,36 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_not workout.active?
   end
 
-  test "completed is true when completed_at is set" do
+  test "complete! sets completed_at" do
+    workout = create :workout, :started
+
+    freeze_time do
+      workout.complete!
+
+      assert_equal Time.now.utc, workout.completed_at
+    end
+  end
+
+  test "complete! raises NotStartedError if not started" do
+    workout = create :workout
+
+    assert_raises(Workout::NotStartedError) { workout.complete! }
+
+    assert_nil workout.reload.completed_at
+  end
+
+  test "complete! raises AlreadyCompletedError if already completed" do
+    freeze_time do
+      original_time = 2.days.ago
+      workout = create :workout, completed_at: original_time
+
+      assert_raises(Workout::AlreadyCompletedError) { workout.complete! }
+
+      assert_equal original_time, workout.reload.completed_at
+    end
+  end
+
+  test "completed? is true when completed_at is set" do
     workout = build :workout, :completed
 
     assert_predicate workout, :completed?
