@@ -51,6 +51,7 @@ en:
       workout_category_prompt: "-- Select --"
     show:
       start: "Start workout"
+      complete: "Complete workout"
       edit: "Edit workout"
       back: "Back to workouts"
       destroy: "Destroy workout"
