@@ -15,6 +15,14 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_not workout.completed?
   end
 
+  test "completed scope only returns completed workouts" do
+    create :workout
+    create :workout, :started
+    create :workout, :completed
+
+    assert_predicate Workout.completed, :one?
+  end
+
   test "start! sets started_at if not already set" do
     workout = create :workout
     assert_not workout.started?
