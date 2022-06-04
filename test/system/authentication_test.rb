@@ -23,24 +23,9 @@ class AuthenticationTest < ApplicationSystemTestCase
     assert_current_path new_user_session_path
   end
 
-  test "should be able to sign up" do
-    visit new_user_registration_url
-
-    fill_in "Email", with: "foo@test.test"
-    fill_in "Password", with: "password12345"
-    fill_in "Password confirmation", with: "password12345"
-
-    click_on "Sign Up"
-
-    assert_text "foo@test.test"
-    assert_text "Welcome! You have signed up successfully."
-    assert_current_path authenticated_root_path
-  end
-
-  test "can visit sign up from login page" do
+  test "can not visit sign up from login page" do
     visit new_user_session_url
 
-    click_on "Sign Up"
-    assert_current_path new_user_registration_path
+    assert_no_text "Sign Up"
   end
 end
