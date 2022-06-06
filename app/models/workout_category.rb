@@ -5,4 +5,6 @@ class WorkoutCategory < ApplicationRecord
   has_many :workouts, dependent: :nullify
 
   validates :name, presence: true
+
+  scope :for_user, ->(user) { where(user:) }
 end
