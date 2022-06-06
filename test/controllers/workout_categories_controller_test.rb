@@ -9,17 +9,17 @@ class WorkoutCategoriesControllerTest < ActionDispatch::IntegrationTest
     @workout_category = create(:workout_category)
   end
 
-  test "should get index" do
+  test "get index" do
     get workout_categories_url
     assert_response :success
   end
 
-  test "should get new" do
+  test "get new" do
     get new_workout_category_url
     assert_response :success
   end
 
-  test "should create workout_category" do
+  test "create workout_category" do
     assert_difference("WorkoutCategory.count") do
       post workout_categories_url, params: { workout_category: { name: "Random Category" } }
     end
@@ -27,22 +27,22 @@ class WorkoutCategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to workout_category_url(WorkoutCategory.last)
   end
 
-  test "should show workout_category" do
+  test "show workout_category" do
     get workout_category_url(@workout_category)
     assert_response :success
   end
 
-  test "should get edit" do
+  test "get edit" do
     get edit_workout_category_url(@workout_category)
     assert_response :success
   end
 
-  test "should update workout_category" do
+  test "update workout_category" do
     patch workout_category_url(@workout_category), params: { workout_category: { name: "New Workout Name" } }
     assert_redirected_to workout_category_url(@workout_category)
   end
 
-  test "should destroy workout_category" do
+  test "destroy workout_category" do
     assert_difference("WorkoutCategory.count", -1) do
       delete workout_category_url(@workout_category)
     end
