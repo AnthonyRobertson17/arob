@@ -5,10 +5,12 @@ class Workout < ApplicationRecord
   class AlreadyCompletedError < StandardError; end
   class NotStartedError < StandardError; end
 
+  belongs_to :user
   belongs_to :workout_category
 
   validates :name, presence: true
 
+  scope :for_user, ->(user) { where(user:) }
   scope :completed, -> { where.not(completed_at: nil) }
 
   def start!

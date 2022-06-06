@@ -2,16 +2,17 @@
 
 FactoryBot.define do
   factory :workout do
-    name
+    user
+    sequence(:name) { |n| "workout-#{n}" }
     workout_category
-  end
 
-  trait :started do
-    started_at { 1.hour.ago }
-  end
+    trait :started do
+      started_at { 1.hour.ago }
+    end
 
-  trait :completed do
-    started
-    completed_at { 1.hour.ago }
+    trait :completed do
+      started
+      completed_at { 1.hour.ago }
+    end
   end
 end
