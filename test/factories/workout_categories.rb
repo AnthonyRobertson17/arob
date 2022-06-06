@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :workout_category do
-    name
+    sequence(:name) { |n| "category-#{n}" }
   end
 end

@@ -5,7 +5,7 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts
   def index
-    @workouts = Workout.all
+    @workouts = users_workouts.all
   end
 
   # GET /workouts/1
@@ -21,7 +21,7 @@ class WorkoutsController < ApplicationController
 
   # POST /workouts
   def create
-    @workout = Workout.new(workout_params)
+    @workout = Workout.new(workout_params.merge(user: current_user))
 
     if @workout.save
       redirect_to @workout, notice: I18n.t("workouts.flash.success.create")
@@ -49,11 +49,15 @@ class WorkoutsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_workout
-    @workout = Workout.find(params[:id])
+    @workout = users_workouts.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def workout_params
     params.require(:workout).permit([:name, :workout_category_id])
+  end
+
+  def users_workouts
+    Workout.for_user(current_user)
   end
 end
