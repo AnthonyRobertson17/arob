@@ -7,9 +7,9 @@ class HomeTest < ApplicationSystemTestCase
     user = create :user
     login email: user.email
 
-    create :workout, name: "nah dog"
-    create :workout, :started, name: "nope"
-    create :workout, :completed, name: "oh yeah"
+    create :workout, user:, name: "nah dog"
+    create :workout, :started, user:, name: "nope"
+    create :workout, :completed, user:, name: "oh yeah"
   end
 
   test "should only see completed workouts" do

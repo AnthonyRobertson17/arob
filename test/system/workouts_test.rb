@@ -4,9 +4,9 @@ require "application_system_test_case"
 
 class WorkoutsTest < ApplicationSystemTestCase
   setup do
-    user = create :user
-    login email: user.email
-    @workout = create(:workout)
+    @user = create :user
+    login email: @user.email
+    @workout = create :workout, user: @user
   end
 
   test "visiting the index" do
@@ -63,7 +63,7 @@ class WorkoutsTest < ApplicationSystemTestCase
   end
 
   test "starting in progress Workout" do
-    started_workout = create :workout, :started
+    started_workout = create :workout, :started, user: @user
     visit workout_url(started_workout)
     click_on "Start workout", match: :first
 
