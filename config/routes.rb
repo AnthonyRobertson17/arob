@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :workouts do
     member do
       patch "start", to: "workouts/start#update"
+      patch "complete", to: "workouts/complete#update"
     end
   end
 

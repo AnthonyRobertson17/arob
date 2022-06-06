@@ -53,6 +53,15 @@ class WorkoutsTest < ApplicationSystemTestCase
     assert_text "Workout was successfully started."
   end
 
+  test "completing a Workout" do
+    @workout.start!
+
+    visit workout_url(@workout)
+    click_on "Complete workout", match: :first
+
+    assert_text "Workout was successfully completed."
+  end
+
   test "starting in progress Workout" do
     started_workout = create :workout, :started
     visit workout_url(started_workout)

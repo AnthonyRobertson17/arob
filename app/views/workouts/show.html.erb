@@ -2,6 +2,7 @@
 
 <div>
   <%= button_to t(".start"), start_workout_path(@workout), method: :patch %>
+  <%= button_to t(".complete"), complete_workout_path(@workout), method: :patch %>
   <%= link_to t(".edit"), edit_workout_path(@workout) %> |
   <%= link_to t(".back"), workouts_path %>
   <%= button_to t(".destroy"), @workout, method: :delete %>

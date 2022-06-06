@@ -51,6 +51,7 @@ en:
       workout_category_prompt: "-- Select --"
     show:
       start: "Start workout"
+      complete: "Complete workout"
       edit: "Edit workout"
       back: "Back to workouts"
       destroy: "Destroy workout"
@@ -60,8 +61,11 @@ en:
         update: "Workout was successfully updated."
         destroy: "Workout was successfully destroyed."
         started: "Workout was successfully started."
+        completed: "Workout was successfully completed."
       error:
         already_started: "Workout has already started."
+        already_completed: "Workout has already been completed."
+        not_started: "Workout has not been started."
   workout_categories:
     flash:
       success:

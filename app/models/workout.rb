@@ -2,6 +2,8 @@
 
 class Workout < ApplicationRecord
   class AlreadyStartedError < StandardError; end
+  class AlreadyCompletedError < StandardError; end
+  class NotStartedError < StandardError; end
 
   belongs_to :workout_category
 
@@ -17,6 +19,13 @@ class Workout < ApplicationRecord
 
   def started?
     started_at.present?
+  end
+
+  def complete!
+    raise AlreadyCompletedError if completed?
+    raise NotStartedError unless started?
+
+    update!(completed_at: Time.now.utc)
   end
 
   def completed?
