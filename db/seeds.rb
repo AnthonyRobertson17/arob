@@ -8,12 +8,12 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-user_1 = User.create!(
+user1 = User.create!(
   email: "dev@test.test",
   password: "password12345",
 )
 
-user_2 = User.create!(
+user2 = User.create!(
   email: "dev2@test.test",
   password: "password12345",
 )
@@ -32,13 +32,13 @@ Workout.create!([
     workout_category: chest_category,
     started_at: 2.days.ago,
     completed_at: 2.days.ago + 1.hour,
-    user: user_1,
+    user: user1,
   },
   {
     name: "Silly Day",
     workout_category: chest_category,
     started_at: 2.days.ago,
     completed_at: 2.days.ago + 1.hour,
-    user: user_2,
+    user: user2,
   },
 ])
