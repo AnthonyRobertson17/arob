@@ -8,6 +8,14 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_predicate workout, :invalid?
   end
 
+  test "workout category must share user with workout" do
+    workout_category = build :workout_category
+    workout = build :workout, workout_category: workout_category
+
+    assert_predicate workout, :invalid?
+    assert_equal "Workout Category not found", workout.errors.first.full_message
+  end
+
   test "new workouts are not started or completed" do
     workout = build :workout
 

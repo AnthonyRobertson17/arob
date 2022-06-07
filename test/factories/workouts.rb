@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :workout do
     user
     sequence(:name) { |n| "workout-#{n}" }
-    workout_category
+    workout_category { create :workout_category, user: }
 
     trait :started do
       started_at { 1.hour.ago }
