@@ -15,7 +15,7 @@ class WorkoutsTest < ApplicationSystemTestCase
   end
 
   test "creating workout" do
-    workout_category = create :workout_category
+    workout_category = create :workout_category, user: @user
 
     visit workouts_url
     click_on "New workout"
