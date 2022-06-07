@@ -18,14 +18,16 @@ user2 = User.create!(
   password: "password12345",
 )
 
-legs_category = WorkoutCategory.create!(name: "Legs")
-chest_category = WorkoutCategory.create!(name: "Chest")
+legs_category = WorkoutCategory.create!(name: "Legs", user: user1)
+chest_category = WorkoutCategory.create!(name: "Chest", user: user1)
+
+user2_category = WorkoutCategory.create!(name: "Chest for user 2", user: user2)
 
 Workout.create!([
   {
     name: "Leg Day",
     workout_category: legs_category,
-    user: user_1,
+    user: user1,
   },
   {
     name: "Chest Day",
@@ -36,7 +38,7 @@ Workout.create!([
   },
   {
     name: "Silly Day",
-    workout_category: chest_category,
+    workout_category: user2_category,
     started_at: 2.days.ago,
     completed_at: 2.days.ago + 1.hour,
     user: user2,

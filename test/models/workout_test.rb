@@ -23,6 +23,14 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_predicate Workout.completed, :one?
   end
 
+  test "for_user scope only returns workouts for the provided user" do
+    user = create :user
+    create :workout
+    create :workout, user: user
+
+    assert_predicate Workout.for_user(user), :one?
+  end
+
   test "start! sets started_at if not already set" do
     workout = create :workout
     assert_not workout.started?
