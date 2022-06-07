@@ -53,7 +53,7 @@ class WorkoutCategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "show workout_category returns not found if workout_category belongs to another user" do
+  test "show workout_category raises not found if workout_category belongs to another user" do
     workout_category = create :workout_category
 
     assert_raises(ActiveRecord::RecordNotFound) do
@@ -68,7 +68,7 @@ class WorkoutCategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "get edit returns 404 if workout is not for the current user" do
+  test "get edit raises not found if workout is not for the current user" do
     workout_category = create :workout_category
 
     assert_raises(ActiveRecord::RecordNotFound) do
@@ -83,7 +83,7 @@ class WorkoutCategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to workout_category_url(workout_category)
   end
 
-  test "update workout_category returns not found if workout category belongs to another user" do
+  test "update workout_category raises not found if workout category belongs to another user" do
     workout_category = create :workout_category
 
     assert_raises(ActiveRecord::RecordNotFound) do
@@ -101,7 +101,7 @@ class WorkoutCategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to workout_categories_url
   end
 
-  test "destroy workout_category returns not found if workout belongs to another user" do
+  test "destroy workout_category raises not found if workout belongs to another user" do
     workout_category = create :workout_category
 
     assert_raises(ActiveRecord::RecordNotFound) do

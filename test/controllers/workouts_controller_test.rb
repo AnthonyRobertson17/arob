@@ -28,17 +28,22 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "create workout" do
-    workout_category = create :workout_category
+  test "create workout redirects to the correct workout" do
+    workout_category = create :workout_category, user: @user
 
     assert_difference("Workout.count") do
       post workouts_url, params: { workout: { name: "New workout name", workout_category_id: workout_category.id } }
     end
 
-    new_workout = Workout.last
-    assert_equal @user.id, new_workout.user_id
+    assert_redirected_to workout_url(Workout.last)
+  end
 
-    assert_redirected_to workout_url(new_workout)
+  test "create workout links to the current_user" do
+    workout_category = create :workout_category, user: @user
+    post workouts_url, params: { workout: { name: "New workout name", workout_category_id: workout_category.id } }
+
+    new_workout = Workout.for_user(@user).last
+    assert_equal "New workout name", new_workout.name
   end
 
   test "show workout" do
@@ -46,15 +51,39 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "show workout raises not found if the workout belongs to another user" do
+    other_workout = create :workout
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      get workout_url(other_workout)
+    end
+  end
+
   test "get edit" do
     get edit_workout_url(@workout)
     assert_response :success
   end
 
-  test "should update workout" do
+  test "get edit raises not found if the workout belongst to another user" do
+    other_workout = create :workout
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      get edit_workout_url(other_workout)
+    end
+  end
+
+  test "update workout" do
     patch workout_url(@workout), params: { workout: { name: "Updated workout name" } }
     assert_redirected_to workout_url(@workout)
     assert_equal "Updated workout name", @workout.reload.name
+  end
+
+  test "update workout raises not found if the workout belongs to another user" do
+    other_workout = create :workout
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      patch workout_url(other_workout), params: { workout: { name: "Updated workout name" } }
+    end
   end
 
   test "destroy workout" do
@@ -63,5 +92,13 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to workouts_url
+  end
+
+  test "destroy workout raises not found if the workout belongs to another user" do
+    other_workout = create :workout
+
+    assert_raises(ActiveRecord::RecordNotFound) do
+      delete workout_url(other_workout)
+    end
   end
 end
