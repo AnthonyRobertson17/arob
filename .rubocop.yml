@@ -13,6 +13,8 @@ AllCops:
     - bin/**/*
     - vendor/bundle/**/*
     - db/schema.rb
+    - node_modules/**/*
+    - tmp/**/*
 
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
