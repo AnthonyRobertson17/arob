@@ -3,18 +3,18 @@
 require "application_system_test_case"
 
 class WorkoutCategoriesTest < ApplicationSystemTestCase
-  setup do
-    user = create :user
-    login email: user.email
-    @workout_category = create :workout_category, user:
-  end
-
   test "visiting the index" do
+    user = login
+    create :workout_category, user: user
+
     visit workout_categories_url
     assert_selector "h1", text: "Workout categories"
   end
 
   test "should create workout category" do
+    user = login
+    create :workout_category, user: user
+
     visit workout_categories_url
     click_on "New workout category"
 
@@ -26,7 +26,10 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
   end
 
   test "should update Workout category" do
-    visit workout_category_url(@workout_category)
+    user = login
+    workout_category = create :workout_category, user: user
+
+    visit workout_category_url(workout_category)
     click_on "Edit this workout category", match: :first
 
     fill_in "Name", with: "New workout name"
@@ -37,7 +40,10 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
   end
 
   test "should destroy Workout category" do
-    visit workout_category_url(@workout_category)
+    user = login
+    workout_category = create :workout_category, user: user
+
+    visit workout_category_url(workout_category)
     click_on "Destroy this workout category", match: :first
 
     assert_text "Workout Category was successfully destroyed"

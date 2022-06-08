@@ -56,7 +56,7 @@ en:
         title: "Edit Profile"
       flash:
         success:
-          update: "Profile successfully updated."
+          update: "Profile was successfully updated."
   workouts:
     form:
       workout_category_prompt: "-- Select --"
