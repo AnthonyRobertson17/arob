@@ -7,6 +7,11 @@ require:
 AllCops:
   TargetRubyVersion: 3.1.0
   NewCops: enable
+  Exclude:
+    - config/initializers/simple_form_bootstrap.rb
+    - config/initializers/simple_form.rb
+    - bin/**/*
+    - db/schema.rb
 
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
