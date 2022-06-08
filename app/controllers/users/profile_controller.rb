@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+module Users
+  class ProfileController < ApplicationController
+    # GET /profile
+    def show; end
+
+    # GET /profile/edit
+    def edit; end
+
+    # PATCH /profile
+    def update
+      if current_user.update(user_params)
+        redirect_to profile_url, notice: I18n.t("users.profile.flash.success.update")
+      else
+        render :edit, status: :unprocessable_entity
+      end
+    end
+
+    private
+
+    # Only allow a list of trusted parameters through.
+    def user_params
+      params.require(:user).permit([:time_zone])
+    end
+  end
+end

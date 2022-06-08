@@ -33,6 +33,8 @@ en:
   app_name: "Lift-O-Tracker"
   log_in: "Log In"
   sign_up: "Sign Up"
+  edit: "Edit"
+  back: "Back"
   activerecord:
     models:
       workout: Workout
@@ -46,6 +48,15 @@ en:
     other: "%{count} errors:"
   home:
     recent_workouts: "Recent Workouts"
+  users:
+    profile:
+      show:
+        title: "Profile"
+      edit:
+        title: "Edit Profile"
+      flash:
+        success:
+          update: "Profile successfully updated."
   workouts:
     form:
       workout_category_prompt: "-- Select --"

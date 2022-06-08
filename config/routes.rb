@@ -2,6 +2,11 @@
 
 Rails.application.routes.draw do
   devise_for :users
+
+  get "profile", to: "users/profile#show"
+  get "profile/edit", to: "users/profile#edit"
+  patch "profile", to: "users/profile#update"
+
   resources :workout_categories
   resources :workouts do
     member do
