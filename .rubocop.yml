@@ -11,6 +11,7 @@ AllCops:
     - config/initializers/simple_form_bootstrap.rb
     - config/initializers/simple_form.rb
     - bin/**/*
+    - vendor/bundle/**/*
     - db/schema.rb
 
 Layout/FirstHashElementIndentation:
