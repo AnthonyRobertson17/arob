@@ -29,7 +29,12 @@
             %>
           </li>
         </ul>
-        <div id="user_email" class="mx-2"><%= current_user.email %></div>
+        <div id="user_email" class="mx-2">
+          <%= link_to current_user.email,
+              profile_path,
+              class: "nav-link #{active_class(profile_path)}"
+          %>
+        </div>
         <%= button_to t("navbar.logout"),
             destroy_user_session_path,
             method: :delete,

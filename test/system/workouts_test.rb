@@ -3,19 +3,17 @@
 require "application_system_test_case"
 
 class WorkoutsTest < ApplicationSystemTestCase
-  setup do
-    @user = create :user
-    login email: @user.email
-    @workout = create :workout, user: @user
-  end
-
   test "visiting the index" do
+    user = login
+    create :workout, user: user
+
     visit workouts_url
     assert_selector "h1", text: "Workouts"
   end
 
   test "creating workout" do
-    workout_category = create :workout_category, user: @user
+    user = login
+    workout_category = create :workout_category, user: user
 
     visit workouts_url
     click_on "New workout"
@@ -29,10 +27,13 @@ class WorkoutsTest < ApplicationSystemTestCase
   end
 
   test "editing Workouts" do
-    visit workout_url(@workout)
+    user = login
+    workout = create :workout, user: user
+
+    visit workout_url(workout)
     click_on "Edit workout", match: :first
 
-    fill_in "Name", with: @workout.name
+    fill_in "Name", with: workout.name
     click_on "Update Workout"
 
     assert_text "Workout was successfully updated."
@@ -40,31 +41,40 @@ class WorkoutsTest < ApplicationSystemTestCase
   end
 
   test "destroying Workout" do
-    visit workout_url(@workout)
+    user = login
+    workout = create :workout, user: user
+
+    visit workout_url(workout)
     click_on "Destroy workout", match: :first
 
     assert_text "Workout was successfully destroyed."
   end
 
   test "starting Workout" do
-    visit workout_url(@workout)
+    user = login
+    workout = create :workout, user: user
+
+    visit workout_url(workout)
     click_on "Start workout", match: :first
 
     assert_text "Workout was successfully started."
   end
 
   test "completing a Workout" do
-    @workout.start!
+    user = login
+    workout = create :workout, :started, user: user
 
-    visit workout_url(@workout)
+    visit workout_url(workout)
     click_on "Complete workout", match: :first
 
     assert_text "Workout was successfully completed."
   end
 
   test "starting in progress Workout" do
-    started_workout = create :workout, :started, user: @user
-    visit workout_url(started_workout)
+    user = login
+    workout = create :workout, :started, user: user
+
+    visit workout_url(workout)
     click_on "Start workout", match: :first
 
     assert_text "Workout has already started."

@@ -59,6 +59,8 @@ gem "rack-timeout"
 # User authentication [https://github.com/heartcombo/devise]
 gem "devise"
 
+gem "simple_form"
+
 group :development, :test do
   gem "brakeman"
   gem "bundler-audit"
