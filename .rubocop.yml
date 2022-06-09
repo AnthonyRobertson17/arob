@@ -8,13 +8,12 @@ AllCops:
   TargetRubyVersion: 3.1.0
   NewCops: enable
   Exclude:
-    - config/initializers/simple_form_bootstrap.rb
-    - config/initializers/simple_form.rb
-    - bin/**/*
-    - vendor/bundle/**/*
-    - db/schema.rb
-    - node_modules/**/*
+    - db/**/*
     - tmp/**/*
+    - bin/**/*
+    - vendor/**/*
+    - node_modules/**/*
+    - config/**/*
 
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
