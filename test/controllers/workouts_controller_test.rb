@@ -28,6 +28,18 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "new workout form should only include categories belonging to the current user" do
+    create :workout_category, user: @user, name: "good little category"
+    create :workout_category, name: "real bad time"
+
+    get new_workout_url
+
+    assert_select "#workout_workout_category_id" do
+      assert_select "option", { text: "good little category", count: 1 }
+      assert_select "option", { text: "real bad time", count: 0 }
+    end
+  end
+
   test "create workout redirects to the correct workout" do
     workout_category = create :workout_category, user: @user
 

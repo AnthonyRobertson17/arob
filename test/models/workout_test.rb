@@ -23,6 +23,14 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_not workout.completed?
   end
 
+  test "for_user scope only returns workouts for the provided user" do
+    user = create :user
+    create :workout
+    create :workout, user: user
+
+    assert_predicate Workout.for_user(user), :one?
+  end
+
   test "completed scope only returns completed workouts" do
     create :workout
     create :workout, :started
@@ -31,12 +39,24 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_predicate Workout.completed, :one?
   end
 
-  test "for_user scope only returns workouts for the provided user" do
-    user = create :user
-    create :workout
-    create :workout, user: user
+  test "completed? when false" do
+    workout = build :workout
+    assert_not workout.completed?
+  end
 
-    assert_predicate Workout.for_user(user), :one?
+  test "completed? when true" do
+    workout = build :workout, :completed
+    assert_predicate workout, :completed?
+  end
+
+  test "started? when false" do
+    workout = build :workout
+    assert_not workout.started?
+  end
+
+  test "started? when true" do
+    workout = build :workout, :started
+    assert_predicate workout, :started?
   end
 
   test "start! sets started_at if not already set" do
@@ -58,23 +78,32 @@ class WorkoutTest < ActiveSupport::TestCase
     end
   end
 
-  test "started? is true when started_at is set" do
+  test "in_progress? is true when started but not complete" do
     workout = build :workout, :started
 
-    assert_predicate workout, :started?
+    assert_predicate workout, :in_progress?
   end
 
-  test "active? is true when started but not complete" do
-    workout = build :workout, :started
-
-    assert_predicate workout, :active?
-  end
-
-  test "active? is false when completed_at is set" do
+  test "in_progress? is false when completed_at is set" do
     workout = build :workout, :completed
 
     assert_predicate workout, :started?
-    assert_not workout.active?
+    assert_not workout.in_progress?
+  end
+
+  test "draft? when workout is draft" do
+    workout = build :workout
+    assert_predicate workout, :draft?
+  end
+
+  test "draft? when workout is started" do
+    workout = build :workout, :started
+    assert_not workout.draft?
+  end
+
+  test "draft? when workout is completed" do
+    workout = build :workout, :completed
+    assert_not workout.draft?
   end
 
   test "complete! sets completed_at" do
@@ -104,11 +133,5 @@ class WorkoutTest < ActiveSupport::TestCase
 
       assert_equal original_time, workout.reload.completed_at
     end
-  end
-
-  test "completed? is true when completed_at is set" do
-    workout = build :workout, :completed
-
-    assert_predicate workout, :completed?
   end
 end

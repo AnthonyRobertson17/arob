@@ -14,6 +14,7 @@ class WorkoutsController < ApplicationController
   # GET /workouts/new
   def new
     @workout = Workout.new
+    @workout_categories = WorkoutCategory.for_user(current_user).all
   end
 
   # GET /workouts/1/edit

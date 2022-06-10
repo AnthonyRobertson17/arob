@@ -20,10 +20,6 @@ class Workout < ApplicationRecord
     update!(started_at: Time.now.utc)
   end
 
-  def started?
-    started_at.present?
-  end
-
   def complete!
     raise AlreadyCompletedError if completed?
     raise NotStartedError unless started?
@@ -31,12 +27,20 @@ class Workout < ApplicationRecord
     update!(completed_at: Time.now.utc)
   end
 
+  def started?
+    started_at.present?
+  end
+
   def completed?
     completed_at.present?
   end
 
-  def active?
+  def in_progress?
     started? && !completed?
+  end
+
+  def draft?
+    !started? && !completed?
   end
 
   private

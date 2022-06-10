@@ -1,9 +1,42 @@
-<%= render @workout %>
+<div id="<%= dom_id @workout %>">
+  <h1 class="h1 mb-3"><%= @workout.name %></h1>
+  <table class="table xxsmall-width">
+    <tbody>
+      <tr>
+        <th scope="row"><%= t(".attributes.status") %></th>
+        <td>
+          <% if @workout.completed? %>
+            <span class="badge rounded-pill bg-success mx-1"><%= t(".statuses.completed") %></span>
+          <% elsif @workout.in_progress? %>
+            <span class="badge rounded-pill bg-primary mx-1"><%= t(".statuses.in_progress") %></span>
+          <% else %>
+            <span class="badge rounded-pill bg-secondary mx-1"><%= t(".statuses.draft") %></span>
+          <% end %>
+        </td>
+      </tr>
+      <% if @workout.started? %>
+        <tr>
+          <th scope="row"><%= t(".attributes.started_at") %></th>
+          <td><%= @workout.started_at&.to_fs(:timestamp) %></td>
+        </tr>
+      <% end %>
+      <% if @workout.completed? %>
+        <tr>
+          <th scope="row"><%= t(".attributes.completed_at") %></th>
+          <td><%= @workout.started_at&.to_fs(:timestamp) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<div>
-  <%= button_to t(".start"), start_workout_path(@workout), method: :patch %>
-  <%= button_to t(".complete"), complete_workout_path(@workout), method: :patch %>
-  <%= link_to t(".edit"), edit_workout_path(@workout) %> |
-  <%= link_to t(".back"), workouts_path %>
-  <%= button_to t(".destroy"), @workout, method: :delete %>
+<div class="d-flex">
+  <% if @workout.draft? %>
+    <%= button_to t(".start"), start_workout_path(@workout), method: :patch, class: "btn btn-primary me-2" %>
+  <% end %>
+  <% if @workout.in_progress? %>
+    <%= button_to t(".complete"), complete_workout_path(@workout), method: :patch, class: "btn btn-success me-2" %>
+  <% end %>
+  <%= button_to t(".edit"), edit_workout_path(@workout), method: :get, class: "btn btn-secondary me-2" %>
+  <%= button_to t(".destroy"), @workout, method: :delete, class: "btn btn-danger" %>
 </div>

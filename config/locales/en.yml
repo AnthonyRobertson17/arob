@@ -64,8 +64,15 @@ en:
       start: "Start workout"
       complete: "Complete workout"
       edit: "Edit workout"
-      back: "Back to workouts"
       destroy: "Destroy workout"
+      attributes:
+        status: "Status"
+        statuses:
+          completed: "Completed"
+          in_progress: "In Progress"
+          draft: "Draft"
+        started_at: "Started At"
+        completed_at: "Completed At"
     flash:
       success:
         create: "Workout was successfully created."

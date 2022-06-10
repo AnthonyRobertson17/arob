@@ -23,7 +23,6 @@ class WorkoutsTest < ApplicationSystemTestCase
     click_on "Create Workout"
 
     assert_text "Workout was successfully created."
-    click_on "Back"
   end
 
   test "editing Workouts" do
@@ -37,7 +36,6 @@ class WorkoutsTest < ApplicationSystemTestCase
     click_on "Update Workout"
 
     assert_text "Workout was successfully updated."
-    click_on "Back"
   end
 
   test "destroying Workout" do
@@ -65,18 +63,9 @@ class WorkoutsTest < ApplicationSystemTestCase
     workout = create :workout, :started, user: user
 
     visit workout_url(workout)
+    assert_no_text "Start workout"
     click_on "Complete workout", match: :first
 
     assert_text "Workout was successfully completed."
-  end
-
-  test "starting in progress Workout" do
-    user = login
-    workout = create :workout, :started, user: user
-
-    visit workout_url(workout)
-    click_on "Start workout", match: :first
-
-    assert_text "Workout has already started."
   end
 end
