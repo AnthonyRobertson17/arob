@@ -2,7 +2,7 @@
 
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
-  before_action :set_workout_categories, only: [:edit, :update]
+  before_action :set_workout_categories, only: [:new, :edit]
 
   # GET /workouts
   def index
