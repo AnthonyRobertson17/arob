@@ -5,19 +5,10 @@
   </p>
   <p>
     <strong>Started At:</strong>
-    <%= workout.started_at %>
+    <%= workout.started_at&.to_fs(:timestamp) %>
   </p>
   <p>
     <strong>Completed At:</strong>
-    <%= workout.completed_at %>
+    <%= workout.completed_at&.to_fs(:timestamp) %>
   </p>
-  <p>
-    <strong>Created At:</strong>
-    <%= workout.created_at %>
-  </p>
-  <p>
-    <strong>Updated At:</strong>
-    <%= workout.updated_at %>
-  </p>
-
 </div>
