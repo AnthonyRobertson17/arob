@@ -20,7 +20,7 @@
     <%= form.label :workout_category, class: "form-label" %>
     <%= form.collection_select(
       :workout_category_id,
-      WorkoutCategory.all,
+      workout_categories,
       :id,
       :name,
       { prompt: t(".workout_category_prompt") },
