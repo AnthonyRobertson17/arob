@@ -1,34 +1,6 @@
-<%= form_with(model: workout) do |form| %>
-  <% if workout.errors.any? %>
-
-    <div class="alert alert-danger" role="alert">
-      <h4><%= t("form_error_heading", count: workout.errors.count)%></h4>
-      <ul>
-        <% workout.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <%= simple_form_for workout do |f| %>
+    <%= f.input :name %>
+    <%= f.association :workout_category, collection: workout_categories, prompt: t(".workout_category_prompt") %>
+    <%= f.button :submit %>
+    <%= link_to t(".cancel"), cancel_path, class: "btn btn-secondary"%>
   <% end %>
-
-  <div class="mb-3">
-    <%= form.label :name, class: "form-label" %>
-    <%= form.text_field :name, class: "form-control" %>
-  </div>
-
-  <div class="mb-3">
-    <%= form.label :workout_category, class: "form-label" %>
-    <%= form.collection_select(
-      :workout_category_id,
-      workout_categories,
-      :id,
-      :name,
-      { prompt: t(".workout_category_prompt") },
-      { class: "form-select" }
-    ) %>
-  </div>
-
-  <div>
-    <%= form.submit class: "btn btn-primary" %>
-  </div>
-<% end %>

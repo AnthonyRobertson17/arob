@@ -15,10 +15,13 @@ class WorkoutsController < ApplicationController
   # GET /workouts/new
   def new
     @workout = Workout.new
+    @cancel_path = workouts_path
   end
 
   # GET /workouts/1/edit
-  def edit; end
+  def edit
+    @cancel_path = workout_path(@workout)
+  end
 
   # POST /workouts
   def create
@@ -27,6 +30,7 @@ class WorkoutsController < ApplicationController
     if @workout.save
       redirect_to @workout, notice: I18n.t("workouts.flash.success.create")
     else
+      set_workout_categories
       render :new, status: :unprocessable_entity
     end
   end
@@ -36,6 +40,7 @@ class WorkoutsController < ApplicationController
     if @workout.update(workout_params)
       redirect_to @workout, notice: I18n.t("workouts.flash.success.update")
     else
+      set_workout_categories
       render :edit, status: :unprocessable_entity
     end
   end
