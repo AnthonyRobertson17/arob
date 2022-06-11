@@ -16,6 +16,14 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_equal "Workout Category not found", workout.errors.first.full_message
   end
 
+  test "workout must have a workout_category" do
+    workout = build :workout, workout_category_id: nil
+
+    assert_not workout.valid?
+    assert_equal 1, workout.errors.to_a.length
+    assert_equal "Workout Category must exist", workout.errors.first.full_message
+  end
+
   test "new workouts are not started or completed" do
     workout = build :workout
 

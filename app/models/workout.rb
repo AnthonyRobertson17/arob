@@ -46,7 +46,8 @@ class Workout < ApplicationRecord
   private
 
   def user_owns_workout_category
-    return if user == workout_category.user
+    return if workout_category.nil? # The relationship is responsible for the presence validation
+    return if user == workout_category&.user
 
     errors.add(:workout_category, "not found")
   end
