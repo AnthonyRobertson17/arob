@@ -16,13 +16,20 @@ class WorkoutsTest < ApplicationSystemTestCase
     workout_category = create :workout_category, user: user
 
     visit workouts_url
-    click_on "New workout"
+    click_on "Create Workout"
 
     fill_in "Name", with: "Random workout name"
     select workout_category.name, from: "workout_workout_category_id"
     click_on "Create Workout"
 
     assert_text "Workout was successfully created."
+  end
+
+  test "can create workout from home page" do
+    login
+    click_on "Create Workout"
+
+    assert_selector "h1", text: "New Workout"
   end
 
   test "cancel creating a workout" do

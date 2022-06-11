@@ -49,7 +49,7 @@ en:
   home:
     index:
       recent_workouts: "Recent Workouts"
-      view_workout: "View Workout"
+      open: "Open"
   users:
     profile:
       show:
@@ -62,7 +62,8 @@ en:
   workouts:
     index:
       title: "Workouts"
-      view_workout: "View Workout"
+      open: "Open"
+      create_workout: "Create Workout"
     form:
       workout_category_prompt: "-- Select Category --"
       cancel: "Cancel"

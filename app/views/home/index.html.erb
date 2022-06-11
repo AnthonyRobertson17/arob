@@ -1,11 +1,14 @@
 <h1 class="display-3 mb-5"><%= t(:app_name) %></h1>
+
+<%= link_to t(".create_workout"), new_workout_path, class: "btn btn-lg btn-success mb-3" %>
+
 <h2><%= t(".recent_workouts") %></h2>
 <div id="workouts">
   <% @recent_workouts.each do |workout| %>
     <div class="card mb-3">
       <div class="card-body">
         <%= render workout %>
-        <%= link_to t(".view_workout"), workout, class: "btn btn-primary" %>
+        <%= link_to t(".open"), workout, class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>
