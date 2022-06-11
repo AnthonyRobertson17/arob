@@ -1,13 +1,14 @@
-<h1>Workouts</h1>
-
+<div class="d-flex mb-3 align-items-end">
+  <h1 class="h1 mb-0 me-3"><%= t(".title") %></h1>
+  <%= link_to t(".create_workout"), new_workout_path, class: "btn btn-success" %>
+</div>
 <div id="workouts">
   <% @workouts.each do |workout| %>
-    <%= render workout %>
-    <p>
-      <%= link_to "Show this workout", workout %>
-    </p>
-    <hr>
+    <div class="card mb-3">
+      <div class="card-body">
+        <%= render workout %>
+        <%= link_to t(".open"), workout, class: "btn btn-primary" %>
+      </div>
+    </div>
   <% end %>
 </div>
-
-<%= link_to "New workout", new_workout_path %>
