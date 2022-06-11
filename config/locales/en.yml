@@ -59,12 +59,17 @@ en:
           update: "Profile was successfully updated."
   workouts:
     form:
-      workout_category_prompt: "-- Select --"
+      workout_category_prompt: "-- Select Category --"
+      cancel: "Cancel"
+    new:
+      title: "New Workout"
+    edit:
+      title: "Edit Workout"
     show:
-      start: "Start workout"
-      complete: "Complete workout"
-      edit: "Edit workout"
-      destroy: "Destroy workout"
+      start: "Start"
+      complete: "Complete"
+      edit: "Edit"
+      destroy: "Destroy"
       attributes:
         status: "Status"
         statuses:

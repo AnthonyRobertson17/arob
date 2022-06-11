@@ -25,12 +25,20 @@ class WorkoutsTest < ApplicationSystemTestCase
     assert_text "Workout was successfully created."
   end
 
+  test "cancel creating a workout" do
+    login
+    visit new_workout_url
+
+    click_on "Cancel"
+    assert_selector "h1", text: "Workouts"
+  end
+
   test "editing Workouts" do
     user = login
     workout = create :workout, user: user
 
     visit workout_url(workout)
-    click_on "Edit workout", match: :first
+    click_on "Edit", match: :first
 
     fill_in "Name", with: workout.name
     click_on "Update Workout"
@@ -38,12 +46,20 @@ class WorkoutsTest < ApplicationSystemTestCase
     assert_text "Workout was successfully updated."
   end
 
+  test "cancel editing a workout" do
+    user = login
+    workout = create :workout, user: user
+
+    visit edit_workout_url(workout)
+    click_on "Cancel"
+  end
+
   test "destroying Workout" do
     user = login
     workout = create :workout, user: user
 
     visit workout_url(workout)
-    click_on "Destroy workout", match: :first
+    click_on "Destroy", match: :first
 
     assert_text "Workout was successfully destroyed."
   end
@@ -53,7 +69,7 @@ class WorkoutsTest < ApplicationSystemTestCase
     workout = create :workout, user: user
 
     visit workout_url(workout)
-    click_on "Start workout", match: :first
+    click_on "Start", match: :first
 
     assert_text "Workout was successfully started."
   end
@@ -63,8 +79,8 @@ class WorkoutsTest < ApplicationSystemTestCase
     workout = create :workout, :started, user: user
 
     visit workout_url(workout)
-    assert_no_text "Start workout"
-    click_on "Complete workout", match: :first
+    assert_select "button", { text: "Start", count: 0 }
+    click_on "Complete", match: :first
 
     assert_text "Workout was successfully completed."
   end

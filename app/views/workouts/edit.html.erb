@@ -1,10 +1,4 @@
-<h1>Editing workout</h1>
-
-<%= render "form", workout: @workout, workout_categories: @workout_categories%>
-
-<br>
-
-<div>
-  <%= link_to "Show this workout", @workout %> |
-  <%= link_to "Back to workouts", workouts_path %>
+<h1 class="h1 mb-3"><%= t(".title") %></h1>
+<div class="mb-3">
+  <%= render "form", workout: @workout, workout_categories: @workout_categories, cancel_path: @cancel_path %>
 </div>
