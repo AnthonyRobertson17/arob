@@ -47,7 +47,9 @@ en:
     one: "1 error:"
     other: "%{count} errors:"
   home:
-    recent_workouts: "Recent Workouts"
+    index:
+      recent_workouts: "Recent Workouts"
+      view_workout: "View Workout"
   users:
     profile:
       show:
@@ -58,6 +60,9 @@ en:
         success:
           update: "Profile was successfully updated."
   workouts:
+    index:
+      title: "Workouts"
+      view_workout: "View Workout"
     form:
       workout_category_prompt: "-- Select Category --"
       cancel: "Cancel"
