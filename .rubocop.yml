@@ -25,6 +25,10 @@ Metrics/BlockLength:
   Exclude:
     - config/**/*
 
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*
+
 Rails/NotNullColumn:
   Enabled: false
 
