@@ -1,33 +1,6 @@
 <div id="<%= dom_id @workout %>">
   <h1 class="h1 mb-3"><%= @workout.name %></h1>
-  <table class="table xxsmall-width">
-    <tbody>
-      <tr>
-        <th scope="row"><%= t(".attributes.status") %></th>
-        <td>
-          <% if @workout.completed? %>
-            <span class="badge rounded-pill bg-success mx-1"><%= t(".statuses.completed") %></span>
-          <% elsif @workout.in_progress? %>
-            <span class="badge rounded-pill bg-primary mx-1"><%= t(".statuses.in_progress") %></span>
-          <% else %>
-            <span class="badge rounded-pill bg-secondary mx-1"><%= t(".statuses.draft") %></span>
-          <% end %>
-        </td>
-      </tr>
-      <% if @workout.started? %>
-        <tr>
-          <th scope="row"><%= t(".attributes.started_at") %></th>
-          <td><%= @workout.started_at&.to_fs(:timestamp) %></td>
-        </tr>
-      <% end %>
-      <% if @workout.completed? %>
-        <tr>
-          <th scope="row"><%= t(".attributes.completed_at") %></th>
-          <td><%= @workout.started_at&.to_fs(:timestamp) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render "workout_attributes", workout: @workout, hide_name: true %>
 </div>
 
 <div class="d-flex">
