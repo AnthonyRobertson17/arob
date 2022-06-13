@@ -13,6 +13,7 @@ class Workout < ApplicationRecord
 
   scope :for_user, ->(user) { where(user:) }
   scope :completed, -> { where.not(completed_at: nil) }
+  scope :in_progress, -> { where(completed_at: nil).where.not(started_at: nil) }
 
   def start!
     raise AlreadyStartedError if started?

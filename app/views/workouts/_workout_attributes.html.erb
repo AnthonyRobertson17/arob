@@ -1,9 +1,20 @@
 <% unless defined?(hide_name) && hide_name %>
-  <h5 class="h5"><%= workout.name %></h5>
+  <div class="d-flex align-items-center mb-3">
+    <h5 class="h5 mb-0 me-1"><%= workout.name %></h5>
+    <% if defined?(inline_status) && inline_status %>
+      <% if workout.completed? %>
+        <span class="badge rounded-pill bg-success mx-1"><%= t(".statuses.completed") %></span>
+      <% elsif workout.in_progress? %>
+        <span class="badge rounded-pill bg-primary mx-1"><%= t(".statuses.in_progress") %></span>
+      <% else %>
+        <span class="badge rounded-pill bg-secondary mx-1"><%= t(".statuses.draft") %></span>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
 <table class="table xxsmall-width">
   <tbody>
-    <% unless defined?(hide_status) && hide_status %>
+    <% unless defined?(inline_status) && inline_status %>
       <tr>
         <th scope="row"><%= t(".status") %></th>
         <td>

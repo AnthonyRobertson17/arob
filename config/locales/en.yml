@@ -55,6 +55,7 @@ en:
   home:
     index:
       recent_workouts: "Recently Completed Workouts"
+      in_progress_workouts: "In-Progress Workouts"
   users:
     profile:
       show:
