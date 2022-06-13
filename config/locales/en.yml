@@ -41,14 +41,17 @@ en:
       workout_category: Workout Category
     attributes:
       workout:
+        started_at: "Started At"
+        completed_at: "Completed At"
         workout_category: "Workout Category"
+        name: "Name"
   form_error_heading:
     zero: "No errors"
     one: "1 error:"
     other: "%{count} errors:"
   home:
     index:
-      recent_workouts: "Recent Workouts"
+      recent_workouts: "Recently Completed Workouts"
       open: "Open"
   users:
     profile:
@@ -76,14 +79,11 @@ en:
       complete: "Complete"
       edit: "Edit"
       destroy: "Destroy"
-      attributes:
-        status: "Status"
-        statuses:
-          completed: "Completed"
-          in_progress: "In Progress"
-          draft: "Draft"
-        started_at: "Started At"
-        completed_at: "Completed At"
+      status: "Status"
+      statuses:
+        completed: "Completed"
+        in_progress: "In Progress"
+        draft: "Draft"
     flash:
       success:
         create: "Workout was successfully created."

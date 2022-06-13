@@ -5,8 +5,8 @@
 <div id="workouts">
   <% @workouts.each do |workout| %>
     <div class="card mb-3">
-      <div class="card-body">
-        <%= render workout %>
+      <div id="<%= dom_id workout %>" class="card-body">
+        <%= render "workout_attributes", workout: %>
         <%= link_to t(".open"), workout, class: "btn btn-primary" %>
       </div>
     </div>
