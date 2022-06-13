@@ -55,7 +55,6 @@ en:
   home:
     index:
       recent_workouts: "Recently Completed Workouts"
-      open: "Open"
   users:
     profile:
       show:
@@ -68,7 +67,6 @@ en:
   workouts:
     index:
       title: "Workouts"
-      open: "Open"
       create_workout: "Create Workout"
     form:
       workout_category_prompt: "-- Select Category --"
@@ -97,6 +95,9 @@ en:
         already_completed: "Workout has already been completed."
         not_started: "Workout has not been started."
   workout_categories:
+    index:
+      title: "Workout Categories"
+      create_workout_category: "Create Workout Category"
     new:
       title: "New Workout Category"
     edit:
