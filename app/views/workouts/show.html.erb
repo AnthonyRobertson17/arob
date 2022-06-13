@@ -10,6 +10,6 @@
   <% if @workout.in_progress? %>
     <%= button_to t(".complete"), complete_workout_path(@workout), method: :patch, class: "btn btn-success me-2" %>
   <% end %>
-  <%= button_to t(".edit"), edit_workout_path(@workout), method: :get, class: "btn btn-secondary me-2" %>
-  <%= button_to t(".destroy"), @workout, method: :delete, class: "btn btn-danger" %>
+  <%= link_to t(:edit), edit_workout_path(@workout), class: "btn btn-secondary me-2" %>
+  <%= button_to t(:destroy), @workout, method: :delete, class: "btn btn-danger" %>
 </div>

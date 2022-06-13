@@ -35,6 +35,9 @@ en:
   sign_up: "Sign Up"
   edit: "Edit"
   back: "Back"
+  destroy: "Destroy"
+  cancel: "Cancel"
+  open: "Open"
   activerecord:
     models:
       workout: Workout
@@ -77,8 +80,6 @@ en:
     show:
       start: "Start"
       complete: "Complete"
-      edit: "Edit"
-      destroy: "Destroy"
       status: "Status"
       statuses:
         completed: "Completed"
