@@ -8,7 +8,7 @@
     <div class="card mb-3">
       <div id="<%= dom_id workout %>" class="card-body">
         <%= render "workouts/workout_attributes", workout:, hide_status: true%>
-        <%= link_to t(".open"), workout, class: "btn btn-primary" %>
+        <%= link_to t(:open), workout, class: "btn btn-primary" %>
       </div>
     </div>
   <% end %>
