@@ -20,7 +20,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
 
     get authenticated_root_url
 
-    assert_select "p", { text: /gucci/, count: 1 }
-    assert_select "p", { text: /do not wanna see this/, count: 0 }
+    assert_select "h5", { text: /gucci/, count: 1 }
+    assert_select "h5", { text: /do not wanna see this/, count: 0 }
   end
 end

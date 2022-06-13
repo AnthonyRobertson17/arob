@@ -19,8 +19,8 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
 
     get workouts_url
 
-    assert_select "p", { text: /funny workout/, count: 1 }
-    assert_select "p", { text: /should not be shown/, count: 0 }
+    assert_select "h5", { text: /funny workout/, count: 1 }
+    assert_select "h5", { text: /should not be shown/, count: 0 }
   end
 
   test "get new" do
