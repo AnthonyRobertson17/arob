@@ -8,7 +8,7 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
     create :workout_category, user: user
 
     visit workout_categories_url
-    assert_selector "h1", text: "Workout categories"
+    assert_selector "h1", text: "Workout Categories"
   end
 
   test "should create workout category" do
@@ -16,13 +16,12 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
     create :workout_category, user: user
 
     visit workout_categories_url
-    click_on "New workout category"
+    click_on "Create Workout Category"
 
     fill_in "Name", with: "Random Name"
     click_on "Create Workout Category"
 
     assert_text "Workout Category was successfully created"
-    click_on "Back"
   end
 
   test "should update Workout category" do
@@ -30,13 +29,12 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
     workout_category = create :workout_category, user: user
 
     visit workout_category_url(workout_category)
-    click_on "Edit this workout category", match: :first
+    click_on "Edit", match: :first
 
     fill_in "Name", with: "New workout name"
     click_on "Update Workout Category"
 
     assert_text "Workout Category was successfully updated"
-    click_on "Back"
   end
 
   test "should destroy Workout category" do
@@ -44,7 +42,7 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
     workout_category = create :workout_category, user: user
 
     visit workout_category_url(workout_category)
-    click_on "Destroy this workout category", match: :first
+    click_on "Destroy", match: :first
 
     assert_text "Workout Category was successfully destroyed"
   end

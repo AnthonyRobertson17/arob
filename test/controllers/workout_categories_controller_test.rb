@@ -14,7 +14,7 @@ class WorkoutCategoriesControllerTest < ActionDispatch::IntegrationTest
     get workout_categories_url
     assert_response :success
 
-    assert_select "p", { text: /testing workout categories/, count: 1 }
+    assert_select "h5", { text: /testing workout categories/, count: 1 }
   end
 
   test "get index doesn't show workout categories which don't belong to the current user" do
@@ -23,7 +23,7 @@ class WorkoutCategoriesControllerTest < ActionDispatch::IntegrationTest
     get workout_categories_url
     assert_response :success
 
-    assert_select "p", { text: /should not be able to see this/, count: 0 }
+    assert_select "h5", { text: /should not be able to see this/, count: 0 }
   end
 
   test "get new" do
