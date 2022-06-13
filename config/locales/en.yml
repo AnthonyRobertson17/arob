@@ -98,6 +98,8 @@ en:
   workout_categories:
     new:
       title: "New Workout Category"
+    edit:
+      title: "Edit Workout Category"
     flash:
       success:
         create: "Workout Category was successfully created."
