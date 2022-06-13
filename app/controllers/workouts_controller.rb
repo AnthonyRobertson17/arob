@@ -15,13 +15,10 @@ class WorkoutsController < ApplicationController
   # GET /workouts/new
   def new
     @workout = Workout.new
-    @cancel_path = workouts_path
   end
 
   # GET /workouts/1/edit
-  def edit
-    @cancel_path = workout_path(@workout)
-  end
+  def edit; end
 
   # POST /workouts
   def create
