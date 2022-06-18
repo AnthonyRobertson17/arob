@@ -42,6 +42,7 @@ en:
     models:
       workout: Workout
       workout_category: Workout Category
+      exercise_category: Exercise Category
     attributes:
       workout:
         started_at: "Started At"
@@ -125,3 +126,4 @@ en:
     logout: "Logout"
     workouts: "Workouts"
     workout_categories: "Workout Categories"
+    exercise_categories: "Exercise Categories"

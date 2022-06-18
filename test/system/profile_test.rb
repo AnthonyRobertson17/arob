@@ -8,7 +8,7 @@ class HomeTest < ApplicationSystemTestCase
     visit root_url
 
     click_on user.email
-    assert_text "Profile"
+    assert_current_path profile_path
   end
 
   test "should be able to edit profile" do
@@ -16,8 +16,6 @@ class HomeTest < ApplicationSystemTestCase
     visit profile_url
 
     click_on "Edit"
-
-    assert_text "Edit Profile"
 
     select "Eastern Time (US & Canada)", from: "Time zone"
     click_on "Update User"
