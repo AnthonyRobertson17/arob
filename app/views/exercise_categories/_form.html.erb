@@ -1,0 +1,5 @@
+<%= simple_form_for exercise_category do |f| %>
+  <%= f.input :name %>
+  <%= f.button :submit %>
+  <%= link_to t(".cancel"), cancel_path, class: "btn btn-secondary"%>
+<% end %>

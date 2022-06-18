@@ -28,6 +28,12 @@
                 class: "nav-link #{active_class(workout_categories_path)}"
             %>
           </li>
+          <li class="nav-item">
+            <%= link_to t("navbar.exercise_categories"),
+                exercise_categories_path,
+                class: "nav-link #{active_class(exercise_categories_path)}"
+            %>
+          </li>
         </ul>
         <div id="user_email" class="mx-2">
           <%= link_to current_user.email,

@@ -11,7 +11,7 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Workout Categories"
   end
 
-  test "should create workout category" do
+  test "create workout category" do
     user = login
     create :workout_category, user: user
 
@@ -24,7 +24,7 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
     assert_text "Workout Category was successfully created"
   end
 
-  test "should update Workout category" do
+  test "update Workout category" do
     user = login
     workout_category = create :workout_category, user: user
 
@@ -37,7 +37,7 @@ class WorkoutCategoriesTest < ApplicationSystemTestCase
     assert_text "Workout Category was successfully updated"
   end
 
-  test "should destroy Workout category" do
+  test "destroy Workout category" do
     user = login
     workout_category = create :workout_category, user: user
 
