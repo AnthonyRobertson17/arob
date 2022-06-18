@@ -48,6 +48,19 @@ en:
         completed_at: "Completed At"
         workout_category: "Workout Category"
         name: "Name"
+  exercise_categories:
+    index:
+      title: "Exercise Categories"
+      create_exercise_category: "Create Exercise Category"
+    new:
+      title: "New Exercise Category"
+    edit:
+      title: "Edit Exercise Category"
+    flash:
+      success:
+        create: "Exercise Category was successfully created."
+        update: "Exercise Category was successfully updated."
+        destroy: "Exercise Category was successfully destroyed."
   form_error_heading:
     zero: "No errors"
     one: "1 error:"
