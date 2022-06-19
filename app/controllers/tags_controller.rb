@@ -1,7 +1,7 @@
 # frozen_string_literal:true
 
 class TagsController < ApplicationController
-  # GET /workout_categories
+  # GET /tags
   def index
     @workout_tags = workout_tags.all
     @exercise_tags = exercise_tags.all

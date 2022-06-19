@@ -41,12 +41,12 @@ en:
   activerecord:
     models:
       workout: Workout
-      workout_category: Workout Category
+      workout_tag: Workout Tag
+      exercise_tag: Exercise Tag
     attributes:
       workout:
         started_at: "Started At"
         completed_at: "Completed At"
-        workout_category: "Workout Category"
         name: "Name"
   form_error_heading:
     zero: "No errors"
@@ -70,7 +70,6 @@ en:
       title: "Workouts"
       create_workout: "Create Workout"
     form:
-      workout_category_prompt: "-- Select Category --"
       cancel: "Cancel"
     new:
       title: "New Workout"
@@ -100,16 +99,36 @@ en:
       title: "Tags"
       exercise_tags: "Exercise Tags"
       workout_tags: "Workout Tags"
-    # new:
-    #   title: "New Workout Category"
-    # edit:
-    #   title: "Edit Workout Category"
-    # flash:
-    #   success:
-    #     create: "Workout Category was successfully created."
-    #     update: "Workout Category was successfully updated."
-    #     destroy: "Workout Category was successfully destroyed."
+  exercise_tags:
+    index:
+      title: "Exercise Tags"
+      create_exercise_tag: "Create Exercise Tag"
+    new:
+      title: "New Exercise Tag"
+    edit:
+      title: "Edit Exercise Tag"
+    flash:
+      success:
+        create: "Exercise Tag was successfully created."
+        update: "Exercise Tag was successfully updated."
+        destroy: "Exercise Tag was successfully destroyed."
+  workout_tags:
+    index:
+      title: "Workout Tags"
+      create_exercise_tag: "Create Workout Tag"
+    new:
+      title: "New Workout Tag"
+    edit:
+      title: "Edit Workout Tag"
+    flash:
+      success:
+        create: "Workout Tag was successfully created."
+        update: "Workout Tag was successfully updated."
+        destroy: "Workout Tag was successfully destroyed."
   navbar:
     logout: "Logout"
     workouts: "Workouts"
     tags: "Tags"
+    all_tags: "All Tags"
+    exercise_tags: "Exercise Tags"
+    workout_tags: "Workout Tags"
