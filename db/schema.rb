@@ -10,16 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_18_025128) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_19_024150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "exercise_categories", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id"
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_exercise_categories_on_user_id"
+    t.bigint "user_id"
+    t.string "type"
+    t.index ["name", "user_id"], name: "index_tags_on_name_and_user_id"
+    t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,28 +34,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_18_025128) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
-  create_table "workout_categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
-    t.index ["name"], name: "index_workout_categories_on_name", unique: true
-    t.index ["user_id"], name: "index_workout_categories_on_user_id"
-  end
-
   create_table "workouts", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "started_at"
     t.datetime "completed_at"
-    t.bigint "workout_category_id"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_workouts_on_user_id"
-    t.index ["workout_category_id"], name: "index_workouts_on_workout_category_id"
   end
 
-  add_foreign_key "workout_categories", "users"
+  add_foreign_key "tags", "users"
   add_foreign_key "workouts", "users"
-  add_foreign_key "workouts", "workout_categories"
 end

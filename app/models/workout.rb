@@ -6,10 +6,8 @@ class Workout < ApplicationRecord
   class NotStartedError < StandardError; end
 
   belongs_to :user
-  belongs_to :workout_category
 
   validates :name, presence: true
-  validate :user_owns_workout_category
 
   scope :for_user, ->(user) { where(user:) }
   scope :completed, -> { where.not(completed_at: nil) }
@@ -42,14 +40,5 @@ class Workout < ApplicationRecord
 
   def draft?
     !started? && !completed?
-  end
-
-  private
-
-  def user_owns_workout_category
-    return if workout_category.nil? # The relationship is responsible for the presence validation
-    return if user == workout_category&.user
-
-    errors.add(:workout_category, "not found")
   end
 end

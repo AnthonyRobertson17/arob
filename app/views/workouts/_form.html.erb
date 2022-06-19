@@ -1,6 +1,5 @@
   <%= simple_form_for workout do |f| %>
     <%= f.input :name %>
-    <%= f.association :workout_category, collection: workout_categories, prompt: t(".workout_category_prompt") %>
     <%= f.button :submit %>
     <%= link_to t(".cancel"), cancel_path, class: "btn btn-secondary"%>
   <% end %>

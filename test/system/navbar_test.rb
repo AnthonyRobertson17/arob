@@ -13,24 +13,32 @@ class NavbarTest < ApplicationSystemTestCase
 
   test "navigating to the workouts page" do
     login
-    visit workout_categories_url
     click_on "Workouts"
 
     assert_current_path workouts_path
   end
 
-  test "navigating to the workout categories page" do
+  test "navigating to the all tags page" do
     login
-    visit workouts_url
-    click_on "Workout Categories"
+    click_on "Tags"
+    click_on "All Tags"
 
-    assert_current_path workout_categories_path
+    assert_current_path tags_path
   end
 
-  test "navigating to the exercise categories page" do
+  test "navigating to the workout_tags page" do
     login
-    click_on "Exercise Categories"
+    click_on "Tags"
+    click_on "Workout Tags"
 
-    assert_current_path exercise_categories_path
+    assert_current_path workout_tags_path
+  end
+
+  test "navigating to the exercise_tags page" do
+    login
+    click_on "Tags"
+    click_on "Exercise Tags"
+
+    assert_current_path exercise_tags_path
   end
 end

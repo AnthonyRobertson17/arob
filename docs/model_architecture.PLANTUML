@@ -7,12 +7,15 @@ class ExerciseType {
   Id category_id
 }
 
-class ExerciseCategory {
+abstract class Tag {
   String name
+  String type
 }
 
-class WorkoutCategory {
-  String name
+class ExerciseTag {
+}
+
+class WorkoutTag {
 }
 
 class Workout {
@@ -44,7 +47,9 @@ Workout o-- User
 Exercise *-- Set
 Workout *-- Exercise
 Exercise *-- ExerciseType
-ExerciseType *-- ExerciseCategory
-Workout *-- WorkoutCategory
+ExerciseType *-- ExerciseTag
+Workout *-- WorkoutTag
+ExerciseTag *-- Tag
+WorkoutTag *-- Tag
 
 @enduml

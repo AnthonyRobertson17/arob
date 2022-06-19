@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   get "profile/edit", to: "users/profile#edit"
   patch "profile", to: "users/profile#update"
 
-  resources :exercise_categories
-  resources :workout_categories
+
+  resources :tags, only: :index
+  resources :workout_tags
+  resources :exercise_tags
   resources :workouts do
     member do
       patch "start", to: "workouts/start#update"
