@@ -2,7 +2,6 @@
 
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
-  before_action :set_workout_categories, only: [:new, :edit]
 
   # GET /workouts
   def index
@@ -55,13 +54,9 @@ class WorkoutsController < ApplicationController
     @workout = users_workouts.find(params[:id])
   end
 
-  def set_workout_categories
-    @workout_categories = WorkoutCategory.for_user(current_user).all
-  end
-
   # Only allow a list of trusted parameters through.
   def workout_params
-    params.require(:workout).permit([:name, :workout_category_id])
+    params.require(:workout).permit(:name)
   end
 
   def users_workouts
