@@ -4,8 +4,8 @@
 class CreateTestDataCommand < BaseCommand
   def execute
     users
-    workout_categories
-    exercise_categories
+    workout_tags
+    exercise_tags
     workouts
   end
 
@@ -18,16 +18,16 @@ class CreateTestDataCommand < BaseCommand
     ])
   end
 
-  def workout_categories
-    @workout_categories ||= WorkoutCategory.create!([
+  def workout_tags
+    @workout_tags ||= WorkoutTag.create!([
       { name: "Legs", user: users[0] },
       { name: "Chest", user: users[0] },
       { name: "Chest for user 2", user: users[1] },
     ])
   end
 
-  def exercise_categories
-    @exercise_categories ||= ExerciseCategory.create!([
+  def exercise_tags
+    @exercise_tags ||= ExerciseTag.create!([
       { name: "Biceps", user: users[0] },
       { name: "Triceps", user: users[0] },
       { name: "Chest", user: users[1] },
@@ -39,19 +39,16 @@ class CreateTestDataCommand < BaseCommand
     @workouts ||= Workout.create!([
       {
         name: "Leg Day",
-        workout_category: workout_categories[0],
         user: users[0],
       },
       {
         name: "Chest Day",
-        workout_category: workout_categories[1],
         started_at: 2.days.ago,
         completed_at: 2.days.ago + 1.hour,
         user: users[0],
       },
       {
         name: "Silly Day",
-        workout_category: workout_categories[2],
         started_at: 2.days.ago,
         completed_at: 2.days.ago + 1.hour,
         user: users[1],
