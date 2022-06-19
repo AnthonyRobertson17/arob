@@ -1,9 +1,0 @@
-<div id="<%= dom_id @workout_category %>">
-  <h1 class="h1 mb-3"><%= @workout_category.name %></h1>
-  <%= render @workout_category, hide_name: true %>
-</div>
-
-<div class="d-flex">
-  <%= link_to t(:edit), edit_workout_category_path(@workout_category), class: "btn btn-secondary me-2" %>
-  <%= button_to t(:destroy), @workout_category, method: :delete, class: "btn btn-danger" %>
-</div>

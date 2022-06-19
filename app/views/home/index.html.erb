@@ -3,7 +3,7 @@
 <%= link_to t(".create_workout"), new_workout_path, class: "btn btn-lg btn-primary mb-4" %>
 
 <% if @in_progress_workouts.any? %>
-  <h2><%= t(".in_progress_workouts") %></h2>
+  <h2 class="h2"><%= t(".in_progress_workouts") %></h2>
   <div id="in_progress_workouts" class="mb-4">
     <% @in_progress_workouts.each do |workout| %>
       <div class="card mb-3">
@@ -16,14 +16,16 @@
   </div>
 <% end %>
 
-<h2><%= t(".recent_workouts") %></h2>
-<div id="recent_workouts" class="mb-4">
-  <% @recent_workouts.each do |workout| %>
-    <div class="card mb-3">
-      <div id="<%= dom_id workout %>" class="card-body">
-        <%= render "workouts/workout_attributes", workout:, inline_status: true%>
-        <%= link_to t(:open), workout, class: "btn btn-primary" %>
+<% if @recent_workouts.any? %>
+  <h2 class="h2"><%= t(".recent_workouts") %></h2>
+  <div id="recent_workouts" class="mb-4">
+    <% @recent_workouts.each do |workout| %>
+      <div class="card mb-3">
+        <div id="<%= dom_id workout %>" class="card-body">
+          <%= render "workouts/workout_attributes", workout:, inline_status: true%>
+          <%= link_to t(:open), workout, class: "btn btn-primary" %>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>

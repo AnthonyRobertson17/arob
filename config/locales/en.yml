@@ -95,20 +95,21 @@ en:
         already_started: "Workout has already started."
         already_completed: "Workout has already been completed."
         not_started: "Workout has not been started."
-  workout_categories:
+  tags:
     index:
-      title: "Workout Categories"
-      create_workout_category: "Create Workout Category"
-    new:
-      title: "New Workout Category"
-    edit:
-      title: "Edit Workout Category"
-    flash:
-      success:
-        create: "Workout Category was successfully created."
-        update: "Workout Category was successfully updated."
-        destroy: "Workout Category was successfully destroyed."
+      title: "Tags"
+      exercise_tags: "Exercise Tags"
+      workout_tags: "Workout Tags"
+    # new:
+    #   title: "New Workout Category"
+    # edit:
+    #   title: "Edit Workout Category"
+    # flash:
+    #   success:
+    #     create: "Workout Category was successfully created."
+    #     update: "Workout Category was successfully updated."
+    #     destroy: "Workout Category was successfully destroyed."
   navbar:
     logout: "Logout"
     workouts: "Workouts"
-    workout_categories: "Workout Categories"
+    tags: "Tags"
