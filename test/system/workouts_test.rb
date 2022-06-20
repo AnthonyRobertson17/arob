@@ -12,12 +12,14 @@ class WorkoutsTest < ApplicationSystemTestCase
   end
 
   test "creating workout" do
-    login
+    user = login
+    create :workout_tag, user: user, name: "test tag"
 
     visit workouts_url
     click_on "Create Workout"
 
     fill_in "Name", with: "Random workout name"
+    check "test tag"
     click_on "Create Workout"
 
     assert_text "Workout was successfully created."
@@ -41,11 +43,13 @@ class WorkoutsTest < ApplicationSystemTestCase
   test "editing Workouts" do
     user = login
     workout = create :workout, user: user
+    create :workout_tag, user: user, name: "test tag"
 
     visit workout_url(workout)
     click_on "Edit", match: :first
 
-    fill_in "Name", with: workout.name
+    fill_in "Name", with: "something else"
+    check "test tag"
     click_on "Update Workout"
 
     assert_text "Workout was successfully updated."

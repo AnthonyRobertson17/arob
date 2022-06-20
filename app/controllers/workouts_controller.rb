@@ -2,6 +2,7 @@
 
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
+  before_action :set_workout_tags, only: [:new, :edit]
 
   # GET /workouts
   def index
@@ -26,7 +27,7 @@ class WorkoutsController < ApplicationController
     if @workout.save
       redirect_to @workout, notice: I18n.t("workouts.flash.success.create")
     else
-      set_workout_categories
+      set_workout_tags
       render :new, status: :unprocessable_entity
     end
   end
@@ -36,7 +37,7 @@ class WorkoutsController < ApplicationController
     if @workout.update(workout_params)
       redirect_to @workout, notice: I18n.t("workouts.flash.success.update")
     else
-      set_workout_categories
+      set_workout_tags
       render :edit, status: :unprocessable_entity
     end
   end
@@ -54,9 +55,13 @@ class WorkoutsController < ApplicationController
     @workout = users_workouts.find(params[:id])
   end
 
+  def set_workout_tags
+    @workout_tags = WorkoutTag.for_user(current_user).all.order(name: :desc)
+  end
+
   # Only allow a list of trusted parameters through.
   def workout_params
-    params.require(:workout).permit(:name)
+    params.require(:workout).permit([:name, { tag_ids: [] }])
   end
 
   def users_workouts
