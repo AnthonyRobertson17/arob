@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_19_050446) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_24_025118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "exercise_type_tag_assignments", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "exercise_type_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_type_id"], name: "index_exercise_type_tag_assignments_on_exercise_type_id"
+    t.index ["tag_id"], name: "index_exercise_type_tag_assignments_on_tag_id"
+  end
+
+  create_table "exercise_types", force: :cascade do |t|
+    t.string "name", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_exercise_types_on_user_id"
+  end
 
   create_table "tags", force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +70,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_19_050446) do
     t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
+  add_foreign_key "exercise_type_tag_assignments", "exercise_types"
+  add_foreign_key "exercise_type_tag_assignments", "tags"
   add_foreign_key "tags", "users"
   add_foreign_key "workout_tag_assignments", "tags"
   add_foreign_key "workout_tag_assignments", "workouts"
