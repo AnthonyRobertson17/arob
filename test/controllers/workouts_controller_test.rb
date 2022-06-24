@@ -43,6 +43,21 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     assert_equal "New workout name", new_workout.name
   end
 
+  test "create workout links the tags based on the selected tag ids" do
+    workout_tag_ids = [
+      create(:workout_tag, user: @user),
+      create(:workout_tag, user: @user),
+    ].map(&:id)
+
+    post workouts_url params: { workout: { name: "Test", tag_ids: workout_tag_ids } }
+
+    associated_tag_ids = Workout.last.tags.map(&:id)
+
+    workout_tag_ids.each do |id|
+      assert_includes associated_tag_ids, id
+    end
+  end
+
   test "show workout" do
     get workout_url(@workout)
     assert_response :success
@@ -73,6 +88,21 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     patch workout_url(@workout), params: { workout: { name: "Updated workout name" } }
     assert_redirected_to workout_url(@workout)
     assert_equal "Updated workout name", @workout.reload.name
+  end
+
+  test "can update workout tags" do
+    workout_tag_ids = [
+      create(:workout_tag, user: @user),
+      create(:workout_tag, user: @user),
+    ].map(&:id)
+
+    patch workout_url(@workout), params: { workout: { name: "funny workout", tag_ids: workout_tag_ids } }
+
+    associated_tag_ids = Workout.last.tags.map(&:id)
+
+    workout_tag_ids.each do |id|
+      assert_includes associated_tag_ids, id
+    end
   end
 
   test "update workout raises not found if the workout belongs to another user" do

@@ -6,6 +6,8 @@ class Workout < ApplicationRecord
   class NotStartedError < StandardError; end
 
   belongs_to :user
+  has_many :workout_tag_assignments, dependent: :destroy
+  has_many :tags, through: :workout_tag_assignments
 
   validates :name, presence: true
 

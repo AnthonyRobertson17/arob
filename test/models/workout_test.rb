@@ -8,6 +8,14 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_predicate workout, :invalid?
   end
 
+  test "can access tags through association" do
+    user = create :user
+    workout_tag = create :workout_tag, user: user, name: "test_tag"
+    workout = create :workout, user:, tags: [workout_tag]
+
+    assert_equal "test_tag", workout.tags.first.name
+  end
+
   test "new workouts are not started or completed" do
     workout = build :workout
 
@@ -56,7 +64,7 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_not workout.started?
 
     workout.start!
-    assert_predicate workout, :started?
+    assert_predicate workout.reload, :started?
   end
 
   test "start! raises AlreadyStartedError if already started" do
@@ -104,7 +112,7 @@ class WorkoutTest < ActiveSupport::TestCase
     freeze_time do
       workout.complete!
 
-      assert_equal Time.now.utc, workout.completed_at
+      assert_equal Time.now.utc, workout.reload.completed_at
     end
   end
 
