@@ -39,6 +39,12 @@
                     class: "dropdown-item #{active_class(workout_tags_path)}"
                 %>
               </li>
+              <li>
+              <%= link_to t("navbar.exercise_type_tags"),
+                    exercise_type_tags_path,
+                    class: "dropdown-item #{active_class(exercise_type_tags_path)}"
+                %>
+              </li>
               <li><hr class="dropdown-divider"></li>
               <li>
                 <%= link_to t("navbar.all_tags"),
