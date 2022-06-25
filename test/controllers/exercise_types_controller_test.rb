@@ -98,7 +98,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
 
     patch(
       exercise_type_url(@exercise_type),
-      params: { exercise_type: { name: "funny exercise_type", tag_ids: exercise_type_tag_ids } }
+      params: { exercise_type: { name: "funny exercise_type", tag_ids: exercise_type_tag_ids } },
     )
 
     associated_tag_ids = ExerciseType.last.tags.map(&:id)
