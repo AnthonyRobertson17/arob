@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :tags, only: :index
   resources :workout_tags
   resources :exercise_tags
+  resources :exercise_types
   resources :exercise_type_tags
   resources :workouts do
     member do

@@ -22,6 +22,13 @@
                 "aria-current": "page"
             %>
           </li>
+          <li class="nav-item">
+            <%= link_to t("navbar.exercise_types"),
+                exercise_types_path,
+                class: "nav-link #{active_class(exercise_types_path)}",
+                "aria-current": "page"
+            %>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle <%= active_class([tags_path, exercise_tags_path, workout_tags_path]) %>" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
               <%= t("navbar.tags") %>

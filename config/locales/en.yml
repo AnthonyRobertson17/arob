@@ -43,6 +43,7 @@ en:
       workout: Workout
       workout_tag: Workout Tag
       exercise_tag: Exercise Tag
+      exercise_type: Exercise Type
       exercise_type_tag: Exercise Type Tag
     attributes:
       workout:
@@ -114,6 +115,19 @@ en:
         create: "Exercise Tag was successfully created."
         update: "Exercise Tag was successfully updated."
         destroy: "Exercise Tag was successfully destroyed."
+  exercise_types:
+    index:
+      title: "Exercise Types"
+      create_exercise_type: "Create Exercise Type"
+    new:
+      title: "New Exercise Type"
+    edit:
+      title: "Edit Exercise Type"
+    flash:
+      success:
+        create: "Exercise Type was successfully created."
+        update: "Exercise Type was successfully updated."
+        destroy: "Exercise Type was successfully destroyed."
   exercise_type_tags:
     index:
       title: "Exercise Type Tags"
@@ -147,4 +161,5 @@ en:
     all_tags: "All Tags"
     exercise_tags: "Exercise Tags"
     workout_tags: "Workout Tags"
+    exercise_types: "Exercise Types"
     exercise_type_tags: "Exercise Type Tags"
