@@ -43,6 +43,8 @@ en:
       workout: Workout
       workout_tag: Workout Tag
       exercise_tag: Exercise Tag
+      exercise_type: Exercise Type
+      exercise_type_tag: Exercise Type Tag
     attributes:
       workout:
         started_at: "Started At"
@@ -56,6 +58,7 @@ en:
     index:
       recent_workouts: "Recently Completed Workouts"
       in_progress_workouts: "In-Progress Workouts"
+      create_workout: "Create Workout"
   users:
     profile:
       show:
@@ -69,8 +72,6 @@ en:
     index:
       title: "Workouts"
       create_workout: "Create Workout"
-    form:
-      cancel: "Cancel"
     new:
       title: "New Workout"
     edit:
@@ -78,6 +79,7 @@ en:
     show:
       start: "Start"
       complete: "Complete"
+    workout_attributes:
       status: "Status"
       statuses:
         completed: "Completed"
@@ -99,6 +101,7 @@ en:
       title: "Tags"
       exercise_tags: "Exercise Tags"
       workout_tags: "Workout Tags"
+      exercise_type_tags: "Exercise Type Tags"
   exercise_tags:
     index:
       title: "Exercise Tags"
@@ -112,10 +115,36 @@ en:
         create: "Exercise Tag was successfully created."
         update: "Exercise Tag was successfully updated."
         destroy: "Exercise Tag was successfully destroyed."
+  exercise_types:
+    index:
+      title: "Exercise Types"
+      create_exercise_type: "Create Exercise Type"
+    new:
+      title: "New Exercise Type"
+    edit:
+      title: "Edit Exercise Type"
+    flash:
+      success:
+        create: "Exercise Type was successfully created."
+        update: "Exercise Type was successfully updated."
+        destroy: "Exercise Type was successfully destroyed."
+  exercise_type_tags:
+    index:
+      title: "Exercise Type Tags"
+      create_exercise_type_tag: "Create Exercise Type Tag"
+    new:
+      title: "New Exercise Type Tag"
+    edit:
+      title: "Edit Exercise Type Tag"
+    flash:
+      success:
+        create: "Exercise Type Tag was successfully created."
+        update: "Exercise Type Tag was successfully updated."
+        destroy: "Exercise Type Tag was successfully destroyed."
   workout_tags:
     index:
       title: "Workout Tags"
-      create_exercise_tag: "Create Workout Tag"
+      create_workout_tag: "Create Workout Tag"
     new:
       title: "New Workout Tag"
     edit:
@@ -132,3 +161,5 @@ en:
     all_tags: "All Tags"
     exercise_tags: "Exercise Tags"
     workout_tags: "Workout Tags"
+    exercise_types: "Exercise Types"
+    exercise_type_tags: "Exercise Type Tags"

@@ -8,25 +8,57 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
   end
 
-  test "get index" do
+  test "get index shows exercise tags" do
     create :exercise_tag, user: @user, name: "testing exercise tag"
-    create :workout_tag, user: @user, name: "testing workout tag"
+    create :exercise_tag, name: "should not see"
 
     get tags_url
     assert_response :success
 
     assert_select "h5", { text: /testing exercise tag/, count: 1 }
-    assert_select "h5", { text: /testing workout tag/, count: 1 }
+    assert_select "h5", { text: /should not see/, count: 0 }
   end
 
-  test "get index doesn't show workout categories which don't belong to the current user" do
-    create :exercise_tag, name: "should not be able to see this"
-    create :workout_tag, name: "not this either"
+  test "get index hides exercise tag section if the user doesn't have any" do
+    get tags_url
+    assert_response :success
+
+    assert_select "h3", { text: /Exercise Tags/, count: 0 }
+  end
+
+  test "get index shows workout tags" do
+    create :workout_tag, user: @user, name: "testing workout tag"
+    create :workout_tag, name: "should not see"
 
     get tags_url
     assert_response :success
 
-    assert_select "h5", { text: /should not be able to see this/, count: 0 }
-    assert_select "h5", { text: /not this either/, count: 0 }
+    assert_select "h5", { text: /testing workout tag/, count: 1 }
+    assert_select "h5", { text: /should not see/, count: 0 }
+  end
+
+  test "get index hides workout tag section if the user doesn't have any" do
+    get tags_url
+    assert_response :success
+
+    assert_select "h3", { text: /Workout Tags/, count: 0 }
+  end
+
+  test "get index shows exercise_type tags" do
+    create :exercise_type_tag, user: @user, name: "testing exercise_type tag"
+    create :exercise_type_tag, name: "should not see"
+
+    get tags_url
+    assert_response :success
+
+    assert_select "h5", { text: /testing exercise_type tag/, count: 1 }
+    assert_select "h5", { text: /should not see/, count: 0 }
+  end
+
+  test "get index hides exercise type tag section if the user doesn't have any" do
+    get tags_url
+    assert_response :success
+
+    assert_select "h3", { text: /Exercise Type Tags/, count: 0 }
   end
 end

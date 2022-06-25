@@ -1,6 +1,6 @@
-  <%= simple_form_for workout do |f| %>
+  <%= simple_form_for exercise_type do |f| %>
     <%= f.input :name %>
-    <%= f.input :tag_ids, as: :check_boxes, collection: workout_tags %>
+    <%= f.input :tag_ids, as: :check_boxes, collection: exercise_type_tags %>
     <%= f.button :submit %>
     <%= link_to t(:cancel), cancel_path, class: "btn btn-secondary"%>
   <% end %>

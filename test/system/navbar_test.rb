@@ -18,6 +18,13 @@ class NavbarTest < ApplicationSystemTestCase
     assert_current_path workouts_path
   end
 
+  test "navigating to the exercise types page" do
+    login
+    click_on "Exercise Types"
+
+    assert_current_path exercise_types_path
+  end
+
   test "navigating to the all tags page" do
     login
     click_on "Tags"

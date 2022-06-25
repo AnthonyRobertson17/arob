@@ -1,0 +1,9 @@
+<div id="<%= dom_id @exercise_type_tag %>">
+  <h1 class="h1 mb-3"><%= @exercise_type_tag.name %></h1>
+  <%= render "tags/tag", tag: @exercise_type_tag, hide_name: true %>
+</div>
+
+<div class="d-flex">
+  <%= link_to t(:edit), edit_exercise_type_tag_path(@exercise_type_tag), class: "btn btn-secondary me-2" %>
+  <%= button_to t(:destroy), @exercise_type_tag, method: :delete, class: "btn btn-danger" %>
+</div>
