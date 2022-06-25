@@ -11,7 +11,7 @@ module ActiveSupport
   class TestCase
     include FactoryBot::Syntax::Methods
 
-    parallelize threshold: 10
+    parallelize threshold: 25
   end
 end
 

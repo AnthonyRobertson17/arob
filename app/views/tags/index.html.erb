@@ -29,3 +29,17 @@
     <% end %>
   </div>
 <% end %>
+
+<% if @exercise_type_tags.any? %>
+  <h3 class="h3"><%= t(".exercise_type_tags") %></h3>
+  <div id="exercise_type_tags">
+    <% @exercise_type_tags.each do |exercise_type_tag| %>
+      <div class="card mb-3">
+        <div id="<%= dom_id exercise_type_tag %>" class="card-body">
+          <%= render "tag", tag: exercise_type_tag %>
+          <%= link_to t(:open), exercise_type_tag, class: "btn btn-primary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>

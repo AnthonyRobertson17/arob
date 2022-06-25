@@ -5,6 +5,7 @@ class TagsController < ApplicationController
   def index
     @workout_tags = workout_tags.all
     @exercise_tags = exercise_tags.all
+    @exercise_type_tags = exercise_type_tags.all
   end
 
   private
@@ -15,5 +16,9 @@ class TagsController < ApplicationController
 
   def exercise_tags
     ExerciseTag.for_user(current_user)
+  end
+
+  def exercise_type_tags
+    ExerciseTypeTag.for_user(current_user)
   end
 end
