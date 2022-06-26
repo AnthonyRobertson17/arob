@@ -27,11 +27,9 @@ contribute using a non-MacOS device, please reach out and we can get you sorted 
 
 Note: All these steps should be executed from the root of the project folder unless otherwise specified
 
-1. Run `bundle install` to ensure that all necessary ruby gem dependancies are installed
-2. Create a local postgres server running version `13.5`
-3. Run `rails db:create db:migrate` to create and migrate your local database
-4. Optionally run `rails test_data:create` to seed your database with some testing data
-5. Run `rails server` to run the app
+1. Create a local postgres server running version `13.5`
+2. Run `bin/setup` to setup the app
+3. Run `bin/dev` to run the app
 
 ### Running Tests
 
