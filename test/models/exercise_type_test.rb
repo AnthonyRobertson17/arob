@@ -16,6 +16,14 @@ class ExerciseTypeTest < ActiveSupport::TestCase
     assert_equal "test_tag", exercise_type.tags.first.name
   end
 
+  test "can access exercises through association" do
+    exercise_type = create :exercise_type
+    create :exercise, exercise_type: exercise_type
+    create :exercise, exercise_type: exercise_type
+
+    assert_equal 2, exercise_type.exercises.count
+  end
+
   test "for_user scope only returns exercise_types for the provided user" do
     user = create :user
     create :exercise_type
