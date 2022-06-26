@@ -8,24 +8,6 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
   end
 
-  test "get index shows exercise tags" do
-    create :exercise_tag, user: @user, name: "testing exercise tag"
-    create :exercise_tag, name: "should not see"
-
-    get tags_url
-    assert_response :success
-
-    assert_select "h5", { text: /testing exercise tag/, count: 1 }
-    assert_select "h5", { text: /should not see/, count: 0 }
-  end
-
-  test "get index hides exercise tag section if the user doesn't have any" do
-    get tags_url
-    assert_response :success
-
-    assert_select "h3", { text: /Exercise Tags/, count: 0 }
-  end
-
   test "get index shows workout tags" do
     create :workout_tag, user: @user, name: "testing workout tag"
     create :workout_tag, name: "should not see"

@@ -5,7 +5,6 @@ class CreateTestDataCommand < BaseCommand
   def execute
     users
     workout_tags
-    exercise_tags
     exercise_type_tags
     workouts
     exercise_types
@@ -48,27 +47,6 @@ class CreateTestDataCommand < BaseCommand
       seed(
         WorkoutTag,
         find_by: { name: "Chest for user 2", user: users[1] },
-      ),
-    ]
-  end
-
-  def exercise_tags
-    @exercise_tags ||= [
-      seed(
-        ExerciseTag,
-        find_by: { name: "Biceps", user: users[0] },
-      ),
-      seed(
-        ExerciseTag,
-        find_by: { name: "Triceps", user: users[0] },
-      ),
-      seed(
-        ExerciseTag,
-        find_by: { name: "Chest", user: users[1] },
-      ),
-      seed(
-        ExerciseTag,
-        find_by: { name: "Legs", user: users[1] },
       ),
     ]
   end

@@ -12,7 +12,7 @@ abstract class Tag {
   String type
 }
 
-class ExerciseTag {
+class ExerciseTypeTag {
 }
 
 class WorkoutTag {
@@ -47,9 +47,9 @@ Workout o-- User
 Exercise *-- Set
 Workout *-- Exercise
 Exercise *-- ExerciseType
-ExerciseType *-- ExerciseTag
+ExerciseType *-- ExerciseTypeTag
 Workout *-- WorkoutTag
-ExerciseTag *-- Tag
+ExerciseTypeTag *-- Tag
 WorkoutTag *-- Tag
 
 @enduml

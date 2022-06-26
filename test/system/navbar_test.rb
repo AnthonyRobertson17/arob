@@ -40,12 +40,4 @@ class NavbarTest < ApplicationSystemTestCase
 
     assert_current_path workout_tags_path
   end
-
-  test "navigating to the exercise_tags page" do
-    login
-    click_on "Tags"
-    click_on "Exercise Tags"
-
-    assert_current_path exercise_tags_path
-  end
 end
