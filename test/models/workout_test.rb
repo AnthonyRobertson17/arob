@@ -16,6 +16,16 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_equal "test_tag", workout.tags.first.name
   end
 
+  test "can access exercises through association" do
+    exercises = [
+      create(:exercise),
+      create(:exercise),
+    ]
+    workout = create(:workout, exercises:)
+
+    assert_equal 2, workout.exercises.count
+  end
+
   test "new workouts are not started or completed" do
     workout = build :workout
 
