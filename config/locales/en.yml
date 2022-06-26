@@ -78,6 +78,7 @@ en:
     show:
       start: "Start"
       complete: "Complete"
+      exercises: "Exercises"
     workout_attributes:
       status: "Status"
       statuses:

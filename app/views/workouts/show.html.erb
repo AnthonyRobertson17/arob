@@ -3,6 +3,15 @@
   <%= render "workout_attributes", workout: @workout, hide_name: true %>
 </div>
 
+<h3 class="h3 mb-3"><%= t(".exercises") %></h3>
+<% @workout.exercises.each do |exercise| %>
+  <div class="card mb-3">
+    <div id="<%= dom_id exercise %>" class="card-body">
+      <%= render exercise %>
+    </div>
+  </div>
+<% end %>
+
 <div class="d-flex">
   <% if @workout.draft? %>
     <%= button_to t(".start"), start_workout_path(@workout), method: :patch, class: "btn btn-primary me-2" %>
