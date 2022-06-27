@@ -96,11 +96,6 @@ en:
         already_started: "Workout has already started."
         already_completed: "Workout has already been completed."
         not_started: "Workout has not been started."
-  tags:
-    index:
-      title: "Tags"
-      workout_tags: "Workout Tags"
-      exercise_type_tags: "Exercise Type Tags"
   exercise_types:
     index:
       title: "Exercise Types"
@@ -122,11 +117,10 @@ en:
       title: "New Exercise Type Tag"
     edit:
       title: "Edit Exercise Type Tag"
-    flash:
-      success:
-        create: "Exercise Type Tag was successfully created."
-        update: "Exercise Type Tag was successfully updated."
-        destroy: "Exercise Type Tag was successfully destroyed."
+    show:
+      back: "Back to Exercise Type Tags"
+    exercise_type_tag:
+      delete_confirmation: "Are you sure you want to delete this exercise type tag?"
   workout_tags:
     index:
       title: "Workout Tags"
@@ -135,11 +129,10 @@ en:
       title: "New Workout Tag"
     edit:
       title: "Edit Workout Tag"
-    flash:
-      success:
-        create: "Workout Tag was successfully created."
-        update: "Workout Tag was successfully updated."
-        destroy: "Workout Tag was successfully destroyed."
+    show:
+      back: "Back to Workout Tags"
+    workout_tag:
+      delete_confirmation: "Are you sure you want to delete this workout tag?"
   navbar:
     logout: "Logout"
     workouts: "Workouts"

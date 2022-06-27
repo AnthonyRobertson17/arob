@@ -5,7 +5,7 @@ class WorkoutTagsController < ApplicationController
 
   # GET /workout_tags
   def index
-    @workout_tags = workout_tags.all
+    @workout_tags = workout_tags.ordered
   end
 
   # GET /workout_tags/1
@@ -24,7 +24,10 @@ class WorkoutTagsController < ApplicationController
     @workout_tag = WorkoutTag.new(workout_tag_params.merge({ user: current_user }))
 
     if @workout_tag.save
-      redirect_to @workout_tag, notice: I18n.t("workout_tags.flash.success.create")
+      respond_to do |format|
+        format.html { redirect_to workout_tag_path(@workout_tag) }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +36,10 @@ class WorkoutTagsController < ApplicationController
   # PATCH/PUT /workout_tags/1
   def update
     if @workout_tag.update(workout_tag_params)
-      redirect_to @workout_tag, notice: I18n.t("workout_tags.flash.success.update")
+      respond_to do |format|
+        format.html { redirect_to workout_tag_path(@workout_tag) }
+        format.turbo_stream
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +48,10 @@ class WorkoutTagsController < ApplicationController
   # DELETE /workout_tags/1
   def destroy
     @workout_tag.destroy
-    redirect_to workout_tags_url, notice: I18n.t("workout_tags.flash.success.destroy")
+    respond_to do |format|
+      format.html { redirect_to workout_tags_path }
+      format.turbo_stream
+    end
   end
 
   private

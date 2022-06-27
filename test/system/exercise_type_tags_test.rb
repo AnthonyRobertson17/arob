@@ -10,7 +10,7 @@ class ExerciseTypeTagsTest < ApplicationSystemTestCase
     click_on "Tags"
     click_on "Exercise Type Tags"
 
-    assert_selector "h1", text: "Exercise Type Tags"
+    assert_current_path exercise_type_tags_path
   end
 
   test "creating an exercise_type_tag" do
@@ -19,50 +19,67 @@ class ExerciseTypeTagsTest < ApplicationSystemTestCase
 
     click_on "Create Exercise Type Tag"
 
-    fill_in "Name", with: "Random Exercise Type Tag name"
-    click_on "Create Exercise Type Tag"
+    # Ensure that the create form is inline on the workout index page
+    assert_current_path exercise_type_tags_path
 
-    assert_text "Exercise Type Tag was successfully created."
+    fill_in "Name", with: "New Tag name"
+    click_on "Create"
+
+    assert_current_path exercise_type_tags_path
+    assert_text "New Tag name"
   end
 
   test "cancel creating an exercise_type_tag" do
     login
-    visit new_exercise_type_tag_url
+    visit exercise_type_tags_url
 
-    click_on "Cancel"
+    click_on "Create Exercise Type Tag"
+
+    # Ensure that the create form is inline on the workout index page
     assert_current_path exercise_type_tags_path
+
+    fill_in "Name", with: "New Tag name"
+    click_on "Cancel"
+
+    assert_current_path exercise_type_tags_path
+    assert_no_text "New Tag name"
   end
 
   test "editing an exercise_type_tag" do
     user = login
-    exercise_type_tag = create :exercise_type_tag, user: user
+    create :exercise_type_tag, user: user
 
-    visit exercise_type_tag_url(exercise_type_tag)
+    visit exercise_type_tags_url
     click_on "Edit", match: :first
 
     fill_in "Name", with: "Something new"
-    click_on "Update Exercise Type Tag"
+    click_on "Update"
 
-    assert_text "Exercise Type Tag was successfully updated."
+    assert_text "Something new"
   end
 
   test "cancel editing an exercise_type_tag" do
     user = login
-    exercise_type_tag = create :exercise_type_tag, user: user
+    create :exercise_type_tag, user: user
 
-    visit edit_exercise_type_tag_url(exercise_type_tag)
+    visit exercise_type_tags_url
+    click_on "Edit", match: :first
+
+    fill_in "Name", with: "Something new"
     click_on "Cancel"
 
-    assert_current_path exercise_type_tag_path(exercise_type_tag)
+    assert_no_text "Something new"
   end
 
   test "destroying an exercise_type_tag" do
     user = login
-    exercise_type_tag = create :exercise_type_tag, user: user
+    create :exercise_type_tag, user: user, name: "Should be removed"
 
-    visit exercise_type_tag_url(exercise_type_tag)
-    click_on "Destroy", match: :first
+    visit exercise_type_tags_url
+    accept_confirm do
+      click_on "Destroy", match: :first
+    end
 
-    assert_text "Exercise Type Tag was successfully destroyed."
+    assert_no_text "Should be removed"
   end
 end

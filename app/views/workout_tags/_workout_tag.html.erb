@@ -1,0 +1,16 @@
+<%= turbo_frame_tag workout_tag do %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="h5"><%= workout_tag.name %></h5>
+      <div class="d-flex">
+        <%= link_to t(:open), workout_tag, class: "btn btn-primary me-2", data: { turbo_frame: "_top" } %>
+        <%= link_to t(:edit), edit_workout_tag_path(workout_tag), class: "btn btn-secondary me-2" %>
+        <%= button_to t(:destroy),
+                      workout_tag,
+                      method: :delete,
+                      form: { data: { turbo_confirm: t(".delete_confirmation") } },
+                      class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+<% end %>

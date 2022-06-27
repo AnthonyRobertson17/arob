@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   patch "profile", to: "users/profile#update"
 
 
-  resources :tags, only: :index
   resources :workout_tags
   resources :exercise_types
   resources :exercise_type_tags

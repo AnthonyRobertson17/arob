@@ -10,7 +10,7 @@ class WorkoutTagsTest < ApplicationSystemTestCase
     click_on "Tags"
     click_on "Workout Tags"
 
-    assert_selector "h1", text: "Workout Tags"
+    assert_current_path workout_tags_path
   end
 
   test "creating an workout_tag" do
@@ -19,50 +19,67 @@ class WorkoutTagsTest < ApplicationSystemTestCase
 
     click_on "Create Workout Tag"
 
-    fill_in "Name", with: "Random Workout Tag name"
-    click_on "Create Workout Tag"
+    # Ensure that the create form is inline on the workout index page
+    assert_current_path workout_tags_path
 
-    assert_text "Workout Tag was successfully created."
+    fill_in "Name", with: "New Tag name"
+    click_on "Create"
+
+    assert_current_path workout_tags_path
+    assert_text "New Tag name"
   end
 
   test "cancel creating an workout_tag" do
     login
-    visit new_workout_tag_url
+    visit workout_tags_url
+
+    click_on "Create Workout Tag"
+
+    # Ensure that the create form is inline on the workout index page
+    assert_current_path workout_tags_path
+
+    fill_in "Name", with: "New Tag name"
 
     click_on "Cancel"
     assert_current_path workout_tags_path
+    assert_no_text "New Tag name"
   end
 
   test "editing an workout_tag" do
     user = login
-    workout_tag = create :workout_tag, user: user
+    create :workout_tag, user: user
 
-    visit workout_tag_url(workout_tag)
+    visit workout_tags_url
     click_on "Edit", match: :first
 
     fill_in "Name", with: "Something new"
-    click_on "Update Workout Tag"
+    click_on "Update"
 
-    assert_text "Workout Tag was successfully updated."
+    assert_text "Something new"
   end
 
   test "cancel editing an workout_tag" do
     user = login
-    workout_tag = create :workout_tag, user: user
+    create :workout_tag, user: user
 
-    visit edit_workout_tag_url(workout_tag)
+    visit workout_tags_url
+    click_on "Edit", match: :first
+
+    fill_in "Name", with: "Something new"
     click_on "Cancel"
 
-    assert_current_path workout_tag_path(workout_tag)
+    assert_no_text "Something new"
   end
 
   test "destroying an workout_tag" do
     user = login
-    workout_tag = create :workout_tag, user: user
+    create :workout_tag, user: user, name: "Should be removed"
 
-    visit workout_tag_url(workout_tag)
-    click_on "Destroy", match: :first
+    visit workout_tags_url
+    accept_confirm do
+      click_on "Destroy", match: :first
+    end
 
-    assert_text "Workout Tag was successfully destroyed."
+    assert_no_text "Should be removed"
   end
 end

@@ -13,22 +13,15 @@ en:
     labels:
       workout:
         tag_ids: "Tags"
-    # Examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
-    # include_blanks:
-    #   defaults:
-    #     age: 'Rather not say'
-    # prompts:
-    #   defaults:
-    #     age: 'Select your age'
+
+  helpers:
+    submit:
+      workout_tag:
+        create: Create
+        update: Update
+      exercise_type_tag:
+        create: Create
+        update: Update
+      workout:
+        create: Create
+        update: Update

@@ -20,7 +20,7 @@ class WorkoutsTest < ApplicationSystemTestCase
 
     fill_in "Name", with: "Random workout name"
     check "test tag"
-    click_on "Create Workout"
+    click_on "Create"
 
     assert_text "Workout was successfully created."
   end
@@ -50,7 +50,7 @@ class WorkoutsTest < ApplicationSystemTestCase
 
     fill_in "Name", with: "something else"
     check "test tag"
-    click_on "Update Workout"
+    click_on "Update"
 
     assert_text "Workout was successfully updated."
   end
