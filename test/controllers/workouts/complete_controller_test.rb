@@ -14,7 +14,6 @@ module Workouts
 
       patch complete_workout_url(workout)
       assert_redirected_to workout_url(workout)
-      assert_equal "Workout was successfully completed.", flash[:notice]
 
       assert_predicate workout.reload, :completed?
     end

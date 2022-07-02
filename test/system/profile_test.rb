@@ -20,7 +20,6 @@ class HomeTest < ApplicationSystemTestCase
     select "Eastern Time (US & Canada)", from: "Time zone"
     click_on "Update User"
 
-    assert_text "Profile was successfully updated."
     assert_text "Eastern Time (US & Canada)"
   end
 end

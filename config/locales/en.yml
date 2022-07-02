@@ -64,9 +64,6 @@ en:
         title: "Profile"
       edit:
         title: "Edit Profile"
-      flash:
-        success:
-          update: "Profile was successfully updated."
   workouts:
     index:
       title: "Workouts"
@@ -86,12 +83,6 @@ en:
         in_progress: "In Progress"
         draft: "Draft"
     flash:
-      success:
-        create: "Workout was successfully created."
-        update: "Workout was successfully updated."
-        destroy: "Workout was successfully destroyed."
-        started: "Workout was successfully started."
-        completed: "Workout was successfully completed."
       error:
         already_started: "Workout has already started."
         already_completed: "Workout has already been completed."
@@ -104,11 +95,6 @@ en:
       title: "New Exercise Type"
     edit:
       title: "Edit Exercise Type"
-    flash:
-      success:
-        create: "Exercise Type was successfully created."
-        update: "Exercise Type was successfully updated."
-        destroy: "Exercise Type was successfully destroyed."
   exercise_type_tags:
     index:
       title: "Exercise Type Tags"

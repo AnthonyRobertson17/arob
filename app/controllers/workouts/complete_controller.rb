@@ -12,7 +12,7 @@ module Workouts
 
     def update
       @workout.complete!
-      redirect_to @workout, notice: I18n.t("workouts.flash.success.completed")
+      redirect_to @workout
     end
 
     private

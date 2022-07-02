@@ -22,7 +22,7 @@ class ExerciseTypeTest < ApplicationSystemTestCase
     check "test tag"
     click_on "Create Exercise Type"
 
-    assert_text "Exercise Type was successfully created."
+    assert_text "Random exercise_type name"
   end
 
   test "cancel creating a exercise_type" do
@@ -45,7 +45,7 @@ class ExerciseTypeTest < ApplicationSystemTestCase
     check "test tag"
     click_on "Update Exercise Type"
 
-    assert_text "Exercise Type was successfully updated."
+    assert_text "something else"
   end
 
   test "cancel editing a exercise_type" do
@@ -58,11 +58,11 @@ class ExerciseTypeTest < ApplicationSystemTestCase
 
   test "destroying Exercise Type" do
     user = login
-    exercise_type = create :exercise_type, user: user
+    exercise_type = create :exercise_type, user: user, name: "should be gone"
 
     visit exercise_type_url(exercise_type)
     click_on "Destroy", match: :first
 
-    assert_text "Exercise Type was successfully destroyed."
+    assert_no_text "should be gone"
   end
 end
