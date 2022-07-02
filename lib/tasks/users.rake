@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 namespace :users do
-  desc "Creates a new user with the specified email and password." \
-       " Usage: `rake users:create[foo@example.com,password123]`"
+  desc "Creates a new user with the specified email and password. " \
+       "Usage: `rake users:create[foo@example.com,password123]`"
   task :create, [:email, :password] => :environment do |_, args|
     email = args[:email]
     password = args[:password]
