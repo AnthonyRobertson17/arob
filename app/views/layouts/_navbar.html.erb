@@ -30,16 +30,10 @@
             %>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle <%= active_class([tags_path, exercise_tags_path, workout_tags_path]) %>" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            <a class="nav-link dropdown-toggle <%= active_class([tags_path, workout_tags_path, exercise_type_tags_path]) %>" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
               <%= t("navbar.tags") %>
             </a>
             <ul class="dropdown-menu">
-              <li>
-                <%= link_to t("navbar.exercise_tags"),
-                    exercise_tags_path,
-                    class: "dropdown-item #{active_class(exercise_tags_path)}"
-                %>
-              </li>
               <li>
                 <%= link_to t("navbar.workout_tags"),
                     workout_tags_path,

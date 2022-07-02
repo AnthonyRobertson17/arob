@@ -2,20 +2,6 @@
   <h1 class="h1 mb-0 me-3"><%= t(".title") %></h1>
 </div>
 
-<% if @exercise_tags.any? %>
-  <h3 class="h3"><%= t(".exercise_tags") %></h3>
-  <div id="exercise_tags">
-    <% @exercise_tags.each do |exercise_tag| %>
-      <div class="card mb-3">
-        <div id="<%= dom_id exercise_tag %>" class="card-body">
-          <%= render "tag", tag: exercise_tag %>
-          <%= link_to t(:open), exercise_tag, class: "btn btn-primary" %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-<% end %>
-
 <% if @workout_tags.any? %>
   <h3 class="h3"><%= t(".workout_tags") %></h3>
   <div id="workout_tags">

@@ -5,10 +5,10 @@ class CreateTestDataCommand < BaseCommand
   def execute
     users
     workout_tags
-    exercise_tags
     exercise_type_tags
     workouts
     exercise_types
+    exercises
   end
 
   private
@@ -48,27 +48,6 @@ class CreateTestDataCommand < BaseCommand
       seed(
         WorkoutTag,
         find_by: { name: "Chest for user 2", user: users[1] },
-      ),
-    ]
-  end
-
-  def exercise_tags
-    @exercise_tags ||= [
-      seed(
-        ExerciseTag,
-        find_by: { name: "Biceps", user: users[0] },
-      ),
-      seed(
-        ExerciseTag,
-        find_by: { name: "Triceps", user: users[0] },
-      ),
-      seed(
-        ExerciseTag,
-        find_by: { name: "Chest", user: users[1] },
-      ),
-      seed(
-        ExerciseTag,
-        find_by: { name: "Legs", user: users[1] },
       ),
     ]
   end
@@ -119,6 +98,11 @@ class CreateTestDataCommand < BaseCommand
     @workouts ||= [
       seed(
         Workout,
+        find_by: { name: "Let's GOOOO", user: users[0] },
+        update: { started_at: 2.days.ago },
+      ),
+      seed(
+        Workout,
         find_by: { name: "Leg Day", user: users[0] },
       ),
       seed(
@@ -130,6 +114,19 @@ class CreateTestDataCommand < BaseCommand
         Workout,
         find_by: { name: "Silly Day", user: users[1] },
         update: { started_at: 2.days.ago, completed_at: 2.days.ago + 1.hour },
+      ),
+    ]
+  end
+
+  def exercises
+    @exercises ||= [
+      seed(
+        Exercise,
+        find_by: { exercise_type: exercise_types[0], workout: workouts[0] },
+      ),
+      seed(
+        Exercise,
+        find_by: { exercise_type: exercise_types[1], workout: workouts[0] },
       ),
     ]
   end

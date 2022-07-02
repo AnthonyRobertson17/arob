@@ -8,6 +8,7 @@ class Workout < ApplicationRecord
   belongs_to :user
   has_many :workout_tag_assignments, dependent: :destroy
   has_many :tags, through: :workout_tag_assignments
+  has_many :exercises, dependent: :destroy
 
   validates :name, presence: true
 

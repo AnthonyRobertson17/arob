@@ -15,14 +15,26 @@ class CreateTestDataCommandTest < ActiveSupport::TestCase
     end
   end
 
-  test "creates 4 exercise_tags" do
-    assert_difference("ExerciseTag.count", 4) do
+  test "creates 4 exercise_type_tags" do
+    assert_difference("ExerciseTypeTag.count", 4) do
       CreateTestDataCommand.execute
     end
   end
 
-  test "creates 3 workouts" do
-    assert_difference("Workout.count", 3) do
+  test "creates 4 workouts" do
+    assert_difference("Workout.count", 4) do
+      CreateTestDataCommand.execute
+    end
+  end
+
+  test "creates 4 exercise_types" do
+    assert_difference("ExerciseType.count", 4) do
+      CreateTestDataCommand.execute
+    end
+  end
+
+  test "creates 2 exercises" do
+    assert_difference("Exercise.count", 2) do
       CreateTestDataCommand.execute
     end
   end

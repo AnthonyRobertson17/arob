@@ -42,7 +42,6 @@ en:
     models:
       workout: Workout
       workout_tag: Workout Tag
-      exercise_tag: Exercise Tag
       exercise_type: Exercise Type
       exercise_type_tag: Exercise Type Tag
     attributes:
@@ -79,6 +78,7 @@ en:
     show:
       start: "Start"
       complete: "Complete"
+      exercises: "Exercises"
     workout_attributes:
       status: "Status"
       statuses:
@@ -99,22 +99,8 @@ en:
   tags:
     index:
       title: "Tags"
-      exercise_tags: "Exercise Tags"
       workout_tags: "Workout Tags"
       exercise_type_tags: "Exercise Type Tags"
-  exercise_tags:
-    index:
-      title: "Exercise Tags"
-      create_exercise_tag: "Create Exercise Tag"
-    new:
-      title: "New Exercise Tag"
-    edit:
-      title: "Edit Exercise Tag"
-    flash:
-      success:
-        create: "Exercise Tag was successfully created."
-        update: "Exercise Tag was successfully updated."
-        destroy: "Exercise Tag was successfully destroyed."
   exercise_types:
     index:
       title: "Exercise Types"
@@ -159,7 +145,6 @@ en:
     workouts: "Workouts"
     tags: "Tags"
     all_tags: "All Tags"
-    exercise_tags: "Exercise Tags"
     workout_tags: "Workout Tags"
     exercise_types: "Exercise Types"
     exercise_type_tags: "Exercise Type Tags"

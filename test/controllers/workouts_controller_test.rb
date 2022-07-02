@@ -63,6 +63,17 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "show workout includes exercises for workout" do
+    exercise_type = create :exercise_type, user: @user, name: "test exercise type"
+    create :exercise, workout: @workout, exercise_type: exercise_type
+
+    get workout_url(@workout)
+    assert_response :success
+
+    assert_select "h3", { text: /Exercises/, count: 1 }
+    assert_select "h5", { text: /test exercise type/, count: 1 }
+  end
+
   test "show workout raises not found if the workout belongs to another user" do
     other_workout = create :workout
 
