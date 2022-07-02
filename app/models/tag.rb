@@ -7,4 +7,5 @@ class Tag < ApplicationRecord
   validates :type, presence: true
 
   scope :for_user, ->(user) { where(user:) }
+  scope :ordered, -> { order(id: :desc) }
 end

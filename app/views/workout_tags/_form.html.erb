@@ -1,0 +1,9 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <%= simple_form_for workout_tag do |f| %>
+      <%= f.input :name, input_html: { autofocus: true } %>
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to t(:cancel), workout_tags_path, class: "btn btn-secondary"%>
+    <% end %>
+  </div>
+</div>

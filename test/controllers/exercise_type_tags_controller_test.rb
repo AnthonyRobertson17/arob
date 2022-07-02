@@ -31,12 +31,22 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "create exercise_type_tag redirects to correct exercise_type_tag" do
+  test "create exercise_type_tag creates the record" do
     assert_difference("ExerciseTypeTag.count") do
       post exercise_type_tags_url, params: { exercise_type_tag: { name: "Random Tag" } }
     end
+  end
+
+  test "create exercise_type_tag with html format redirects to show" do
+    post exercise_type_tags_url, params: { exercise_type_tag: { name: "Random Tag" } }
 
     assert_redirected_to exercise_type_tag_url(ExerciseTypeTag.last)
+  end
+
+  test "create exercise_type_tag with turbo_stream format responds with OK" do
+    post exercise_type_tags_url(format: :turbo_stream), params: { exercise_type_tag: { name: "Random Tag" } }
+
+    assert_response :ok
   end
 
   test "create exercise_type_tag links to the current_user" do
@@ -76,11 +86,19 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "update exercise_type_tag" do
+  test "update exercise_type_tag with html format redirects to show" do
     exercise_type_tag = create :exercise_type_tag, user: @user
 
     patch exercise_type_tag_url(exercise_type_tag), params: { exercise_type_tag: { name: "New ExerciseType Name" } }
     assert_redirected_to exercise_type_tag_url(exercise_type_tag)
+  end
+
+  test "update exercise_type_tag with turbo_stream format responss with OK" do
+    exercise_type_tag = create :exercise_type_tag, user: @user
+
+    patch exercise_type_tag_url(exercise_type_tag, format: :turbo_stream),
+          params: { exercise_type_tag: { name: "New ExerciseType Name" } }
+    assert_response :ok
   end
 
   test "update exercise_type_tag raises not found if exercise_type_tag belongs to another user" do
@@ -91,14 +109,28 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "destroy exercise_type_tag" do
+  test "destroy exercise_type_tag destroys the record" do
     exercise_type_tag = create :exercise_type_tag, user: @user
 
     assert_difference("ExerciseTypeTag.count", -1) do
       delete exercise_type_tag_url(exercise_type_tag)
     end
+  end
+
+  test "destroy exercise_type_tag with html format redirects to index" do
+    exercise_type_tag = create :exercise_type_tag, user: @user
+
+    delete exercise_type_tag_url(exercise_type_tag)
 
     assert_redirected_to exercise_type_tags_url
+  end
+
+  test "destroy exercise_type_tag with turbo_stream format responds with OK" do
+    exercise_type_tag = create :exercise_type_tag, user: @user
+
+    delete exercise_type_tag_url(exercise_type_tag, format: :turbo_stream)
+
+    assert_response :ok
   end
 
   test "destroy exercise_type_tag raises not found if exercise_type_tag belongs to another user" do

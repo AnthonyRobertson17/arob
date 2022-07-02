@@ -25,14 +25,6 @@ class NavbarTest < ApplicationSystemTestCase
     assert_current_path exercise_types_path
   end
 
-  test "navigating to the all tags page" do
-    login
-    click_on "Tags"
-    click_on "All Tags"
-
-    assert_current_path tags_path
-  end
-
   test "navigating to the workout_tags page" do
     login
     click_on "Tags"

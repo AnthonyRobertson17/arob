@@ -5,7 +5,7 @@ class ExerciseTypeTagsController < ApplicationController
 
   # GET /exercise_type_tags
   def index
-    @exercise_type_tags = exercise_type_tags.all
+    @exercise_type_tags = exercise_type_tags.ordered
   end
 
   # GET /exercise_type_tags/1
@@ -24,7 +24,10 @@ class ExerciseTypeTagsController < ApplicationController
     @exercise_type_tag = ExerciseTypeTag.new(exercise_type_tag_params.merge({ user: current_user }))
 
     if @exercise_type_tag.save
-      redirect_to @exercise_type_tag, notice: I18n.t("exercise_type_tags.flash.success.create")
+      respond_to do |format|
+        format.html { redirect_to exercise_type_tag_path(@exercise_type_tag) }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +36,10 @@ class ExerciseTypeTagsController < ApplicationController
   # PATCH/PUT /exercise_type_tags/1
   def update
     if @exercise_type_tag.update(exercise_type_tag_params)
-      redirect_to @exercise_type_tag, notice: I18n.t("exercise_type_tags.flash.success.update")
+      respond_to do |format|
+        format.html { redirect_to exercise_type_tag_path(@exercise_type_tag) }
+        format.turbo_stream
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,7 +48,10 @@ class ExerciseTypeTagsController < ApplicationController
   # DELETE /exercise_type_tags/1
   def destroy
     @exercise_type_tag.destroy
-    redirect_to exercise_type_tags_url, notice: I18n.t("exercise_type_tags.flash.success.destroy")
+    respond_to do |format|
+      format.html { redirect_to exercise_type_tags_path }
+      format.turbo_stream
+    end
   end
 
   private
