@@ -11,7 +11,7 @@ module Users
     # PATCH /profile
     def update
       if current_user.update(user_params)
-        redirect_to profile_url, notice: I18n.t("users.profile.flash.success.update")
+        redirect_to profile_url
       else
         render :edit, status: :unprocessable_entity
       end

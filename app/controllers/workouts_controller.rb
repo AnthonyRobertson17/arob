@@ -25,7 +25,7 @@ class WorkoutsController < ApplicationController
     @workout = Workout.new(workout_params.merge(user: current_user))
 
     if @workout.save
-      redirect_to @workout, notice: I18n.t("workouts.flash.success.create")
+      redirect_to @workout
     else
       set_workout_tags
       render :new, status: :unprocessable_entity
@@ -35,7 +35,7 @@ class WorkoutsController < ApplicationController
   # PATCH/PUT /workouts/1
   def update
     if @workout.update(workout_params)
-      redirect_to @workout, notice: I18n.t("workouts.flash.success.update")
+      redirect_to @workout
     else
       set_workout_tags
       render :edit, status: :unprocessable_entity
@@ -45,7 +45,7 @@ class WorkoutsController < ApplicationController
   # DELETE /workouts/1
   def destroy
     @workout.destroy
-    redirect_to workouts_url, notice: I18n.t("workouts.flash.success.destroy")
+    redirect_to workouts_url
   end
 
   private

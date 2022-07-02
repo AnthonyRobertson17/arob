@@ -9,7 +9,7 @@ module Workouts
 
     def update
       @workout.start!
-      redirect_to @workout, notice: I18n.t("workouts.flash.success.started")
+      redirect_to @workout
     end
 
     private
