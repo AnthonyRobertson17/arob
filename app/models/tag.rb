@@ -3,7 +3,7 @@
 class Tag < ApplicationRecord
   belongs_to :user
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: [:user_id, :type] }
   validates :type, presence: true
 
   scope :for_user, ->(user) { where(user:) }

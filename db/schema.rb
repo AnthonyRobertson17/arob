@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_25_225941) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_03_144620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_225941) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id", "name"], name: "index_exercise_types_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_exercise_types_on_user_id"
   end
 
@@ -47,6 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_25_225941) do
     t.bigint "user_id"
     t.string "type"
     t.index ["name", "user_id"], name: "index_tags_on_name_and_user_id"
+    t.index ["user_id", "name", "type"], name: "index_tags_on_user_id_and_name_and_type", unique: true
     t.index ["user_id"], name: "index_tags_on_user_id"
   end
 

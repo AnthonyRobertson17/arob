@@ -7,7 +7,7 @@ class ExerciseType < ApplicationRecord
   has_many :tags, through: :exercise_type_tag_assignments
   has_many :exercises, dependent: :nullify
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { scope: :user_id }
 
   scope :for_user, ->(user) { where(user:) }
 end
