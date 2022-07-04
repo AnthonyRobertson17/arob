@@ -2,13 +2,15 @@
   <div class="card mb-3">
     <div class="card-body">
       <h5 class="h5"><%= exercise_type_tag.name %></h5>
-      <%= link_to t(:open), exercise_type_tag, class: "btn btn-primary", data: { turbo_frame: "_top" } %>
-      <%= link_to t(:edit), edit_exercise_type_tag_path(exercise_type_tag), class: "btn btn-secondary" %>
-              <%= button_to t(:destroy),
-                      exercise_type_tag,
-                      method: :delete,
-                      form: { data: { turbo_confirm: t(".destroy_confirmation") } },
-                      class: "btn btn-danger" %>
+      <div class="d-flex">
+        <%= link_to t(:open), exercise_type_tag, class: "btn btn-primary me-2", data: { turbo_frame: "_top" } %>
+        <%= link_to t(:edit), edit_exercise_type_tag_path(exercise_type_tag), class: "btn btn-secondary me-2" %>
+        <%= button_to t(:destroy),
+                exercise_type_tag,
+                method: :delete,
+                form: { data: { turbo_confirm: t(".destroy_confirmation") } },
+                class: "btn btn-danger" %>
+      </div>
     </div>
   </div>
 <% end %>
