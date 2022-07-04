@@ -2,5 +2,5 @@
 
 class Exercise < ApplicationRecord
   belongs_to :workout
-  belongs_to :exercise_type, dependent: :destroy
+  belongs_to :exercise_type
 end

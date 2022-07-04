@@ -2,7 +2,7 @@
 
 require "application_system_test_case"
 
-class ExerciseTypeTest < ApplicationSystemTestCase
+class ExerciseTypesTest < ApplicationSystemTestCase
   test "visiting the index" do
     user = login
     create :exercise_type, user: user

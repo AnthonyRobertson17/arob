@@ -76,6 +76,7 @@ en:
       start: "Start"
       complete: "Complete"
       exercises: "Exercises"
+      create_exercise: "New Exercise"
     workout_attributes:
       status: "Status"
       statuses:
@@ -87,6 +88,13 @@ en:
         already_started: "Workout has already started."
         already_completed: "Workout has already been completed."
         not_started: "Workout has not been started."
+  exercises:
+    edit:
+      title: "Edit Exercise"
+    new:
+      title: "New Exercise"
+    exercise:
+      destroy_confirmation: "Are you sure you want to destroy this exercise?"
   exercise_types:
     index:
       title: "Exercise Types"
@@ -106,7 +114,7 @@ en:
     show:
       back: "Back to Exercise Type Tags"
     exercise_type_tag:
-      delete_confirmation: "Are you sure you want to delete this exercise type tag?"
+      destroy_confirmation: "Are you sure you want to destroy this exercise type tag?"
   workout_tags:
     index:
       title: "Workout Tags"
@@ -118,7 +126,7 @@ en:
     show:
       back: "Back to Workout Tags"
     workout_tag:
-      delete_confirmation: "Are you sure you want to delete this workout tag?"
+      destroy_confirmation: "Are you sure you want to destroy this workout tag?"
   navbar:
     logout: "Logout"
     workouts: "Workouts"
