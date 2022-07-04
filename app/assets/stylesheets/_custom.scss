@@ -1,6 +1,14 @@
 $primary: #6f42c1;
 $badge-font-size: 0.8em;
 
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 960px,
+  xxl: 960px
+);
+
 .turbo-progress-bar {
   background: $primary;
 }
