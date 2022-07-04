@@ -1,0 +1,9 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <%= simple_form_for [workout, exercise] do |f| %>
+      <%= f.association :exercise_type, as: :radio_buttons, collection: exercise_types %>
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to t(:cancel), workout_path(workout), class: "btn btn-secondary"%>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<%= turbo_stream.update Exercise.new, "" %>
+
+<%= turbo_stream.append "exercises" do %>
+  <%= render @exercise, workout: @workout %>
+<% end %>

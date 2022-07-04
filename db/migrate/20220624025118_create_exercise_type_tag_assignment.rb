@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateExerciseTypeTagAssignment < ActiveRecord::Migration[7.0]
   def change
     create_table :exercise_type_tag_assignments do |t|

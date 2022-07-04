@@ -35,8 +35,6 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     assert_difference("WorkoutTag.count") do
       post workout_tags_url, params: { workout_tag: { name: "Random Tag" } }
     end
-
-    assert_redirected_to workout_tag_url(WorkoutTag.last)
   end
 
   test "create workout_tag links new record to the current_user" do

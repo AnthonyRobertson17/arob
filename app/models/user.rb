@@ -6,4 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :rememberable, :validatable
 
   has_many :workouts, dependent: :destroy
+  has_many :exercises, through: :workouts
+  has_many :exercise_types, dependent: :destroy
+  has_many :workout_tags, dependent: :destroy
+  has_many :exercise_type_tags, dependent: :destroy
 end
