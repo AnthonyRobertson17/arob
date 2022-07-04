@@ -1,1 +1,1 @@
-Time::DATE_FORMATS[:timestamp] = "%l:%M %p - %b %e, %Y" # YYYYMMDDHHMMSS
+Time::DATE_FORMATS[:timestamp] = "%b %e, %Y - %l:%M %p" # YYYYMMDDHHMMSS
