@@ -71,7 +71,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select "h3", { text: /Exercises/, count: 1 }
-    assert_select "h5", { text: /test exercise type/, count: 1 }
+    assert_select "h4", { text: /test exercise type/, count: 1 }
   end
 
   test "show workout raises not found if the workout belongs to another user" do
