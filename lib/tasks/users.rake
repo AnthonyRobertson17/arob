@@ -6,6 +6,6 @@ namespace :users do
   task :create, [:email, :password] => :environment do |_, args|
     email = args[:email]
     password = args[:password]
-    User.create!(email:, password:, password_confirmation: password, confirmed_at: Time.now.utc)
+    User.create!(email:, password:, password_confirmation: password)
   end
 end
