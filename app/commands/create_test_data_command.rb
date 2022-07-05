@@ -9,6 +9,7 @@ class CreateTestDataCommand < BaseCommand
     workouts
     exercise_types
     exercises
+    exercise_sets
   end
 
   private
@@ -129,6 +130,34 @@ class CreateTestDataCommand < BaseCommand
         find_by: { exercise_type: exercise_types[1], workout: workouts[0] },
       ),
     ]
+  end
+
+  def exercise_sets
+    return @exercise_sets if @exercise_sets
+
+    @exercise_sets = []
+    exercises.each do |exercise|
+      @exercise_sets += [
+        seed(
+          ExerciseSet,
+          find_by: { exercise:, weight: 12.5, repetitions: 15 },
+        ),
+        seed(
+          ExerciseSet,
+          find_by: { exercise:, weight: 25, repetitions: 10 },
+        ),
+        seed(
+          ExerciseSet,
+          find_by: { exercise:, weight: 35, repetitions: 10 },
+        ),
+        seed(
+          ExerciseSet,
+          find_by: { exercise:, weight: 45, repetitions: 8 },
+        ),
+      ]
+    end
+
+    @exercise_sets
   end
 end
 # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/ClassLength

@@ -38,4 +38,10 @@ class CreateTestDataCommandTest < ActiveSupport::TestCase
       CreateTestDataCommand.execute
     end
   end
+
+  test "creates 8 exercise_sets" do
+    assert_difference("ExerciseSet.count", 8) do
+      CreateTestDataCommand.execute
+    end
+  end
 end
