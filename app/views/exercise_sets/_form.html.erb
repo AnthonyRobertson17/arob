@@ -1,0 +1,10 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <%= simple_form_for [workout, exercise, exercise_set] do |f| %>
+      <%= f.input :weight, as: :numeric %>
+      <%= f.input :repetitions, as: :numeric %>
+      <%= f.submit class: "btn btn-primary" %>
+      <%= link_to t(:cancel), workout_path(workout), class: "btn btn-secondary"%>
+    <% end %>
+  </div>
+</div>

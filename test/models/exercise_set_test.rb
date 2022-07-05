@@ -9,4 +9,16 @@ class ExerciseSetTest < ActiveSupport::TestCase
 
     assert_equal(exercise.id, exercise_set.exercise.id)
   end
+
+  test "weight must be positive" do
+    exercise_set = build(:exercise_set, weight: -1)
+
+    assert_not(exercise_set.valid?)
+  end
+
+  test "repetitions must be positive" do
+    exercise_set = build(:exercise_set, repetitions: -1)
+
+    assert_not(exercise_set.valid?)
+  end
 end

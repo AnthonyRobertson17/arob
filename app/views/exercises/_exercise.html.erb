@@ -1,15 +1,30 @@
 <%= turbo_frame_tag exercise do %>
   <div class="card mb-3">
     <div class="card-body">
-      <div class="d-flex align-items-center mb-3">
-        <h5 class="h5 mb-0 flex-grow-1"><%= exercise.exercise_type.name %></h5>
-        <%= link_to t(:edit), edit_workout_exercise_path(workout, exercise), class: "btn btn-secondary me-2" %>
-        <%= button_to t(:destroy),
-                      [workout, exercise],
-                      method: :delete,
-                      form: { data: { turbo_confirm: t(".destroy_confirmation") } },
-                      class: "btn btn-danger" %>
-      </div>
+      <%= turbo_frame_tag dom_id(exercise, :edit) do %>
+        <div class="d-flex align-items-center mb-3">
+          <h4 class="h4 mb-0 flex-grow-1"><%= exercise.exercise_type.name %></h4>
+          <%= link_to t(:edit), [:edit, workout, exercise], class: "btn btn-secondary me-2" %>
+          <%= button_to t(:destroy),
+                        [workout, exercise],
+                        method: :delete,
+                        form: { data: { turbo_confirm: t(".destroy_confirmation") } },
+                        class: "btn btn-danger" %>
+        </div>
+      <% end %>
+
+      <%= turbo_frame_tag nested_dom_id(exercise, "exercise_sets") do %>
+        <%= render exercise.exercise_sets, workout: workout, exercise: exercise %>
+      <% end %>
+
+      <%= turbo_frame_tag nested_dom_id(exercise, ExerciseSet.new) %>
+
+      <% unless workout.completed? %>
+      <%= link_to t(".create_exercise_set"),
+                  [:new, workout, exercise, :exercise_set],
+                  class: "btn btn-primary",
+                  data: { turbo_frame: nested_dom_id(exercise, ExerciseSet.new) } %>
+      <% end %>
     </div>
   </div>
 <% end %>

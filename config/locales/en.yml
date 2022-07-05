@@ -44,11 +44,15 @@ en:
       workout_tag: Workout Tag
       exercise_type: Exercise Type
       exercise_type_tag: Exercise Type Tag
+      exercise_set: Set
     attributes:
       workout:
         started_at: "Started At"
         completed_at: "Completed At"
         name: "Name"
+      exercise_set:
+        repetitions: Reps
+        weight: Weight
   form_error_heading:
     zero: "No errors"
     one: "1 error:"
@@ -94,7 +98,15 @@ en:
     new:
       title: "New Exercise"
     exercise:
+      create_exercise_set: "Add Set"
       destroy_confirmation: "Are you sure you want to destroy this exercise?"
+  exercise_sets:
+    new:
+      title: "New Set"
+    edit:
+      title: "Edit Set"
+    exercise_set:
+      destroy_confirmation: "Are you sure you want to destroy this set?"
   exercise_types:
     index:
       title: "Exercise Types"

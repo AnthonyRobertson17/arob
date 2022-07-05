@@ -11,7 +11,7 @@
 
 <%= turbo_frame_tag Exercise.new %>
 
-<div class="d-flex">
+<div class="d-flex mb-5">
   <% unless @workout.completed? %>
     <%= link_to t(".create_exercise"),
                 new_workout_exercise_path(@workout),
