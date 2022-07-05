@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_03_144620) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_05_013922) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "exercise_sets", force: :cascade do |t|
+    t.bigint "exercise_id"
+    t.integer "repetitions"
+    t.decimal "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_exercise_sets_on_exercise_id"
+  end
 
   create_table "exercise_type_tag_assignments", force: :cascade do |t|
     t.bigint "tag_id", null: false
@@ -39,6 +48,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_03_144620) do
     t.datetime "updated_at", null: false
     t.index ["exercise_type_id"], name: "index_exercises_on_exercise_type_id"
     t.index ["workout_id"], name: "index_exercises_on_workout_id"
+  end
+
+  create_table "sets", force: :cascade do |t|
+    t.bigint "exercise_id"
+    t.integer "repetitions"
+    t.decimal "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_sets_on_exercise_id"
   end
 
   create_table "tags", force: :cascade do |t|
