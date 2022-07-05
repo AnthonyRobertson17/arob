@@ -1,0 +1,5 @@
+<%= turbo_stream.update nested_dom_id(@exercise, ExerciseSet.new), "" %>
+
+<%= turbo_stream.append nested_dom_id(@exercise, "exercise_sets") do %>
+  <%= render @exercise_set, workout: @workout, exercise: @exercise %>
+<% end %>

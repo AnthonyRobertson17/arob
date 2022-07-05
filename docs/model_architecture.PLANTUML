@@ -31,7 +31,7 @@ class Exercise {
   Id exercise_type_id
 }
 
-class Set {
+class ExerciseSet {
   Float weight
   Int reps
   String note
@@ -44,7 +44,7 @@ class User {
 }
 
 Workout o-- User
-Exercise *-- Set
+Exercise *-- ExerciseSet
 Workout *-- Exercise
 Exercise *-- ExerciseType
 ExerciseType *-- ExerciseTypeTag

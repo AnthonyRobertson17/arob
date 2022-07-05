@@ -1,0 +1,20 @@
+<%= turbo_frame_tag exercise_set do %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="d-flex align-items-center">
+        <h5 class="h5 mb-0 flex-grow-1"><%=
+          "#{ExerciseSet.human_attribute_name("weight")}: #{exercise_set.weight} - " \
+          "#{ExerciseSet.human_attribute_name("repetitions")}: #{exercise_set.repetitions}"
+        %></h5>
+        <%= link_to(t(:edit),
+                    edit_workout_exercise_exercise_set_path(workout, exercise, exercise_set),
+                    class: "btn btn-secondary me-2") %>
+        <%= button_to(t(:destroy),
+                      [workout, exercise, exercise_set],
+                      method: :delete,
+                      form: { data: { turbo_confirm: t(".destroy_confirmation") } },
+                      class: "btn btn-danger") %>
+      </div>
+    </div>
+  </div>
+<% end %>

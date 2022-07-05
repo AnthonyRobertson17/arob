@@ -16,7 +16,9 @@ Rails.application.routes.draw do
       patch "start", to: "workouts/start#update"
       patch "complete", to: "workouts/complete#update"
     end
-    resources :exercises, except: [:index, :show]
+    resources :exercises, except: [:index, :show] do
+      resources :exercise_sets, except: [:index, :show]
+    end
   end
 
   authenticated :user do
