@@ -4,10 +4,10 @@
 </div>
 
 <div class="d-flex">
-  <%= link_to(t(:edit), edit_exercise_type_path(@exercise_type), class: "btn btn-secondary btn-sm me-2") %>
+  <%= link_to(t(:edit), edit_exercise_type_path(@exercise_type), class: "btn btn-secondary me-2") %>
   <%= button_to(t(:destroy),
                 @exercise_type,
                 method: :delete,
                 form: { data: { turbo_confirm: t(".destroy_confirmation") } },
-                class: "btn btn-danger btn-sm" ) %>
+                class: "btn btn-danger" ) %>
 </div>
