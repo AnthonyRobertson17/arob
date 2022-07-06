@@ -91,7 +91,9 @@ class WorkoutsTest < ApplicationSystemTestCase
 
     visit workout_url(workout)
     assert_select "button", { text: "Start", count: 0 }
-    click_on "Complete", match: :first
+    accept_confirm do
+      click_on "Complete", match: :first
+    end
 
     assert_text "Completed At"
   end

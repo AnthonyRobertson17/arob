@@ -81,6 +81,7 @@ en:
       complete: "Complete"
       exercises: "Exercises"
       create_exercise: "New Exercise"
+      complete_confirmation: "Are you sure you want to complete this workout?"
       destroy_confirmation: "Are you sure you want to destroy this workout?"
     workout_attributes:
       status: "Status"
