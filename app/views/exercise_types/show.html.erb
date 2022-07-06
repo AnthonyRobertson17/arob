@@ -1,9 +1,13 @@
-<div id="<%= dom_id @exercise_type %>">
+<div id="<%= dom_id(@exercise_type) %>">
   <h1 class="h1 mb-3"><%= @exercise_type.name %></h1>
-  <%= render @exercise_type, hide_name: true %>
+  <%= render(@exercise_type, hide_name: true) %>
 </div>
 
 <div class="d-flex">
-  <%= link_to t(:edit), edit_exercise_type_path(@exercise_type), class: "btn btn-secondary me-2" %>
-  <%= button_to t(:destroy), @exercise_type, method: :delete, class: "btn btn-danger" %>
+  <%= link_to(t(:edit), edit_exercise_type_path(@exercise_type), class: "btn btn-secondary btn-sm me-2") %>
+  <%= button_to(t(:destroy),
+                @exercise_type,
+                method: :delete,
+                form: { data: { turbo_confirm: t(".destroy_confirmation") } },
+                class: "btn btn-danger btn-sm" ) %>
 </div>

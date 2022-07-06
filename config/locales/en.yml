@@ -33,11 +33,11 @@ en:
   app_name: "Lift-O-Tracker"
   log_in: "Log In"
   sign_up: "Sign Up"
-  edit: "Edit"
+  edit: ✏️
   back: "Back"
-  destroy: "Destroy"
+  destroy: 💣
   cancel: "Cancel"
-  open: "Open"
+  open: 👀
   activerecord:
     models:
       workout: Workout
@@ -81,6 +81,7 @@ en:
       complete: "Complete"
       exercises: "Exercises"
       create_exercise: "New Exercise"
+      destroy_confirmation: "Are you sure you want to destroy this workout?"
     workout_attributes:
       status: "Status"
       statuses:
@@ -111,6 +112,8 @@ en:
     index:
       title: "Exercise Types"
       create_exercise_type: "Create Exercise Type"
+    show:
+      destroy_confirmation: "Are you sure you want to destroy this exercise type?"
     new:
       title: "New Exercise Type"
     edit:

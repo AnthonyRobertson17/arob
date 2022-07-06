@@ -1,29 +1,33 @@
-<div id="<%= dom_id @workout %>">
+<div id="<%= dom_id(@workout) %>">
   <h1 class="h1 mb-3"><%= @workout.name %></h1>
-  <%= render "workout_attributes", workout: @workout, hide_name: true %>
+  <%= render("workout_attributes", workout: @workout, hide_name: true) %>
 </div>
 
 <h3 class="h3"><%= t(".exercises") %></h3>
 
-<%= turbo_frame_tag "exercises" do %>
-  <%= render @workout.exercises, workout: @workout %>
+<%= turbo_frame_tag("exercises") do %>
+  <%= render(@workout.exercises, workout: @workout) %>
 <% end %>
 
-<%= turbo_frame_tag Exercise.new %>
+<%= turbo_frame_tag(Exercise.new) %>
 
 <div class="d-flex mb-5">
   <% unless @workout.completed? %>
-    <%= link_to t(".create_exercise"),
+    <%= link_to(t(".create_exercise"),
                 new_workout_exercise_path(@workout),
                 class: "btn btn-primary me-2",
-                data: { turbo_frame: dom_id(Exercise.new) } %>
+                data: { turbo_frame: dom_id(Exercise.new) }) %>
   <% end %>
   <% if @workout.draft? %>
-    <%= button_to t(".start"), start_workout_path(@workout), method: :patch, class: "btn btn-primary me-2" %>
+    <%= button_to(t(".start"), start_workout_path(@workout), method: :patch, class: "btn btn-primary me-2") %>
   <% end %>
   <% if @workout.in_progress? %>
-    <%= button_to t(".complete"), complete_workout_path(@workout), method: :patch, class: "btn btn-success me-2" %>
+    <%= button_to(t(".complete"), complete_workout_path(@workout), method: :patch, class: "btn btn-success me-2") %>
   <% end %>
-  <%= link_to t(:edit), edit_workout_path(@workout), class: "btn btn-secondary me-2" %>
-  <%= button_to t(:destroy), @workout, method: :delete, class: "btn btn-danger" %>
+  <%= link_to(t(:edit), edit_workout_path(@workout), class: "btn btn-secondary btn-sm me-2") %>
+  <%= button_to(t(:destroy),
+                @workout,
+                method: :delete,
+                form: { data: { turbo_confirm: t(".destroy_confirmation") } },
+                class: "btn btn-danger btn-sm") %>
 </div>

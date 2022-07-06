@@ -46,7 +46,7 @@ class WorkoutsTest < ApplicationSystemTestCase
     create :workout_tag, user: user, name: "test tag"
 
     visit workout_url(workout)
-    click_on "Edit", match: :first
+    click_on "✏️", match: :first
 
     fill_in "Name", with: "something else"
     check "test tag"
@@ -68,7 +68,9 @@ class WorkoutsTest < ApplicationSystemTestCase
     workout = create :workout, user: user, name: "should be gone"
 
     visit workout_url(workout)
-    click_on "Destroy", match: :first
+    accept_confirm do
+      click_on "💣", match: :first
+    end
 
     assert_no_text "should be gone"
   end

@@ -8,12 +8,12 @@
         %></h5>
         <%= link_to(t(:edit),
                     edit_workout_exercise_exercise_set_path(workout, exercise, exercise_set),
-                    class: "btn btn-secondary me-2") %>
+                    class: "btn btn-secondary btn-sm me-2") %>
         <%= button_to(t(:destroy),
                       [workout, exercise, exercise_set],
                       method: :delete,
                       form: { data: { turbo_confirm: t(".destroy_confirmation") } },
-                      class: "btn btn-danger") %>
+                      class: "btn btn-danger btn-sm") %>
       </div>
     </div>
   </div>

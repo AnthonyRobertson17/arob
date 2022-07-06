@@ -39,7 +39,7 @@ class ExerciseSetsTest < ApplicationSystemTestCase
     assert_text "Weight: 1.0 - Reps: 1"
 
     within "##{dom_id(exercise_set)}" do
-      click_on "Edit", match: :first
+      click_on "✏️", match: :first
 
       assert_current_path workout_path(workout)
 
@@ -68,7 +68,7 @@ class ExerciseSetsTest < ApplicationSystemTestCase
 
     within "##{dom_id(exercise_set)}" do
       accept_confirm do
-        click_on "Destroy", match: :first
+        click_on "💣", match: :first
       end
     end
 
