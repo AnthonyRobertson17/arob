@@ -39,7 +39,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
     create :exercise_type_tag, user: user, name: "test tag"
 
     visit exercise_type_url(exercise_type)
-    click_on "Edit", match: :first
+    click_on "✏️", match: :first
 
     fill_in "Name", with: "something else"
     check "test tag"
@@ -61,7 +61,9 @@ class ExerciseTypesTest < ApplicationSystemTestCase
     exercise_type = create :exercise_type, user: user, name: "should be gone"
 
     visit exercise_type_url(exercise_type)
-    click_on "Destroy", match: :first
+    accept_confirm do
+      click_on "💣", match: :first
+    end
 
     assert_no_text "should be gone"
   end

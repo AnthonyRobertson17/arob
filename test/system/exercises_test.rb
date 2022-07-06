@@ -34,7 +34,7 @@ class ExercisesTest < ApplicationSystemTestCase
     visit workout_url(workout)
 
     within "##{dom_id(exercise)}" do
-      click_on "Edit", match: :first
+      click_on "✏️", match: :first
     end
 
     assert_current_path workout_path(workout)
@@ -60,7 +60,7 @@ class ExercisesTest < ApplicationSystemTestCase
 
     within "##{dom_id(exercise)}" do
       accept_confirm do
-        click_on "Destroy", match: :first
+        click_on "💣", match: :first
       end
     end
 
