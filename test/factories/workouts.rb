@@ -6,7 +6,7 @@ FactoryBot.define do
     sequence(:name) { |n| "workout-#{n}" }
 
     trait :started do
-      started_at { 1.hour.ago }
+      started_at { 2.hours.ago }
     end
 
     trait :completed do
