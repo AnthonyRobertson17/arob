@@ -28,12 +28,22 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "create exercise_type redirects to the correct exercise_type" do
+  test "create exercise_type creates the new record" do
     assert_difference("ExerciseType.count") do
       post(exercise_types_url, params: { exercise_type: { name: "New exercise_type name" } })
     end
+  end
 
-    assert_redirected_to(exercise_type_url(ExerciseType.last))
+  test "create exercise_type with http format redirects to exercise_type index page" do
+    post(exercise_types_url, params: { exercise_type: { name: "New exercise_type name" } })
+
+    assert_redirected_to(exercise_types_url)
+  end
+
+  test "create exercise_type with turbo_stream format returns OK" do
+    post(exercise_types_url(format: :turbo_stream), params: { exercise_type: { name: "New exercise_type name" } })
+
+    assert_response(:ok)
   end
 
   test "create exercise_type links to the current_user" do
@@ -84,10 +94,22 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "update exercise_type" do
+  test "update exercise_type updates the record" do
     patch(exercise_type_url(@exercise_type), params: { exercise_type: { name: "Updated exercise_type name" } })
-    assert_redirected_to(exercise_type_url(@exercise_type))
     assert_equal("Updated exercise_type name", @exercise_type.reload.name)
+  end
+
+  test "update exercise_type with http format redirecs to the exercise_type index page" do
+    patch(exercise_type_url(@exercise_type), params: { exercise_type: { name: "Updated exercise_type name" } })
+    assert_redirected_to(exercise_types_url)
+  end
+
+  test "update exercise_type with turbo_stream format returns OK" do
+    patch(
+      exercise_type_url(@exercise_type, format: :turbo_stream),
+      params: { exercise_type: { name: "Updated exercise_type name" } }
+    )
+    assert_response(:ok)
   end
 
   test "can update exercise_type tags" do
@@ -116,12 +138,22 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "destroy exercise_type" do
+  test "destroy exercise_type destroys the record" do
     assert_difference("ExerciseType.count", -1) do
       delete(exercise_type_url(@exercise_type))
     end
+  end
+
+  test "destroy exercise_type with http format redirects to the exercise_type index page" do
+    delete(exercise_type_url(@exercise_type))
 
     assert_redirected_to(exercise_types_url)
+  end
+
+  test "destroy exercise_type with turbo_stream format returns OK" do
+    delete(exercise_type_url(@exercise_type, format: :turbo_stream))
+
+    assert_response(:ok)
   end
 
   test "destroy exercise_type raises not found if the exercise_type belongs to another user" do
