@@ -23,6 +23,21 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     assert_select("h5", { text: /should not be shown/, count: 0 })
   end
 
+  test "get index shows exercise types in case insensitive alphabetical order" do
+    create(:exercise_type, name: "CCCCCCC", user: @user)
+    create(:exercise_type, name: "bbbbbbb", user: @user)
+    create(:exercise_type, name: "AAAAAAA", user: @user)
+
+    get(exercise_types_url)
+
+    a = response.body.index("AAAAAAA")
+    b = response.body.index("bbbbbbb")
+    c = response.body.index("CCCCCCC")
+
+    assert(a < b)
+    assert(b < c)
+  end
+
   test "get new" do
     get(new_exercise_type_url)
     assert_response(:success)
