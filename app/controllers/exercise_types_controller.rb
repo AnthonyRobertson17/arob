@@ -61,7 +61,7 @@ class ExerciseTypesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_exercise_type
-    @exercise_type = users_exercise_types.find(params[:id])
+    @exercise_type = exercise_types.find(params[:id])
   end
 
   def set_exercise_type_tags
