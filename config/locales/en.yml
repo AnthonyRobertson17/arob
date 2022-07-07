@@ -114,11 +114,13 @@ en:
       title: "Exercise Types"
       create_exercise_type: "Create Exercise Type"
     show:
-      destroy_confirmation: "Are you sure you want to destroy this exercise type?"
+      back: "Back to Exercise Types"
     new:
       title: "New Exercise Type"
     edit:
       title: "Edit Exercise Type"
+    exercise_type:
+      destroy_confirmation: "Are you sure you want to destroy this exercise type?"
   exercise_type_tags:
     index:
       title: "Exercise Type Tags"

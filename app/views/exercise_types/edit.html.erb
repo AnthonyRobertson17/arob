@@ -1,7 +1,8 @@
 <h1 class="h1 mb-3"><%= t(".title") %></h1>
-<%= render(
-  "form",
-  exercise_type: @exercise_type,
-  exercise_type_tags: @exercise_type_tags,
-  cancel_path: exercise_type_path(@exercise_type)
-) %>
+<%= turbo_frame_tag(@exercise_type) do %>
+  <%= render(
+    "form",
+    exercise_type: @exercise_type,
+    exercise_type_tags: @exercise_type_tags,
+  ) %>
+<% end %>

@@ -5,66 +5,97 @@ require "application_system_test_case"
 class ExerciseTypesTest < ApplicationSystemTestCase
   test "visiting the index" do
     user = login
-    create :exercise_type, user: user
+    create(:exercise_type, user:)
 
-    visit exercise_types_url
-    assert_selector "h1", text: "Exercise Types"
+    visit(exercise_types_url)
+    assert_selector("h1", text: "Exercise Types")
   end
 
   test "creating exercise_type" do
     user = login
-    create :exercise_type_tag, user: user, name: "test tag"
+    create(:exercise_type_tag, user:, name: "test tag")
 
-    visit exercise_types_url
-    click_on "Create Exercise Type"
+    visit(exercise_types_url)
+    click_on("Create Exercise Type")
 
-    fill_in "Name", with: "Random exercise_type name"
-    check "test tag"
-    click_on "Create Exercise Type"
+    assert_current_path(exercise_types_path)
 
-    assert_text "Random exercise_type name"
+    fill_in("Name", with: "Random exercise_type name")
+    check("test tag")
+    click_on("Create")
+
+    assert_current_path(exercise_types_path)
+
+    assert_text("Random exercise_type name")
   end
 
   test "cancel creating a exercise_type" do
-    login
-    visit new_exercise_type_url
+    user = login
+    create(:exercise_type_tag, user:, name: "test tag")
 
-    click_on "Cancel"
-    assert_selector "h1", text: "Exercise Types"
+    visit(exercise_types_url)
+    click_on("Create Exercise Type")
+
+    assert_current_path(exercise_types_path)
+
+    fill_in("Name", with: "Random exercise_type name")
+    check("test tag")
+    click_on("Cancel")
+
+    assert_current_path(exercise_types_path)
+
+    assert_no_text("Random exercise_type name")
   end
 
   test "editing Exercise Types" do
     user = login
-    exercise_type = create :exercise_type, user: user
-    create :exercise_type_tag, user: user, name: "test tag"
+    create(:exercise_type, user:)
+    create(:exercise_type_tag, user:, name: "test tag")
 
-    visit exercise_type_url(exercise_type)
-    click_on "✏️", match: :first
+    visit(exercise_types_url)
+    click_on("✏️", match: :first)
 
-    fill_in "Name", with: "something else"
-    check "test tag"
-    click_on "Update Exercise Type"
+    assert_current_path(exercise_types_path)
 
-    assert_text "something else"
+    fill_in("Name", with: "something else")
+    check("test tag")
+    click_on("Update")
+
+    assert_current_path(exercise_types_path)
+
+    assert_text("something else")
   end
 
   test "cancel editing a exercise_type" do
     user = login
-    exercise_type = create :exercise_type, user: user
+    create(:exercise_type, user:)
+    create(:exercise_type_tag, user:, name: "test tag")
 
-    visit edit_exercise_type_url(exercise_type)
-    click_on "Cancel"
+    visit(exercise_types_url)
+    click_on("✏️", match: :first)
+
+    assert_current_path(exercise_types_path)
+
+    fill_in("Name", with: "something else")
+    check("test tag")
+    click_on("Cancel")
+
+    assert_current_path(exercise_types_path)
+
+    assert_no_text("something else")
   end
 
   test "destroying Exercise Type" do
     user = login
-    exercise_type = create :exercise_type, user: user, name: "should be gone"
+    create(:exercise_type, user:, name: "should be gone")
 
-    visit exercise_type_url(exercise_type)
+    visit(exercise_types_url)
     accept_confirm do
-      click_on "💣", match: :first
+      click_on("💣", match: :first)
     end
 
-    assert_no_text "should be gone"
+    assert_current_path(exercise_types_path)
+
+    assert_no_text("should be gone")
   end
 end

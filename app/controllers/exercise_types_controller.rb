@@ -25,7 +25,10 @@ class ExerciseTypesController < ApplicationController
     @exercise_type = ExerciseType.new(exercise_type_params.merge(user: current_user))
 
     if @exercise_type.save
-      redirect_to @exercise_type
+      respond_to do |format|
+        format.html { redirect_to exercise_types_path }
+        format.turbo_stream
+      end
     else
       set_exercise_type_tags
       render :new, status: :unprocessable_entity
@@ -35,7 +38,10 @@ class ExerciseTypesController < ApplicationController
   # PATCH/PUT /exercise_types/1
   def update
     if @exercise_type.update(exercise_type_params)
-      redirect_to @exercise_type
+      respond_to do |format|
+        format.html { redirect_to exercise_types_path }
+        format.turbo_stream
+      end
     else
       set_exercise_type_tags
       render :edit, status: :unprocessable_entity
@@ -45,7 +51,10 @@ class ExerciseTypesController < ApplicationController
   # DELETE /exercise_types/1
   def destroy
     @exercise_type.destroy
-    redirect_to exercise_types_url
+    respond_to do |format|
+      format.html { redirect_to exercise_types_path }
+      format.turbo_stream
+    end
   end
 
   private
