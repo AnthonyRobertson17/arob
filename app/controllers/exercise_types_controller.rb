@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class ExerciseTypesController < ApplicationController
-  before_action :set_exercise_type, only: [:show, :edit, :update, :destroy]
-  before_action :set_exercise_type_tags, only: [:new, :edit]
+  before_action(:set_exercise_type, only: [:show, :edit, :update, :destroy])
+  before_action(:set_exercise_type_tags, only: [:new, :edit])
 
   # GET /exercise_types
   def index
@@ -26,12 +26,12 @@ class ExerciseTypesController < ApplicationController
 
     if @exercise_type.save
       respond_to do |format|
-        format.html { redirect_to exercise_types_path }
+        format.html { redirect_to(exercise_types_path) }
         format.turbo_stream
       end
     else
       set_exercise_type_tags
-      render :new, status: :unprocessable_entity
+      render(:new, status: :unprocessable_entity)
     end
   end
 
@@ -39,12 +39,12 @@ class ExerciseTypesController < ApplicationController
   def update
     if @exercise_type.update(exercise_type_params)
       respond_to do |format|
-        format.html { redirect_to exercise_types_path }
+        format.html { redirect_to(exercise_types_path) }
         format.turbo_stream
       end
     else
       set_exercise_type_tags
-      render :edit, status: :unprocessable_entity
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
@@ -52,7 +52,7 @@ class ExerciseTypesController < ApplicationController
   def destroy
     @exercise_type.destroy
     respond_to do |format|
-      format.html { redirect_to exercise_types_path }
+      format.html { redirect_to(exercise_types_path) }
       format.turbo_stream
     end
   end
