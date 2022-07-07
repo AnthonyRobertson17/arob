@@ -5,7 +5,7 @@ class ExerciseTypeTagsController < ApplicationController
 
   # GET /exercise_type_tags
   def index
-    @exercise_type_tags = exercise_type_tags.ordered
+    @exercise_type_tags = exercise_type_tags.all.order("lower(name)")
   end
 
   # GET /exercise_type_tags/1

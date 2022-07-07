@@ -5,7 +5,7 @@ class WorkoutTagsController < ApplicationController
 
   # GET /workout_tags
   def index
-    @workout_tags = workout_tags.ordered
+    @workout_tags = workout_tags.all.order("lower(name)")
   end
 
   # GET /workout_tags/1

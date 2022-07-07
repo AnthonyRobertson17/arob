@@ -6,7 +6,7 @@ class ExerciseTypesController < ApplicationController
 
   # GET /exercise_types
   def index
-    @exercise_types = users_exercise_types.all
+    @exercise_types = exercise_types.all.order("lower(name)")
   end
 
   # GET /exercise_types/1
@@ -73,7 +73,7 @@ class ExerciseTypesController < ApplicationController
     params.require(:exercise_type).permit([:name, { tag_ids: [] }])
   end
 
-  def users_exercise_types
+  def exercise_types
     ExerciseType.for_user(current_user)
   end
 end
