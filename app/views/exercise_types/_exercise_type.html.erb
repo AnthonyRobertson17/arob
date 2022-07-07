@@ -1,3 +1,16 @@
-<% unless defined?(hide_name) && hide_name %>
-  <h5 class="h5"><%= exercise_type.name %></h5>
+<%= turbo_frame_tag(exercise_type) do %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="h5"><%= exercise_type.name %></h5>
+      <div class="d-flex">
+        <%= link_to(t(:open), exercise_type, class: "btn btn-primary me-2", data: { turbo_frame: "_top" }) %>
+        <%= link_to(t(:edit), edit_exercise_type_path(exercise_type), class: "btn btn-secondary me-2") %>
+        <%= button_to(t(:destroy),
+                      exercise_type,
+                      method: :delete,
+                      form: { data: { turbo_confirm: t(".destroy_confirmation") } },
+                      class: "btn btn-danger" ) %>
+      </div>
+    </div>
+  </div>
 <% end %>

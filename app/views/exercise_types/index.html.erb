@@ -1,14 +1,13 @@
 <div class="d-flex mb-3 align-items-end">
   <h1 class="h1 mb-0 me-3"><%= t(".title") %></h1>
-  <%= link_to t(".create_exercise_type"), new_exercise_type_path, class: "btn btn-primary" %>
+  <%= link_to(t(".create_exercise_type"),
+              new_exercise_type_path,
+              class: "btn btn-primary",
+              data: { turbo_frame: dom_id(ExerciseType.new) }) %>
 </div>
-<div id="exercise_types">
-  <% @exercise_types.each do |exercise_type| %>
-    <div class="card mb-3">
-      <div id="<%= dom_id exercise_type %>" class="card-body">
-        <%= render exercise_type %>
-        <%= link_to t(:open), exercise_type, class: "btn btn-primary" %>
-      </div>
-    </div>
-  <% end %>
-</div>
+
+<%= turbo_frame_tag(ExerciseType.new) %>
+
+<%= turbo_frame_tag("exercise_types") do %>
+  <%= render(@exercise_types) %>
+<% end %>

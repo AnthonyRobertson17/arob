@@ -107,7 +107,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
   test "update exercise_type with turbo_stream format returns OK" do
     patch(
       exercise_type_url(@exercise_type, format: :turbo_stream),
-      params: { exercise_type: { name: "Updated exercise_type name" } }
+      params: { exercise_type: { name: "Updated exercise_type name" } },
     )
     assert_response(:ok)
   end

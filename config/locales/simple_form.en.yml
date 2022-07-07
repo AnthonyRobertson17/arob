@@ -31,3 +31,6 @@ en:
       exercise_set:
         create: Create
         update: Update
+      exercise_type:
+        create: Create
+        update: Update
