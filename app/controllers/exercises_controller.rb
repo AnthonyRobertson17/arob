@@ -61,6 +61,6 @@ class ExercisesController < ApplicationController
   end
 
   def set_exercise_types
-    @exercise_types = current_user.exercise_types.all
+    @exercise_types = current_user.exercise_types.all.order("lower(name)")
   end
 end

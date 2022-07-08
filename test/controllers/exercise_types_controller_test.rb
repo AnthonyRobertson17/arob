@@ -24,23 +24,38 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get index shows exercise types in case insensitive alphabetical order" do
-    create(:exercise_type, name: "CCCCCCC", user: @user)
-    create(:exercise_type, name: "bbbbbbb", user: @user)
-    create(:exercise_type, name: "AAAAAAA", user: @user)
+    create(:exercise_type, name: "CCC", user: @user)
+    create(:exercise_type, name: "bbb", user: @user)
+    create(:exercise_type, name: "AAA", user: @user)
 
     get(exercise_types_url)
 
-    a = response.body.index("AAAAAAA")
-    b = response.body.index("bbbbbbb")
-    c = response.body.index("CCCCCCC")
+    a = response.body.index("AAA")
+    b = response.body.index("bbb")
+    c = response.body.index("CCC")
 
-    assert(a < b)
-    assert(b < c)
+    assert(a < b, "exercise types are not in alphabetical order")
+    assert(b < c, "exercise types are not in alphabetical order")
   end
 
   test "get new" do
     get(new_exercise_type_url)
     assert_response(:success)
+  end
+
+  test "new form lists exercise tags in case insenitive alphabetical order" do
+    create(:exercise_type_tag, name: "CCC", user: @user)
+    create(:exercise_type_tag, name: "bbb", user: @user)
+    create(:exercise_type_tag, name: "AAA", user: @user)
+
+    get(new_exercise_type_url)
+
+    a = response.body.index("AAA")
+    b = response.body.index("bbb")
+    c = response.body.index("CCC")
+
+    assert(a < b, "exercise type tags are not in alphabetical order")
+    assert(b < c, "exercise type tags are not in alphabetical order")
   end
 
   test "create exercise_type creates the new record" do
@@ -99,6 +114,21 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
   test "get edit" do
     get(edit_exercise_type_url(@exercise_type))
     assert_response(:success)
+  end
+
+  test "edit form lists exercise tags in case insenitive alphabetical order" do
+    create(:exercise_type_tag, name: "CCC", user: @user)
+    create(:exercise_type_tag, name: "bbb", user: @user)
+    create(:exercise_type_tag, name: "AAA", user: @user)
+
+    get(edit_exercise_type_url(@exercise_type))
+
+    a = response.body.index("AAA")
+    b = response.body.index("bbb")
+    c = response.body.index("CCC")
+
+    assert(a < b, "exercise type tags are not in alphabetical order")
+    assert(b < c, "exercise type tags are not in alphabetical order")
   end
 
   test "get edit raises not found if the exercise_type belongst to another user" do

@@ -56,7 +56,7 @@ class WorkoutsController < ApplicationController
   end
 
   def set_workout_tags
-    @workout_tags = WorkoutTag.for_user(current_user).all.order(name: :desc)
+    @workout_tags = WorkoutTag.for_user(current_user).all.order("lower(name)")
   end
 
   # Only allow a list of trusted parameters through.
