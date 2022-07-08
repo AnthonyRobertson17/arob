@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class WorkoutsController < ApplicationController
-  before_action :set_workout, only: [:show, :edit, :update, :destroy]
-  before_action :set_workout_tags, only: [:new, :edit]
+  before_action(:set_workout, only: [:show, :edit, :update, :destroy])
+  before_action(:set_workout_tags, only: [:new, :edit])
 
   # GET /workouts
   def index
@@ -25,27 +25,27 @@ class WorkoutsController < ApplicationController
     @workout = Workout.new(workout_params.merge(user: current_user))
 
     if @workout.save
-      redirect_to @workout
+      redirect_to(@workout)
     else
       set_workout_tags
-      render :new, status: :unprocessable_entity
+      render(:new, status: :unprocessable_entity)
     end
   end
 
   # PATCH/PUT /workouts/1
   def update
     if @workout.update(workout_params)
-      redirect_to @workout
+      redirect_to(@workout)
     else
       set_workout_tags
-      render :edit, status: :unprocessable_entity
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
   # DELETE /workouts/1
   def destroy
     @workout.destroy
-    redirect_to workouts_url
+    redirect_to(workouts_url)
   end
 
   private
