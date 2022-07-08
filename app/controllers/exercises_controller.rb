@@ -1,9 +1,9 @@
 # frozen_string_literal:true
 
 class ExercisesController < ApplicationController
-  before_action :set_workout
-  before_action :set_exercise, only: [:edit, :update, :destroy]
-  before_action :set_exercise_types, only: [:new, :edit]
+  before_action(:set_workout)
+  before_action(:set_exercise, only: [:edit, :update, :destroy])
+  before_action(:set_exercise_types, only: [:new, :edit])
 
   def new
     @exercise = Exercise.new
@@ -14,12 +14,12 @@ class ExercisesController < ApplicationController
 
     if @exercise.save
       respond_to do |format|
-        format.html { redirect_to workout_path(@workout) }
+        format.html { redirect_to(workout_path(@workout)) }
         format.turbo_stream
       end
     else
       set_exercise_types
-      render :new, status: :unprocessable_entity
+      render(:new, status: :unprocessable_entity)
     end
   end
 
@@ -28,12 +28,12 @@ class ExercisesController < ApplicationController
   def update
     if @exercise.update(exercise_params)
       respond_to do |format|
-        format.html { redirect_to workout_path(@workout) }
+        format.html { redirect_to(workout_path(@workout)) }
         format.turbo_stream
       end
     else
       set_exercise_types
-      render :edit, status: :unprocessable_entity
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
@@ -41,7 +41,7 @@ class ExercisesController < ApplicationController
     @exercise.destroy
 
     respond_to do |format|
-      format.html { redirect_to workout_path(@workout) }
+      format.html { redirect_to(workout_path(@workout)) }
       format.turbo_stream
     end
   end
@@ -61,6 +61,6 @@ class ExercisesController < ApplicationController
   end
 
   def set_exercise_types
-    @exercise_types = current_user.exercise_types.all
+    @exercise_types = current_user.exercise_types.all.order("lower(name)")
   end
 end

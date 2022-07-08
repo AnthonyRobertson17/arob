@@ -65,7 +65,7 @@ class ExerciseTypesController < ApplicationController
   end
 
   def set_exercise_type_tags
-    @exercise_type_tags = ExerciseTypeTag.for_user(current_user).all.order(name: :desc)
+    @exercise_type_tags = ExerciseTypeTag.for_user(current_user).all.order("lower(name)")
   end
 
   # Only allow a list of trusted parameters through.
