@@ -29,6 +29,7 @@ class Workout {
 class Exercise {
   Id workout_id
   Id exercise_type_id
+  Text note
 }
 
 class ExerciseSet {
