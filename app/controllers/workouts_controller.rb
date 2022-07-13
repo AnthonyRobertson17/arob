@@ -6,7 +6,7 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts
   def index
-    @workouts = users_workouts.all
+    @workouts = users_workouts.all.order(id: :desc)
   end
 
   # GET /workouts/1

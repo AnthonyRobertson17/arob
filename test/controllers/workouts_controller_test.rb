@@ -23,6 +23,21 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     assert_select("h5", { text: /should not be shown/, count: 0 })
   end
 
+  test "get index lists workouts in reverse chronological order" do
+    create(:workout, :completed, user: @user, name: "AAA")
+    create(:workout, :completed, user: @user, name: "BBB")
+    create(:workout, :completed, user: @user, name: "CCC")
+
+    get(workouts_url)
+
+    first = response.body.index("AAA")
+    second = response.body.index("BBB")
+    third = response.body.index("CCC")
+
+    assert(first > second, "workouts are not in reverse chronological order")
+    assert(second > third, "workouts are not in reverse chronological order")
+  end
+
   test "get new" do
     get(new_workout_url)
     assert_response(:success)
