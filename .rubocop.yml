@@ -39,6 +39,9 @@ Rails/NotNullColumn:
 Style/Documentation:
   Enabled: false
 
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: consistent_comma
 

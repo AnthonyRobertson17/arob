@@ -7,7 +7,7 @@ class ExercisesTest < ApplicationSystemTestCase
     user = login
 
     create :exercise_type, user: user, name: "squat"
-    workout = create :workout, :started, user: user
+    workout = create(:workout, :started, user:)
 
     visit workout_url(workout)
 
@@ -26,10 +26,10 @@ class ExercisesTest < ApplicationSystemTestCase
   test "editing an exercise" do
     user = login
 
-    squat = create :exercise_type, user: user, name: "squat"
+    squat = create(:exercise_type, user:, name: "squat")
     create :exercise_type, user: user, name: "deadlift"
-    workout = create :workout, :started, user: user
-    exercise = create :exercise, workout: workout, exercise_type: squat
+    workout = create(:workout, :started, user:)
+    exercise = create(:exercise, workout:, exercise_type: squat)
 
     visit workout_url(workout)
 
@@ -50,9 +50,9 @@ class ExercisesTest < ApplicationSystemTestCase
   test "destroying an excercise" do
     user = login
 
-    squat = create :exercise_type, user: user, name: "squat"
-    workout = create :workout, user: user
-    exercise = create :exercise, workout: workout, exercise_type: squat
+    squat = create(:exercise_type, user:, name: "squat")
+    workout = create(:workout, user:)
+    exercise = create(:exercise, workout:, exercise_type: squat)
 
     visit workout_url(workout)
 

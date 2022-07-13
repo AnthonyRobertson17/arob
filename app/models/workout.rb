@@ -17,14 +17,14 @@ class Workout < ApplicationRecord
   scope :in_progress, -> { where(completed_at: nil).where.not(started_at: nil) }
 
   def start!
-    raise AlreadyStartedError if started?
+    raise(AlreadyStartedError) if started?
 
     update!(started_at: Time.now.utc)
   end
 
   def complete!
-    raise AlreadyCompletedError if completed?
-    raise NotStartedError unless started?
+    raise(AlreadyCompletedError) if completed?
+    raise(NotStartedError) unless started?
 
     update!(completed_at: Time.now.utc)
   end

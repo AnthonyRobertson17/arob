@@ -42,7 +42,7 @@ class WorkoutsTest < ApplicationSystemTestCase
 
   test "editing Workouts" do
     user = login
-    workout = create :workout, user: user
+    workout = create(:workout, user:)
     create :workout_tag, user: user, name: "test tag"
 
     visit workout_url(workout)
@@ -57,7 +57,7 @@ class WorkoutsTest < ApplicationSystemTestCase
 
   test "cancel editing a workout" do
     user = login
-    workout = create :workout, user: user
+    workout = create(:workout, user:)
 
     visit edit_workout_url(workout)
     click_on "Cancel"
@@ -65,7 +65,7 @@ class WorkoutsTest < ApplicationSystemTestCase
 
   test "destroying Workout" do
     user = login
-    workout = create :workout, user: user, name: "should be gone"
+    workout = create(:workout, user:, name: "should be gone")
 
     visit workout_url(workout)
     accept_confirm do
@@ -77,7 +77,7 @@ class WorkoutsTest < ApplicationSystemTestCase
 
   test "starting Workout" do
     user = login
-    workout = create :workout, user: user
+    workout = create(:workout, user:)
 
     visit workout_url(workout)
     click_on "Start", match: :first
@@ -87,7 +87,7 @@ class WorkoutsTest < ApplicationSystemTestCase
 
   test "completing a Workout" do
     user = login
-    workout = create :workout, :started, user: user
+    workout = create(:workout, :started, user:)
 
     visit workout_url(workout)
     assert_select "button", { text: "Start", count: 0 }

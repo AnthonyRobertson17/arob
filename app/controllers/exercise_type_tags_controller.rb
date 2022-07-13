@@ -25,11 +25,11 @@ class ExerciseTypeTagsController < ApplicationController
 
     if @exercise_type_tag.save
       respond_to do |format|
-        format.html { redirect_to exercise_type_tag_path(@exercise_type_tag) }
+        format.html { redirect_to(exercise_type_tag_path(@exercise_type_tag)) }
         format.turbo_stream
       end
     else
-      render :new, status: :unprocessable_entity
+      render(:new, status: :unprocessable_entity)
     end
   end
 
@@ -37,11 +37,11 @@ class ExerciseTypeTagsController < ApplicationController
   def update
     if @exercise_type_tag.update(exercise_type_tag_params)
       respond_to do |format|
-        format.html { redirect_to exercise_type_tag_path(@exercise_type_tag) }
+        format.html { redirect_to(exercise_type_tag_path(@exercise_type_tag)) }
         format.turbo_stream
       end
     else
-      render :edit, status: :unprocessable_entity
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
@@ -49,7 +49,7 @@ class ExerciseTypeTagsController < ApplicationController
   def destroy
     @exercise_type_tag.destroy
     respond_to do |format|
-      format.html { redirect_to exercise_type_tags_path }
+      format.html { redirect_to(exercise_type_tags_path) }
       format.turbo_stream
     end
   end

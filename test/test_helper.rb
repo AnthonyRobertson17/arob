@@ -24,13 +24,13 @@ end
 module ActionDispatch
   class SystemTestCase
     def login(user: nil)
-      user ||= create :user, password: "password12345"
-      visit new_user_session_url
+      user ||= create(:user, password: "password12345")
+      visit(new_user_session_url)
 
-      fill_in "Email", with: user.email
-      fill_in "Password", with: "password12345"
+      fill_in("Email", with: user.email)
+      fill_in("Password", with: "password12345")
 
-      click_on "Log In"
+      click_on("Log In")
       user
     end
   end
