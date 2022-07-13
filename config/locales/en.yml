@@ -45,11 +45,14 @@ en:
       exercise_type: Exercise Type
       exercise_type_tag: Exercise Type Tag
       exercise_set: Set
+      exercise: Exercise
     attributes:
       workout:
         started_at: "Started At"
         completed_at: "Completed At"
         name: "Name"
+      exercise:
+        note: "Note"
       exercise_set:
         repetitions: Reps
         weight: Weight
