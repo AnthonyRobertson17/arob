@@ -61,6 +61,9 @@ gem "devise"
 
 gem "simple_form"
 
+gem "sentry-rails"
+gem "sentry-ruby"
+
 group :development, :test do
   gem "brakeman"
   gem "bundler-audit"
