@@ -4,11 +4,11 @@ require "test_helper"
 
 class TestController < ApplicationController
   def index
-    render plain: "OK"
+    render(plain: "OK")
   end
 
   def timezone_check
-    render plain: Time.current
+    render(plain: Time.current)
   end
 end
 
@@ -26,7 +26,7 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "does nothing when authenticated" do
-    user = create :user
+    user = create(:user)
     sign_in user
 
     get "/test"
@@ -41,7 +41,7 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "sets the timezone of the current user" do
-    user = create :user, time_zone: "Eastern Time (US & Canada)"
+    user = create(:user, time_zone: "Eastern Time (US & Canada)")
     sign_in user
     expected_time = Time.utc(2000).in_time_zone("Eastern Time (US & Canada)")
 

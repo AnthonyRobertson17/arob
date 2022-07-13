@@ -4,14 +4,14 @@ require "test_helper"
 
 class WorkoutTest < ActiveSupport::TestCase
   test "name is required" do
-    workout = build :workout, name: ""
+    workout = build(:workout, name: "")
     assert_predicate workout, :invalid?
   end
 
   test "can access tags through association" do
-    user = create :user
-    workout_tag = create :workout_tag, user: user, name: "test_tag"
-    workout = create :workout, user:, tags: [workout_tag]
+    user = create(:user)
+    workout_tag = create(:workout_tag, user:, name: "test_tag")
+    workout = create(:workout, user:, tags: [workout_tag])
 
     assert_equal "test_tag", workout.tags.first.name
   end
@@ -27,14 +27,14 @@ class WorkoutTest < ActiveSupport::TestCase
   end
 
   test "new workouts are not started or completed" do
-    workout = build :workout
+    workout = build(:workout)
 
     assert_not workout.started?
     assert_not workout.completed?
   end
 
   test "for_user scope only returns workouts for the provided user" do
-    user = create :user
+    user = create(:user)
     create :workout
     create :workout, user: user
 
@@ -50,27 +50,27 @@ class WorkoutTest < ActiveSupport::TestCase
   end
 
   test "completed? when false" do
-    workout = build :workout
+    workout = build(:workout)
     assert_not workout.completed?
   end
 
   test "completed? when true" do
-    workout = build :workout, :completed
+    workout = build(:workout, :completed)
     assert_predicate workout, :completed?
   end
 
   test "started? when false" do
-    workout = build :workout
+    workout = build(:workout)
     assert_not workout.started?
   end
 
   test "started? when true" do
-    workout = build :workout, :started
+    workout = build(:workout, :started)
     assert_predicate workout, :started?
   end
 
   test "start! sets started_at if not already set" do
-    workout = create :workout
+    workout = create(:workout)
     assert_not workout.started?
 
     workout.start!
@@ -80,7 +80,7 @@ class WorkoutTest < ActiveSupport::TestCase
   test "start! raises AlreadyStartedError if already started" do
     freeze_time do
       original_time = 2.days.ago
-      workout = create :workout, started_at: original_time
+      workout = create(:workout, started_at: original_time)
 
       assert_raises(Workout::AlreadyStartedError) { workout.start! }
 
@@ -89,35 +89,35 @@ class WorkoutTest < ActiveSupport::TestCase
   end
 
   test "in_progress? is true when started but not complete" do
-    workout = build :workout, :started
+    workout = build(:workout, :started)
 
     assert_predicate workout, :in_progress?
   end
 
   test "in_progress? is false when completed_at is set" do
-    workout = build :workout, :completed
+    workout = build(:workout, :completed)
 
     assert_predicate workout, :started?
     assert_not workout.in_progress?
   end
 
   test "draft? when workout is draft" do
-    workout = build :workout
+    workout = build(:workout)
     assert_predicate workout, :draft?
   end
 
   test "draft? when workout is started" do
-    workout = build :workout, :started
+    workout = build(:workout, :started)
     assert_not workout.draft?
   end
 
   test "draft? when workout is completed" do
-    workout = build :workout, :completed
+    workout = build(:workout, :completed)
     assert_not workout.draft?
   end
 
   test "complete! sets completed_at" do
-    workout = create :workout, :started
+    workout = create(:workout, :started)
 
     freeze_time do
       workout.complete!
@@ -127,7 +127,7 @@ class WorkoutTest < ActiveSupport::TestCase
   end
 
   test "complete! raises NotStartedError if not started" do
-    workout = create :workout
+    workout = create(:workout)
 
     assert_raises(Workout::NotStartedError) { workout.complete! }
 
@@ -137,7 +137,7 @@ class WorkoutTest < ActiveSupport::TestCase
   test "complete! raises AlreadyCompletedError if already completed" do
     freeze_time do
       original_time = 2.days.ago
-      workout = create :workout, completed_at: original_time
+      workout = create(:workout, completed_at: original_time)
 
       assert_raises(Workout::AlreadyCompletedError) { workout.complete! }
 

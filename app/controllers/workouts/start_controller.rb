@@ -9,7 +9,7 @@ module Workouts
 
     def update
       @workout.start!
-      redirect_to @workout
+      redirect_to(@workout)
     end
 
     private

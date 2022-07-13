@@ -5,7 +5,7 @@ require "test_helper"
 module Users
   class ProfileControllerTest < ActionDispatch::IntegrationTest
     setup do
-      @user = create :user
+      @user = create(:user)
       sign_in @user
     end
 

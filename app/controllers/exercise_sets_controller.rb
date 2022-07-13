@@ -14,11 +14,11 @@ class ExerciseSetsController < ApplicationController
 
     if @exercise_set.save
       respond_to do |format|
-        format.html { redirect_to workout_path(@workout) }
+        format.html { redirect_to(workout_path(@workout)) }
         format.turbo_stream
       end
     else
-      render :new, status: :unprocessable_entity
+      render(:new, status: :unprocessable_entity)
     end
   end
 
@@ -27,11 +27,11 @@ class ExerciseSetsController < ApplicationController
   def update
     if @exercise_set.update(exercise_set_params)
       respond_to do |format|
-        format.html { redirect_to workout_path(@workout) }
+        format.html { redirect_to(workout_path(@workout)) }
         format.turbo_stream
       end
     else
-      render :edit, status: :unprocessable_entity
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
@@ -39,7 +39,7 @@ class ExerciseSetsController < ApplicationController
     @exercise_set.destroy
 
     respond_to do |format|
-      format.html { redirect_to workout_path(@workout) }
+      format.html { redirect_to(workout_path(@workout)) }
       format.turbo_stream
     end
   end

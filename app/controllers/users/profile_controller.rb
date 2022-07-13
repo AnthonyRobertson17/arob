@@ -11,9 +11,9 @@ module Users
     # PATCH /profile
     def update
       if current_user.update(user_params)
-        redirect_to profile_url
+        redirect_to(profile_url)
       else
-        render :edit, status: :unprocessable_entity
+        render(:edit, status: :unprocessable_entity)
       end
     end
 

@@ -4,7 +4,7 @@ require "test_helper"
 
 class HomeControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    user = create :user
+    user = create(:user)
     sign_in user
 
     get authenticated_root_url
@@ -12,7 +12,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should only show recent workouts for current user" do
-    user = create :user
+    user = create(:user)
     sign_in user
 
     create :workout, :completed, user: user, name: "gucci"

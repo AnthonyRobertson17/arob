@@ -4,9 +4,9 @@ require "test_helper"
 
 class WorkoutTagAssignmentTest < ActiveSupport::TestCase
   test "valid workout tag assignment" do
-    user = build :user
-    workout = build :workout, user: user
-    tag = build :workout_tag, user: user
+    user = build(:user)
+    workout = build(:workout, user:)
+    tag = build(:workout_tag, user:)
 
     workout_tag_assignment = WorkoutTagAssignment.new(workout:, tag:)
 
@@ -14,9 +14,9 @@ class WorkoutTagAssignmentTest < ActiveSupport::TestCase
   end
 
   test "validates workout tag type" do
-    user = build :user
-    workout = build :workout, user: user
-    tag = build :tag
+    user = build(:user)
+    workout = build(:workout, user:)
+    tag = build(:tag)
 
     workout_tag_assignment = WorkoutTagAssignment.new(workout:, tag:)
 
@@ -25,8 +25,8 @@ class WorkoutTagAssignmentTest < ActiveSupport::TestCase
   end
 
   test "validates owners of tag and workout match" do
-    workout = build :workout
-    tag = build :workout_tag
+    workout = build(:workout)
+    tag = build(:workout_tag)
 
     workout_tag_assignment = WorkoutTagAssignment.new(workout:, tag:)
     assert_predicate workout_tag_assignment, :invalid?

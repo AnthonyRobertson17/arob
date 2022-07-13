@@ -25,11 +25,11 @@ class WorkoutTagsController < ApplicationController
 
     if @workout_tag.save
       respond_to do |format|
-        format.html { redirect_to workout_tag_path(@workout_tag) }
+        format.html { redirect_to(workout_tag_path(@workout_tag)) }
         format.turbo_stream
       end
     else
-      render :new, status: :unprocessable_entity
+      render(:new, status: :unprocessable_entity)
     end
   end
 
@@ -37,11 +37,11 @@ class WorkoutTagsController < ApplicationController
   def update
     if @workout_tag.update(workout_tag_params)
       respond_to do |format|
-        format.html { redirect_to workout_tag_path(@workout_tag) }
+        format.html { redirect_to(workout_tag_path(@workout_tag)) }
         format.turbo_stream
       end
     else
-      render :edit, status: :unprocessable_entity
+      render(:edit, status: :unprocessable_entity)
     end
   end
 
@@ -49,7 +49,7 @@ class WorkoutTagsController < ApplicationController
   def destroy
     @workout_tag.destroy
     respond_to do |format|
-      format.html { redirect_to workout_tags_path }
+      format.html { redirect_to(workout_tags_path) }
       format.turbo_stream
     end
   end

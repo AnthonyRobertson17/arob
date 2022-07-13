@@ -12,7 +12,7 @@ module Workouts
 
     def update
       @workout.complete!
-      redirect_to @workout
+      redirect_to(@workout)
     end
 
     private
