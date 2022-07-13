@@ -37,3 +37,6 @@
 
 .DS_Store
 */**/.DS_Store
+
+# Ignore manual DB backups
+db-backups/*
