@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class WorkoutsController < ApplicationController
-  before_action(:set_workout, only: [:show, :edit, :update, :destroy])
+  before_action(:set_workout, only: [:edit, :update, :destroy])
   before_action(:set_workout_tags, only: [:new, :edit])
 
   # GET /workouts
@@ -10,7 +10,9 @@ class WorkoutsController < ApplicationController
   end
 
   # GET /workouts/1
-  def show; end
+  def show
+    @workout = users_workouts.includes(exercises: [:exercise_sets, :exercise_type]).find(params[:id])
+  end
 
   # GET /workouts/new
   def new
