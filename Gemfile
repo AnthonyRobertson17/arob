@@ -61,8 +61,8 @@ gem "devise"
 
 gem "simple_form"
 
-gem "sentry-ruby"
 gem "sentry-rails"
+gem "sentry-ruby"
 
 group :development, :test do
   gem "brakeman"
