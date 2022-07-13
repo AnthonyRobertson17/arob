@@ -124,10 +124,12 @@ class CreateTestDataCommand < BaseCommand
       seed(
         Exercise,
         find_by: { exercise_type: exercise_types[0], workout: workouts[0] },
+        update: { note: "Used straps, and failed the last rep" },
       ),
       seed(
         Exercise,
         find_by: { exercise_type: exercise_types[1], workout: workouts[0] },
+        update: { note: "Used straps, and failed the last rep" },
       ),
     ]
   end

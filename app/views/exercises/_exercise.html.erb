@@ -11,6 +11,12 @@
                         form: { data: { turbo_confirm: t(".destroy_confirmation") } },
                         class: "btn btn-danger" %>
         </div>
+        <% unless exercise.note.blank? %>
+          <div class="mb-3">
+            <p class="fw-bold mb-1"><%= Exercise.human_attribute_name("note") %>:</p>
+            <%= simple_format(exercise.note) %>
+          </div>
+        <% end %>
       <% end %>
 
       <%= turbo_frame_tag nested_dom_id(exercise, "exercise_sets") do %>

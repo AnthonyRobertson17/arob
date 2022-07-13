@@ -32,19 +32,43 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
 
   test "create exercise creates a new record" do
     assert_difference("Exercise.count") do
-      post(workout_exercises_url(@workout), params: { exercise: { exercise_type_id: @exercise_type.id } })
+      post(
+        workout_exercises_url(@workout),
+        params: {
+          exercise: {
+            exercise_type_id: @exercise_type.id,
+            note: "this is a test note",
+          },
+        },
+      )
     end
   end
 
   test "create exercise links new record to the correct workout" do
-    post(workout_exercises_url(@workout), params: { exercise: { exercise_type_id: @exercise_type.id } })
+    post(
+      workout_exercises_url(@workout),
+      params: {
+        exercise: {
+          exercise_type_id: @exercise_type.id,
+          note: "this is a test note",
+        },
+      },
+    )
 
     new_exercise = @workout.exercises.first
     assert_equal(@exercise_type.id, new_exercise.exercise_type_id)
   end
 
   test "create exercise with html format redirects to the related workout" do
-    post(workout_exercises_url(@workout), params: { exercise: { exercise_type_id: @exercise_type.id } })
+    post(
+      workout_exercises_url(@workout),
+      params: {
+        exercise: {
+          exercise_type_id: @exercise_type.id,
+          note: "this is a test note",
+        },
+      },
+    )
 
     assert_redirected_to(workout_url(@workout))
   end
@@ -53,7 +77,10 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     post(
       workout_exercises_url(@workout, format: :turbo_stream),
       params: {
-        exercise: { exercise_type_id: @exercise_type.id },
+        exercise: {
+          exercise_type_id: @exercise_type.id,
+          note: "this is a test note",
+        },
       },
     )
 
@@ -95,6 +122,25 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "update exercise actually updates the record" do
+    exercise = create(:exercise, exercise_type: @exercise_type, workout: @workout)
+    new_exercise_type = create(:exercise_type, user: @user)
+
+    patch(
+      workout_exercise_url(@workout, exercise),
+      params: {
+        exercise: {
+          exercise_type_id: new_exercise_type.id,
+          note: "this is a test note",
+        },
+      },
+    )
+
+    exercise.reload
+    assert_equal(new_exercise_type.id, exercise.exercise_type.id)
+    assert_equal("this is a test note", exercise.note)
+  end
+
   test "update exercise with html format redirects to the associated workout" do
     exercise = create(:exercise, exercise_type: @exercise_type, workout: @workout)
     new_exercise_type = create(:exercise_type, user: @user)
@@ -102,7 +148,10 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     patch(
       workout_exercise_url(@workout, exercise),
       params: {
-        exercise: { exercise_type_id: new_exercise_type.id },
+        exercise: {
+          exercise_type_id: new_exercise_type.id,
+          note: "this is a test note",
+        },
       },
     )
     assert_redirected_to(workout_url(@workout))
@@ -116,7 +165,10 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
       workout_exercise_url(@workout, exercise, format: :turbo_stream),
       params: {
         workout_id: @workout.id,
-        exercise: { exercise_type_id: new_exercise_type.id },
+        exercise: {
+          exercise_type_id: new_exercise_type.id,
+          note: "this is a test note",
+        },
       },
     )
     assert_response(:ok)
@@ -132,7 +184,10 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
       patch(
         workout_exercise_url(other_workout, other_exercise),
         params: {
-          exercise: { exercise_type_id: 123 },
+          exercise: {
+            exercise_type_id: 123,
+            note: "this is a test note",
+          },
         },
       )
     end

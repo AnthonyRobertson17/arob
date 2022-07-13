@@ -16,11 +16,13 @@ class ExercisesTest < ApplicationSystemTestCase
     assert_current_path workout_path(workout)
 
     choose "squat"
+    fill_in "Note", with: "This is a custom note"
     click_on "Create"
 
     assert_current_path workout_path(workout)
 
     assert_text "squat"
+    assert_text "This is a custom note"
   end
 
   test "editing an exercise" do
@@ -40,10 +42,12 @@ class ExercisesTest < ApplicationSystemTestCase
     assert_current_path workout_path(workout)
 
     choose "deadlift"
+    fill_in "Note", with: "This is a completely new note"
     click_on "Update"
 
     assert_current_path workout_path(workout)
 
+    assert_text "This is a completely new note"
     assert_text "deadlift"
   end
 

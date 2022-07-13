@@ -8,5 +8,6 @@ FactoryBot.define do
 
     exercise_type { build(:exercise_type, user:) }
     workout { build(:workout, user:) }
+    note { "this is the default note for an exercise that was generated via the exercises factory" }
   end
 end
