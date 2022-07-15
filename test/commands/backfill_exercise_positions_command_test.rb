@@ -32,7 +32,7 @@ class BackfillExercisePositionsCommandTest < ActiveSupport::TestCase
 
     User.all.each do |user|
       user.workouts.all.each do |workout|
-        positions = workout.exercises.order(id: :desc).map(&:position)
+        positions = workout.exercises.order(:id).map(&:position)
         assert_equal((0..4).to_a, positions)
       end
     end

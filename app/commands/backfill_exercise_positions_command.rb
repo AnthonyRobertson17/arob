@@ -12,7 +12,7 @@ class BackfillExercisePositionsCommand < BaseCommand
   end
 
   def update_workout(workout)
-    workout.exercises.order(id: :desc).each_with_index do |exercise, i|
+    workout.exercises.order(:id).each_with_index do |exercise, i|
       exercise.update!(position: i)
     end
   end
