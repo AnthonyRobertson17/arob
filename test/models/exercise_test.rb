@@ -23,4 +23,18 @@ class ExerciseTest < ActiveSupport::TestCase
 
     assert_equal 3, exercise.exercise_sets.count
   end
+
+  test "sets position to 0 if workout has no previous exercises" do
+    exercise = create(:exercise)
+
+    assert_equal(0, exercise.position)
+  end
+
+  test "increments position based on other exercises for the workout" do
+    user = create(:user)
+    workout = create(:workout, user:)
+    exercises = Array.new(3).map { create(:exercise, workout:) }
+
+    assert_equal((0..2).to_a, exercises.map(&:position))
+  end
 end
