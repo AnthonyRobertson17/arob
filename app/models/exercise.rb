@@ -5,6 +5,8 @@ class Exercise < ApplicationRecord
   belongs_to :exercise_type
   has_many :exercise_sets, dependent: :destroy
 
+  validates :position, uniqueness: { scope: :workout }
+
   before_create :set_position
 
   def set_position
