@@ -9,10 +9,10 @@ class Exercise < ApplicationRecord
 
   def set_position
     last_position = workout.exercises.order(position: :desc).first&.position
-    self.position = if last_position
-                       last_position + 1
-                     else
-                       0
-                     end
+    self.position = if last_position.present?
+                      last_position + 1
+                    else
+                      0
+                    end
   end
 end
