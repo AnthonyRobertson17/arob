@@ -5,11 +5,12 @@ class Exercise < ApplicationRecord
   belongs_to :exercise_type
   has_many :exercise_sets, dependent: :destroy
 
-  before_validation :set_position
+  before_validation :initialize_position
+  after_destroy :update_workout
 
   validates :position, uniqueness: { scope: :workout }
 
-  def set_position
+  def initialize_position
     return unless new_record?
 
     last_position = workout.exercises.order(position: :desc).first&.position
@@ -18,5 +19,9 @@ class Exercise < ApplicationRecord
                     else
                       0
                     end
+  end
+
+  def update_workout
+    workout.handle_exercise_deletion(position)
   end
 end

@@ -44,4 +44,11 @@ class Workout < ApplicationRecord
   def draft?
     !started? && !completed?
   end
+
+  def handle_exercise_deletion(position)
+    exercises.where(position: position...).find_each do |exercise|
+      exercise.decrement(:position)
+      exercise.save!
+    end
+  end
 end

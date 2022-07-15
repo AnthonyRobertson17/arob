@@ -142,4 +142,15 @@ class WorkoutTest < ActiveSupport::TestCase
       assert_equal original_time, workout.reload.completed_at
     end
   end
+
+  test "handle_exercise_deletion decrements positions of exercises after the given position" do
+    workout = create(:workout)
+    create(:exercise, workout:)
+    create(:exercise, workout:)
+    create(:exercise, workout:).update!(position: 3)
+    create(:exercise, workout:).update!(position: 4)
+
+    workout.handle_exercise_deletion(2)
+    assert_equal((0..3).to_a, workout.exercises.map(&:position))
+  end
 end
