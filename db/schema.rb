@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_15_003847) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_15_005156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_15_003847) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "note"
-    t.integer "position", default: 0, null: false
+    t.integer "position", null: false
     t.index ["exercise_type_id"], name: "index_exercises_on_exercise_type_id"
     t.index ["workout_id", "position"], name: "index_exercises_on_workout_id_and_position", unique: true
     t.index ["workout_id"], name: "index_exercises_on_workout_id"
