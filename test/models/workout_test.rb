@@ -17,11 +17,9 @@ class WorkoutTest < ActiveSupport::TestCase
   end
 
   test "can access exercises through association" do
-    exercises = [
-      create(:exercise),
-      create(:exercise),
-    ]
-    workout = create(:workout, exercises:)
+    workout = create(:workout)
+    create(:exercise, workout:)
+    create(:exercise, workout:)
 
     assert_equal 2, workout.exercises.count
   end

@@ -37,4 +37,15 @@ class ExerciseTest < ActiveSupport::TestCase
 
     assert_equal((0..2).to_a, exercises.map(&:position))
   end
+
+  test "general update to exercise doesn't change position" do
+    user = create(:user)
+    exercise_type = create(:exercise_type, user:, name: "lolol")
+    workout = create(:workout, user:)
+    exercises = Array.new(3).map { create(:exercise, workout:) }
+
+    exercises.first.update!(exercise_type:)
+
+    assert_equal((0..2).to_a, exercises.map(&:position))
+  end
 end
