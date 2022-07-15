@@ -31,8 +31,7 @@ class ExerciseTest < ActiveSupport::TestCase
   end
 
   test "increments position based on other exercises for the workout" do
-    user = create(:user)
-    workout = create(:workout, user:)
+    workout = create(:workout)
     exercises = Array.new(3).map { create(:exercise, workout:) }
 
     assert_equal((0..2).to_a, exercises.map(&:position))
@@ -47,5 +46,14 @@ class ExerciseTest < ActiveSupport::TestCase
     exercises.first.update!(exercise_type:)
 
     assert_equal((0..2).to_a, exercises.map(&:position))
+  end
+
+  test "destroying the exercise updates the positions of the other exercises in the workout" do
+    workout = create(:workout)
+    exercises = Array.new(8).map { create(:exercise, workout:) }
+
+    exercises[2].destroy!
+
+    assert_equal((0..6).to_a, workout.reload.exercises.map(&:position))
   end
 end
