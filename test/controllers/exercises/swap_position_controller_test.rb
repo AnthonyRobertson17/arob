@@ -30,5 +30,24 @@ module Exercises
       assert_equal(0, exercise2.reload.position)
       assert_equal(1, exercise1.reload.position)
     end
+
+    test "swap positions with a position at which an exercise does not exist" do
+      workout = create(:workout, user: @user)
+      exercise = create(:exercise, workout:)
+
+      assert_raises(ActiveRecord::RecordNotFound) do
+        patch(swap_position_workout_exercise_url(workout, exercise), params: { position: 5 })
+      end
+    end
+
+    test "swap positions for a workout that belongs to a different user" do
+      workout = create(:workout)
+      exercise = create(:exercise, workout:)
+      create(:exercise, workout:)
+
+      assert_raises(ActiveRecord::RecordNotFound) do
+        patch(swap_position_workout_exercise_url(workout, exercise), params: { position: 1 })
+      end
+    end
   end
 end

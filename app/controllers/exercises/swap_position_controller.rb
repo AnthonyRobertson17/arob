@@ -37,7 +37,7 @@ module Exercises
 
     def set_other_exercise
       position = params.require(:position)
-      @other_exercise = @workout.exercises.find_by(position:)
+      @other_exercise = @workout.exercises.find_by!(position:)
     end
   end
 end
