@@ -13,12 +13,7 @@ class Exercise < ApplicationRecord
   def initialize_position
     return unless new_record?
 
-    last_position = workout.exercises.order(position: :desc).first&.position
-    self.position = if last_position.present?
-                      last_position + 1
-                    else
-                      0
-                    end
+    self.position = workout.exercises.count
   end
 
   def update_workout
