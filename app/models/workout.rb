@@ -50,7 +50,10 @@ class Workout < ApplicationRecord
   end
 
   def last_exercise_position
-    exercises.count - 1
+    count = exercises.count - 1
+    return nil if count.negative?
+
+    count
   end
 
   def handle_exercise_deletion(position)

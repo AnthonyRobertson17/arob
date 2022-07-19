@@ -24,6 +24,20 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_equal 2, workout.exercises.count
   end
 
+  test "exercises are ordered by position" do
+    workout = create(:workout)
+    exercise1 = create(:exercise, workout:)
+    exercise2 = create(:exercise, workout:)
+    exercise3 = create(:exercise, workout:)
+
+    exercise1.update!(position: 999)
+    exercise2.update!(position: 0)
+    exercise1.update!(position: 1)
+
+    expected_ids = [exercise2.id, exercise1.id, exercise3.id]
+    assert_equal(expected_ids, workout.exercises.map(&:id))
+  end
+
   test "new workouts are not started or completed" do
     workout = build(:workout)
 
@@ -143,12 +157,43 @@ class WorkoutTest < ActiveSupport::TestCase
     end
   end
 
+  test "last_exercise? when true" do
+    workout = create(:workout)
+    create(:exercise, workout:)
+    exercise = create(:exercise, workout:)
+
+    assert(workout.last_exercise?(exercise))
+  end
+
+  test "last_exercise? when false" do
+    workout = create(:workout)
+    exercise = create(:exercise, workout:)
+    create(:exercise, workout:)
+
+    assert_not(workout.last_exercise?(exercise))
+  end
+
+  test "last_exercise_position" do
+    workout = create(:workout)
+    assert_nil(workout.last_exercise_position)
+
+    create(:exercise, workout:)
+    assert_equal(0, workout.last_exercise_position)
+
+    create(:exercise, workout:)
+    create(:exercise, workout:)
+    assert_equal(2, workout.last_exercise_position)
+  end
+
   test "handle_exercise_deletion decrements positions of exercises after the given position" do
     workout = create(:workout)
     create(:exercise, workout:)
     create(:exercise, workout:)
-    create(:exercise, workout:).update!(position: 3)
-    create(:exercise, workout:).update!(position: 4)
+    exercise4 = create(:exercise, workout:)
+    exercise5 = create(:exercise, workout:)
+
+    exercise5.update!(position: 4)
+    exercise4.update!(position: 3)
 
     workout.handle_exercise_deletion(2)
     assert_equal((0..3).to_a, workout.exercises.map(&:position))
