@@ -5,7 +5,7 @@
 <% end %>
 
 <% if @second_to_last_exercise.present? %>
-  <%= turbo_stream.update @second_to_last_exercise do %>
+  <%= turbo_stream.replace @second_to_last_exercise do %>
     <%= render @second_to_last_exercise, workout: @workout %>
   <% end %>
 <% end %>

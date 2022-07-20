@@ -9,6 +9,7 @@ class Exercise < ApplicationRecord
   after_destroy :update_workout
 
   validates :position, uniqueness: { scope: :workout }, numericality: { greater_than_or_equal_to: 0 }
+  delegate :name, to: :exercise_type
 
   def initialize_position
     return unless new_record?

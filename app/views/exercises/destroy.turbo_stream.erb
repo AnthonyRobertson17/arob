@@ -1,13 +1,13 @@
 <%= turbo_stream.remove @exercise %>
 
 <% if @first_exercise.present? %>
-  <%= turbo_stream.update @first_exercise do %>
+  <%= turbo_stream.replace @first_exercise do %>
     <%= render @first_exercise, workout: @workout %>
   <% end %>
 <% end %>
 
 <% if @last_exercise.present? %>
-  <%= turbo_stream.update @last_exercise do %>
+  <%= turbo_stream.replace @last_exercise do %>
     <%= render @last_exercise, workout: @workout %>
   <% end %>
 <% end %>
