@@ -3,3 +3,9 @@
 <%= turbo_stream.append "exercises" do %>
   <%= render @exercise, workout: @workout %>
 <% end %>
+
+<% if @second_to_last_exercise.present? %>
+  <%= turbo_stream.replace @second_to_last_exercise do %>
+    <%= render @second_to_last_exercise, workout: @workout %>
+  <% end %>
+<% end %>

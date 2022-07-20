@@ -8,17 +8,13 @@ class Exercise < ApplicationRecord
   before_validation :initialize_position
   after_destroy :update_workout
 
-  validates :position, uniqueness: { scope: :workout }
+  validates :position, uniqueness: { scope: :workout }, numericality: { greater_than_or_equal_to: 0 }
+  delegate :name, to: :exercise_type
 
   def initialize_position
     return unless new_record?
 
-    last_position = workout.exercises.order(position: :desc).first&.position
-    self.position = if last_position.present?
-                      last_position + 1
-                    else
-                      0
-                    end
+    self.position = workout.exercises.count
   end
 
   def update_workout

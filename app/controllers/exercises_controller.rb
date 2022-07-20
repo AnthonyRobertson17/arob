@@ -15,7 +15,7 @@ class ExercisesController < ApplicationController
     if @exercise.save
       respond_to do |format|
         format.html { redirect_to(workout_path(@workout)) }
-        format.turbo_stream
+        format.turbo_stream { turbo_create }
       end
     else
       set_exercise_types
@@ -42,11 +42,23 @@ class ExercisesController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(workout_path(@workout)) }
-      format.turbo_stream
+      format.turbo_stream { turbo_delete }
     end
   end
 
   private
+
+  def turbo_create
+    @second_to_last_exercise = @workout.exercises.second_to_last
+  end
+
+  def turbo_delete
+    @workout.reload
+    return unless @workout.exercises.any?
+
+    @first_exercise = @workout.exercises.first
+    @last_exercise = @workout.exercises.last
+  end
 
   def set_exercise
     @exercise = @workout.exercises.find(params[:id])

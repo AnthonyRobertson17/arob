@@ -8,7 +8,7 @@ class Workout < ApplicationRecord
   belongs_to :user
   has_many :workout_tag_assignments, dependent: :destroy
   has_many :tags, through: :workout_tag_assignments
-  has_many :exercises, dependent: :destroy
+  has_many :exercises, -> { order(:position) }, inverse_of: :workout, dependent: :destroy
 
   validates :name, presence: true
 
@@ -43,6 +43,17 @@ class Workout < ApplicationRecord
 
   def draft?
     !started? && !completed?
+  end
+
+  def last_exercise?(exercise)
+    exercise.position == last_exercise_position
+  end
+
+  def last_exercise_position
+    count = exercises.count - 1
+    return nil if count.negative?
+
+    count
   end
 
   def handle_exercise_deletion(position)

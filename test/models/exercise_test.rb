@@ -24,6 +24,37 @@ class ExerciseTest < ActiveSupport::TestCase
     assert_equal 3, exercise.exercise_sets.count
   end
 
+  test "name is delegated to exercise_type" do
+    exercise_type = create(:exercise_type, name: "lolol")
+    exercise = create(:exercise, exercise_type:)
+
+    assert_equal("lolol", exercise.name)
+  end
+
+  test "validates uniqueness of position within scope of the workout" do
+    user = create(:user)
+    workout = create(:workout, user:)
+    create(:exercise, workout:)
+    bad_exercise = create(:exercise, workout:)
+
+    bad_exercise.position = 0
+    assert_not(bad_exercise.valid?)
+  end
+
+  test "exercises can share position if they don't share a workout" do
+    exercise1 = create(:exercise)
+    exercise2 = create(:exercise)
+
+    assert_equal(exercise1.position, exercise2.position)
+    assert_predicate(exercise2, :valid?)
+  end
+
+  test "validates that position must be >= 0" do
+    exercise = create(:exercise)
+    exercise.position = -1
+    assert_not(exercise.valid?)
+  end
+
   test "sets position to 0 if workout has no previous exercises" do
     exercise = create(:exercise)
 
