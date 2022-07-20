@@ -30,6 +30,8 @@ class ExercisesTest < ApplicationSystemTestCase
     click_on "New Exercise"
 
     assert_current_path workout_path(workout)
+
+    # We need to scroll here because the form is off the screen.
     scroll_to(:bottom)
     sleep(0.5) # Apparently scroll_to doesn't happen instantly... This makes me sad
 
