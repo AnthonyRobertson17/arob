@@ -36,6 +36,7 @@ en:
   edit: ✏️
   back: "Back"
   destroy: 💣
+  save: "Save"
   cancel: "Cancel"
   open: 👀
   activerecord:
