@@ -48,6 +48,8 @@ class WorkoutsTest < ApplicationSystemTestCase
     visit workout_url(workout)
     click_on "✏️", match: :first
 
+    assert_current_path workout_path(workout)
+
     fill_in "Name", with: "something else"
     check "test tag"
     click_on "Update"

@@ -1,4 +1,4 @@
-  <%= simple_form_for workout do |f| %>
+  <%= simple_form_for workout, html: { class: "mb-3" } do |f| %>
     <%= f.input :name %>
     <%= f.input :tag_ids, as: :check_boxes, collection: workout_tags %>
     <%= f.button :submit, class: "btn btn-success me-2" %>

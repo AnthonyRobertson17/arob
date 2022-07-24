@@ -9,7 +9,10 @@ module Workouts
 
     def update
       @workout.start!
-      redirect_to(@workout)
+      respond_to do |format|
+        format.html { redirect_to(@workout) }
+        format.turbo_stream
+      end
     end
 
     private
