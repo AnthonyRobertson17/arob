@@ -16,14 +16,15 @@ class ExerciseSetsTest < ApplicationSystemTestCase
 
     assert_current_path workout_path(workout)
 
-    fill_in "Weight", with: 25
-    fill_in "Reps", with: 10
+    fill_in id: "exercise_set_weight", with: 478
+    fill_in id: "exercise_set_repetitions", with: 732
 
-    click_on "Create"
+    click_on "Save"
 
     assert_current_path workout_path(workout)
 
-    assert_text "Weight: 25.0 - Reps: 10"
+    assert_text "478"
+    assert_text "732"
   end
 
   test "editing an exercise_set" do
@@ -32,26 +33,28 @@ class ExerciseSetsTest < ApplicationSystemTestCase
     exercise_type = create(:exercise_type, user:, name: "squat")
     workout = create(:workout, :started, user:)
     exercise = create(:exercise, workout:, exercise_type:)
-    exercise_set = create(:exercise_set, exercise:, weight: 1, repetitions: 1)
+    exercise_set = create(:exercise_set, exercise:, weight: 468, repetitions: 42)
 
     visit workout_url(workout)
 
-    assert_text "Weight: 1.0 - Reps: 1"
+    assert_text "468"
+    assert_text "42"
 
     within "##{dom_id(exercise_set)}" do
       click_on "✏️", match: :first
 
       assert_current_path workout_path(workout)
 
-      fill_in "Weight", with: 25
-      fill_in "Reps", with: 10
+      fill_in id: "exercise_set_weight", with: 642
+      fill_in id: "exercise_set_repetitions", with: 75
 
       assert_current_path workout_path(workout)
 
-      click_on "Update"
+      click_on "Save"
     end
 
-    assert_text "Weight: 25.0 - Reps: 10"
+    assert_text "642"
+    assert_text "75"
   end
 
   test "destroying an excercise_set" do
@@ -60,11 +63,12 @@ class ExerciseSetsTest < ApplicationSystemTestCase
     exercise_type = create(:exercise_type, user:, name: "squat")
     workout = create(:workout, :started, user:)
     exercise = create(:exercise, workout:, exercise_type:)
-    exercise_set = create(:exercise_set, exercise:, weight: 1, repetitions: 1)
+    exercise_set = create(:exercise_set, exercise:, weight: 69_420, repetitions: 1337)
 
     visit workout_url(workout)
 
-    assert_text "Weight: 1.0 - Reps: 1"
+    assert_text "69420"
+    assert_text "1337"
 
     within "##{dom_id(exercise_set)}" do
       accept_confirm do
@@ -74,6 +78,6 @@ class ExerciseSetsTest < ApplicationSystemTestCase
 
     assert_current_path workout_path(workout)
 
-    assert_no_text "Weight: 1.0 - Reps: 1"
+    assert_no_text "69420"
   end
 end

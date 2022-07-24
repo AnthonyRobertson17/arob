@@ -1,19 +1,27 @@
 <%= turbo_frame_tag exercise_set do %>
-  <div class="card mb-3">
-    <div class="card-body">
-      <div class="d-flex align-items-center">
-        <h5 class="h5 mb-0 flex-grow-1"><%=
-          "#{ExerciseSet.human_attribute_name("weight")}: #{exercise_set.weight} - " \
-          "#{ExerciseSet.human_attribute_name("repetitions")}: #{exercise_set.repetitions}"
-        %></h5>
+  <div class="row border-bottom border-secondary p-2">
+    <div class="col d-flex align-items-center">
+      <div class="ps-2"><%= number_with_precision(exercise_set.weight, strip_insignificant_zeros: true) %></div>
+    </div>
+    <div class="col d-flex align-items-center">
+      <div class="ps-2"><%= exercise_set.repetitions %></div>
+    </div>
+    <div class="col">
+      <div class="d-flex justify-content-end">
         <%= link_to(t(:edit),
                     edit_workout_exercise_exercise_set_path(workout, exercise, exercise_set),
-                    class: "btn btn-secondary me-2") %>
+                    data: { turbo_frame: dom_id(exercise_set) },
+                    class: "btn btn-secondary btn-sm me-2") %>
         <%= button_to(t(:destroy),
                       [workout, exercise, exercise_set],
                       method: :delete,
-                      form: { data: { turbo_confirm: t(".destroy_confirmation") } },
-                      class: "btn btn-danger") %>
+                      form: {
+                        data: {
+                          turbo_confirm: t(".destroy_confirmation"),
+                          turbo_frame: dom_id(exercise_set),
+                        }
+                      },
+                      class: "btn btn-danger btn-sm") %>
       </div>
     </div>
   </div>

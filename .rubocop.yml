@@ -24,6 +24,7 @@ Layout/FirstArrayElementIndentation:
 Metrics/BlockLength:
   Exclude:
     - config/**/*
+    - test/**/*
 
 Metrics/ClassLength:
   Exclude:
