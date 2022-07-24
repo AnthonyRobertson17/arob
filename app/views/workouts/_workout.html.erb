@@ -1,0 +1,22 @@
+<%= turbo_frame_tag(@workout) do %>
+  <div class="d-flex flex-wrap justify-content-between mb-3">
+    <h1 class="h1 me-3"><%= @workout.name %></h1>
+
+    <div class="d-flex align-items-center">
+      <% if @workout.draft? %>
+        <%= button_to(t(".start"), start_workout_path(@workout), method: :patch, class: "btn btn-primary me-2") %>
+      <% end %>
+      <% if @workout.in_progress? %>
+        <%= button_to(t(".complete"),
+                      complete_workout_path(@workout),
+                      method: :patch,
+                      form: { data: { turbo_confirm: t(".complete_confirmation") } },
+                      class: "btn btn-success me-2") %>
+      <% end %>
+      <%= link_to(t(:edit), edit_workout_path(@workout), class: "btn btn-secondary me-2") %>
+
+    </div>
+  </div>
+
+  <%= render("workouts/workout_attributes", workout: @workout, hide_name: true) %>
+<% end %>
