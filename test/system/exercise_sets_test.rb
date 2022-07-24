@@ -71,6 +71,7 @@ class ExerciseSetsTest < ApplicationSystemTestCase
     assert_text "1337"
 
     within "##{dom_id(exercise_set)}" do
+      click_on "✏️", match: :first
       accept_confirm do
         click_on "💣", match: :first
       end
