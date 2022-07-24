@@ -153,10 +153,19 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "update workout" do
+  test "update workout updates the record" do
+    patch(workout_url(@workout), params: { workout: { name: "Updated workout name" } })
+    assert_equal("Updated workout name", @workout.reload.name)
+  end
+
+  test "update workout with html format redirects to the workout show page" do
     patch(workout_url(@workout), params: { workout: { name: "Updated workout name" } })
     assert_redirected_to(workout_url(@workout))
-    assert_equal("Updated workout name", @workout.reload.name)
+  end
+
+  test "update workout with turbo_stream format responds with OK" do
+    patch(workout_url(@workout, format: :turbo_stream), params: { workout: { name: "Updated workout name" } })
+    assert_response(:ok)
   end
 
   test "can update workout tags" do

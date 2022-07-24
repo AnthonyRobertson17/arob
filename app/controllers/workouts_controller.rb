@@ -37,7 +37,10 @@ class WorkoutsController < ApplicationController
   # PATCH/PUT /workouts/1
   def update
     if @workout.update(workout_params)
-      redirect_to(@workout)
+      respond_to do |format|
+        format.html { redirect_to(@workout) }
+        format.turbo_stream
+      end
     else
       set_workout_tags
       render(:edit, status: :unprocessable_entity)

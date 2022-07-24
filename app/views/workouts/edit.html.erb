@@ -1,2 +1,4 @@
 <h1 class="h1 mb-3"><%= t(".title") %></h1>
-<%= render "form", workout: @workout, workout_tags: @workout_tags, cancel_path: workout_path(@workout) %>
+<%= turbo_frame_tag @workout do %>
+  <%= render "form", workout: @workout, workout_tags: @workout_tags, cancel_path: workout_path(@workout) %>
+<% end %>
