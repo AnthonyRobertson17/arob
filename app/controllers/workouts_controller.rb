@@ -47,7 +47,7 @@ class WorkoutsController < ApplicationController
   # DELETE /workouts/1
   def destroy
     @workout.destroy
-    redirect_to(workouts_url)
+    redirect_to(workouts_url, status: :see_other)
   end
 
   private

@@ -68,6 +68,7 @@ class WorkoutsTest < ApplicationSystemTestCase
     workout = create(:workout, user:, name: "should be gone")
 
     visit workout_url(workout)
+    click_on "✏️", match: :first
     accept_confirm do
       click_on "💣", match: :first
     end
