@@ -1,6 +1,13 @@
   <%= simple_form_for workout do |f| %>
     <%= f.input :name %>
     <%= f.input :tag_ids, as: :check_boxes, collection: workout_tags %>
-    <%= f.button :submit %>
-    <%= link_to t(:cancel), cancel_path, class: "btn btn-secondary"%>
+    <%= f.button :submit, class: "btn btn-success me-2" %>
+    <%= link_to t(:cancel), cancel_path, class: "btn btn-secondary me-2"%>
+    <%= link_to(t(:destroy),
+                workout,
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: t("workouts.destroy_confirmation")
+                },
+                class: "btn btn-danger") %>
   <% end %>

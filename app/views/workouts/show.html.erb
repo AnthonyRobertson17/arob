@@ -1,5 +1,23 @@
 <div id="<%= dom_id(@workout) %>">
-  <h1 class="h1 mb-3"><%= @workout.name %></h1>
+  <div class="d-flex flex-wrap justify-content-between mb-3">
+    <h1 class="h1 me-3"><%= @workout.name %></h1>
+
+    <div class="d-flex align-items-center">
+      <% if @workout.draft? %>
+        <%= button_to(t(".start"), start_workout_path(@workout), method: :patch, class: "btn btn-primary me-2") %>
+      <% end %>
+      <% if @workout.in_progress? %>
+        <%= button_to(t(".complete"),
+                      complete_workout_path(@workout),
+                      method: :patch,
+                      form: { data: { turbo_confirm: t(".complete_confirmation") } },
+                      class: "btn btn-success me-2") %>
+      <% end %>
+      <%= link_to(t(:edit), edit_workout_path(@workout), class: "btn btn-secondary me-2") %>
+
+    </div>
+  </div>
+
   <%= render("workout_attributes", workout: @workout, hide_name: true) %>
 </div>
 
@@ -11,27 +29,11 @@
 
 <%= turbo_frame_tag(Exercise.new) %>
 
-<div class="d-flex mb-5">
+<div class="mb-5">
   <% unless @workout.completed? %>
     <%= link_to(t(".create_exercise"),
                 new_workout_exercise_path(@workout),
                 class: "btn btn-primary me-2",
                 data: { turbo_frame: dom_id(Exercise.new) }) %>
   <% end %>
-  <% if @workout.draft? %>
-    <%= button_to(t(".start"), start_workout_path(@workout), method: :patch, class: "btn btn-primary me-2") %>
-  <% end %>
-  <% if @workout.in_progress? %>
-    <%= button_to(t(".complete"),
-                  complete_workout_path(@workout),
-                  method: :patch,
-                  form: { data: { turbo_confirm: t(".complete_confirmation") } },
-                  class: "btn btn-success me-2") %>
-  <% end %>
-  <%= link_to(t(:edit), edit_workout_path(@workout), class: "btn btn-secondary me-2") %>
-  <%= button_to(t(:destroy),
-                @workout,
-                method: :delete,
-                form: { data: { turbo_confirm: t(".destroy_confirmation") } },
-                class: "btn btn-danger") %>
 </div>
