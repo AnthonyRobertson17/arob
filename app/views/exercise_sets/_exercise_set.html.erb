@@ -12,16 +12,6 @@
                     edit_workout_exercise_exercise_set_path(workout, exercise, exercise_set),
                     data: { turbo_frame: dom_id(exercise_set) },
                     class: "btn btn-secondary btn-sm me-2") %>
-        <%= button_to(t(:destroy),
-                      [workout, exercise, exercise_set],
-                      method: :delete,
-                      form: {
-                        data: {
-                          turbo_confirm: t(".destroy_confirmation"),
-                          turbo_frame: dom_id(exercise_set),
-                        }
-                      },
-                      class: "btn btn-danger btn-sm") %>
       </div>
     </div>
   </div>

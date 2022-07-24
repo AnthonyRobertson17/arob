@@ -113,8 +113,7 @@ en:
       title: "New Set"
     edit:
       title: "Edit Set"
-    exercise_set:
-      destroy_confirmation: "Are you sure you want to destroy this set?"
+    destroy_confirmation: "Are you sure you want to destroy this set?"
   exercise_types:
     index:
       title: "Exercise Types"
