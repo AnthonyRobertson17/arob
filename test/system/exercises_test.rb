@@ -85,6 +85,7 @@ class ExercisesTest < ApplicationSystemTestCase
     visit workout_url(workout)
 
     within "##{dom_id(first)}" do
+      click_on "✏️", match: :first
       accept_confirm do
         click_on "💣", match: :first
       end
@@ -107,6 +108,7 @@ class ExercisesTest < ApplicationSystemTestCase
     visit workout_url(workout)
 
     within "##{dom_id(last)}" do
+      click_on "✏️", match: :first
       accept_confirm do
         click_on "💣", match: :first
       end

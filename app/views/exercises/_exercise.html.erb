@@ -8,16 +8,6 @@
             <%= link_to(t(:edit),
                         [:edit, workout, exercise],
                         class: "btn btn-secondary me-2") %>
-            <%= button_to(t(:destroy),
-                          [workout, exercise],
-                          method: :delete,
-                          form: {
-                            data: {
-                              turbo_confirm: t(".destroy_confirmation"),
-                              turbo_frame: dom_id(exercise),
-                            }
-                          },
-                          class: "btn btn-danger") %>
           </div>
           <% unless exercise.note.blank? %>
             <div class="mb-3">
