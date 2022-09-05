@@ -1,13 +1,19 @@
-  <%= simple_form_for workout, html: { class: "mb-3" } do |f| %>
-    <%= f.input :name %>
-    <%= f.input :tag_ids, as: :check_boxes, collection: workout_tags %>
-    <%= f.button :submit, class: "btn btn-success me-2" %>
-    <%= link_to t(:cancel), cancel_path, class: "btn btn-secondary me-2"%>
-    <%= link_to(t(:destroy),
-                workout,
-                data: {
-                  turbo_method: :delete,
-                  turbo_confirm: t("workouts.destroy_confirmation")
-                },
-                class: "btn btn-danger") %>
+<%= simple_form_for(workout, html: { class: "mb-3" }) do |f| %>
+  <%= f.input(:name) %>
+  <% if workout.started? %>
+    <%= f.input(:started_at, html5: true, input_html: { max: workout.completed_at, step: 1 } ) %>
   <% end %>
+  <% if workout.completed? %>
+    <%= f.input(:completed_at, html5: true, input_html: { min: workout.started_at, step: 1 } ) %>
+  <% end %>
+  <%= f.input(:tag_ids, as: :check_boxes, collection: workout_tags) %>
+  <%= f.button(:submit, class: "btn btn-success me-2") %>
+  <%= link_to(t(:cancel), cancel_path, class: "btn btn-secondary") %>
+  <%= link_to(t(:destroy),
+          workout,
+          data: {
+            turbo_method: :delete,
+            turbo_confirm: t("workouts.destroy_confirmation")
+          },
+          class: "btn btn-danger") %>
+<% end %>
