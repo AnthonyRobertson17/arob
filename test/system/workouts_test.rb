@@ -46,7 +46,7 @@ class WorkoutsTest < ApplicationSystemTestCase
     create :workout_tag, user: user, name: "test tag"
 
     visit workout_url(workout)
-    click_on "✏️", match: :first
+    find(".bi-pencil").click
 
     assert_current_path workout_path(workout)
 
@@ -70,9 +70,9 @@ class WorkoutsTest < ApplicationSystemTestCase
     workout = create(:workout, user:, name: "should be gone")
 
     visit workout_url(workout)
-    click_on "✏️", match: :first
+    find(".bi-pencil").click
     accept_confirm do
-      click_on "💣", match: :first
+      find(".bi-trash3").click
     end
 
     assert_no_text "should be gone"

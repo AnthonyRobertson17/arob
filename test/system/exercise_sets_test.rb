@@ -41,7 +41,7 @@ class ExerciseSetsTest < ApplicationSystemTestCase
     assert_text "42"
 
     within "##{dom_id(exercise_set)}" do
-      click_on "✏️", match: :first
+      find(".bi-pencil").click
 
       assert_current_path workout_path(workout)
 
@@ -71,9 +71,9 @@ class ExerciseSetsTest < ApplicationSystemTestCase
     assert_text "1337"
 
     within "##{dom_id(exercise_set)}" do
-      click_on "✏️", match: :first
+      find(".bi-pencil").click
       accept_confirm do
-        click_on "💣", match: :first
+        find(".bi-trash3").click
       end
     end
 

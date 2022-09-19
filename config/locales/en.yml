@@ -33,12 +33,9 @@ en:
   app_name: "Lift-O-Tracker"
   log_in: "Log In"
   sign_up: "Sign Up"
-  edit: ✏️
   back: "Back"
-  destroy: 💣
   save: "Save"
   cancel: "Cancel"
-  open: 👀
   activerecord:
     models:
       workout: Workout
@@ -105,8 +102,6 @@ en:
     new:
       title: "New Exercise"
     exercise:
-      move_up: ☝️
-      move_down: 👇
       create_exercise_set: "Add Set"
     destroy_confirmation: "Are you sure you want to destroy this exercise?"
   exercise_sets:
