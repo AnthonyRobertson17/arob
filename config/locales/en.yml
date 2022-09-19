@@ -102,8 +102,6 @@ en:
     new:
       title: "New Exercise"
     exercise:
-      move_up: ☝️
-      move_down: 👇
       create_exercise_set: "Add Set"
     destroy_confirmation: "Are you sure you want to destroy this exercise?"
   exercise_sets:

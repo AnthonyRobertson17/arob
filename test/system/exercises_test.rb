@@ -25,8 +25,6 @@ class ExercisesTest < ApplicationSystemTestCase
 
     visit workout_url(workout)
 
-    within("##{dom_id(last_exercise)}") { assert(has_no_button?("👇")) }
-
     click_on "New Exercise"
 
     assert_current_path workout_path(workout)
@@ -40,13 +38,6 @@ class ExercisesTest < ApplicationSystemTestCase
     assert_text "watwatwat"
     assert_text "This is a custom note"
 
-    within("##{dom_id(last_exercise)}") { assert(has_button?("👇")) }
-    new_exercise = Exercise.last
-
-    within("##{dom_id(new_exercise)}") do
-      assert(has_button?("☝️"))
-      assert(has_no_button?("👇"))
-    end
   end
 
   test "editing an exercise" do
@@ -80,7 +71,6 @@ class ExercisesTest < ApplicationSystemTestCase
     workout = create(:workout, user:)
     exercises = create_exercises(user:, workout:, count: 3)
     first = exercises.first
-    second = exercises.at(1)
 
     visit workout_url(workout)
 
@@ -94,8 +84,6 @@ class ExercisesTest < ApplicationSystemTestCase
     assert_current_path workout_path(workout)
 
     assert_no_text first.name
-
-    within("##{dom_id(second)}") { assert(has_no_button?("☝️")) }
   end
 
   test "destroying the last excercise" do
@@ -103,7 +91,6 @@ class ExercisesTest < ApplicationSystemTestCase
     workout = create(:workout, user:)
     exercises = create_exercises(user:, workout:, count: 3)
     last = exercises.last
-    second = exercises.at(1)
 
     visit workout_url(workout)
 
@@ -117,8 +104,6 @@ class ExercisesTest < ApplicationSystemTestCase
     assert_current_path workout_path(workout)
 
     assert_no_text last.name
-
-    within("##{dom_id(second)}") { assert(has_no_button?("👇")) }
   end
 
   test "move exercise down" do
@@ -133,27 +118,11 @@ class ExercisesTest < ApplicationSystemTestCase
 
     assert_page_order(first.name, second.name)
 
-    within("##{dom_id(second)}") do
-      assert(has_button?("☝️"))
-      assert(has_button?("👇"))
-    end
-
     within("##{dom_id(first)}") do
-      assert(has_no_button?("☝️"))
-      click_on "👇"
+      find(".bi-arrow-down").click
     end
 
     assert_page_order(second.name, first.name)
-
-    within "##{dom_id(first)}" do
-      assert(has_button?("☝️"))
-      assert(has_button?("👇"))
-    end
-
-    within "##{dom_id(second)}" do
-      assert(has_no_button?("☝️"))
-      assert(has_button?("👇"))
-    end
   end
 
   test "move exercise up" do
@@ -168,26 +137,10 @@ class ExercisesTest < ApplicationSystemTestCase
 
     assert_page_order(second.name, last.name)
 
-    within("##{dom_id(second)}") do
-      assert(has_button?("☝️"))
-      assert(has_button?("👇"))
-    end
-
     within("##{dom_id(last)}") do
-      assert(has_no_button?("👇"))
-      click_on "☝️"
+      find(".bi-arrow-up").click
     end
 
     assert_page_order(last.name, second.name)
-
-    within "##{dom_id(last)}" do
-      assert(has_button?("☝️"))
-      assert(has_button?("👇"))
-    end
-
-    within "##{dom_id(second)}" do
-      assert(has_button?("☝️"))
-      assert(has_no_button?("👇"))
-    end
   end
 end
