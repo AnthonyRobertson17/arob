@@ -50,7 +50,7 @@ class ExerciseTypeTagsTest < ApplicationSystemTestCase
     create :exercise_type_tag, user: user
 
     visit exercise_type_tags_url
-    click_on "✏️", match: :first
+    find(".bi-pencil").click
 
     fill_in "Name", with: "Something new"
     click_on "Update"
@@ -63,7 +63,7 @@ class ExerciseTypeTagsTest < ApplicationSystemTestCase
     create :exercise_type_tag, user: user
 
     visit exercise_type_tags_url
-    click_on "✏️", match: :first
+    find(".bi-pencil").click
 
     fill_in "Name", with: "Something new"
     click_on "Cancel"

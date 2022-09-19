@@ -1,8 +1,6 @@
 <h1 class="h1 mb-4"><%= t(".title") %></h1>
 <%= render "profile" %>
 
-<%= button_to t(:edit),
-    profile_edit_path,
-    method: :get,
-    class: "btn btn-primary"
-%>
+<%= button_to(profile_edit_path, method: :get, class: "btn") do %>
+  <i class="bi bi-pencil"></i>
+<% end %>

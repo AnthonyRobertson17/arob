@@ -60,7 +60,7 @@ class ExercisesTest < ApplicationSystemTestCase
     visit workout_url(workout)
 
     within "##{dom_id(exercise)}" do
-      click_on "✏️", match: :first
+      find(".bi-pencil").click
     end
 
     assert_current_path workout_path(workout)
@@ -85,7 +85,7 @@ class ExercisesTest < ApplicationSystemTestCase
     visit workout_url(workout)
 
     within "##{dom_id(first)}" do
-      click_on "✏️", match: :first
+      find(".bi-pencil").click
       accept_confirm do
         click_on "💣", match: :first
       end
@@ -108,7 +108,7 @@ class ExercisesTest < ApplicationSystemTestCase
     visit workout_url(workout)
 
     within "##{dom_id(last)}" do
-      click_on "✏️", match: :first
+      find(".bi-pencil").click
       accept_confirm do
         click_on "💣", match: :first
       end

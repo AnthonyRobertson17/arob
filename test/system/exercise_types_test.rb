@@ -53,7 +53,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
     create(:exercise_type_tag, user:, name: "test tag")
 
     visit(exercise_types_url)
-    click_on("✏️", match: :first)
+    find(".bi-pencil").click
 
     assert_current_path(exercise_types_path)
 
@@ -72,7 +72,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
     create(:exercise_type_tag, user:, name: "test tag")
 
     visit(exercise_types_url)
-    click_on("✏️", match: :first)
+    find(".bi-pencil").click
 
     assert_current_path(exercise_types_path)
 

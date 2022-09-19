@@ -15,7 +15,7 @@ class HomeTest < ApplicationSystemTestCase
     login
     visit profile_url
 
-    click_on "✏️"
+    find(".bi-pencil").click
 
     select "Eastern Time (US & Canada)", from: "Time zone"
     click_on "Update User"

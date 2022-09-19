@@ -8,10 +8,11 @@
     </div>
     <div class="col">
       <div class="d-flex justify-content-end">
-        <%= link_to(t(:edit),
-                    edit_workout_exercise_exercise_set_path(workout, exercise, exercise_set),
+        <%= link_to(edit_workout_exercise_exercise_set_path(workout, exercise, exercise_set),
                     data: { turbo_frame: dom_id(exercise_set) },
-                    class: "btn btn-secondary btn-sm me-2") %>
+                    class: "btn me-2") do %>
+          <i class="bi bi-pencil"></i>
+        <% end %>
       </div>
     </div>
   </div>
