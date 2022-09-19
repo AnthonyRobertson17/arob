@@ -36,7 +36,6 @@ en:
   back: "Back"
   save: "Save"
   cancel: "Cancel"
-  open: 👀
   activerecord:
     models:
       workout: Workout

@@ -3,7 +3,9 @@
     <div class="card-body">
       <h5 class="h5"><%= exercise_type.name %></h5>
       <div class="d-flex">
-        <%= link_to(t(:open), exercise_type, class: "btn btn-primary me-2", data: { turbo_frame: "_top" }) %>
+        <%= link_to(exercise_type, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do %>
+          <i class="bi bi-arrows-angle-expand"></i>
+        <% end %>
         <%= link_to(edit_exercise_type_path(exercise_type), class: "btn btn-secondary me-2") do %>
           <i class="bi bi-pencil"></i>
         <% end %>
