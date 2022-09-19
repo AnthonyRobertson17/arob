@@ -73,7 +73,7 @@ class ExerciseSetsTest < ApplicationSystemTestCase
     within "##{dom_id(exercise_set)}" do
       find(".bi-pencil").click
       accept_confirm do
-        click_on "💣", match: :first
+        find(".bi-trash3").click
       end
     end
 

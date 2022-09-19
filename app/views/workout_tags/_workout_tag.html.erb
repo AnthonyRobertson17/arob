@@ -7,11 +7,12 @@
         <%= link_to(edit_workout_tag_path(workout_tag), class: "btn me-2") do %>
           <i class="bi bi-pencil"></i>
         <% end %>
-        <%= button_to(t(:destroy),
-                      workout_tag,
+        <%= button_to(workout_tag,
                       method: :delete,
                       form: { data: { turbo_confirm: t(".destroy_confirmation") } },
-                      class: "btn btn-danger") %>
+                      class: "btn btn-danger") do %>
+          <i class="bi bi-trash3"></i>
+        <% end %>
       </div>
     </div>
   </div>

@@ -87,7 +87,7 @@ class ExercisesTest < ApplicationSystemTestCase
     within "##{dom_id(first)}" do
       find(".bi-pencil").click
       accept_confirm do
-        click_on "💣", match: :first
+        find(".bi-trash3").click
       end
     end
 
@@ -110,7 +110,7 @@ class ExercisesTest < ApplicationSystemTestCase
     within "##{dom_id(last)}" do
       find(".bi-pencil").click
       accept_confirm do
-        click_on "💣", match: :first
+        find(".bi-trash3").click
       end
     end
 

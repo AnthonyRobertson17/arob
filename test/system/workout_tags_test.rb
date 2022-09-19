@@ -77,7 +77,7 @@ class WorkoutTagsTest < ApplicationSystemTestCase
 
     visit workout_tags_url
     accept_confirm do
-      click_on "💣", match: :first
+      find(".bi-trash3").click
     end
 
     assert_no_text "Should be removed"

@@ -91,7 +91,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
 
     visit(exercise_types_url)
     accept_confirm do
-      click_on("💣", match: :first)
+      find(".bi-trash3").click
     end
 
     assert_current_path(exercise_types_path)

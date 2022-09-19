@@ -12,15 +12,16 @@
       <%= f.submit t(:save), class: "btn btn-success me-2" %>
       <%= link_to t(:cancel), workout_path(workout), class: "btn btn-secondary me-2"%>
       <% if exercise_set.persisted? %>
-        <%= link_to(t(:destroy),
-                [workout, exercise, exercise_set],
+        <%= link_to([workout, exercise, exercise_set],
                 method: :delete,
                 data: {
                   turbo_method: :delete,
                   turbo_confirm: t("exercise_sets.destroy_confirmation"),
                   turbo_frame: dom_id(exercise_set),
                 },
-                class: "btn btn-danger") %>
+                class: "btn btn-danger") do %>
+          <i class="bi bi-trash3"></i>
+        <% end %>
       <% end %>
     </div>
   <% end %>

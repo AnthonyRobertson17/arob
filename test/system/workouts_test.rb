@@ -72,7 +72,7 @@ class WorkoutsTest < ApplicationSystemTestCase
     visit workout_url(workout)
     find(".bi-pencil").click
     accept_confirm do
-      click_on "💣", match: :first
+      find(".bi-trash3").click
     end
 
     assert_no_text "should be gone"
