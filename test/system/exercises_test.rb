@@ -21,7 +21,6 @@ class ExercisesTest < ApplicationSystemTestCase
 
     create :exercise_type, user: user, name: "watwatwat"
     workout = create(:workout, user:)
-    last_exercise = create_exercises(user:, workout:, count: 2).last
 
     visit workout_url(workout)
 
@@ -37,7 +36,6 @@ class ExercisesTest < ApplicationSystemTestCase
 
     assert_text "watwatwat"
     assert_text "This is a custom note"
-
   end
 
   test "editing an exercise" do
