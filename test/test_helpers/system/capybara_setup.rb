@@ -12,7 +12,7 @@ Capybara.default_normalize_ws = true
 
 # Where to store system tests artifacts (e.g. screenshots, downloaded files, etc.).
 # It could be useful to be able to configure this path from the outside (e.g., on CI).
-Capybara.save_path = ENV.fetch("CAPYBARA_ARTIFACTS", "./tmp/capybara")
+Capybara.save_path = File.expand_path(ENV.fetch("CAPYBARA_ARTIFACTS", "./tmp/capybara"))
 
 # The Capybara.using_session allows you to manipulate a different browser session, and thus, multiple independent
 # sessions within a single test scenario. That’s especially useful for testing real-time features, e.g., something
