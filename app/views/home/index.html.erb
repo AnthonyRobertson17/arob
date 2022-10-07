@@ -8,10 +8,7 @@
     <% @in_progress_workouts.each do |workout| %>
       <div class="card mb-3">
         <div id="<%= dom_id(workout) %>" class="card-body">
-          <%= render("workouts/workout_attributes", workout:, inline_status: true) %>
-          <%= link_to(workout, class: "btn btn-secondary") do %>
-            <i class="bi bi-arrows-angle-expand"></i>
-          <% end %>
+          <%= render("workouts/workout_card", workout:) %>
         </div>
       </div>
     <% end %>
@@ -24,10 +21,7 @@
     <% @recent_workouts.each do |workout| %>
       <div class="card mb-3">
         <div id="<%= dom_id(workout) %>" class="card-body">
-          <%= render("workouts/workout_attributes", workout:, inline_status: true) %>
-          <%= link_to(workout, class: "btn btn-primary") do %>
-            <i class="bi bi-arrows-angle-expand"></i>
-          <% end %>
+          <%= render("workouts/workout_card", workout:) %>
         </div>
       </div>
     <% end %>

@@ -1,7 +1,7 @@
 <%= turbo_frame_tag(workout) do %>
-  <div class="d-flex flex-wrap justify-content-between mb-3">
+  <div class="d-flex flex-wrap justify-content-between">
     <div class="d-flex align-items-center">
-      <h1 class="h1 mb-0 me-2"><%= workout.name %></h1>
+      <h3 class="h3 mb-0 me-2"><%= workout.name %></h3>
       <% if workout.completed? %>
         <span class="badge rounded-pill bg-success mx-1"><%= t("workouts.statuses.completed") %></span>
       <% elsif workout.in_progress? %>
@@ -12,24 +12,14 @@
     </div>
 
     <div class="d-flex align-items-center">
-      <% if workout.draft? %>
-        <%= button_to(t(".start"), start_workout_path(workout), method: :patch, class: "btn btn-primary me-2") %>
-      <% end %>
-      <% if workout.in_progress? %>
-        <%= button_to(t(".complete"),
-                      complete_workout_path(workout),
-                      method: :patch,
-                      form: { data: { turbo_confirm: t(".complete_confirmation") } },
-                      class: "btn btn-success me-2") %>
-      <% end %>
-      <%= link_to(edit_workout_path(workout), class: "btn btn-secondary me-2") do %>
-        <i class="bi bi-pencil"></i>
+      <%= link_to(workout, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do %>
+        <i class="bi bi-arrows-angle-expand"></i>
       <% end %>
     </div>
   </div>
 
   <% if workout.started? %>
-    <table class="table xxsmall-width">
+    <table class="table xxsmall-width mt-3">
       <tbody>
           <tr>
             <th scope="row"><%= Workout.human_attribute_name("started_at") %></th>
