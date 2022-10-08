@@ -24,8 +24,8 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
 
     get(workouts_url)
 
-    assert_select("h5", { text: /funny workout/, count: 1 })
-    assert_select("h5", { text: /should not be shown/, count: 0 })
+    assert_select("h3", { text: /funny workout/, count: 1 })
+    assert_select("h3", { text: /should not be shown/, count: 0 })
   end
 
   test "get index lists workouts in reverse chronological order" do

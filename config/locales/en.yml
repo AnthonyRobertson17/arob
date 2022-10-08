@@ -85,12 +85,10 @@ en:
       complete: "Complete"
       complete_confirmation: "Are you sure you want to complete this workout?"
     destroy_confirmation: "Are you sure you want to destroy this workout?"
-    workout_attributes:
-      status: "Status"
-      statuses:
-        completed: "Completed"
-        in_progress: "In Progress"
-        draft: "Draft"
+    statuses:
+      completed: "Completed"
+      in_progress: "In Progress"
+      draft: "Draft"
     flash:
       error:
         already_started: "Workout has already started."

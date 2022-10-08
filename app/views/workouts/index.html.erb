@@ -6,10 +6,7 @@
   <% @workouts.each do |workout| %>
     <div class="card mb-3">
       <div id="<%= dom_id(workout) %>" class="card-body">
-        <%= render("workout_attributes", workout: , inline_status: true) %>
-        <%= link_to(workout, class: "btn btn-secondary") do %>
-          <i class="bi bi-arrows-angle-expand"></i>
-        <% end %>
+        <%= render("workout_card", workout:) %>
       </div>
     </div>
   <% end %>
