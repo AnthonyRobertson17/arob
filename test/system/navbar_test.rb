@@ -6,7 +6,7 @@ class NavbarTest < ApplicationSystemTestCase
   test "clicking the site name brings user to root" do
     login
     visit workouts_url
-    click_on "Lift-O-Tracker"
+    click_on "arob"
 
     assert_current_path root_path
   end

@@ -1,6 +1,6 @@
-# Lift-O-Tracker
+# arob
 
-A super simple workout tracker.
+A bunch of useful tools I've made to make life a little bit easier.
 
 ## Dev Setup
 

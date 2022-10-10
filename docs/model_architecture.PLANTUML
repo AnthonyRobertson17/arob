@@ -1,6 +1,6 @@
-@startuml Lift-O-Tracker
+@startuml arob
 
-title Lift-O-Tracker
+title arob
 
 class ExerciseType {
   String name
