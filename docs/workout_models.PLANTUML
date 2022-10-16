@@ -1,6 +1,6 @@
-@startuml arob
+@startuml arob workouts
 
-title arob
+title arob workouts
 
 class ExerciseType {
   String name
