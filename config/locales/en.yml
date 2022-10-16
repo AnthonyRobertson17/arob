@@ -63,6 +63,12 @@ en:
       recent_workouts: "Recently Completed Workouts"
       in_progress_workouts: "In-Progress Workouts"
       create_workout: "Create Workout"
+  gym:
+    index:
+      title: "Gym"
+      recent_workouts: "Recently Completed Workouts"
+      in_progress_workouts: "In-Progress Workouts"
+      create_workout: "Create Workout"
   users:
     profile:
       show:

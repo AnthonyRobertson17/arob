@@ -4,10 +4,6 @@
 </div>
 <div id="workouts">
   <% @workouts.each do |workout| %>
-    <div class="card mb-3">
-      <div id="<%= dom_id(workout) %>" class="card-body">
-        <%= render("workout_card", workout:) %>
-      </div>
-    </div>
+    <%= render("workout_card", workout:) %>
   <% end %>
 </div>
