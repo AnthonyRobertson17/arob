@@ -23,12 +23,10 @@
       <% if workout.started? %>
         <table class="table xxsmall-width mt-3">
           <tbody>
-            <% if workout.started? %>
-              <tr>
-                <th scope="row"><%= Workout.human_attribute_name("started_at") %></th>
-                <td><%= workout.started_at&.to_fs(:timestamp) %></td>
-              </tr>
-            <% end %>
+            <tr>
+              <th scope="row"><%= Workout.human_attribute_name("started_at") %></th>
+              <td><%= workout.started_at&.to_fs(:timestamp) %></td>
+            </tr>
             <% if workout.completed? %>
               <tr>
                 <th scope="row"><%= Workout.human_attribute_name("completed_at") %></th>

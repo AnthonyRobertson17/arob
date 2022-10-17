@@ -77,6 +77,8 @@ class WorkoutsTest < ApplicationSystemTestCase
     end
 
     assert_no_text("should be gone")
+
+    assert_current_path(workouts_path)
   end
 
   test "starting Workout" do
