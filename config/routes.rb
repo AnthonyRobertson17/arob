@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "profile/edit", to: "users/profile#edit"
   patch "profile", to: "users/profile#update"
 
+  get "gym", to: "gym#index"
 
   resources :workout_tags
   resources :exercise_types
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
 
   authenticated :user do
     root to: "home#index", as: :authenticated_root
+
   end
   root to: redirect("/users/sign_in")
 end
