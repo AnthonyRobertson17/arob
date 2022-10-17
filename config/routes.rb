@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :wishlists
+
   authenticated :user do
     root to: "home#index", as: :authenticated_root
 

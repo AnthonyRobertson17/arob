@@ -61,6 +61,7 @@ en:
   home:
     index:
       gym: "Gym"
+      wishlists: "Wishlists"
   gym:
     index:
       title: "Gym"
@@ -148,6 +149,15 @@ en:
       back: "Back to Workout Tags"
     workout_tag:
       destroy_confirmation: "Are you sure you want to destroy this workout tag?"
+  wishlists:
+    new:
+      title: "New Wishlist"
+    edit:
+      title: "Edit Wishlist"
+    index:
+      title: "Wishlists"
+      create_wishlist: "Create Wishlist"
+    destroy_confirmation: "Are you sure you want to destroy this wishlist?"
   navbar:
     logout: "Logout"
     workouts: "Workouts"

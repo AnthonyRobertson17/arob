@@ -1,0 +1,9 @@
+<div class="d-flex mb-3 align-items-end">
+  <h1 class="h1 mb-0 me-3"><%= t(".title") %></h1>
+  <%= link_to(t(".create_wishlist"), new_wishlist_path, class: "btn btn-primary") %>
+</div>
+<div id="wishlists">
+  <% @wishlists.each do |wishlist| %>
+    <%= render("wishlist_card", wishlist:) %>
+  <% end %>
+</div>
