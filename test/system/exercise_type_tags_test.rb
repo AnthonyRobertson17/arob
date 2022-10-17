@@ -7,6 +7,8 @@ class ExerciseTypeTagsTest < ApplicationSystemTestCase
     user = login
     create(:exercise_type_tag, user:)
 
+    visit(gym_url)
+
     click_on("Tags")
     click_on("Exercise Type Tags")
 

@@ -5,6 +5,7 @@ require "application_system_test_case"
 class WorkoutTagsTest < ApplicationSystemTestCase
   test "visiting the index" do
     user = login
+    visit(gym_url)
     create(:workout_tag, user:)
 
     click_on("Tags")
