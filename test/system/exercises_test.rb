@@ -19,49 +19,49 @@ class ExercisesTest < ApplicationSystemTestCase
   test "creating a new exercise" do
     user = login
 
-    create :exercise_type, user: user, name: "watwatwat"
+    create(:exercise_type, user:, name: "watwatwat")
     workout = create(:workout, user:)
 
-    visit workout_url(workout)
+    visit(workout_url(workout))
 
-    click_on "New Exercise"
+    click_on("New Exercise")
 
-    assert_current_path workout_path(workout)
+    assert_current_path(workout_path(workout))
 
-    choose "watwatwat"
-    fill_in "Note", with: "This is a custom note"
-    click_on "Create"
+    choose("watwatwat")
+    fill_in("Note", with: "This is a custom note")
+    click_on("Create")
 
-    assert_current_path workout_path(workout)
+    assert_current_path(workout_path(workout))
 
-    assert_text "watwatwat"
-    assert_text "This is a custom note"
+    assert_text("watwatwat")
+    assert_text("This is a custom note")
   end
 
   test "editing an exercise" do
     user = login
 
     squat = create(:exercise_type, user:, name: "squat")
-    create :exercise_type, user: user, name: "deadlift"
+    create :exercise_type, user:, name: "deadlift"
     workout = create(:workout, :started, user:)
     exercise = create(:exercise, workout:, exercise_type: squat)
 
-    visit workout_url(workout)
+    visit(workout_url(workout))
 
-    within "##{dom_id(exercise)}" do
+    within("##{dom_id(exercise)}") do
       find(".bi-pencil").click
     end
 
-    assert_current_path workout_path(workout)
+    assert_current_path(workout_path(workout))
 
-    choose "deadlift"
-    fill_in "Note", with: "This is a completely new note"
-    click_on "Update"
+    choose("deadlift")
+    fill_in("Note", with: "This is a completely new note")
+    click_on("Update")
 
-    assert_current_path workout_path(workout)
+    assert_current_path(workout_path(workout))
 
-    assert_text "This is a completely new note"
-    assert_text "deadlift"
+    assert_text("This is a completely new note")
+    assert_text("deadlift")
   end
 
   test "destroying the first excercise" do
@@ -70,18 +70,18 @@ class ExercisesTest < ApplicationSystemTestCase
     exercises = create_exercises(user:, workout:, count: 3)
     first = exercises.first
 
-    visit workout_url(workout)
+    visit(workout_url(workout))
 
-    within "##{dom_id(first)}" do
+    within("##{dom_id(first)}") do
       find(".bi-pencil").click
       accept_confirm do
         find(".bi-trash3").click
       end
     end
 
-    assert_current_path workout_path(workout)
+    assert_current_path(workout_path(workout))
 
-    assert_no_text first.name
+    assert_no_text(first.name)
   end
 
   test "destroying the last excercise" do
@@ -90,18 +90,18 @@ class ExercisesTest < ApplicationSystemTestCase
     exercises = create_exercises(user:, workout:, count: 3)
     last = exercises.last
 
-    visit workout_url(workout)
+    visit(workout_url(workout))
 
-    within "##{dom_id(last)}" do
+    within("##{dom_id(last)}") do
       find(".bi-pencil").click
       accept_confirm do
         find(".bi-trash3").click
       end
     end
 
-    assert_current_path workout_path(workout)
+    assert_current_path(workout_path(workout))
 
-    assert_no_text last.name
+    assert_no_text(last.name)
   end
 
   test "move exercise down" do
@@ -112,7 +112,7 @@ class ExercisesTest < ApplicationSystemTestCase
     first = exercises.first
     second = exercises.at(1)
 
-    visit workout_url(workout)
+    visit(workout_url(workout))
 
     assert_page_order(first.name, second.name)
 
@@ -131,7 +131,7 @@ class ExercisesTest < ApplicationSystemTestCase
     last = exercises.last
     second = exercises.at(1)
 
-    visit workout_url(workout)
+    visit(workout_url(workout))
 
     assert_page_order(second.name, last.name)
 

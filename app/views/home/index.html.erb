@@ -1,21 +1,5 @@
 <h1 class="display-3 mb-4"><%= t(:app_name) %></h1>
 
-<%= link_to(t(".create_workout"), new_workout_path, class: "btn btn-lg btn-primary mb-4") %>
-
-<% if @in_progress_workouts.any? %>
-  <h2 class="h2"><%= t(".in_progress_workouts") %></h2>
-  <div id="in_progress_workouts" class="mb-4">
-    <% @in_progress_workouts.each do |workout| %>
-      <%= render("workouts/workout_card", workout:) %>
-    <% end %>
-  </div>
-<% end %>
-
-<% if @recent_workouts.any? %>
-  <h2 class="h2"><%= t(".recent_workouts") %></h2>
-  <div id="recent_workouts" class="mb-4">
-    <% @recent_workouts.each do |workout| %>
-      <%= render("workouts/workout_card", workout:) %>
-    <% end %>
-  </div>
-<% end %>
+<div class="d-flex align-items-center flex-column">
+  <%= link_to(t(".gym"), gym_path, class: "btn btn-lg btn-primary mb-4 w-50") %>
+</div>
