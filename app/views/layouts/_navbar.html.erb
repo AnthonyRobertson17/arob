@@ -17,6 +17,8 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <% if show_navbar?(:gym) %>
             <%= render "layouts/gym_navbar" %>
+          <% elsif show_navbar?(:wishlists) %>
+            <%= render "layouts/wishlists_navbar" %>
           <% end %>
         </ul>
         <div id="user_email" class="mx-2">

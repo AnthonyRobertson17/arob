@@ -35,4 +35,20 @@ class NavbarTest < ApplicationSystemTestCase
 
     assert_current_path(workout_tags_path)
   end
+
+  test "navigating to the wishlists page" do
+    login
+    visit(new_wishlist_url)
+    click_on("Wishlists")
+
+    assert_current_path(wishlists_path)
+  end
+
+  test "logging out" do
+    login
+    visit(root_url)
+
+    click_on("Logout")
+    assert_current_path(new_user_session_path)
+  end
 end

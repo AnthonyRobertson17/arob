@@ -10,6 +10,9 @@ module ApplicationHelper
       "/workout_tags",
       "/exercise_type_tags",
     ],
+    wishlists: [
+      "/wishlists",
+    ],
   }.freeze
 
   def active_class(paths)
