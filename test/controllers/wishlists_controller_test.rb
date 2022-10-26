@@ -69,7 +69,7 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
     get(wishlist_url(wishlist))
 
     assert_response(:success)
-    assert_select("td", { text: /testing 123/, count: 1 })
+    assert_select("h1", { text: /testing 123/, count: 1 })
   end
 
   test "show wishlist raises not found if the wishlist belongs to another user" do
