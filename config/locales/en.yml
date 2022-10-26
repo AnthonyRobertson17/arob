@@ -160,9 +160,9 @@ en:
     destroy_confirmation: "Are you sure you want to destroy this wishlist?"
   navbar:
     logout: "Logout"
-    workouts: "Workouts"
-    tags: "Tags"
-    all_tags: "All Tags"
-    workout_tags: "Workout Tags"
-    exercise_types: "Exercise Types"
-    exercise_type_tags: "Exercise Type Tags"
+    gym_navbar:
+      workouts: "Workouts"
+      tags: "Tags"
+      workout_tags: "Workout Tags"
+      exercise_types: "Exercise Types"
+      exercise_type_tags: "Exercise Type Tags"
