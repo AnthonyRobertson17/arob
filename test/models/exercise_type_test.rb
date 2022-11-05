@@ -5,6 +5,7 @@ require "test_helper"
 class ExerciseTypeTest < ActiveSupport::TestCase
   test "name is required" do
     exercise_type = build(:exercise_type, name: "")
+
     assert_predicate exercise_type, :invalid?
   end
 

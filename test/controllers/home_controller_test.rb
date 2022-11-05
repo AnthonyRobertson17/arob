@@ -8,6 +8,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     sign_in(user)
 
     get(authenticated_root_url)
+
     assert_response(:success)
   end
 end

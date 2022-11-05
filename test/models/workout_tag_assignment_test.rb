@@ -29,6 +29,7 @@ class WorkoutTagAssignmentTest < ActiveSupport::TestCase
     tag = build(:workout_tag)
 
     workout_tag_assignment = WorkoutTagAssignment.new(workout:, tag:)
+
     assert_predicate workout_tag_assignment, :invalid?
 
     assert_equal "Tag doesn't share the same user as the workout", workout_tag_assignment.errors.full_messages.first

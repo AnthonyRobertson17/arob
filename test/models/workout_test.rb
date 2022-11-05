@@ -5,6 +5,7 @@ require "test_helper"
 class WorkoutTest < ActiveSupport::TestCase
   test "name is required" do
     workout = build(:workout, name: "")
+
     assert_predicate workout, :invalid?
   end
 
@@ -35,6 +36,7 @@ class WorkoutTest < ActiveSupport::TestCase
     exercise1.update!(position: 1)
 
     expected_ids = [exercise2.id, exercise1.id, exercise3.id]
+
     assert_equal(expected_ids, workout.exercises.map(&:id))
   end
 
@@ -63,29 +65,35 @@ class WorkoutTest < ActiveSupport::TestCase
 
   test "completed? when false" do
     workout = build(:workout)
+
     assert_not workout.completed?
   end
 
   test "completed? when true" do
     workout = build(:workout, :completed)
+
     assert_predicate workout, :completed?
   end
 
   test "started? when false" do
     workout = build(:workout)
+
     assert_not workout.started?
   end
 
   test "started? when true" do
     workout = build(:workout, :started)
+
     assert_predicate workout, :started?
   end
 
   test "start! sets started_at if not already set" do
     workout = create(:workout)
+
     assert_not workout.started?
 
     workout.start!
+
     assert_predicate workout.reload, :started?
   end
 
@@ -115,16 +123,19 @@ class WorkoutTest < ActiveSupport::TestCase
 
   test "draft? when workout is draft" do
     workout = build(:workout)
+
     assert_predicate workout, :draft?
   end
 
   test "draft? when workout is started" do
     workout = build(:workout, :started)
+
     assert_not workout.draft?
   end
 
   test "draft? when workout is completed" do
     workout = build(:workout, :completed)
+
     assert_not workout.draft?
   end
 
@@ -175,13 +186,16 @@ class WorkoutTest < ActiveSupport::TestCase
 
   test "last_exercise_position" do
     workout = create(:workout)
+
     assert_nil(workout.last_exercise_position)
 
     create(:exercise, workout:)
+
     assert_equal(0, workout.last_exercise_position)
 
     create(:exercise, workout:)
     create(:exercise, workout:)
+
     assert_equal(2, workout.last_exercise_position)
   end
 
@@ -196,6 +210,7 @@ class WorkoutTest < ActiveSupport::TestCase
     exercise4.update!(position: 3)
 
     workout.handle_exercise_deletion(2)
+
     assert_equal((0..3).to_a, workout.exercises.map(&:position))
   end
 end

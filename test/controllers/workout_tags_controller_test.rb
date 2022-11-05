@@ -12,6 +12,7 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     create(:workout_tag, user: @user, name: "testing workout tag")
 
     get(workout_tags_url)
+
     assert_response(:success)
 
     assert_select("h5", { text: /testing workout tag/, count: 1 })
@@ -21,6 +22,7 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     create(:workout_tag, name: "should not be able to see this")
 
     get(workout_tags_url)
+
     assert_response(:success)
 
     assert_select("h5", { text: /should not be able to see this/, count: 0 })
@@ -43,6 +45,7 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
 
   test "get new" do
     get(new_workout_tag_url)
+
     assert_response(:success)
   end
 
@@ -56,6 +59,7 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     post(workout_tags_url, params: { workout_tag: { name: "Random Tag" } })
 
     new_workout_tag = WorkoutTag.for_user(@user).last
+
     assert_equal("Random Tag", new_workout_tag.name)
   end
 
@@ -75,6 +79,7 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     workout_tag = create(:workout_tag, user: @user)
 
     get(workout_tag_url(workout_tag))
+
     assert_response(:success)
   end
 
@@ -90,6 +95,7 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     workout_tag = create(:workout_tag, user: @user)
 
     get(edit_workout_tag_url(workout_tag))
+
     assert_response(:success)
   end
 
@@ -105,6 +111,7 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     workout_tag = create(:workout_tag, user: @user)
 
     patch(workout_tag_url(workout_tag), params: { workout_tag: { name: "New Workout Name" } })
+
     assert_redirected_to(workout_tag_url(workout_tag))
   end
 
@@ -112,6 +119,7 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     workout_tag = create(:workout_tag, user: @user)
 
     patch(workout_tag_url(workout_tag, format: :turbo_stream), params: { workout_tag: { name: "New Workout Name" } })
+
     assert_response(:ok)
   end
 

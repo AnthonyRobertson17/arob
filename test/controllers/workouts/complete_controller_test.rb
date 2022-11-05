@@ -13,6 +13,7 @@ module Workouts
       workout = create(:workout, :started)
 
       patch complete_workout_url(workout)
+
       assert_redirected_to workout_url(workout)
 
       assert_predicate workout.reload, :completed?

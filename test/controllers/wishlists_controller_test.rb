@@ -15,6 +15,7 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
     create(:wishlist, user:)
 
     get(wishlists_url)
+
     assert_response(:success)
   end
 
@@ -45,6 +46,7 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
 
   test "get new" do
     get(new_wishlist_url)
+
     assert_response(:success)
   end
 
@@ -60,6 +62,7 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
     post(wishlists_url, params: { wishlist: { name: "New wishlist name" } })
 
     new_wishlist = Wishlist.for_user(@user).last
+
     assert_equal("New wishlist name", new_wishlist.name)
   end
 
@@ -83,6 +86,7 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
   test "get edit" do
     wishlist = create(:wishlist, user:)
     get(edit_wishlist_url(wishlist))
+
     assert_response(:success)
   end
 
@@ -100,18 +104,21 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
     patch(wishlist_url(wishlist), params: { wishlist: { name: "Updated wishlist name" } })
 
     wishlist.reload
+
     assert_equal("Updated wishlist name", wishlist.name)
   end
 
   test "update wishlist with html format redirects to the wishlist show page" do
     wishlist = create(:wishlist, user:)
     patch(wishlist_url(wishlist), params: { wishlist: { name: "Updated wishlist name" } })
+
     assert_redirected_to(wishlist_url(wishlist))
   end
 
   test "update wishlist with turbo_stream format responds with OK" do
     wishlist = create(:wishlist, user:)
     patch(wishlist_url(wishlist, format: :turbo_stream), params: { wishlist: { name: "Updated wishlist name" } })
+
     assert_response(:ok)
   end
 

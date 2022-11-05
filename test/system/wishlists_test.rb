@@ -8,6 +8,7 @@ class WishlistsTest < ApplicationSystemTestCase
     create(:wishlist, user:)
 
     visit(wishlists_url)
+
     assert_selector("h1", text: "Wishlists")
   end
 
@@ -28,6 +29,7 @@ class WishlistsTest < ApplicationSystemTestCase
     visit(new_wishlist_url)
 
     click_on("Cancel")
+
     assert_selector("h1", text: "Wishlists")
   end
 

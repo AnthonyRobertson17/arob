@@ -30,6 +30,7 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
     sign_in user
 
     get "/test"
+
     assert_response :success
   end
 
@@ -47,6 +48,7 @@ class ApplicationControllerTest < ActionDispatch::IntegrationTest
 
     travel_to Time.utc(2000) do
       get "/timezone_check"
+
       assert_response :success
 
       assert_equal expected_time.to_s, response.body

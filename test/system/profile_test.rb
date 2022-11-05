@@ -8,6 +8,7 @@ class HomeTest < ApplicationSystemTestCase
     visit(root_url)
 
     click_on(user.email)
+
     assert_current_path(profile_path)
   end
 
