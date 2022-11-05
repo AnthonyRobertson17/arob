@@ -8,6 +8,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
     create(:exercise_type, user:)
 
     visit(exercise_types_url)
+
     assert_selector("h1", text: "Exercise Types")
   end
 

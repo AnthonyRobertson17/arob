@@ -25,6 +25,7 @@ class ExerciseSetsControllerTest < ActionDispatch::IntegrationTest
 
   test "get new" do
     get(new_workout_exercise_exercise_set_url(workout, exercise))
+
     assert_response(:success)
   end
 
@@ -54,6 +55,7 @@ class ExerciseSetsControllerTest < ActionDispatch::IntegrationTest
     )
 
     new_exercise_set = exercise.exercise_sets.first
+
     assert_in_delta(25.2, new_exercise_set.weight)
   end
 
@@ -89,6 +91,7 @@ class ExerciseSetsControllerTest < ActionDispatch::IntegrationTest
     exercise_set = create(:exercise_set, exercise:)
 
     get(edit_workout_exercise_exercise_set_url(workout, exercise, exercise_set))
+
     assert_response(:success)
   end
 
@@ -113,6 +116,7 @@ class ExerciseSetsControllerTest < ActionDispatch::IntegrationTest
         exercise_set: { weight: 55.5 },
       },
     )
+
     assert_redirected_to(workout_url(workout))
   end
 
@@ -125,6 +129,7 @@ class ExerciseSetsControllerTest < ActionDispatch::IntegrationTest
         exercise_set: { weight: 55.5 },
       },
     )
+
     assert_response :ok
   end
 

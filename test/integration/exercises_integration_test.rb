@@ -25,6 +25,7 @@ class ExercisesIntegrationTest < ActionDispatch::IntegrationTest
     create(:exercise, workout: @workout, exercise_type:, note: nil)
 
     get(workout_url(@workout))
+
     assert_response(:success)
 
     assert_select("p", { text: /Note:/, count: 0 })

@@ -11,6 +11,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
 
   test "get index" do
     get(exercise_types_url)
+
     assert_response(:success)
   end
 
@@ -40,6 +41,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
 
   test "get new" do
     get(new_exercise_type_url)
+
     assert_response(:success)
   end
 
@@ -80,6 +82,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     post(exercise_types_url, params: { exercise_type: { name: "New exercise_type name" } })
 
     new_exercise_type = ExerciseType.for_user(@user).last
+
     assert_equal("New exercise_type name", new_exercise_type.name)
   end
 
@@ -100,6 +103,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
 
   test "show exercise_type" do
     get(exercise_type_url(@exercise_type))
+
     assert_response(:success)
   end
 
@@ -113,6 +117,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
 
   test "get edit" do
     get(edit_exercise_type_url(@exercise_type))
+
     assert_response(:success)
   end
 
@@ -141,11 +146,13 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
 
   test "update exercise_type updates the record" do
     patch(exercise_type_url(@exercise_type), params: { exercise_type: { name: "Updated exercise_type name" } })
+
     assert_equal("Updated exercise_type name", @exercise_type.reload.name)
   end
 
   test "update exercise_type with http format redirecs to the exercise_type index page" do
     patch(exercise_type_url(@exercise_type), params: { exercise_type: { name: "Updated exercise_type name" } })
+
     assert_redirected_to(exercise_types_url)
   end
 
@@ -154,6 +161,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
       exercise_type_url(@exercise_type, format: :turbo_stream),
       params: { exercise_type: { name: "Updated exercise_type name" } },
     )
+
     assert_response(:ok)
   end
 

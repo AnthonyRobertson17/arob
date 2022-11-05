@@ -49,6 +49,7 @@ class NavbarTest < ApplicationSystemTestCase
     visit(root_url)
 
     click_on("Logout")
+
     assert_current_path(new_user_session_path)
   end
 end

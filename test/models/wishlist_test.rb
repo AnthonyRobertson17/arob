@@ -5,6 +5,7 @@ require "test_helper"
 class WishlistTest < ActiveSupport::TestCase
   test "name is required" do
     wishlist = build(:wishlist, name: "")
+
     assert_predicate(wishlist, :invalid?)
   end
 

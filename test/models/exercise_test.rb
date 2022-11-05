@@ -38,6 +38,7 @@ class ExerciseTest < ActiveSupport::TestCase
     bad_exercise = create(:exercise, workout:)
 
     bad_exercise.position = 0
+
     assert_not(bad_exercise.valid?)
   end
 
@@ -52,6 +53,7 @@ class ExerciseTest < ActiveSupport::TestCase
   test "validates that position must be >= 0" do
     exercise = create(:exercise)
     exercise.position = -1
+
     assert_not(exercise.valid?)
   end
 

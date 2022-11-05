@@ -12,6 +12,7 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     create(:exercise_type_tag, user: @user, name: "testing exercise_type tag")
 
     get(exercise_type_tags_url)
+
     assert_response(:success)
 
     assert_select("h5", { text: /testing exercise_type tag/, count: 1 })
@@ -21,6 +22,7 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     create(:exercise_type_tag, name: "should not be able to see this")
 
     get(exercise_type_tags_url)
+
     assert_response(:success)
 
     assert_select("h5", { text: /should not be able to see this/, count: 0 })
@@ -43,6 +45,7 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
 
   test "get new" do
     get(new_exercise_type_tag_url)
+
     assert_response(:success)
   end
 
@@ -68,6 +71,7 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     post(exercise_type_tags_url, params: { exercise_type_tag: { name: "Random Tag" } })
 
     new_exercise_type_tag = ExerciseTypeTag.for_user(@user).last
+
     assert_equal("Random Tag", new_exercise_type_tag.name)
   end
 
@@ -75,6 +79,7 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     exercise_type_tag = create(:exercise_type_tag, user: @user)
 
     get(exercise_type_tag_url(exercise_type_tag))
+
     assert_response(:success)
   end
 
@@ -90,6 +95,7 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     exercise_type_tag = create(:exercise_type_tag, user: @user)
 
     get(edit_exercise_type_tag_url(exercise_type_tag))
+
     assert_response(:success)
   end
 
@@ -105,6 +111,7 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     exercise_type_tag = create(:exercise_type_tag, user: @user)
 
     patch(exercise_type_tag_url(exercise_type_tag), params: { exercise_type_tag: { name: "New ExerciseType Name" } })
+
     assert_redirected_to(exercise_type_tag_url(exercise_type_tag))
   end
 
@@ -115,6 +122,7 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
       exercise_type_tag_url(exercise_type_tag, format: :turbo_stream),
       params: { exercise_type_tag: { name: "New ExerciseType Name" } },
     )
+
     assert_response(:ok)
   end
 

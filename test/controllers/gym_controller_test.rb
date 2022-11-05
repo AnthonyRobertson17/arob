@@ -8,6 +8,7 @@ class GymControllerTest < ActionDispatch::IntegrationTest
     sign_in(user)
 
     get(gym_url)
+
     assert_response(:success)
   end
 

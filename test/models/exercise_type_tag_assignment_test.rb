@@ -29,6 +29,7 @@ class ExerciseTypeTagAssignmentTest < ActiveSupport::TestCase
     tag = build(:exercise_type_tag)
 
     exercise_type_tag_assignment = ExerciseTypeTagAssignment.new(exercise_type:, tag:)
+
     assert_predicate exercise_type_tag_assignment, :invalid?
 
     assert_equal(

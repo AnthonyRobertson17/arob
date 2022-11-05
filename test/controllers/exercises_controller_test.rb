@@ -12,6 +12,7 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
 
   test "get new" do
     get(new_workout_exercise_url(@workout))
+
     assert_response(:success)
   end
 
@@ -56,6 +57,7 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     )
 
     new_exercise = @workout.exercises.first
+
     assert_equal(@exercise_type.id, new_exercise.exercise_type_id)
   end
 
@@ -91,6 +93,7 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     exercise = create(:exercise, exercise_type: @exercise_type, workout: @workout)
 
     get(edit_workout_exercise_url(@workout, exercise))
+
     assert_response(:success)
   end
 
@@ -137,6 +140,7 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     )
 
     exercise.reload
+
     assert_equal(new_exercise_type.id, exercise.exercise_type.id)
     assert_equal("this is a test note", exercise.note)
   end
@@ -154,6 +158,7 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
         },
       },
     )
+
     assert_redirected_to(workout_url(@workout))
   end
 
@@ -171,6 +176,7 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
         },
       },
     )
+
     assert_response(:ok)
   end
 

@@ -8,6 +8,7 @@ class WorkoutsTest < ApplicationSystemTestCase
     create(:workout, user:)
 
     visit(workouts_url)
+
     assert_selector("h1", text: "Workouts")
   end
 
@@ -38,6 +39,7 @@ class WorkoutsTest < ApplicationSystemTestCase
     visit(new_workout_url)
 
     click_on("Cancel")
+
     assert_selector("h1", text: "Workouts")
   end
 
@@ -96,6 +98,7 @@ class WorkoutsTest < ApplicationSystemTestCase
     workout = create(:workout, :started, user:)
 
     visit(workout_url(workout))
+
     assert_select("button", { text: "Start", count: 0 })
     accept_confirm do
       click_on("Complete", match: :first)

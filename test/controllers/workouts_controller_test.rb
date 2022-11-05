@@ -15,6 +15,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     create(:workout, user:)
 
     get(workouts_url)
+
     assert_response(:success)
   end
 
@@ -45,6 +46,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
 
   test "get new" do
     get(new_workout_url)
+
     assert_response(:success)
   end
 
@@ -75,6 +77,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     post(workouts_url, params: { workout: { name: "New workout name" } })
 
     new_workout = Workout.for_user(@user).last
+
     assert_equal("New workout name", new_workout.name)
   end
 
@@ -117,6 +120,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     create(:exercise, workout:, exercise_type:)
 
     get(workout_url(workout))
+
     assert_response(:success)
 
     assert_select("h3", { text: /Exercises/, count: 1 })
@@ -134,6 +138,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
   test "get edit" do
     workout = create(:workout, user:)
     get(edit_workout_url(workout))
+
     assert_response(:success)
   end
 
@@ -167,6 +172,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     patch(workout_url(workout), params: { workout: { name: "Updated workout name" } })
 
     workout.reload
+
     assert_equal("Updated workout name", workout.name)
   end
 
@@ -176,6 +182,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     patch(workout_url(workout), params: { workout: { started_at: } })
 
     workout.reload
+
     assert_equal(started_at, workout.started_at)
   end
 
@@ -185,18 +192,21 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     patch(workout_url(workout), params: { workout: { completed_at: } })
 
     workout.reload
+
     assert_equal(completed_at, workout.completed_at)
   end
 
   test "update workout with html format redirects to the workout show page" do
     workout = create(:workout, user:)
     patch(workout_url(workout), params: { workout: { name: "Updated workout name" } })
+
     assert_redirected_to(workout_url(workout))
   end
 
   test "update workout with turbo_stream format responds with OK" do
     workout = create(:workout, user:)
     patch(workout_url(workout, format: :turbo_stream), params: { workout: { name: "Updated workout name" } })
+
     assert_response(:ok)
   end
 

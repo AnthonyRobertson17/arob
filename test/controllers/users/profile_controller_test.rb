@@ -11,6 +11,7 @@ module Users
 
     test "get show" do
       get profile_url
+
       assert_response :success
 
       assert_select "p", { text: "Email:\n    #{@user.email}", count: 1 }
@@ -18,11 +19,13 @@ module Users
 
     test "get edit" do
       get profile_edit_url
+
       assert_response :success
     end
 
     test "update workout" do
       patch "/profile", params: { user: { time_zone: "Eastern Time (US & Canada)" } }
+
       assert_redirected_to profile_url
       assert_equal "Eastern Time (US & Canada)", @user.reload.time_zone
     end

@@ -42,6 +42,7 @@ class WorkoutTagsTest < ApplicationSystemTestCase
     fill_in("Name", with: "New Tag name")
 
     click_on("Cancel")
+
     assert_current_path(workout_tags_path)
     assert_no_text("New Tag name")
   end
