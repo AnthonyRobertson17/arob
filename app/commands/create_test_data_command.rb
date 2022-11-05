@@ -4,6 +4,13 @@
 class CreateTestDataCommand < BaseCommand
   def execute
     users
+    gym_models
+    wishlist_models
+  end
+
+  private
+
+  def gym_models
     workout_tags
     exercise_type_tags
     workouts
@@ -12,7 +19,9 @@ class CreateTestDataCommand < BaseCommand
     exercise_sets
   end
 
-  private
+  def wishlist_models
+    wishlists
+  end
 
   def seed(klass, find_by:, update: nil)
     instance = klass.find_or_initialize_by(find_by)
@@ -22,33 +31,38 @@ class CreateTestDataCommand < BaseCommand
   end
 
   def users
-    @users ||= [
-      seed(
-        User,
-        find_by: { email: "dev@test.test" },
-        update: { password: "password12345" },
-      ),
-      seed(
-        User,
-        find_by: { email: "dev2@test.test" },
-        update: { password: "password12345" },
-      ),
-    ]
+    @users ||= [dev, dev2]
+  end
+
+  def dev
+    @dev ||= seed(
+      User,
+      find_by: { email: "dev@test.test" },
+      update: { password: "password12345" },
+    )
+  end
+
+  def dev2
+    @dev2 ||= seed(
+      User,
+      find_by: { email: "dev2@test.test" },
+      update: { password: "password12345" },
+    )
   end
 
   def workout_tags
     @workout_tags ||= [
       seed(
         WorkoutTag,
-        find_by: { name: "Legs", user: users[0] },
+        find_by: { name: "Legs", user: dev },
       ),
       seed(
         WorkoutTag,
-        find_by: { name: "Chest", user: users[0] },
+        find_by: { name: "Chest", user: dev },
       ),
       seed(
         WorkoutTag,
-        find_by: { name: "Chest for user 2", user: users[1] },
+        find_by: { name: "Chest for user 2", user: dev2 },
       ),
     ]
   end
@@ -57,19 +71,19 @@ class CreateTestDataCommand < BaseCommand
     @exercise_type_tags ||= [
       seed(
         ExerciseTypeTag,
-        find_by: { name: "Biceps", user: users[0] },
+        find_by: { name: "Biceps", user: dev },
       ),
       seed(
         ExerciseTypeTag,
-        find_by: { name: "Triceps", user: users[0] },
+        find_by: { name: "Triceps", user: dev },
       ),
       seed(
         ExerciseTypeTag,
-        find_by: { name: "Chest", user: users[1] },
+        find_by: { name: "Chest", user: dev2 },
       ),
       seed(
         ExerciseTypeTag,
-        find_by: { name: "Legs", user: users[1] },
+        find_by: { name: "Legs", user: dev2 },
       ),
     ]
   end
@@ -78,19 +92,19 @@ class CreateTestDataCommand < BaseCommand
     @exercise_types ||= [
       seed(
         ExerciseType,
-        find_by: { name: "Bicep Curl", user: users[0] },
+        find_by: { name: "Bicep Curl", user: dev },
       ),
       seed(
         ExerciseType,
-        find_by: { name: "Tricep Extension", user: users[0] },
+        find_by: { name: "Tricep Extension", user: dev },
       ),
       seed(
         ExerciseType,
-        find_by: { name: "Bench Press", user: users[1] },
+        find_by: { name: "Bench Press", user: dev2 },
       ),
       seed(
         ExerciseType,
-        find_by: { name: "Shoulder Press", user: users[1] },
+        find_by: { name: "Shoulder Press", user: dev2 },
       ),
     ]
   end
@@ -99,21 +113,21 @@ class CreateTestDataCommand < BaseCommand
     @workouts ||= [
       seed(
         Workout,
-        find_by: { name: "Let's GOOOO", user: users[0] },
+        find_by: { name: "Let's GOOOO", user: dev },
         update: { started_at: 2.days.ago },
       ),
       seed(
         Workout,
-        find_by: { name: "Leg Day", user: users[0] },
+        find_by: { name: "Leg Day", user: dev },
       ),
       seed(
         Workout,
-        find_by: { name: "Chest Day", user: users[0] },
+        find_by: { name: "Chest Day", user: dev },
         update: { started_at: 2.days.ago, completed_at: 2.days.ago + 1.hour },
       ),
       seed(
         Workout,
-        find_by: { name: "Silly Day", user: users[1] },
+        find_by: { name: "Silly Day", user: dev },
         update: { started_at: 2.days.ago, completed_at: 2.days.ago + 1.hour },
       ),
     ]
@@ -123,12 +137,12 @@ class CreateTestDataCommand < BaseCommand
     @exercises ||= [
       seed(
         Exercise,
-        find_by: { exercise_type: exercise_types[0], workout: workouts[0] },
+        find_by: { exercise_type: exercise_types.first, workout: workouts.first },
         update: { note: "Used straps, and failed the last rep" },
       ),
       seed(
         Exercise,
-        find_by: { exercise_type: exercise_types[1], workout: workouts[0] },
+        find_by: { exercise_type: exercise_types.second, workout: workouts.first },
         update: { note: "Used straps, and failed the last rep" },
       ),
     ]
@@ -160,6 +174,27 @@ class CreateTestDataCommand < BaseCommand
     end
 
     @exercise_sets
+  end
+
+  def wishlists
+    @wishlists ||= [
+      seed(
+        Wishlist,
+        find_by: { name: "Christmas", user: dev },
+      ),
+      seed(
+        Wishlist,
+        find_by: { name: "Birthday", user: dev },
+      ),
+      seed(
+        Wishlist,
+        find_by: { name: "Christmas", user: dev2 },
+      ),
+      seed(
+        Wishlist,
+        find_by: { name: "Birthday", user: dev2 },
+      ),
+    ]
   end
 end
 # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/ClassLength
