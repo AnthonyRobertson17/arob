@@ -9,6 +9,8 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.new
   end
 
+  def edit; end
+
   def create
     @exercise = @workout.exercises.build(exercise_params)
 
@@ -22,8 +24,6 @@ class ExercisesController < ApplicationController
       render(:new, status: :unprocessable_entity)
     end
   end
-
-  def edit; end
 
   def update
     if @exercise.update(exercise_params)
