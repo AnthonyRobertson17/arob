@@ -9,6 +9,8 @@ class ExerciseSetsController < ApplicationController
     @exercise_set = ExerciseSet.new
   end
 
+  def edit; end
+
   def create
     @exercise_set = @exercise.exercise_sets.build(exercise_set_params)
 
@@ -21,8 +23,6 @@ class ExerciseSetsController < ApplicationController
       render(:new, status: :unprocessable_entity)
     end
   end
-
-  def edit; end
 
   def update
     if @exercise_set.update(exercise_set_params)
