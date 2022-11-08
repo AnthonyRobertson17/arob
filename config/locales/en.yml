@@ -44,6 +44,8 @@ en:
       exercise_type_tag: Exercise Type Tag
       exercise_set: Set
       exercise: Exercise
+      wishlist: Wishlist
+      wishlist_item: Wishlist Item
     attributes:
       workout:
         started_at: "Started At"
@@ -54,6 +56,10 @@ en:
       exercise_set:
         repetitions: Reps
         weight: Weight
+      wishlist:
+        name: "Name"
+      wishlist_item:
+        name: "Name"
   form_error_heading:
     zero: "No errors"
     one: "1 error:"
@@ -154,10 +160,20 @@ en:
       title: "New Wishlist"
     edit:
       title: "Edit Wishlist"
+    show:
+      quick_create_wishlist_item: "Quick Add"
     index:
       title: "Wishlists"
       create_wishlist: "Create Wishlist"
+    wishlist:
+      create_wishlist_item: "Add New Item"
     destroy_confirmation: "Are you sure you want to destroy this wishlist?"
+  wishlist_items:
+    new:
+      title: "New Wishlist Item"
+    edit:
+      title: "Edit Wishlist Item"
+    destroy_confirmation: "Are you sure you want to destroy this item?"
   navbar:
     logout: "Logout"
     gym_navbar:

@@ -3,25 +3,25 @@
 class WishlistsController < ApplicationController
   before_action(:set_wishlist, only: [:edit, :update, :destroy])
 
-  # GET /workouts
+  # GET /wishlists
   def index
     @wishlists = users_wishlists.all.order(id: :desc)
   end
 
-  # GET /workouts/1
+  # GET /wishlists/1
   def show
-    @wishlist = users_wishlists.find(params[:id])
+    @wishlist = users_wishlists.includes(:wishlist_items).find(params[:id])
   end
 
-  # GET /workouts/new
+  # GET /wishlists/new
   def new
     @wishlist = Wishlist.new
   end
 
-  # GET /workouts/1/edit
+  # GET /wishlists/1/edit
   def edit; end
 
-  # POST /workouts
+  # POST /wishlists
   def create
     @wishlist = Wishlist.new(wishlist_params.merge(user: current_user))
 
@@ -32,7 +32,7 @@ class WishlistsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /workouts/1
+  # PATCH/PUT /wishlists/1
   def update
     if @wishlist.update(wishlist_params)
       respond_to do |format|
@@ -45,7 +45,7 @@ class WishlistsController < ApplicationController
     end
   end
 
-  # DELETE /workouts/1
+  # DELETE /wishlists/1
   def destroy
     @wishlist.destroy
     redirect_to(wishlists_url, status: :see_other)
