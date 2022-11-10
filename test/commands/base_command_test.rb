@@ -10,6 +10,8 @@ end
 
 class BaseCommandTest < ActiveSupport::TestCase
   test "allows for execution of the command through the execute class method" do
-    assert_equal "wow such execution", TestCommand.execute
+    response = TestCommand.execute
+
+    assert_equal("wow such execution", response)
   end
 end
