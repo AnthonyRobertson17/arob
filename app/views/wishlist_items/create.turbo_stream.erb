@@ -1,0 +1,3 @@
+<%= turbo_stream.replace(WishlistItem.new) do %>
+  <%= render(@wishlist_item, wishlist: @wishlist) %>
+<% end %>

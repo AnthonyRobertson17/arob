@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :exercise_types, dependent: :destroy
   has_many :workout_tags, dependent: :destroy
   has_many :exercise_type_tags, dependent: :destroy
+  has_many :wishlists, dependent: :destroy
 end

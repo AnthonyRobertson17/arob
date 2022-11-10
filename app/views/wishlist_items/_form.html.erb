@@ -1,0 +1,18 @@
+<%= simple_form_for([wishlist, wishlist_item]) do |f| %>
+  <%= f.input(:name) %>
+  <%= f.submit(class: "btn btn-primary me-2", data: { turbo_frame: "_top" }) %>
+  <% if wishlist_item.persisted? %>
+    <%= link_to(t(:cancel), [wishlist, wishlist_item], class: "btn btn-secondary me-2") %>
+    <%= link_to([wishlist, wishlist_item],
+                data: {
+                  turbo_method: :delete,
+                  turbo_confirm: t("wishlist_items.destroy_confirmation"),
+                  turbo_frame: "_top",
+                },
+                class: "btn btn-danger") do %>
+      <i class="bi bi-trash3"></i>
+    <% end %>
+  <% else %>
+    <%= link_to(t(:cancel), wishlist_path(wishlist), class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) %>
+  <% end %>
+<% end %>

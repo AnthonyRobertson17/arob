@@ -25,11 +25,17 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :wishlists
+  resources :wishlists do
+    resources :wishlist_items, except: [:index] do
+      collection do
+        get "quick_new"
+        post "quick_create"
+      end
+    end
+  end
 
   authenticated :user do
     root to: "home#index", as: :authenticated_root
-
   end
   root to: redirect("/users/sign_in")
 end

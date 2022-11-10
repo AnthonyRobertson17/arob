@@ -34,3 +34,9 @@ en:
       exercise_type:
         create: Create
         update: Update
+      wishlist:
+        create: Create
+        update: Update
+      wishlist_item:
+        create: Create
+        update: Update

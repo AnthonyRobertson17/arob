@@ -1,0 +1,13 @@
+<%= turbo_frame_tag(wishlist_item) do %>
+  <div class="d-flex flex-wrap justify-content-between mb-3">
+    <div class="d-flex align-items-center">
+      <h1 class="h1 mb-0 me-2"><%= wishlist_item.name %></h1>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <%= link_to(edit_wishlist_wishlist_item_path(wishlist, wishlist_item), class: "btn btn-secondary me-2") do %>
+        <i class="bi bi-pencil"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

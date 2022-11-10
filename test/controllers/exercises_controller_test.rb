@@ -75,7 +75,7 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to(workout_url(@workout))
   end
 
-  test "create workout_tag with turbo_stream format response with OK" do
+  test "create exercise with turbo_stream format response with OK" do
     post(
       workout_exercises_url(@workout, format: :turbo_stream),
       params: {
