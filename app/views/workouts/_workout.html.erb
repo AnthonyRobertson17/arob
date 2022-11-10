@@ -35,12 +35,12 @@
             <th scope="row"><%= Workout.human_attribute_name("started_at") %></th>
             <td><%= workout.started_at&.to_fs(:timestamp) %></td>
           </tr>
-        <% end %>
         <% if workout.completed? %>
           <tr>
             <th scope="row"><%= Workout.human_attribute_name("completed_at") %></th>
             <td><%= workout.completed_at&.to_fs(:timestamp) %></td>
           </tr>
+        <% end %>
       </tbody>
     </table>
   <% end %>
