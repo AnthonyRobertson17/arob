@@ -21,6 +21,7 @@ class CreateTestDataCommand < BaseCommand
 
   def wishlist_models
     wishlists
+    wishlist_items
   end
 
   def seed(klass, find_by:, update: nil)
@@ -195,6 +196,28 @@ class CreateTestDataCommand < BaseCommand
         find_by: { name: "Birthday", user: dev2 },
       ),
     ]
+  end
+
+  def wishlist_items
+    return @wishlist_items if @wishlist_items
+
+    @wishlist_items = []
+    wishlists.each do |wishlist|
+      @wishlist_items += [
+        seed(
+          WishlistItem,
+          find_by: { wishlist:, name: "Thing 1" },
+          update: { price: 12.34 },
+        ),
+        seed(
+          WishlistItem,
+          find_by: { wishlist:, name: "Thing 2" },
+          update: { price: 78.00 },
+        ),
+      ]
+    end
+
+    @wishlist_items
   end
 end
 # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/ClassLength

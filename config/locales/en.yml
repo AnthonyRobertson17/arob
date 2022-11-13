@@ -60,6 +60,7 @@ en:
         name: "Name"
       wishlist_item:
         name: "Name"
+        price: "Price"
   form_error_heading:
     zero: "No errors"
     one: "1 error:"

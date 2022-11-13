@@ -28,6 +28,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
         params: {
           wishlist_item: {
             name: "New wishlist item",
+            price: 12.5,
           },
         },
       )
@@ -40,6 +41,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "Foobar",
+          price: 12.5,
         },
       },
     )
@@ -55,6 +57,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "Foobar",
+          price: 12.5,
         },
       },
     )
@@ -70,6 +73,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
         params: {
           wishlist_item: {
             name: "New wishlist item",
+            price: 12.5,
           },
         },
       )
@@ -82,6 +86,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "Foobar",
+          price: 12.5,
         },
       },
     )
@@ -97,6 +102,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "Foobar",
+          price: 12.5,
         },
       },
     )
@@ -110,6 +116,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "Foobar",
+          price: 12.5,
         },
       },
     )
@@ -143,6 +150,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "This is a fancy new name",
+          price: 12.5,
         },
       },
     )
@@ -150,6 +158,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
     wishlist_item.reload
 
     assert_equal("This is a fancy new name", wishlist_item.name)
+    assert_in_delta(12.5, wishlist_item.price)
   end
 
   test "update wishlist item with html format redirects to the associated wishlist" do
@@ -160,6 +169,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "This is a fancy new name",
+          price: 12.5,
         },
       },
     )
@@ -175,6 +185,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "This is a fancy new name",
+          price: 12.5,
         },
       },
     )
@@ -193,6 +204,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
         params: {
           wishlist_item: {
             name: "This is a fancy new name",
+            price: 12.5,
           },
         },
       )
