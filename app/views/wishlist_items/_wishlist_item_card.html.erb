@@ -4,6 +4,7 @@
       <div class="d-flex flex-wrap justify-content-between">
         <div class="d-flex align-items-center">
           <h3 class="h3 mb-0 me-2"><%= wishlist_item.name %></h3>
+          <%= number_to_currency(wishlist_item.price) %>
         </div>
 
         <div class="d-flex align-items-center">

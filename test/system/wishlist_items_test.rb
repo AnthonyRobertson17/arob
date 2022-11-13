@@ -11,6 +11,7 @@ class WishlistItemsTest < ApplicationSystemTestCase
     click_on("Add New Item")
 
     fill_in("Name", with: "Random wishlist item name")
+    fill_in("Price", with: 12.5)
     click_on("Create")
 
     assert_text("Random wishlist item name")
@@ -61,10 +62,12 @@ class WishlistItemsTest < ApplicationSystemTestCase
     find(".bi-pencil").click
 
     fill_in("Name", with: "something else")
+    fill_in("Price", with: 20.56)
     click_on("Update")
 
     assert_current_path(wishlist_wishlist_item_path(wishlist, wishlist_item))
     assert_text("something else")
+    assert_text("$20.56")
   end
 
   test "cancel editing a wishlist item" do

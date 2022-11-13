@@ -1,5 +1,6 @@
 <%= simple_form_for([wishlist, wishlist_item]) do |f| %>
   <%= f.input(:name) %>
+  <%= f.input(:price) %>
   <%= f.submit(class: "btn btn-primary me-2", data: { turbo_frame: "_top" }) %>
   <% if wishlist_item.persisted? %>
     <%= link_to(t(:cancel), [wishlist, wishlist_item], class: "btn btn-secondary me-2") %>

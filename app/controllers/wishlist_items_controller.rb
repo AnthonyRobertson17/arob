@@ -63,7 +63,7 @@ class WishlistItemsController < ApplicationController
   end
 
   def wishlist_item_params
-    params.require(:wishlist_item).permit(:name)
+    params.require(:wishlist_item).permit(:name, :price)
   end
 
   def set_wishlist
