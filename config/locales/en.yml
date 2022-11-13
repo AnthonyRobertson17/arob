@@ -61,6 +61,7 @@ en:
       wishlist_item:
         name: "Name"
         price: "Price"
+        links: "Links"
   form_error_heading:
     zero: "No errors"
     one: "1 error:"
