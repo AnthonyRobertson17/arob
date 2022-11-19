@@ -22,5 +22,7 @@ module Arob
     # config.eager_load_paths << Rails.root.join("extras")
 
     config.action_view.prefix_partial_path_with_controller_namespace = false
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, _| html_tag.html_safe }
   end
 end

@@ -17,15 +17,15 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "new form lists exercise types in case insensitive alphabetical order" do
-    create(:exercise_type, name: "CCC", user: @user)
-    create(:exercise_type, name: "bbb", user: @user)
-    create(:exercise_type, name: "AAA", user: @user)
+    create(:exercise_type, name: "CCCCCCCCCCCC", user: @user)
+    create(:exercise_type, name: "bbbbbbbbbbbb", user: @user)
+    create(:exercise_type, name: "AAAAAAAAAAAA", user: @user)
 
     get(new_workout_exercise_url(@workout))
 
-    a = response.body.index("AAA")
-    b = response.body.index("bbb")
-    c = response.body.index("CCC")
+    a = response.body.index("AAAAAAAAAAAA")
+    b = response.body.index("bbbbbbbbbbbb")
+    c = response.body.index("CCCCCCCCCCCC")
 
     assert(a < b, "exercise types are not in alphabetical order")
     assert(b < c, "exercise types are not in alphabetical order")
@@ -98,17 +98,17 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "edit form lists exercise types in case insensitive alphabetical order" do
-    create(:exercise_type, name: "CCC", user: @user)
-    create(:exercise_type, name: "bbb", user: @user)
-    create(:exercise_type, name: "AAA", user: @user)
+    create(:exercise_type, name: "CCCCCCCCCCCC", user: @user)
+    create(:exercise_type, name: "bbbbbbbbbbbb", user: @user)
+    create(:exercise_type, name: "AAAAAAAAAAAA", user: @user)
 
     exercise = create(:exercise, exercise_type: @exercise_type, workout: @workout)
 
     get(edit_workout_exercise_url(@workout, exercise))
 
-    a = response.body.index("AAA")
-    b = response.body.index("bbb")
-    c = response.body.index("CCC")
+    a = response.body.index("AAAAAAAAAAAA")
+    b = response.body.index("bbbbbbbbbbbb")
+    c = response.body.index("CCCCCCCCCCCC")
 
     assert(a < b, "exercise types are not in alphabetical order")
     assert(b < c, "exercise types are not in alphabetical order")

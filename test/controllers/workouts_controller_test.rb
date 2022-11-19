@@ -30,15 +30,15 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get index lists workouts in reverse chronological order" do
-    create(:workout, :completed, user:, name: "AAA")
+    create(:workout, :completed, user:, name: "AAAAAAAAAAAA")
     create(:workout, :completed, user:, name: "BBB")
-    create(:workout, :completed, user:, name: "CCC")
+    create(:workout, :completed, user:, name: "CCCCCCCCCCCC")
 
     get(workouts_url)
 
-    first = response.body.index("AAA")
+    first = response.body.index("AAAAAAAAAAAA")
     second = response.body.index("BBB")
-    third = response.body.index("CCC")
+    third = response.body.index("CCCCCCCCCCCC")
 
     assert(first > second, "workouts are not in reverse chronological order")
     assert(second > third, "workouts are not in reverse chronological order")
@@ -51,15 +51,15 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "new form lists workout tags in case insensitive alphabetical order" do
-    create(:workout_tag, user:, name: "CCC")
-    create(:workout_tag, user:, name: "bbb")
-    create(:workout_tag, user:, name: "AAA")
+    create(:workout_tag, user:, name: "CCCCCCCCCCCC")
+    create(:workout_tag, user:, name: "bbbbbbbbbbbb")
+    create(:workout_tag, user:, name: "AAAAAAAAAAAA")
 
     get(new_workout_url)
 
-    a = response.body.index("AAA")
-    b = response.body.index("bbb")
-    c = response.body.index("CCC")
+    a = response.body.index("AAAAAAAAAAAA")
+    b = response.body.index("bbbbbbbbbbbb")
+    c = response.body.index("CCCCCCCCCCCC")
 
     assert(a < b, "workout tags are not in alphabetical order")
     assert(b < c, "workout tags are not in alphabetical order")
@@ -144,15 +144,15 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
 
   test "edit form lists workout tags in case insensitive alphabetical order" do
     workout = create(:workout, user:)
-    create(:workout_tag, user:, name: "CCC")
-    create(:workout_tag, user:, name: "bbb")
-    create(:workout_tag, user:, name: "AAA")
+    create(:workout_tag, user:, name: "CCCCCCCCCCCC")
+    create(:workout_tag, user:, name: "bbbbbbbbbbbb")
+    create(:workout_tag, user:, name: "AAAAAAAAAAAA")
 
     get(edit_workout_url(workout))
 
-    a = response.body.index("AAA")
-    b = response.body.index("bbb")
-    c = response.body.index("CCC")
+    a = response.body.index("AAAAAAAAAAAA")
+    b = response.body.index("bbbbbbbbbbbb")
+    c = response.body.index("CCCCCCCCCCCC")
 
     assert(a < b, "workout tags are not in alphabetical order")
     assert(b < c, "workout tags are not in alphabetical order")

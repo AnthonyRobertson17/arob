@@ -25,15 +25,15 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get index shows exercise types in case insensitive alphabetical order" do
-    create(:exercise_type, name: "CCC", user: @user)
-    create(:exercise_type, name: "bbb", user: @user)
-    create(:exercise_type, name: "AAA", user: @user)
+    create(:exercise_type, name: "CCCCCCCCCCCC", user: @user)
+    create(:exercise_type, name: "bbbbbbbbbbbb", user: @user)
+    create(:exercise_type, name: "AAAAAAAAAAAA", user: @user)
 
     get(exercise_types_url)
 
-    a = response.body.index("AAA")
-    b = response.body.index("bbb")
-    c = response.body.index("CCC")
+    a = response.body.index("AAAAAAAAAAAA")
+    b = response.body.index("bbbbbbbbbbbb")
+    c = response.body.index("CCCCCCCCCCCC")
 
     assert(a < b, "exercise types are not in alphabetical order")
     assert(b < c, "exercise types are not in alphabetical order")
@@ -46,15 +46,15 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "new form lists exercise tags in case insenitive alphabetical order" do
-    create(:exercise_type_tag, name: "CCC", user: @user)
-    create(:exercise_type_tag, name: "bbb", user: @user)
-    create(:exercise_type_tag, name: "AAA", user: @user)
+    create(:exercise_type_tag, name: "CCCCCCCCCCCC", user: @user)
+    create(:exercise_type_tag, name: "bbbbbbbbbbbb", user: @user)
+    create(:exercise_type_tag, name: "AAAAAAAAAAAA", user: @user)
 
     get(new_exercise_type_url)
 
-    a = response.body.index("AAA")
-    b = response.body.index("bbb")
-    c = response.body.index("CCC")
+    a = response.body.index("AAAAAAAAAAAA")
+    b = response.body.index("bbbbbbbbbbbb")
+    c = response.body.index("CCCCCCCCCCCC")
 
     assert(a < b, "exercise type tags are not in alphabetical order")
     assert(b < c, "exercise type tags are not in alphabetical order")
@@ -122,15 +122,15 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "edit form lists exercise tags in case insenitive alphabetical order" do
-    create(:exercise_type_tag, name: "CCC", user: @user)
-    create(:exercise_type_tag, name: "bbb", user: @user)
-    create(:exercise_type_tag, name: "AAA", user: @user)
+    create(:exercise_type_tag, name: "CCCCCCCCCCCC", user: @user)
+    create(:exercise_type_tag, name: "bbbbbbbbbbbb", user: @user)
+    create(:exercise_type_tag, name: "AAAAAAAAAAAA", user: @user)
 
     get(edit_exercise_type_url(@exercise_type))
 
-    a = response.body.index("AAA")
-    b = response.body.index("bbb")
-    c = response.body.index("CCC")
+    a = response.body.index("AAAAAAAAAAAA")
+    b = response.body.index("bbbbbbbbbbbb")
+    c = response.body.index("CCCCCCCCCCCC")
 
     assert(a < b, "exercise type tags are not in alphabetical order")
     assert(b < c, "exercise type tags are not in alphabetical order")

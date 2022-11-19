@@ -44,4 +44,22 @@ class CreateTestDataCommandTest < ActiveSupport::TestCase
       CreateTestDataCommand.execute
     end
   end
+
+  test "creates 4 wishlists" do
+    assert_difference("Wishlist.count", 4) do
+      CreateTestDataCommand.execute
+    end
+  end
+
+  test "creates 8 wishlist_items" do
+    assert_difference("WishlistItem.count", 8) do
+      CreateTestDataCommand.execute
+    end
+  end
+
+  test "creates 8 links" do
+    assert_difference("Link.count", 8) do
+      CreateTestDataCommand.execute
+    end
+  end
 end

@@ -22,6 +22,7 @@ class CreateTestDataCommand < BaseCommand
   def wishlist_models
     wishlists
     wishlist_items
+    wishlist_item_links
   end
 
   def seed(klass, find_by:, update: nil)
@@ -218,6 +219,22 @@ class CreateTestDataCommand < BaseCommand
     end
 
     @wishlist_items
+  end
+
+  def wishlist_item_links
+    return @wishlist_item_links if @wishlist_item_links
+
+    @wishlist_item_links = []
+    wishlist_items.each do |wishlist_item|
+      @wishlist_item_links += [
+        seed(
+          Link,
+          find_by: { linkable: wishlist_item, url: "https://www.google.com" },
+        ),
+      ]
+    end
+
+    @wishlist_item_links
   end
 end
 # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/ClassLength

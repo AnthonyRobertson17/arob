@@ -59,11 +59,11 @@ class WishlistItemsController < ApplicationController
   private
 
   def set_wishlist_item
-    @wishlist_item = @wishlist.wishlist_items.find(params[:id])
+    @wishlist_item = @wishlist.wishlist_items.includes(:links).find(params[:id])
   end
 
   def wishlist_item_params
-    params.require(:wishlist_item).permit(:name, :price)
+    params.require(:wishlist_item).permit(:name, :price, links_attributes: [:id, :url, :_destroy])
   end
 
   def set_wishlist

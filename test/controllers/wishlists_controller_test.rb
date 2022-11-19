@@ -30,15 +30,15 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get index lists wishlists in reverse chronological order" do
-    create(:wishlist, user:, name: "AAA")
+    create(:wishlist, user:, name: "AAAAAAAAAAAA")
     create(:wishlist, user:, name: "BBB")
-    create(:wishlist, user:, name: "CCC")
+    create(:wishlist, user:, name: "CCCCCCCCCCCC")
 
     get(wishlists_url)
 
-    first = response.body.index("AAA")
+    first = response.body.index("AAAAAAAAAAAA")
     second = response.body.index("BBB")
-    third = response.body.index("CCC")
+    third = response.body.index("CCCCCCCCCCCC")
 
     assert(first > second, "wishlists are not in reverse chronological order")
     assert(second > third, "wishlists are not in reverse chronological order")
