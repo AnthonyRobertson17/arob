@@ -29,15 +29,15 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get index shows workout_tags in case insensitive alphabetical order" do
-    create(:exercise_type_tag, name: "CCC", user: @user)
-    create(:exercise_type_tag, name: "bbb", user: @user)
-    create(:exercise_type_tag, name: "AAA", user: @user)
+    create(:exercise_type_tag, name: "CCCCCCCCCCCC", user: @user)
+    create(:exercise_type_tag, name: "bbbbbbbbbbbb", user: @user)
+    create(:exercise_type_tag, name: "AAAAAAAAAAAA", user: @user)
 
     get(exercise_type_tags_url)
 
-    a = response.body.index("AAA")
-    b = response.body.index("bbb")
-    c = response.body.index("CCC")
+    a = response.body.index("AAAAAAAAAAAA")
+    b = response.body.index("bbbbbbbbbbbb")
+    c = response.body.index("CCCCCCCCCCCC")
 
     assert(a < b, "exercise_type_tags are not in alphabetical order")
     assert(b < c, "exercise_type_tags are not in alphabetical order")
