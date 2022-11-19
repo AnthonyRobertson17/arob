@@ -35,6 +35,22 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "create wishlist item creates any associated links" do
+    assert_difference("Link.count") do
+      post(
+        wishlist_wishlist_items_url(@wishlist),
+        params: {
+          wishlist_item: {
+            name: "New wishlist item",
+            links_attributes: [
+              url: "https://google.com",
+            ],
+          },
+        },
+      )
+    end
+  end
+
   test "create wishlist item links new record to the correct wishlist" do
     post(
       wishlist_wishlist_items_url(@wishlist),
@@ -159,6 +175,46 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal("This is a fancy new name", wishlist_item.name)
     assert_in_delta(12.5, wishlist_item.price)
+  end
+
+  test "update wishlist item can add a new link" do
+    wishlist_item = create(:wishlist_item, wishlist: @wishlist)
+
+    patch(
+      wishlist_wishlist_item_url(@wishlist, wishlist_item),
+      params: {
+        wishlist_item: {
+          links_attributes: [
+            url: "https://foobar.com",
+          ],
+        },
+      },
+    )
+
+    wishlist_item.reload
+
+    assert_equal("https://foobar.com", wishlist_item.links.first.url)
+  end
+
+  test "update wishlist item can delete a link" do
+    link = create(:link)
+    wishlist_item = create(:wishlist_item, wishlist: @wishlist, links: [link])
+
+    patch(
+      wishlist_wishlist_item_url(@wishlist, wishlist_item),
+      params: {
+        wishlist_item: {
+          links_attributes: [
+            id: link.id,
+            _destroy: 1,
+          ],
+        },
+      },
+    )
+
+    wishlist_item.reload
+
+    assert_equal(0, wishlist_item.links.count)
   end
 
   test "update wishlist item with html format redirects to the associated wishlist" do
