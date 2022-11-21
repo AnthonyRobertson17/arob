@@ -10,8 +10,17 @@
       <% end %>
     </div>
   </div>
-  <%= number_to_currency(wishlist_item.price) %>
-  <% wishlist_item.links.each do |link| %>
-    <%= link_to(link.url, link.url, target: :_blank) %>
-  <% end %>
+
+  <p class="fw-bold mb-0"><%= WishlistItem.human_attribute_name("description") %>:</p>
+  <%= simple_format(wishlist_item.description) %>
+
+  <p class="fw-bold mb-0"><%= WishlistItem.human_attribute_name("price") %>:</p>
+  <p><%= number_to_currency(wishlist_item.price) %></p>
+
+  <p class="fw-bold mb-0"><%= WishlistItem.human_attribute_name("links") %>:</p>
+  <div class="list-group">
+    <% wishlist_item.links.each do |link| %>
+      <%= link_to(link.url, link.url, target: :_blank) %>
+    <% end %>
+  </div>
 <% end %>

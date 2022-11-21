@@ -67,6 +67,22 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
     assert_equal("Foobar", new_wishlist_item.name)
   end
 
+  test "create wishlist with a description" do
+    post(
+      wishlist_wishlist_items_url(@wishlist),
+      params: {
+        wishlist_item: {
+          name: "Foobar",
+          description: "test description",
+        },
+      },
+    )
+
+    new_wishlist_item = @wishlist.wishlist_items.first
+
+    assert_equal("test description", new_wishlist_item.description)
+  end
+
   test "create wishlist item redirects to the new wishlist item" do
     post(
       wishlist_wishlist_items_url(@wishlist),
@@ -74,6 +90,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
         wishlist_item: {
           name: "Foobar",
           price: 12.5,
+          description: "test description",
         },
       },
     )
@@ -89,7 +106,6 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
         params: {
           wishlist_item: {
             name: "New wishlist item",
-            price: 12.5,
           },
         },
       )
@@ -102,7 +118,6 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "Foobar",
-          price: 12.5,
         },
       },
     )
@@ -118,7 +133,6 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "Foobar",
-          price: 12.5,
         },
       },
     )
@@ -132,7 +146,6 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "Foobar",
-          price: 12.5,
         },
       },
     )
@@ -158,7 +171,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "update wishlist item actually updates the record" do
+  test "updating wishlist item name" do
     wishlist_item = create(:wishlist_item, wishlist: @wishlist)
 
     patch(
@@ -166,15 +179,41 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           name: "This is a fancy new name",
+        },
+      },
+    )
+
+    assert_equal("This is a fancy new name", wishlist_item.reload.name)
+  end
+
+  test "updating wishlist item price" do
+    wishlist_item = create(:wishlist_item, wishlist: @wishlist)
+
+    patch(
+      wishlist_wishlist_item_url(@wishlist, wishlist_item),
+      params: {
+        wishlist_item: {
           price: 12.5,
         },
       },
     )
 
-    wishlist_item.reload
+    assert_in_delta(12.5, wishlist_item.reload.price)
+  end
 
-    assert_equal("This is a fancy new name", wishlist_item.name)
-    assert_in_delta(12.5, wishlist_item.price)
+  test "updating wishlist item description" do
+    wishlist_item = create(:wishlist_item, wishlist: @wishlist)
+
+    patch(
+      wishlist_wishlist_item_url(@wishlist, wishlist_item),
+      params: {
+        wishlist_item: {
+          description: "foobar",
+        },
+      },
+    )
+
+    assert_equal("foobar", wishlist_item.reload.description)
   end
 
   test "update wishlist item can add a new link" do

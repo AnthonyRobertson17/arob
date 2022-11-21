@@ -208,12 +208,12 @@ class CreateTestDataCommand < BaseCommand
         seed(
           WishlistItem,
           find_by: { wishlist:, name: "Thing 1" },
-          update: { price: 12.34 },
+          update: { price: 12.34, description: "This is a description" },
         ),
         seed(
           WishlistItem,
           find_by: { wishlist:, name: "Thing 2" },
-          update: { price: 78.00 },
+          update: { price: 78.00, description: "This is another description" },
         ),
       ]
     end
