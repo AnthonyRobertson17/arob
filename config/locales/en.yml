@@ -62,6 +62,7 @@ en:
         name: "Name"
         price: "Price"
         links: "Links"
+        description: "Description"
   form_error_heading:
     zero: "No errors"
     one: "1 error:"

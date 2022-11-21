@@ -11,12 +11,14 @@ class WishlistItemsTest < ApplicationSystemTestCase
     click_on("Add New Item")
 
     fill_in("Name", with: "Random wishlist item name")
+    fill_in("Description", with: "Some random description")
     fill_in("Price", with: 12.5)
     click_on("Add Link")
     fill_in(id: /wishlist_item_links_attributes_[0-9]{10,}_url/, with: "https://google.com")
     click_on("Create")
 
     assert_text("Random wishlist item name")
+    assert_text("Some random description")
     assert_link("https://google.com")
   end
 
@@ -66,12 +68,14 @@ class WishlistItemsTest < ApplicationSystemTestCase
     find(".bi-pencil").click
 
     fill_in("Name", with: "something else")
+    fill_in("Description", with: "some other description")
     fill_in("Price", with: 20.56)
     fill_in(id: "wishlist_item_links_attributes_0_url", with: "https://foobar.com")
     click_on("Update")
 
     assert_current_path(wishlist_wishlist_item_path(wishlist, wishlist_item))
     assert_text("something else")
+    assert_text("some other description")
     assert_text("$20.56")
     assert_link("https://foobar.com")
   end
