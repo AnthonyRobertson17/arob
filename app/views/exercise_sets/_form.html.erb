@@ -2,7 +2,7 @@
   <%= form_with(model: [workout, exercise, exercise_set]) do |f| %>
     <div class="row g-2 mb-2">
       <div class="col-4">
-        <%= f.number_field(:weight, autofocus: true, class: "form-control") %>
+        <%= f.number_field(:weight, step: 0.5, autofocus: true, class: "form-control") %>
       </div>
       <div class="col-4">
         <%= f.number_field(:repetitions, class: "form-control") %>
