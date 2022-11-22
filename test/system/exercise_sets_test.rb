@@ -16,7 +16,7 @@ class ExerciseSetsTest < ApplicationSystemTestCase
 
     assert_current_path(workout_path(workout))
 
-    fill_in(id: "exercise_set_weight", with: 478)
+    fill_in(id: "exercise_set_weight", with: 478.5)
     fill_in(id: "exercise_set_repetitions", with: 732)
 
     click_on("Save")
