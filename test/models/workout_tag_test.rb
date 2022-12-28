@@ -7,8 +7,8 @@ class WorkoutTagTest < ActiveSupport::TestCase
     user = create(:user)
     workout = create(:workout, user:, name: "test_workout")
     workout_tag = create(:workout_tag, user:)
-    create :workout_tag_assignment, workout: workout, tag: workout_tag
+    create(:workout_tag_assignment, workout:, tag: workout_tag)
 
-    assert_equal "test_workout", workout_tag.workouts.first.name
+    assert_equal("test_workout", workout_tag.workouts.first.name)
   end
 end
