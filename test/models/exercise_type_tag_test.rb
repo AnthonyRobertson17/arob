@@ -7,8 +7,8 @@ class ExerciseTypeTagTest < ActiveSupport::TestCase
     user = create(:user)
     exercise_type = create(:exercise_type, user:, name: "test_exercise_type")
     exercise_type_tag = create(:exercise_type_tag, user:)
-    create :exercise_type_tag_assignment, exercise_type: exercise_type, tag: exercise_type_tag
+    create(:exercise_type_tag_assignment, exercise_type:, tag: exercise_type_tag)
 
-    assert_equal "test_exercise_type", exercise_type_tag.exercise_types.first.name
+    assert_equal("test_exercise_type", exercise_type_tag.exercise_types.first.name)
   end
 end

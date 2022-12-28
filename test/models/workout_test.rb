@@ -6,7 +6,7 @@ class WorkoutTest < ActiveSupport::TestCase
   test "name is required" do
     workout = build(:workout, name: "")
 
-    assert_predicate workout, :invalid?
+    assert_predicate(workout, :invalid?)
   end
 
   test "can access tags through association" do
@@ -14,7 +14,7 @@ class WorkoutTest < ActiveSupport::TestCase
     workout_tag = create(:workout_tag, user:, name: "test_tag")
     workout = create(:workout, user:, tags: [workout_tag])
 
-    assert_equal "test_tag", workout.tags.first.name
+    assert_equal("test_tag", workout.tags.first.name)
   end
 
   test "can access exercises through association" do
@@ -22,7 +22,7 @@ class WorkoutTest < ActiveSupport::TestCase
     create(:exercise, workout:)
     create(:exercise, workout:)
 
-    assert_equal 2, workout.exercises.count
+    assert_equal(2, workout.exercises.count)
   end
 
   test "exercises are ordered by position" do
@@ -43,58 +43,58 @@ class WorkoutTest < ActiveSupport::TestCase
   test "new workouts are not started or completed" do
     workout = build(:workout)
 
-    assert_not workout.started?
-    assert_not workout.completed?
+    assert_not(workout.started?)
+    assert_not(workout.completed?)
   end
 
   test "for_user scope only returns workouts for the provided user" do
     user = create(:user)
-    create :workout
-    create :workout, user: user
+    create(:workout)
+    create(:workout, user:)
 
-    assert_predicate Workout.for_user(user), :one?
+    assert_predicate(Workout.for_user(user), :one?)
   end
 
   test "completed scope only returns completed workouts" do
-    create :workout
-    create :workout, :started
-    create :workout, :completed
+    create(:workout)
+    create(:workout, :started)
+    create(:workout, :completed)
 
-    assert_predicate Workout.completed, :one?
+    assert_predicate(Workout.completed, :one?)
   end
 
   test "completed? when false" do
     workout = build(:workout)
 
-    assert_not workout.completed?
+    assert_not(workout.completed?)
   end
 
   test "completed? when true" do
     workout = build(:workout, :completed)
 
-    assert_predicate workout, :completed?
+    assert_predicate(workout, :completed?)
   end
 
   test "started? when false" do
     workout = build(:workout)
 
-    assert_not workout.started?
+    assert_not(workout.started?)
   end
 
   test "started? when true" do
     workout = build(:workout, :started)
 
-    assert_predicate workout, :started?
+    assert_predicate(workout, :started?)
   end
 
   test "start! sets started_at if not already set" do
     workout = create(:workout)
 
-    assert_not workout.started?
+    assert_not(workout.started?)
 
     workout.start!
 
-    assert_predicate workout.reload, :started?
+    assert_predicate(workout.reload, :started?)
   end
 
   test "start! raises AlreadyStartedError if already started" do
@@ -104,7 +104,7 @@ class WorkoutTest < ActiveSupport::TestCase
 
       assert_raises(Workout::AlreadyStartedError) { workout.start! }
 
-      assert_equal original_time, workout.reload.started_at
+      assert_equal(original_time, workout.reload.started_at)
     end
   end
 
@@ -117,26 +117,26 @@ class WorkoutTest < ActiveSupport::TestCase
   test "in_progress? is false when completed_at is set" do
     workout = build(:workout, :completed)
 
-    assert_predicate workout, :started?
-    assert_not workout.in_progress?
+    assert_predicate(workout, :started?)
+    assert_not(workout.in_progress?)
   end
 
   test "draft? when workout is draft" do
     workout = build(:workout)
 
-    assert_predicate workout, :draft?
+    assert_predicate(workout, :draft?)
   end
 
   test "draft? when workout is started" do
     workout = build(:workout, :started)
 
-    assert_not workout.draft?
+    assert_not(workout.draft?)
   end
 
   test "draft? when workout is completed" do
     workout = build(:workout, :completed)
 
-    assert_not workout.draft?
+    assert_not(workout.draft?)
   end
 
   test "complete! sets completed_at" do
@@ -145,7 +145,7 @@ class WorkoutTest < ActiveSupport::TestCase
     freeze_time do
       workout.complete!
 
-      assert_equal Time.now.utc, workout.reload.completed_at
+      assert_equal(Time.now.utc, workout.reload.completed_at)
     end
   end
 
@@ -154,7 +154,7 @@ class WorkoutTest < ActiveSupport::TestCase
 
     assert_raises(Workout::NotStartedError) { workout.complete! }
 
-    assert_nil workout.reload.completed_at
+    assert_nil(workout.reload.completed_at)
   end
 
   test "complete! raises AlreadyCompletedError if already completed" do
@@ -164,7 +164,7 @@ class WorkoutTest < ActiveSupport::TestCase
 
       assert_raises(Workout::AlreadyCompletedError) { workout.complete! }
 
-      assert_equal original_time, workout.reload.completed_at
+      assert_equal(original_time, workout.reload.completed_at)
     end
   end
 
