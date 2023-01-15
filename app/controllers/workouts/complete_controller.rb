@@ -21,7 +21,7 @@ module Workouts
     private
 
     def set_workout
-      @workout = Workout.find(params.require(:id))
+      @workout = policy_scope(Workout).find(params.require(:id))
     end
   end
 end

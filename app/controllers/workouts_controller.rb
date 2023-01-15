@@ -1,26 +1,27 @@
 # frozen_string_literal: true
 
 class WorkoutsController < ApplicationController
-  before_action(:set_workout, only: [:edit, :update, :destroy])
-  before_action(:set_workout_tags, only: [:new, :edit])
-
   # GET /workouts
   def index
-    @workouts = users_workouts.all.order(id: :desc)
+    @workouts = policy_scope(Workout).order(id: :desc)
   end
 
   # GET /workouts/1
   def show
-    @workout = users_workouts.includes(exercises: [:exercise_sets, :exercise_type]).find(params[:id])
+    @workout = policy_scope(Workout).includes(exercises: [:exercise_sets, :exercise_type]).find(params[:id])
   end
 
   # GET /workouts/new
   def new
     @workout = Workout.new
+    @workout_tags = policy_scope(WorkoutTag).all.order("lower(name)")
   end
 
   # GET /workouts/1/edit
-  def edit; end
+  def edit
+    @workout = policy_scope(Workout).find(params[:id])
+    @workout_tags = policy_scope(WorkoutTag).all.order("lower(name)")
+  end
 
   # POST /workouts
   def create
@@ -36,6 +37,7 @@ class WorkoutsController < ApplicationController
 
   # PATCH/PUT /workouts/1
   def update
+    @workout = policy_scope(Workout).find(params[:id])
     if @workout.update(workout_params)
       respond_to do |format|
         format.html { redirect_to(@workout) }
@@ -49,27 +51,15 @@ class WorkoutsController < ApplicationController
 
   # DELETE /workouts/1
   def destroy
+    @workout = policy_scope(Workout).find(params[:id])
     @workout.destroy
     redirect_to(workouts_url, status: :see_other)
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_workout
-    @workout = users_workouts.find(params[:id])
-  end
-
-  def set_workout_tags
-    @workout_tags = WorkoutTag.for_user(current_user).all.order("lower(name)")
-  end
-
   # Only allow a list of trusted parameters through.
   def workout_params
     params.require(:workout).permit([:name, :started_at, :completed_at, { tag_ids: [] }])
-  end
-
-  def users_workouts
-    Workout.for_user(current_user)
   end
 end

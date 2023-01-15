@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+
   before_action :authenticate_user!
 
   around_action :set_time_zone, if: :current_user
