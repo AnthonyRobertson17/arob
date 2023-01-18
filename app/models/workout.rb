@@ -57,7 +57,7 @@ class Workout < ApplicationRecord
   end
 
   def handle_exercise_deletion(position)
-    exercises.where(position: position...).order(:position).find_each do |exercise|
+    exercises.where(position: position...).order(:position).each do |exercise|
       exercise.decrement(:position)
       exercise.save!
     end
