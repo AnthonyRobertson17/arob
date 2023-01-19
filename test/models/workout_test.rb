@@ -213,4 +213,23 @@ class WorkoutTest < ActiveSupport::TestCase
 
     assert_equal((0..3).to_a, workout.exercises.map(&:position))
   end
+
+  test "handle_exercise_deletion decrements positions successfully even after exercises have been rearranged" do
+    workout = create(:workout)
+    create(:exercise, workout:)
+    create(:exercise, workout:)
+    exercise4 = create(:exercise, workout:)
+    exercise3 = create(:exercise, workout:)
+    exercise6 = create(:exercise, workout:)
+    exercise5 = create(:exercise, workout:)
+
+    exercise6.update!(position: 6)
+    exercise5.update!(position: 5)
+    exercise4.update!(position: 4)
+    exercise3.update!(position: 3)
+
+    workout.handle_exercise_deletion(2)
+
+    assert_equal((0..5).to_a, workout.exercises.map(&:position))
+  end
 end
