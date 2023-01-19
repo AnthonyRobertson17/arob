@@ -120,6 +120,8 @@ class ExercisesTest < ApplicationSystemTestCase
       find(".bi-arrow-down").click
     end
 
+    sleep(0.1)
+
     assert_page_order(second.name, first.name)
   end
 
@@ -138,6 +140,8 @@ class ExercisesTest < ApplicationSystemTestCase
     within("##{dom_id(last)}") do
       find(".bi-arrow-up").click
     end
+
+    sleep(0.1)
 
     assert_page_order(last.name, second.name)
   end
