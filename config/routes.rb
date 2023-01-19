@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     resources :exercises, except: [:index, :show] do
       resources :exercise_sets, except: [:index, :show]
       member do
-        patch "swap_position", to: "exercises/swap_position#update"
+        patch "move_higher", to: "exercises/reorder#move_higher"
+        patch "move_lower", to: "exercises/reorder#move_lower"
       end
     end
   end

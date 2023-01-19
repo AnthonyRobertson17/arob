@@ -40,19 +40,17 @@
       </div>
     </div>
     <div>
-      <%= button_to(swap_position_workout_exercise_path(workout, exercise),
+      <%= button_to(move_higher_workout_exercise_path(workout, exercise),
                     method: :patch,
-                    params: { position: exercise.position - 1 },
                     form: { data: { turbo_frame: dom_id(exercise), } },
-                    disabled: exercise.position.zero?,
+                    disabled: exercise.first?,
                     class: "btn btn-secondary mb-3") do %>
         <i class="bi bi-arrow-up"></i>
       <% end %>
-      <%= button_to(swap_position_workout_exercise_path(workout, exercise),
+      <%= button_to(move_lower_workout_exercise_path(workout, exercise),
                     method: :patch,
-                    params: { position: exercise.position + 1 },
                     form: { data: { turbo_frame: dom_id(exercise), } },
-                    disabled: workout.last_exercise?(exercise),
+                    disabled: exercise.last?,
                     class: "btn btn-secondary") do %>
         <i class="bi bi-arrow-down"></i>
       <% end %>
