@@ -5,12 +5,12 @@ class WishlistsController < ApplicationController
 
   # GET /wishlists
   def index
-    @wishlists = users_wishlists.all.order(id: :desc)
+    @wishlists = policy_scope(Wishlist).all.order(id: :desc)
   end
 
   # GET /wishlists/1
   def show
-    @wishlist = users_wishlists.includes(:wishlist_items).find(params[:id])
+    @wishlist = policy_scope(Wishlist).includes(:wishlist_items).find(params[:id])
   end
 
   # GET /wishlists/new
@@ -55,15 +55,11 @@ class WishlistsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_wishlist
-    @wishlist = users_wishlists.find(params[:id])
+    @wishlist = policy_scope(Wishlist).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def wishlist_params
     params.require(:wishlist).permit(:name)
-  end
-
-  def users_wishlists
-    Wishlist.for_user(current_user)
   end
 end

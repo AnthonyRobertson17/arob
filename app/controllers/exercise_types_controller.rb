@@ -6,7 +6,7 @@ class ExerciseTypesController < ApplicationController
 
   # GET /exercise_types
   def index
-    @exercise_types = exercise_types.all.order("lower(name)")
+    @exercise_types = policy_scope(ExerciseType).all.order("lower(name)")
   end
 
   # GET /exercise_types/1
@@ -61,19 +61,15 @@ class ExerciseTypesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_exercise_type
-    @exercise_type = exercise_types.find(params[:id])
+    @exercise_type = policy_scope(ExerciseType).find(params[:id])
   end
 
   def set_exercise_type_tags
-    @exercise_type_tags = ExerciseTypeTag.for_user(current_user).all.order("lower(name)")
+    @exercise_type_tags = policy_scope(ExerciseTypeTag).all.order("lower(name)")
   end
 
   # Only allow a list of trusted parameters through.
   def exercise_type_params
     params.require(:exercise_type).permit([:name, { tag_ids: [] }])
-  end
-
-  def exercise_types
-    ExerciseType.for_user(current_user)
   end
 end

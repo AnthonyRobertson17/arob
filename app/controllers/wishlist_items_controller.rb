@@ -67,6 +67,6 @@ class WishlistItemsController < ApplicationController
   end
 
   def set_wishlist
-    @wishlist = current_user.wishlists.find(params[:wishlist_id])
+    @wishlist = policy_scope(Wishlist).find(params[:wishlist_id])
   end
 end

@@ -47,7 +47,7 @@ class ExerciseSetsController < ApplicationController
   private
 
   def set_workout
-    @workout = current_user.workouts.find(params[:workout_id])
+    @workout = policy_scope(Workout).find(params[:workout_id])
   end
 
   def set_exercise

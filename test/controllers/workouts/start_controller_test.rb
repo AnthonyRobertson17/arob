@@ -4,28 +4,38 @@ require "test_helper"
 
 module Workouts
   class StartControllerTest < ActionDispatch::IntegrationTest
-    setup do
-      user = create(:user)
-      sign_in user
+    def user
+      @user ||= create(:user)
     end
 
     test "update redirects to the workout show page" do
-      workout = create(:workout)
+      sign_in(user)
+      workout = create(:workout, user:)
 
-      patch start_workout_url(workout)
+      patch(start_workout_url(workout))
 
-      assert_redirected_to workout_url(workout)
+      assert_redirected_to(workout_url(workout))
 
-      assert_predicate workout.reload, :started?
+      assert_predicate(workout.reload, :started?)
     end
 
     test "updating an already started workout should set alert flash" do
-      workout = create(:workout, :started)
+      sign_in(user)
+      workout = create(:workout, :started, user:)
 
-      patch start_workout_url(workout)
+      patch(start_workout_url(workout))
 
-      assert_redirected_to workout_url(workout)
-      assert_equal "Workout has already started.", flash[:alert]
+      assert_redirected_to(workout_url(workout))
+      assert_equal("Workout has already started.", flash[:alert])
+    end
+
+    test "starting a workout that belongs to another user raises not found" do
+      sign_in(user)
+      workout = create(:workout)
+
+      assert_raises(ActiveRecord::RecordNotFound) do
+        patch(start_workout_url(workout))
+      end
     end
   end
 end

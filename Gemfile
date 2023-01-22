@@ -20,6 +20,9 @@ gem "puma", "~> 6.0"
 # https://github.com/brendon/acts_as_list
 gem "acts_as_list"
 
+# https://github.com/varvet/pundit
+gem "pundit"
+
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
 

@@ -5,7 +5,7 @@ class WorkoutTagsController < ApplicationController
 
   # GET /workout_tags
   def index
-    @workout_tags = workout_tags.all.order("lower(name)")
+    @workout_tags = policy_scope(WorkoutTag).all.order("lower(name)")
   end
 
   # GET /workout_tags/1
@@ -58,15 +58,11 @@ class WorkoutTagsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_workout_tag
-    @workout_tag = workout_tags.find(params[:id])
+    @workout_tag = policy_scope(WorkoutTag).find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def workout_tag_params
     params.require(:workout_tag).permit(:name)
-  end
-
-  def workout_tags
-    WorkoutTag.for_user(current_user)
   end
 end

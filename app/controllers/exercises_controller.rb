@@ -69,10 +69,10 @@ class ExercisesController < ApplicationController
   end
 
   def set_workout
-    @workout = current_user.workouts.find(params[:workout_id])
+    @workout = policy_scope(Workout).find(params[:workout_id])
   end
 
   def set_exercise_types
-    @exercise_types = current_user.exercise_types.all.order("lower(name)")
+    @exercise_types = policy_scope(ExerciseType).all.order("lower(name)")
   end
 end
