@@ -34,6 +34,9 @@ en:
       exercise_type:
         create: Create
         update: Update
+      gym:
+        create: Create
+        update: Update
       wishlist:
         create: Create
         update: Update

@@ -28,7 +28,7 @@ class WorkoutsTest < ApplicationSystemTestCase
 
   test "can create workout from home page" do
     login
-    visit(gym_url)
+    visit(fitness_url)
     click_on("Create Workout")
 
     assert_current_path(new_workout_path)

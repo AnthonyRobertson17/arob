@@ -2,13 +2,14 @@
 
 module ApplicationHelper
   NAVBAR_PATHS = {
-    gym: [
-      "/gym",
+    fitness: [
+      "/exercise_type_tags",
+      "/exercise_types",
+      "/fitness",
+      "/gyms",
       "/workouts",
       "/workout_types",
-      "/exercise_types",
       "/workout_tags",
-      "/exercise_type_tags",
     ],
     wishlists: [
       "/wishlists",

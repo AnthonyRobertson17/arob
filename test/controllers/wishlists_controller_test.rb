@@ -90,7 +90,7 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "get edit raises not found if the wishlist belongst to another user" do
+  test "get edit raises not found if the wishlist belongs to another user" do
     wishlist = create(:wishlist)
 
     assert_raises(ActiveRecord::RecordNotFound) do

@@ -1,0 +1,21 @@
+<%= turbo_frame_tag(gym) do %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="h5"><%= gym.name %></h5>
+      <div class="d-flex">
+        <%= link_to(gym, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do %>
+          <i class="bi bi-arrows-angle-expand"></i>
+        <% end %>
+        <%= link_to(edit_gym_path(gym), class: "btn btn-secondary me-2") do %>
+          <i class="bi bi-pencil"></i>
+        <% end %>
+        <%= button_to(gym,
+                      method: :delete,
+                      form: { data: { turbo_confirm: t(".destroy_confirmation") } },
+                      class: "btn btn-danger" ) do %>
+          <i class="bi bi-trash3"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

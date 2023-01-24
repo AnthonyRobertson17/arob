@@ -7,6 +7,7 @@ class HomeTest < ApplicationSystemTestCase
     login
     visit(root_url)
 
-    assert_text("Gym")
+    assert_text("Fitness")
+    assert_text("Wishlists")
   end
 end
