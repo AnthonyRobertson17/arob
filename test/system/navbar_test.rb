@@ -13,15 +13,23 @@ class NavbarTest < ApplicationSystemTestCase
 
   test "navigating to the workouts page" do
     login
-    visit(gym_url)
+    visit(fitness_url)
     click_on("Workouts")
 
     assert_current_path(workouts_path)
   end
 
+  test "navigating to the gyms page" do
+    login
+    visit(fitness_url)
+    click_on("Gyms")
+
+    assert_current_path(gyms_path)
+  end
+
   test "navigating to the exercise types page" do
     login
-    visit(gym_url)
+    visit(fitness_url)
     click_on("Exercise Types")
 
     assert_current_path(exercise_types_path)
@@ -29,7 +37,7 @@ class NavbarTest < ApplicationSystemTestCase
 
   test "navigating to the workout_tags page" do
     login
-    visit(gym_url)
+    visit(fitness_url)
     click_on("Tags")
     click_on("Workout Tags")
 

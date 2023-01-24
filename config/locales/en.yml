@@ -44,6 +44,7 @@ en:
       exercise_type_tag: Exercise Type Tag
       exercise_set: Set
       exercise: Exercise
+      gym: Gym
       wishlist: Wishlist
       wishlist_item: Wishlist Item
     attributes:
@@ -56,6 +57,8 @@ en:
       exercise_set:
         repetitions: Reps
         weight: Weight
+      gym:
+        name: "Name"
       wishlist:
         name: "Name"
       wishlist_item:
@@ -69,11 +72,11 @@ en:
     other: "%{count} errors:"
   home:
     index:
-      gym: "Gym"
+      fitness: "Fitness"
       wishlists: "Wishlists"
-  gym:
+  fitness:
     index:
-      title: "Gym"
+      title: "Fitness"
       recent_workouts: "Recently Completed Workouts"
       in_progress_workouts: "In-Progress Workouts"
       create_workout: "Create Workout"
@@ -134,6 +137,18 @@ en:
       title: "Edit Exercise Type"
     exercise_type:
       destroy_confirmation: "Are you sure you want to destroy this exercise type?"
+  gyms:
+    index:
+      title: "Gyms"
+      create_gym: "Create Gym"
+    show:
+      back: "Back to Gyms"
+    new:
+      title: "New Gym"
+    edit:
+      title: "Edit Gym"
+    gym:
+      destroy_confirmation: "Are you sure you want to destroy this gym?"
   exercise_type_tags:
     index:
       title: "Exercise Type Tags"
@@ -179,10 +194,11 @@ en:
     destroy_confirmation: "Are you sure you want to destroy this item?"
   navbar:
     logout: "Logout"
-    gym_navbar:
+    fitness_navbar:
       workouts: "Workouts"
       tags: "Tags"
       workout_tags: "Workout Tags"
+      gyms: "Gyms"
       exercise_types: "Exercise Types"
       exercise_type_tags: "Exercise Type Tags"
     wishlists:

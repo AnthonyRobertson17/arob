@@ -25,11 +25,14 @@ class ExerciseTypeTest < ActiveSupport::TestCase
     assert_equal(2, exercise_type.exercises.count)
   end
 
-  test "for_user scope only returns exercise_types for the provided user" do
+  test "for_user scope only returns gyms for the provided user" do
     user = create(:user)
+    expected = create(:exercise_type, user:)
     create(:exercise_type)
-    create(:exercise_type, user:)
 
-    assert_predicate(ExerciseType.for_user(user), :one?)
+    exercise_types = ExerciseType.for_user(user)
+
+    assert_predicate(exercise_types, :one?)
+    assert_equal(expected.id, exercise_types.first.id)
   end
 end

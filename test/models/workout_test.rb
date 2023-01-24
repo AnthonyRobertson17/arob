@@ -53,6 +53,17 @@ class WorkoutTest < ActiveSupport::TestCase
     assert_predicate(Workout.for_user(user), :one?)
   end
 
+  test "for_user scope only returns gyms for the provided user" do
+    user = create(:user)
+    expected = create(:workout, user:)
+    create(:workout)
+
+    workouts = Workout.for_user(user)
+
+    assert_predicate(workouts, :one?)
+    assert_equal(expected.id, workouts.first.id)
+  end
+
   test "completed scope only returns completed workouts" do
     create(:workout)
     create(:workout, :started)

@@ -15,11 +15,14 @@ class TagTest < ActiveSupport::TestCase
     assert_predicate(tag, :invalid?)
   end
 
-  test "for_user scope only returns tags for the provided user" do
+  test "for_user scope only returns gyms for the provided user" do
     user = create(:user)
-    create(:tag)
-    create(:tag, user:)
+    expected = create(:tag, user:, type: "WorkoutTag")
+    create(:tag, type: "WorkoutTag")
 
-    assert_predicate(Tag.for_user(user), :one?)
+    tags = Tag.for_user(user)
+
+    assert_predicate(tags, :one?)
+    assert_equal(expected.id, tags.first.id)
   end
 end

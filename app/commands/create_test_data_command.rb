@@ -4,19 +4,20 @@
 class CreateTestDataCommand < BaseCommand
   def execute
     users
-    gym_models
+    fitness_models
     wishlist_models
   end
 
   private
 
-  def gym_models
+  def fitness_models
     workout_tags
     exercise_type_tags
     workouts
     exercise_types
     exercises
     exercise_sets
+    gyms
   end
 
   def wishlist_models
@@ -151,31 +152,30 @@ class CreateTestDataCommand < BaseCommand
   end
 
   def exercise_sets
-    return @exercise_sets if @exercise_sets
-
-    @exercise_sets = []
-    exercises.each do |exercise|
-      @exercise_sets += [
-        seed(
-          ExerciseSet,
-          find_by: { exercise:, weight: 12.5, repetitions: 15 },
-        ),
-        seed(
-          ExerciseSet,
-          find_by: { exercise:, weight: 25, repetitions: 10 },
-        ),
-        seed(
-          ExerciseSet,
-          find_by: { exercise:, weight: 35, repetitions: 10 },
-        ),
-        seed(
-          ExerciseSet,
-          find_by: { exercise:, weight: 45, repetitions: 8 },
-        ),
-      ]
+    @exercise_sets ||= begin
+      exercise_sets = []
+      exercises.each do |exercise|
+        exercise_sets += [
+          seed(
+            ExerciseSet,
+            find_by: { exercise:, weight: 12.5, repetitions: 15 },
+          ),
+          seed(
+            ExerciseSet,
+            find_by: { exercise:, weight: 25, repetitions: 10 },
+          ),
+          seed(
+            ExerciseSet,
+            find_by: { exercise:, weight: 35, repetitions: 10 },
+          ),
+          seed(
+            ExerciseSet,
+            find_by: { exercise:, weight: 45, repetitions: 8 },
+          ),
+        ]
+      end
+      exercise_sets
     end
-
-    @exercise_sets
   end
 
   def wishlists
@@ -200,41 +200,60 @@ class CreateTestDataCommand < BaseCommand
   end
 
   def wishlist_items
-    return @wishlist_items if @wishlist_items
-
-    @wishlist_items = []
-    wishlists.each do |wishlist|
-      @wishlist_items += [
-        seed(
-          WishlistItem,
-          find_by: { wishlist:, name: "Thing 1" },
-          update: { price: 12.34, description: "This is a description" },
-        ),
-        seed(
-          WishlistItem,
-          find_by: { wishlist:, name: "Thing 2" },
-          update: { price: 78.00, description: "This is another description" },
-        ),
-      ]
+    @wishlist_items ||= begin
+      wishlist_items = []
+      wishlists.each do |wishlist|
+        wishlist_items += [
+          seed(
+            WishlistItem,
+            find_by: { wishlist:, name: "Thing 1" },
+            update: { price: 12.34, description: "This is a description" },
+          ),
+          seed(
+            WishlistItem,
+            find_by: { wishlist:, name: "Thing 2" },
+            update: { price: 78.00, description: "This is another description" },
+          ),
+        ]
+      end
+      wishlist_items
     end
-
-    @wishlist_items
   end
 
   def wishlist_item_links
-    return @wishlist_item_links if @wishlist_item_links
-
-    @wishlist_item_links = []
-    wishlist_items.each do |wishlist_item|
-      @wishlist_item_links += [
-        seed(
-          Link,
-          find_by: { linkable: wishlist_item, url: "https://www.google.com" },
-        ),
-      ]
+    @wishlist_item_links ||= begin
+      wishlist_item_links = []
+      wishlist_items.each do |wishlist_item|
+        wishlist_item_links += [
+          seed(
+            Link,
+            find_by: { linkable: wishlist_item, url: "https://www.google.com" },
+          ),
+        ]
+      end
+      wishlist_item_links
     end
+  end
 
-    @wishlist_item_links
+  def gyms
+    @gyms ||= [
+      seed(
+        Gym,
+        find_by: { name: "GoodLife Fitness", user: dev },
+      ),
+      seed(
+        Gym,
+        find_by: { name: "LA Fitness", user: dev },
+      ),
+      seed(
+        Gym,
+        find_by: { name: "Condo Gym", user: dev2 },
+      ),
+      seed(
+        Gym,
+        find_by: { name: "Altea Active", user: dev2 },
+      ),
+    ]
   end
 end
 # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/ClassLength
