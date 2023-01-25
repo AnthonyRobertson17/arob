@@ -38,19 +38,22 @@ en:
   cancel: "Cancel"
   activerecord:
     models:
-      workout: Workout
-      workout_tag: Workout Tag
-      exercise_type: Exercise Type
-      exercise_type_tag: Exercise Type Tag
-      exercise_set: Set
-      exercise: Exercise
-      gym: Gym
-      wishlist: Wishlist
-      wishlist_item: Wishlist Item
+      workout: "Workout"
+      workout_tag: "Workout Tag"
+      exercise_type: "Exercise Type"
+      exercise_type_tag: "Exercise Type Tag"
+      exercise_set: "Set"
+      exercise: "Exercise"
+      gym: "Gym"
+      equipment: "Equipment"
+      wishlist: "Wishlist"
+      wishlist_item: "Wishlist Item"
     attributes:
       workout:
         started_at: "Started At"
         completed_at: "Completed At"
+        name: "Name"
+      equipment:
         name: "Name"
       exercise:
         note: "Note"
@@ -111,6 +114,18 @@ en:
         already_started: "Workout has already started."
         already_completed: "Workout has already been completed."
         not_started: "Workout has not been started."
+  equipment:
+    index:
+      title: "Equipment"
+      create_equipment: "Create Equipment"
+    show:
+      back: "Back to All Equipment"
+    new:
+      title: "New Equipment"
+    edit:
+      title: "Edit Equipment"
+    equipment:
+      destroy_confirmation: "Are you sure you want to destroy this equipment?"
   exercises:
     edit:
       title: "Edit Exercise"
@@ -199,6 +214,7 @@ en:
       tags: "Tags"
       workout_tags: "Workout Tags"
       gyms: "Gyms"
+      equipment: "Equipment"
       exercise_types: "Exercise Types"
       exercise_type_tags: "Exercise Type Tags"
     wishlists:

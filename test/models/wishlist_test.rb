@@ -16,15 +16,4 @@ class WishlistTest < ActiveSupport::TestCase
 
     assert_predicate(Wishlist.for_user(user), :one?)
   end
-
-  test "for_user scope only returns gyms for the provided user" do
-    user = create(:user)
-    expected = create(:wishlist, user:)
-    create(:wishlist)
-
-    wishlists = Wishlist.for_user(user)
-
-    assert_predicate(wishlists, :one?)
-    assert_equal(expected.id, wishlists.first.id)
-  end
 end

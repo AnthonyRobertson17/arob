@@ -14,6 +14,7 @@ class CreateTestDataCommand < BaseCommand
     workout_tags
     exercise_type_tags
     workouts
+    equipment
     exercise_types
     exercises
     exercise_sets
@@ -54,98 +55,116 @@ class CreateTestDataCommand < BaseCommand
   end
 
   def workout_tags
-    @workout_tags ||= [
-      seed(
-        WorkoutTag,
-        find_by: { name: "Legs", user: dev },
-      ),
-      seed(
-        WorkoutTag,
-        find_by: { name: "Chest", user: dev },
-      ),
-      seed(
-        WorkoutTag,
-        find_by: { name: "Chest for user 2", user: dev2 },
-      ),
-    ]
+    @workout_tags ||= {
+      dev.id => [
+        seed(
+          WorkoutTag,
+          find_by: { name: "Legs", user: dev },
+        ),
+        seed(
+          WorkoutTag,
+          find_by: { name: "Chest", user: dev },
+        ),
+      ],
+      dev2.id => [
+        seed(
+          WorkoutTag,
+          find_by: { name: "Chest for user 2", user: dev2 },
+        ),
+      ],
+    }
   end
 
   def exercise_type_tags
-    @exercise_type_tags ||= [
-      seed(
-        ExerciseTypeTag,
-        find_by: { name: "Biceps", user: dev },
-      ),
-      seed(
-        ExerciseTypeTag,
-        find_by: { name: "Triceps", user: dev },
-      ),
-      seed(
-        ExerciseTypeTag,
-        find_by: { name: "Chest", user: dev2 },
-      ),
-      seed(
-        ExerciseTypeTag,
-        find_by: { name: "Legs", user: dev2 },
-      ),
-    ]
+    @exercise_type_tags ||= {
+      dev.id => [
+        seed(
+          ExerciseTypeTag,
+          find_by: { name: "Biceps", user: dev },
+        ),
+        seed(
+          ExerciseTypeTag,
+          find_by: { name: "Triceps", user: dev },
+        ),
+      ],
+      dev2.id => [
+        seed(
+          ExerciseTypeTag,
+          find_by: { name: "Chest", user: dev2 },
+        ),
+        seed(
+          ExerciseTypeTag,
+          find_by: { name: "Legs", user: dev2 },
+        ),
+      ],
+    }
   end
 
   def exercise_types
-    @exercise_types ||= [
-      seed(
-        ExerciseType,
-        find_by: { name: "Bicep Curl", user: dev },
-      ),
-      seed(
-        ExerciseType,
-        find_by: { name: "Tricep Extension", user: dev },
-      ),
-      seed(
-        ExerciseType,
-        find_by: { name: "Bench Press", user: dev2 },
-      ),
-      seed(
-        ExerciseType,
-        find_by: { name: "Shoulder Press", user: dev2 },
-      ),
-    ]
+    @exercise_types ||= {
+      dev.id => [
+        seed(
+          ExerciseType,
+          find_by: { name: "Bicep Curl", user: dev },
+          update: { equipment: [equipment[dev.id][:dumbbell]] },
+        ),
+        seed(
+          ExerciseType,
+          find_by: { name: "Tricep Extension", user: dev },
+          update: { equipment: [equipment[dev.id][:dumbbell]] },
+        ),
+      ],
+      dev2.id => [
+        seed(
+          ExerciseType,
+          find_by: { name: "Bench Press", user: dev2 },
+          update: { equipment: [equipment[dev2.id][:barbell]] },
+        ),
+        seed(
+          ExerciseType,
+          find_by: { name: "Shoulder Press", user: dev2 },
+          update: { equipment: [equipment[dev2.id][:barbell]] },
+        ),
+      ],
+    }
   end
 
   def workouts
-    @workouts ||= [
-      seed(
-        Workout,
-        find_by: { name: "Let's GOOOO", user: dev },
-        update: { started_at: 2.days.ago },
-      ),
-      seed(
-        Workout,
-        find_by: { name: "Leg Day", user: dev },
-      ),
-      seed(
-        Workout,
-        find_by: { name: "Chest Day", user: dev },
-        update: { started_at: 2.days.ago, completed_at: 2.days.ago + 1.hour },
-      ),
-      seed(
-        Workout,
-        find_by: { name: "Silly Day", user: dev },
-        update: { started_at: 2.days.ago, completed_at: 2.days.ago + 1.hour },
-      ),
-    ]
+    @workouts ||= {
+      dev.id => [
+        seed(
+          Workout,
+          find_by: { name: "Let's GOOOO", user: dev },
+          update: { started_at: 2.days.ago },
+        ),
+        seed(
+          Workout,
+          find_by: { name: "Leg Day", user: dev },
+        ),
+        seed(
+          Workout,
+          find_by: { name: "Chest Day", user: dev },
+          update: { started_at: 2.days.ago, completed_at: 2.days.ago + 1.hour },
+        ),
+        seed(
+          Workout,
+          find_by: { name: "Silly Day", user: dev },
+          update: { started_at: 2.days.ago, completed_at: 2.days.ago + 1.hour },
+        ),
+      ],
+    }
   end
 
   def exercises
     @exercises ||= [
       seed(
         Exercise,
-        find_by: { exercise_type: exercise_types.first, workout: workouts.first },
+        find_by: { exercise_type: exercise_types[dev.id].first, workout: workouts[dev.id].first },
         update: { note: "Used straps, and failed the last rep" },
       ),
       seed(
         Exercise,
-        find_by: { exercise_type: exercise_types.second, workout: workouts.first },
+        find_by: { exercise_type: exercise_types[dev.id].second, workout: workouts[dev.id].first },
         update: { note: "Used straps, and failed the last rep" },
       ),
     ]
@@ -179,30 +198,34 @@ class CreateTestDataCommand < BaseCommand
   end
 
   def wishlists
-    @wishlists ||= [
-      seed(
-        Wishlist,
-        find_by: { name: "Christmas", user: dev },
-      ),
-      seed(
-        Wishlist,
-        find_by: { name: "Birthday", user: dev },
-      ),
-      seed(
-        Wishlist,
-        find_by: { name: "Christmas", user: dev2 },
-      ),
-      seed(
-        Wishlist,
-        find_by: { name: "Birthday", user: dev2 },
-      ),
-    ]
+    @wishlists ||= {
+      dev.id => [
+        seed(
+          Wishlist,
+          find_by: { name: "Christmas", user: dev },
+        ),
+        seed(
+          Wishlist,
+          find_by: { name: "Birthday", user: dev },
+        ),
+      ],
+      dev2.id => [
+        seed(
+          Wishlist,
+          find_by: { name: "Christmas", user: dev2 },
+        ),
+        seed(
+          Wishlist,
+          find_by: { name: "Birthday", user: dev2 },
+        ),
+      ],
+    }
   end
 
   def wishlist_items
     @wishlist_items ||= begin
       wishlist_items = []
-      wishlists.each do |wishlist|
+      wishlists.values.flatten.each do |wishlist|
         wishlist_items += [
           seed(
             WishlistItem,
@@ -236,24 +259,57 @@ class CreateTestDataCommand < BaseCommand
   end
 
   def gyms
-    @gyms ||= [
-      seed(
-        Gym,
-        find_by: { name: "GoodLife Fitness", user: dev },
-      ),
-      seed(
-        Gym,
-        find_by: { name: "LA Fitness", user: dev },
-      ),
-      seed(
-        Gym,
-        find_by: { name: "Condo Gym", user: dev2 },
-      ),
-      seed(
-        Gym,
-        find_by: { name: "Altea Active", user: dev2 },
-      ),
-    ]
+    @gyms ||= {
+      dev.id => [
+        seed(
+          Gym,
+          find_by: { name: "GoodLife Fitness", user: dev },
+          update: { equipment: equipment[dev.id].values },
+        ),
+        seed(
+          Gym,
+          find_by: { name: "LA Fitness", user: dev },
+          update: { equipment: equipment[dev.id].values },
+        ),
+      ],
+      dev2.id => [
+        seed(
+          Gym,
+          find_by: { name: "Condo Gym", user: dev2 },
+          update: { equipment: equipment[dev2.id].values },
+        ),
+        seed(
+          Gym,
+          find_by: { name: "Altea Active", user: dev2 },
+          update: { equipment: equipment[dev2.id].values },
+        ),
+      ],
+    }
+  end
+
+  def equipment
+    @equipment ||= {
+      dev.id => {
+        dumbbell: seed(
+          Equipment,
+          find_by: { name: "Dumbbell", user: dev },
+        ),
+        barbell: seed(
+          Equipment,
+          find_by: { name: "Barbell", user: dev },
+        ),
+      },
+      dev2.id => {
+        dumbbell: seed(
+          Equipment,
+          find_by: { name: "Dumbbell", user: dev2 },
+        ),
+        barbell: seed(
+          Equipment,
+          find_by: { name: "Barbell", user: dev2 },
+        ),
+      },
+    }
   end
 end
 # rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/ClassLength

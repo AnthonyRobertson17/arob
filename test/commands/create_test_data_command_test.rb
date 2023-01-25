@@ -68,4 +68,10 @@ class CreateTestDataCommandTest < ActiveSupport::TestCase
       CreateTestDataCommand.execute
     end
   end
+
+  test "creates 4 equipment" do
+    assert_difference("Equipment.count", 4) do
+      CreateTestDataCommand.execute
+    end
+  end
 end

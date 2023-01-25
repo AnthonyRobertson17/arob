@@ -3,6 +3,7 @@
 module ApplicationHelper
   NAVBAR_PATHS = {
     fitness: [
+      "/equipment",
       "/exercise_type_tags",
       "/exercise_types",
       "/fitness",

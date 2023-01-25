@@ -40,7 +40,6 @@ class WishlistsController < ApplicationController
         format.turbo_stream
       end
     else
-      set_wishlist_tags
       render(:edit, status: :unprocessable_entity)
     end
   end

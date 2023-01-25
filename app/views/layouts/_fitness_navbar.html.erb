@@ -13,6 +13,13 @@
   %>
 </li>
 <li class="nav-item">
+  <%= link_to t("navbar.fitness_navbar.equipment"),
+      equipment_index_path,
+      class: "nav-link #{active_class(equipment_index_path)}",
+      "aria-current": "page"
+  %>
+</li>
+<li class="nav-item">
   <%= link_to t("navbar.fitness_navbar.gyms"),
       gyms_path,
       class: "nav-link #{active_class(gyms_path)}",
