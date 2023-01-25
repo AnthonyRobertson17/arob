@@ -19,6 +19,14 @@ class NavbarTest < ApplicationSystemTestCase
     assert_current_path(workouts_path)
   end
 
+  test "navigating to the equipment page" do
+    login
+    visit(fitness_url)
+    click_on("Equipment")
+
+    assert_current_path(equipment_index_path)
+  end
+
   test "navigating to the gyms page" do
     login
     visit(fitness_url)

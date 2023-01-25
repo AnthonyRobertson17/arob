@@ -25,6 +25,9 @@ en:
       workout:
         create: Create
         update: Update
+      equipment:
+        create: Create
+        update: Update
       exercise:
         create: Create
         update: Update

@@ -34,6 +34,9 @@ Minitest/MultipleAssertions:
   Exclude:
     - test/system/**/*
 
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
 Rails/NotNullColumn:
   Enabled: false
 
