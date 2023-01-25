@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get "fitness", to: "fitness#index"
 
+  resources :equipment
   resources :workout_tags
   resources :exercise_types
   resources :gyms
