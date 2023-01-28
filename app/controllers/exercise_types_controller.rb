@@ -2,7 +2,7 @@
 
 class ExerciseTypesController < ApplicationController
   before_action(:set_exercise_type, only: [:show, :edit, :update, :destroy])
-  before_action(:set_exercise_type_tags, only: [:new, :edit])
+  before_action(:load_related_models, only: [:new, :edit])
 
   # GET /exercise_types
   def index
@@ -30,7 +30,7 @@ class ExerciseTypesController < ApplicationController
         format.turbo_stream
       end
     else
-      set_exercise_type_tags
+      load_related_models
       render(:new, status: :unprocessable_entity)
     end
   end
@@ -43,7 +43,7 @@ class ExerciseTypesController < ApplicationController
         format.turbo_stream
       end
     else
-      set_exercise_type_tags
+      load_related_models
       render(:edit, status: :unprocessable_entity)
     end
   end
@@ -64,12 +64,13 @@ class ExerciseTypesController < ApplicationController
     @exercise_type = policy_scope(ExerciseType).find(params[:id])
   end
 
-  def set_exercise_type_tags
+  def load_related_models
     @exercise_type_tags = policy_scope(ExerciseTypeTag).all.order("lower(name)")
+    @equipment = policy_scope(Equipment).all.order("lower(name)")
   end
 
   # Only allow a list of trusted parameters through.
   def exercise_type_params
-    params.require(:exercise_type).permit([:name, { tag_ids: [] }])
+    params.require(:exercise_type).permit([:name, { tag_ids: [], equipment_ids: [] }])
   end
 end
