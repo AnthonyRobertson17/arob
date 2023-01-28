@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class WorkoutsController < ApplicationController
+  before_action(:set_workout, only: [:edit, :update, :destroy])
+  before_action(:set_workout_tags, only: [:new, :edit])
+
   # GET /workouts
   def index
     @workouts = policy_scope(Workout).order(id: :desc)
@@ -14,14 +17,10 @@ class WorkoutsController < ApplicationController
   # GET /workouts/new
   def new
     @workout = Workout.new
-    @workout_tags = policy_scope(WorkoutTag).all.order("lower(name)")
   end
 
   # GET /workouts/1/edit
-  def edit
-    @workout = policy_scope(Workout).find(params[:id])
-    @workout_tags = policy_scope(WorkoutTag).all.order("lower(name)")
-  end
+  def edit; end
 
   # POST /workouts
   def create
@@ -37,7 +36,6 @@ class WorkoutsController < ApplicationController
 
   # PATCH/PUT /workouts/1
   def update
-    @workout = policy_scope(Workout).find(params[:id])
     if @workout.update(workout_params)
       respond_to do |format|
         format.html { redirect_to(@workout) }
@@ -51,14 +49,20 @@ class WorkoutsController < ApplicationController
 
   # DELETE /workouts/1
   def destroy
-    @workout = policy_scope(Workout).find(params[:id])
     @workout.destroy
     redirect_to(workouts_url, status: :see_other)
   end
 
   private
 
-  # Only allow a list of trusted parameters through.
+  def set_workout_tags
+    @workout_tags = policy_scope(WorkoutTag).all.order("lower(name)")
+  end
+
+  def set_workout
+    @workout = policy_scope(Workout).find(params[:id])
+  end
+
   def workout_params
     params.require(:workout).permit([:name, :started_at, :completed_at, { tag_ids: [] }])
   end

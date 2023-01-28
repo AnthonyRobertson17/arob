@@ -2,6 +2,7 @@
 
 class EquipmentController < ApplicationController
   before_action(:set_equipment, only: [:edit, :update, :destroy])
+  before_action(:set_gyms, only: [:new, :edit])
 
   # GET /equipment
   def index
@@ -31,6 +32,7 @@ class EquipmentController < ApplicationController
         format.turbo_stream
       end
     else
+      set_gyms
       render(:new, status: :unprocessable_entity)
     end
   end
@@ -43,6 +45,7 @@ class EquipmentController < ApplicationController
         format.turbo_stream
       end
     else
+      set_gyms
       render(:edit, status: :unprocessable_entity)
     end
   end
@@ -55,13 +58,15 @@ class EquipmentController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_equipment
     @equipment = policy_scope(Equipment).find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
+  def set_gyms
+    @gyms = policy_scope(Gym).all.order("lower(name)")
+  end
+
   def equipment_params
-    params.require(:equipment).permit(:name)
+    params.require(:equipment).permit(:name, { gym_ids: [] })
   end
 end
