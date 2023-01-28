@@ -15,6 +15,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
   test "creating exercise_type" do
     user = login
     create(:exercise_type_tag, user:, name: "test tag")
+    create(:equipment, user:, name: "test equipment")
 
     visit(exercise_types_url)
     click_on("Create Exercise Type")
@@ -23,6 +24,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
 
     fill_in("Name", with: "Random exercise_type name")
     check("test tag")
+    check("test equipment")
     click_on("Create")
 
     assert_current_path(exercise_types_path)
@@ -33,6 +35,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
   test "cancel creating a exercise_type" do
     user = login
     create(:exercise_type_tag, user:, name: "test tag")
+    create(:equipment, user:, name: "test equipment")
 
     visit(exercise_types_url)
     click_on("Create Exercise Type")
@@ -41,6 +44,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
 
     fill_in("Name", with: "Random exercise_type name")
     check("test tag")
+    check("test equipment")
     click_on("Cancel")
 
     assert_current_path(exercise_types_path)
@@ -52,6 +56,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
     user = login
     create(:exercise_type, user:)
     create(:exercise_type_tag, user:, name: "test tag")
+    create(:equipment, user:, name: "test equipment")
 
     visit(exercise_types_url)
     find(".bi-pencil").click
@@ -60,6 +65,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
 
     fill_in("Name", with: "something else")
     check("test tag")
+    check("test equipment")
     click_on("Update")
 
     assert_current_path(exercise_types_path)
@@ -71,6 +77,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
     user = login
     create(:exercise_type, user:)
     create(:exercise_type_tag, user:, name: "test tag")
+    create(:equipment, user:, name: "test equipment")
 
     visit(exercise_types_url)
     find(".bi-pencil").click
@@ -79,6 +86,7 @@ class ExerciseTypesTest < ApplicationSystemTestCase
 
     fill_in("Name", with: "something else")
     check("test tag")
+    check("test equipment")
     click_on("Cancel")
 
     assert_current_path(exercise_types_path)
