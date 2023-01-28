@@ -140,7 +140,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
       create(:equipment, user:),
     ].map(&:id)
 
-    post(exercise_types_url, params: { exercise_type: { name: "Test", equipment_ids: equipment_ids } })
+    post(exercise_types_url, params: { exercise_type: { name: "Test", equipment_ids: } })
 
     associated_equipment_ids = ExerciseType.last.equipment.map(&:id)
 
@@ -277,7 +277,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
       create(:equipment, user:),
     ].map(&:id)
 
-    patch(exercise_type_url(exercise_type), params: { exercise_type: { name: "Test", equipment_ids: equipment_ids } })
+    patch(exercise_type_url(exercise_type), params: { exercise_type: { name: "Test", equipment_ids: } })
 
     associated_equipment_ids = ExerciseType.last.equipment.map(&:id)
 
