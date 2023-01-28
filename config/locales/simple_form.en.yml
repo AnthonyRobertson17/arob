@@ -13,6 +13,8 @@ en:
     labels:
       workout:
         tag_ids: "Tags"
+      equipment:
+        gym_ids: "Available Gyms"
 
   helpers:
     submit:

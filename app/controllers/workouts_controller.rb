@@ -63,7 +63,6 @@ class WorkoutsController < ApplicationController
     @workout = policy_scope(Workout).find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def workout_params
     params.require(:workout).permit([:name, :started_at, :completed_at, { tag_ids: [] }])
   end
