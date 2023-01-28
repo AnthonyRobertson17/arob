@@ -15,7 +15,9 @@ en:
         tag_ids: "Tags"
       equipment:
         gym_ids: "Available Gyms"
-
+      exercise_type:
+        tag_ids: "Tags"
+        equipment_ids: "Equipment Options"
   helpers:
     submit:
       workout_tag:

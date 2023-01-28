@@ -3,6 +3,7 @@
     <%= simple_form_for(exercise_type) do |f| %>
       <%= f.input(:name) %>
       <%= f.input(:tag_ids, as: :check_boxes, collection: exercise_type_tags) %>
+      <%= f.input(:equipment_ids, as: :check_boxes, collection: equipment) %>
       <%= f.button(:submit) %>
       <%= link_to(t(:cancel), exercise_types_path, class: "btn btn-secondary") %>
     <% end %>
