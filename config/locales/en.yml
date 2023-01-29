@@ -163,6 +163,7 @@ en:
     edit:
       title: "Edit Gym"
     gym:
+      equipment_count: "Equipment Count"
       destroy_confirmation: "Are you sure you want to destroy this gym?"
   exercise_type_tags:
     index:
