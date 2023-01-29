@@ -27,6 +27,20 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     assert_select("h3", { text: /should not be shown/, count: 0 })
   end
 
+  test "get index lists all equipment for each exercise type" do
+    sign_in(user)
+    exercise_type = create(:exercise_type, user:)
+    create(:equipment, user:, exercise_types: [exercise_type], name: "TEST EQUIPMENT 1")
+    create(:equipment, user:, exercise_types: [exercise_type], name: "TEST EQUIPMENT 2")
+
+    get(exercise_types_url)
+
+    assert_select("turbo-frame#exercise_type_#{exercise_type.id}") do
+      assert_select("h5", "TEST EQUIPMENT 1")
+      assert_select("h5", "TEST EQUIPMENT 2")
+    end
+  end
+
   test "get new" do
     sign_in(user)
 
@@ -109,6 +123,31 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response(:success)
   end
+
+  test "show exercise_type includes equipment header and count of equipment" do
+    sign_in(user)
+    exercise_type = create(:exercise_type, user:)
+    create(:equipment, name: "barbell", exercise_types: [exercise_type])
+    create(:equipment, name: "dumbbell", exercise_types: [exercise_type])
+
+    get(exercise_type_url(exercise_type))
+
+    assert_select("h3", "Equipment")
+    assert_select("span.badge", "2")
+  end
+
+  test "show exercise_type includes list of associated equipment" do
+    sign_in(user)
+    exercise_type = create(:exercise_type, user:)
+    create(:equipment, name: "barbell", exercise_types: [exercise_type])
+    create(:equipment, name: "dumbbell", exercise_types: [exercise_type])
+
+    get(exercise_type_url(exercise_type))
+
+    assert_select("li", "barbell")
+    assert_select("li", "dumbbell")
+  end
+
 
   test "show exercise_type raises not found if the exercise_type belongs to another user" do
     sign_in(user)
