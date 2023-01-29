@@ -10,7 +10,7 @@ class GymsController < ApplicationController
 
   # GET /gyms/1
   def show
-    @gym = policy_scope(Gym).find(params[:id])
+    @gym = policy_scope(Gym).includes(:equipment).find(params[:id])
   end
 
   # GET /gyms/new
