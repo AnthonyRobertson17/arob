@@ -43,6 +43,17 @@ class GymsControllerTest < ActionDispatch::IntegrationTest
     assert(b < c, "gyms types are not in alphabetical order")
   end
 
+  test "get index shows equipment count of gyms" do
+    sign_in(user)
+    gym = create(:gym, user:)
+    5.times { create(:equipment, user:, gyms: [gym]) }
+
+    get(gyms_url)
+
+    assert_select("th", "Equipment Count")
+    assert_select("td", "5")
+  end
+
   test "get new" do
     sign_in(user)
     get(new_gym_url)
