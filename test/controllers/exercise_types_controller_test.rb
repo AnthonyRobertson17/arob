@@ -148,7 +148,6 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     assert_select("li", "dumbbell")
   end
 
-
   test "show exercise_type raises not found if the exercise_type belongs to another user" do
     sign_in(user)
     other_exercise_type = create(:exercise_type)
