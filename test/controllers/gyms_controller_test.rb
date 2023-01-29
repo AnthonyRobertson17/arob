@@ -94,6 +94,30 @@ class GymsControllerTest < ActionDispatch::IntegrationTest
     assert_select("h1", { text: /testing 123/, count: 1 })
   end
 
+  test "show shows equipment header and count of equipment" do
+    sign_in(user)
+    gym = create(:gym, user:)
+    create(:equipment, name: "barbell", gyms: [gym])
+    create(:equipment, name: "dumbbell", gyms: [gym])
+
+    get(gym_url(gym))
+
+    assert_select("h3", "Equipment")
+    assert_select("span.badge", "2")
+  end
+
+  test "show gym lists associated equipment" do
+    sign_in(user)
+    gym = create(:gym, user:)
+    create(:equipment, name: "barbell", gyms: [gym])
+    create(:equipment, name: "dumbbell", gyms: [gym])
+
+    get(gym_url(gym))
+
+    assert_select("li", "barbell")
+    assert_select("li", "dumbbell")
+  end
+
   test "show gym raises not found if the gym belongs to another user" do
     sign_in(user)
     gym = create(:gym)

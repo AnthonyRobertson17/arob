@@ -62,6 +62,7 @@ en:
         weight: Weight
       gym:
         name: "Name"
+        equipment: "Equipment"
       wishlist:
         name: "Name"
       wishlist_item:
