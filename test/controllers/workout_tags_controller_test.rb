@@ -15,7 +15,7 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response(:success)
 
-    assert_select("h5", { text: /testing workout tag/, count: 1 })
+    assert_select("h3", { text: /testing workout tag/, count: 1 })
   end
 
   test "get index doesn't show workout_tags which don't belong to the current user" do
@@ -25,7 +25,7 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response(:success)
 
-    assert_select("h5", { text: /should not be able to see this/, count: 0 })
+    assert_select("h3", { text: /should not be able to see this/, count: 0 })
   end
 
   test "get index shows workout_tags in case insensitive alphabetical order" do

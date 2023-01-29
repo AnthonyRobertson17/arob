@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 class ExerciseTypesController < ApplicationController
-  before_action(:set_exercise_type, only: [:show, :edit, :update, :destroy])
   before_action(:load_related_models, only: [:new, :edit])
 
   # GET /exercise_types
   def index
-    @exercise_types = policy_scope(ExerciseType).all.order("lower(name)")
+    @exercise_types = policy_scope(ExerciseType).includes(:equipment).all.order("lower(name)")
   end
 
   # GET /exercise_types/1
-  def show; end
+  def show
+    @exercise_type = policy_scope(ExerciseType).includes(:equipment).find(params[:id])
+  end
 
   # GET /exercise_types/new
   def new
@@ -18,7 +19,9 @@ class ExerciseTypesController < ApplicationController
   end
 
   # GET /exercise_types/1/edit
-  def edit; end
+  def edit
+    @exercise_type = policy_scope(ExerciseType).includes(:equipment).find(params[:id])
+  end
 
   # POST /exercise_types
   def create
@@ -37,6 +40,7 @@ class ExerciseTypesController < ApplicationController
 
   # PATCH/PUT /exercise_types/1
   def update
+    @exercise_type = policy_scope(ExerciseType).find(params[:id])
     if @exercise_type.update(exercise_type_params)
       respond_to do |format|
         format.html { redirect_to(exercise_types_path) }
@@ -50,6 +54,7 @@ class ExerciseTypesController < ApplicationController
 
   # DELETE /exercise_types/1
   def destroy
+    @exercise_type = policy_scope(ExerciseType).find(params[:id])
     @exercise_type.destroy
     respond_to do |format|
       format.html { redirect_to(exercise_types_path) }
@@ -58,11 +63,6 @@ class ExerciseTypesController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_exercise_type
-    @exercise_type = policy_scope(ExerciseType).find(params[:id])
-  end
 
   def load_related_models
     @exercise_type_tags = policy_scope(ExerciseTypeTag).all.order("lower(name)")

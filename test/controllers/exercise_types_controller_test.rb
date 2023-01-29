@@ -23,8 +23,8 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
 
     get(exercise_types_url)
 
-    assert_select("h5", { text: /test exercise_type/, count: 1 })
-    assert_select("h5", { text: /should not be shown/, count: 0 })
+    assert_select("h3", { text: /test exercise_type/, count: 1 })
+    assert_select("h3", { text: /should not be shown/, count: 0 })
   end
 
   test "get index shows exercise types in case insensitive alphabetical order" do

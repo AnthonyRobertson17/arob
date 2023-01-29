@@ -23,8 +23,8 @@ class GymsControllerTest < ActionDispatch::IntegrationTest
 
     get(gyms_url)
 
-    assert_select("h5", { text: /funny gym/, count: 1 })
-    assert_select("h5", { text: /should not be shown/, count: 0 })
+    assert_select("h3", { text: /funny gym/, count: 1 })
+    assert_select("h3", { text: /should not be shown/, count: 0 })
   end
 
   test "get index shows gyms in case insensitive alphabetical order" do

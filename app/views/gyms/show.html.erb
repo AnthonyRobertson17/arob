@@ -1,9 +1,9 @@
 <%= link_to(t(".back"), gyms_path, class: "mb-3 btn btn-primary") %>
 
-<h1 class="h1 mb-3"><%= @gym.name %></h1>
+<h1 class="mb-3"><%= @gym.name %></h1>
 <div class="d-flex flex-wrap justify-content-between mb-3">
   <div class="d-flex align-items-center">
-    <h3 class="h3 mb-0 me-2"><%= Gym.human_attribute_name("equipment") %></h3>
+    <h3 class="mb-0 me-2"><%= Gym.human_attribute_name("equipment") %></h3>
     <span class="badge rounded-pill bg-secondary px-2">
       <div class="px-2">
         <%= @gym.equipment.count %>

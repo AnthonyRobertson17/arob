@@ -4,7 +4,7 @@
       <div class="card-body">
         <%= turbo_frame_tag dom_id(exercise, :edit) do %>
           <div class="d-flex align-items-center mb-3">
-            <h4 class="h4 mb-0 flex-grow-1"><%= exercise.name %></h4>
+            <h4 class="mb-0 flex-grow-1"><%= exercise.name %></h4>
             <%= link_to([:edit, workout, exercise], class: "btn btn-secondary me-2") do %>
               <i class="bi bi-pencil"></i>
             <% end %>

@@ -1,6 +1,6 @@
 <%= render(@workout) %>
 
-<h3 class="h3"><%= t(".exercises") %></h3>
+<h3><%= t(".exercises") %></h3>
 
 <%= turbo_frame_tag("exercises") do %>
   <%= render(@workout.exercises, workout: @workout) %>

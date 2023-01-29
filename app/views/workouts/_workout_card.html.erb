@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="d-flex flex-wrap justify-content-between">
         <div class="d-flex align-items-center">
-          <h3 class="h3 mb-0 me-2"><%= workout.name %></h3>
+          <h3 class="mb-0 me-2"><%= workout.name %></h3>
           <% if workout.completed? %>
             <span class="badge rounded-pill bg-success mx-1"><%= t("workouts.statuses.completed") %></span>
           <% elsif workout.in_progress? %>

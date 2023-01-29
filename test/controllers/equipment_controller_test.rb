@@ -23,8 +23,8 @@ class EquipmentControllerTest < ActionDispatch::IntegrationTest
 
     get(equipment_index_url)
 
-    assert_select("h5", { text: /funny equipment/, count: 1 })
-    assert_select("h5", { text: /should not be shown/, count: 0 })
+    assert_select("h3", { text: /funny equipment/, count: 1 })
+    assert_select("h3", { text: /should not be shown/, count: 0 })
   end
 
   test "get index shows equipment in case insensitive alphabetical order" do
