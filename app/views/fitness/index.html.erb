@@ -3,7 +3,7 @@
 <%= link_to(t(".create_workout"), new_workout_path, class: "btn btn-lg btn-primary mb-4") %>
 
 <% if @in_progress_workouts.any? %>
-  <h2 class="h2"><%= t(".in_progress_workouts") %></h2>
+  <h2><%= t(".in_progress_workouts") %></h2>
   <div id="in_progress_workouts" class="mb-4">
     <% @in_progress_workouts.each do |workout| %>
       <%= render("workouts/workout_card", workout:) %>
@@ -12,7 +12,7 @@
 <% end %>
 
 <% if @recent_workouts.any? %>
-  <h2 class="h2"><%= t(".recent_workouts") %></h2>
+  <h2><%= t(".recent_workouts") %></h2>
   <div id="recent_workouts" class="mb-4">
     <% @recent_workouts.each do |workout| %>
       <%= render("workouts/workout_card", workout:) %>

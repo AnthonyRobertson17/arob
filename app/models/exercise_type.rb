@@ -10,5 +10,7 @@ class ExerciseType < ApplicationRecord
 
   validates(:name, presence: true, uniqueness: { scope: :user_id })
 
+  default_scope { order("lower(name)") }
+
   scope(:for_user, ->(user) { where(user:) })
 end

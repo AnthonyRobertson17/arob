@@ -1,6 +1,6 @@
 <% unless defined?(hide_name) && hide_name %>
   <div class="d-flex align-items-center mb-3">
-    <h5 class="h5 mb-0 me-1"><%= workout.name %></h5>
+    <h3 class="mb-0 me-1"><%= workout.name %></h3>
     <% if defined?(inline_status) && inline_status %>
       <% if workout.completed? %>
         <span class="badge rounded-pill bg-success mx-1"><%= t(".statuses.completed") %></span>

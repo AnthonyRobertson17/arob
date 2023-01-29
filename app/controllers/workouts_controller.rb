@@ -56,7 +56,7 @@ class WorkoutsController < ApplicationController
   private
 
   def set_workout_tags
-    @workout_tags = policy_scope(WorkoutTag).all.order("lower(name)")
+    @workout_tags = policy_scope(WorkoutTag).all
   end
 
   def set_workout

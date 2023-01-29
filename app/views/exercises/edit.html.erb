@@ -1,4 +1,4 @@
-<h1 class="h1 mb-3"><%= t(".title") %></h1>
+<h1 class="mb-3"><%= t(".title") %></h1>
 <%= turbo_frame_tag dom_id(@exercise, :edit) do %>
   <%= render "form", exercise: @exercise, workout: @workout, exercise_types: @exercise_types %>
 <% end %>

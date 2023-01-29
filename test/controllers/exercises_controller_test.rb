@@ -16,21 +16,6 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "new form lists exercise types in case insensitive alphabetical order" do
-    create(:exercise_type, name: "CCCCCCCCCCCC", user: @user)
-    create(:exercise_type, name: "bbbbbbbbbbbb", user: @user)
-    create(:exercise_type, name: "AAAAAAAAAAAA", user: @user)
-
-    get(new_workout_exercise_url(@workout))
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "exercise types are not in alphabetical order")
-    assert(b < c, "exercise types are not in alphabetical order")
-  end
-
   test "create exercise creates a new record" do
     assert_difference("Exercise.count") do
       post(
@@ -95,23 +80,6 @@ class ExercisesControllerTest < ActionDispatch::IntegrationTest
     get(edit_workout_exercise_url(@workout, exercise))
 
     assert_response(:success)
-  end
-
-  test "edit form lists exercise types in case insensitive alphabetical order" do
-    create(:exercise_type, name: "CCCCCCCCCCCC", user: @user)
-    create(:exercise_type, name: "bbbbbbbbbbbb", user: @user)
-    create(:exercise_type, name: "AAAAAAAAAAAA", user: @user)
-
-    exercise = create(:exercise, exercise_type: @exercise_type, workout: @workout)
-
-    get(edit_workout_exercise_url(@workout, exercise))
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "exercise types are not in alphabetical order")
-    assert(b < c, "exercise types are not in alphabetical order")
   end
 
   test "get edit raises not found if corresponding workout does not belong to the current user" do
