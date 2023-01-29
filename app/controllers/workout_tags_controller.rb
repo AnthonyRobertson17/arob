@@ -5,7 +5,7 @@ class WorkoutTagsController < ApplicationController
 
   # GET /workout_tags
   def index
-    @workout_tags = policy_scope(WorkoutTag).all.order("lower(name)")
+    @workout_tags = policy_scope(WorkoutTag).all
   end
 
   # GET /workout_tags/1

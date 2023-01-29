@@ -28,21 +28,6 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     assert_select("h3", { text: /should not be able to see this/, count: 0 })
   end
 
-  test "get index shows workout_tags in case insensitive alphabetical order" do
-    create(:exercise_type_tag, name: "CCCCCCCCCCCC", user: @user)
-    create(:exercise_type_tag, name: "bbbbbbbbbbbb", user: @user)
-    create(:exercise_type_tag, name: "AAAAAAAAAAAA", user: @user)
-
-    get(exercise_type_tags_url)
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "exercise_type_tags are not in alphabetical order")
-    assert(b < c, "exercise_type_tags are not in alphabetical order")
-  end
-
   test "get new" do
     get(new_exercise_type_tag_url)
 

@@ -5,5 +5,8 @@ class Gym < ApplicationRecord
   has_and_belongs_to_many(:equipment)
 
   validates(:name, presence: true)
+
+  default_scope { order("lower(name)") }
+
   scope(:for_user, ->(user) { where(user:) })
 end

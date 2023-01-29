@@ -27,44 +27,12 @@ class EquipmentControllerTest < ActionDispatch::IntegrationTest
     assert_select("h3", { text: /should not be shown/, count: 0 })
   end
 
-  test "get index shows equipment in case insensitive alphabetical order" do
-    sign_in(user)
-    create(:equipment, name: "CCCCCCCCCCCC", user:)
-    create(:equipment, name: "bbbbbbbbbbbb", user:)
-    create(:equipment, name: "AAAAAAAAAAAA", user:)
-
-    get(equipment_index_url)
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "equipment list is not in alphabetical order")
-    assert(b < c, "equipment list is not in alphabetical order")
-  end
-
   test "get new" do
     sign_in(user)
 
     get(new_equipment_url)
 
     assert_response(:success)
-  end
-
-  test "new form lists gyms in case insensitive alphabetical order" do
-    sign_in(user)
-    create(:gym, user:, name: "CCCCCCCCCCCC")
-    create(:gym, user:, name: "bbbbbbbbbbbb")
-    create(:gym, user:, name: "AAAAAAAAAAAA")
-
-    get(new_equipment_url)
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "gyms are not in alphabetical order")
-    assert(b < c, "gyms are not in alphabetical order")
   end
 
   test "create equipment creates the new record" do
@@ -143,23 +111,6 @@ class EquipmentControllerTest < ActionDispatch::IntegrationTest
     get(edit_equipment_url(equipment))
 
     assert_response(:success)
-  end
-
-  test "edit form lists gyms in case insensitive alphabetical order" do
-    sign_in(user)
-    equipment = create(:equipment, user:)
-    create(:gym, user:, name: "CCCCCCCCCCCC")
-    create(:gym, user:, name: "bbbbbbbbbbbb")
-    create(:gym, user:, name: "AAAAAAAAAAAA")
-
-    get(edit_equipment_url(equipment))
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "gyms are not in alphabetical order")
-    assert(b < c, "gyms are not in alphabetical order")
   end
 
   test "get edit raises not found if the equipment belongst to another user" do

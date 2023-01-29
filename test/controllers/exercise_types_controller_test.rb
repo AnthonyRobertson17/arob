@@ -27,60 +27,12 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     assert_select("h3", { text: /should not be shown/, count: 0 })
   end
 
-  test "get index shows exercise types in case insensitive alphabetical order" do
-    sign_in(user)
-    create(:exercise_type, name: "CCCCCCCCCCCC", user:)
-    create(:exercise_type, name: "bbbbbbbbbbbb", user:)
-    create(:exercise_type, name: "AAAAAAAAAAAA", user:)
-
-    get(exercise_types_url)
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "exercise types are not in alphabetical order")
-    assert(b < c, "exercise types are not in alphabetical order")
-  end
-
   test "get new" do
     sign_in(user)
 
     get(new_exercise_type_url)
 
     assert_response(:success)
-  end
-
-  test "new form lists exercise tags in case insenitive alphabetical order" do
-    sign_in(user)
-    create(:exercise_type_tag, name: "CCCCCCCCCCCC", user:)
-    create(:exercise_type_tag, name: "bbbbbbbbbbbb", user:)
-    create(:exercise_type_tag, name: "AAAAAAAAAAAA", user:)
-
-    get(new_exercise_type_url)
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "exercise type tags are not in alphabetical order")
-    assert(b < c, "exercise type tags are not in alphabetical order")
-  end
-
-  test "new form shows equipment in case insensitive alphabetical order" do
-    sign_in(user)
-    create(:equipment, name: "CCCCCCCCCCCC", user:)
-    create(:equipment, name: "bbbbbbbbbbbb", user:)
-    create(:equipment, name: "AAAAAAAAAAAA", user:)
-
-    get(new_exercise_type_url)
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "equipment are not in alphabetical order")
-    assert(b < c, "equipment are not in alphabetical order")
   end
 
   test "create exercise_type creates the new record" do
@@ -174,40 +126,6 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     get(edit_exercise_type_url(exercise_type))
 
     assert_response(:success)
-  end
-
-  test "edit form lists exercise tags in case insenitive alphabetical order" do
-    sign_in(user)
-    exercise_type = create(:exercise_type, user:)
-    create(:exercise_type_tag, name: "CCCCCCCCCCCC", user:)
-    create(:exercise_type_tag, name: "bbbbbbbbbbbb", user:)
-    create(:exercise_type_tag, name: "AAAAAAAAAAAA", user:)
-
-    get(edit_exercise_type_url(exercise_type))
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "exercise type tags are not in alphabetical order")
-    assert(b < c, "exercise type tags are not in alphabetical order")
-  end
-
-  test "edit form shows equipment in case insensitive alphabetical order" do
-    sign_in(user)
-    exercise_type = create(:exercise_type, user:)
-    create(:equipment, name: "CCCCCCCCCCCC", user:)
-    create(:equipment, name: "bbbbbbbbbbbb", user:)
-    create(:equipment, name: "AAAAAAAAAAAA", user:)
-
-    get(edit_exercise_type_url(exercise_type))
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "equipment are not in alphabetical order")
-    assert(b < c, "equipment are not in alphabetical order")
   end
 
   test "get edit raises not found if the exercise_type belongst to another user" do

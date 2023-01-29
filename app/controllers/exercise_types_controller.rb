@@ -5,7 +5,7 @@ class ExerciseTypesController < ApplicationController
 
   # GET /exercise_types
   def index
-    @exercise_types = policy_scope(ExerciseType).includes(:equipment).all.order("lower(name)")
+    @exercise_types = policy_scope(ExerciseType).includes(:equipment).all
   end
 
   # GET /exercise_types/1
@@ -65,8 +65,8 @@ class ExerciseTypesController < ApplicationController
   private
 
   def load_related_models
-    @exercise_type_tags = policy_scope(ExerciseTypeTag).all.order("lower(name)")
-    @equipment = policy_scope(Equipment).all.order("lower(name)")
+    @exercise_type_tags = policy_scope(ExerciseTypeTag).all
+    @equipment = policy_scope(Equipment).all
   end
 
   # Only allow a list of trusted parameters through.

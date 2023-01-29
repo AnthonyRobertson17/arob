@@ -6,7 +6,7 @@ class EquipmentController < ApplicationController
 
   # GET /equipment
   def index
-    @equipment_list = policy_scope(Equipment).all.order("lower(name)")
+    @equipment_list = policy_scope(Equipment).all
   end
 
   # GET /equipment/1
@@ -63,7 +63,7 @@ class EquipmentController < ApplicationController
   end
 
   def set_gyms
-    @gyms = policy_scope(Gym).all.order("lower(name)")
+    @gyms = policy_scope(Gym).all
   end
 
   def equipment_params

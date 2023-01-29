@@ -5,7 +5,7 @@ class GymsController < ApplicationController
 
   # GET /gyms
   def index
-    @gyms = policy_scope(Gym).includes(:equipment).all.order("lower(name)")
+    @gyms = policy_scope(Gym).includes(:equipment).all
   end
 
   # GET /gyms/1

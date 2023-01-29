@@ -7,5 +7,7 @@ class Equipment < ApplicationRecord
 
   validates(:name, presence: true)
 
+  default_scope { order("lower(name)") }
+
   scope(:for_user, ->(user) { where(user:) })
 end

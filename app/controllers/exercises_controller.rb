@@ -73,6 +73,6 @@ class ExercisesController < ApplicationController
   end
 
   def set_exercise_types
-    @exercise_types = policy_scope(ExerciseType).all.order("lower(name)")
+    @exercise_types = policy_scope(ExerciseType).all
   end
 end

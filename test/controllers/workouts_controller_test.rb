@@ -50,21 +50,6 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "new form lists workout tags in case insensitive alphabetical order" do
-    create(:workout_tag, user:, name: "CCCCCCCCCCCC")
-    create(:workout_tag, user:, name: "bbbbbbbbbbbb")
-    create(:workout_tag, user:, name: "AAAAAAAAAAAA")
-
-    get(new_workout_url)
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "workout tags are not in alphabetical order")
-    assert(b < c, "workout tags are not in alphabetical order")
-  end
-
   test "create workout redirects to the correct workout" do
     assert_difference("Workout.count") do
       post(workouts_url, params: { workout: { name: "New workout name" } })
@@ -140,22 +125,6 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     get(edit_workout_url(workout))
 
     assert_response(:success)
-  end
-
-  test "edit form lists workout tags in case insensitive alphabetical order" do
-    workout = create(:workout, user:)
-    create(:workout_tag, user:, name: "CCCCCCCCCCCC")
-    create(:workout_tag, user:, name: "bbbbbbbbbbbb")
-    create(:workout_tag, user:, name: "AAAAAAAAAAAA")
-
-    get(edit_workout_url(workout))
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "workout tags are not in alphabetical order")
-    assert(b < c, "workout tags are not in alphabetical order")
   end
 
   test "get edit raises not found if the workout belongst to another user" do

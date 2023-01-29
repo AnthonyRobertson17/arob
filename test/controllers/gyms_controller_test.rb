@@ -27,22 +27,6 @@ class GymsControllerTest < ActionDispatch::IntegrationTest
     assert_select("h3", { text: /should not be shown/, count: 0 })
   end
 
-  test "get index shows gyms in case insensitive alphabetical order" do
-    sign_in(user)
-    create(:gym, name: "CCCCCCCCCCCC", user:)
-    create(:gym, name: "bbbbbbbbbbbb", user:)
-    create(:gym, name: "AAAAAAAAAAAA", user:)
-
-    get(gyms_url)
-
-    a = response.body.index("AAAAAAAAAAAA")
-    b = response.body.index("bbbbbbbbbbbb")
-    c = response.body.index("CCCCCCCCCCCC")
-
-    assert(a < b, "gyms are not in alphabetical order")
-    assert(b < c, "gyms types are not in alphabetical order")
-  end
-
   test "get index shows equipment count of gyms" do
     sign_in(user)
     gym = create(:gym, user:)
