@@ -59,6 +59,7 @@ en:
         note: "Note"
       exercise_type:
         equipment: "Equipment"
+        exercises: "Exercises"
       exercise_set:
         repetitions: Reps
         weight: Weight

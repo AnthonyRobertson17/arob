@@ -148,6 +148,48 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     assert_select("li", "dumbbell")
   end
 
+  test "show exercise_type includes exercises header and count of exercises" do
+    sign_in(user)
+    exercise_type = create(:exercise_type, user:)
+    create(:exercise, exercise_type:, workout: create(:workout, user:))
+    create(:exercise, exercise_type:, workout: create(:workout, user:))
+
+    get(exercise_type_url(exercise_type))
+
+    assert_select("h3", "Exercises")
+    assert_select("span.badge", "2")
+  end
+
+  test "show exercise_type includes list of associated exercises" do
+    sign_in(user)
+    exercise_type = create(:exercise_type, user:)
+    create(:exercise, exercise_type:, workout: create(:workout, user:, name: "Workout 1"))
+    create(:exercise, exercise_type:, workout: create(:workout, user:, name: "Workout 2"))
+
+    get(exercise_type_url(exercise_type))
+
+    assert_select("h4", "Workout 1")
+    assert_select("h4", "Workout 2")
+  end
+
+  test "show exercise_type includes exercise sets for related exercises" do
+    sign_in(user)
+    exercise_type = create(:exercise_type, user:)
+    create(
+      :exercise,
+      exercise_type:,
+      workout: create(:workout, user:),
+      exercise_sets: [
+        create(:exercise_set, weight: 7.5, repetitions: 15),
+      ],
+    )
+
+    get(exercise_type_url(exercise_type))
+
+    assert_select("div", "7.5")
+    assert_select("div", "15")
+  end
+
   test "show exercise_type raises not found if the exercise_type belongs to another user" do
     sign_in(user)
     other_exercise_type = create(:exercise_type)

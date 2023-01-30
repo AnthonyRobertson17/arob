@@ -1,4 +1,6 @@
-<%= turbo_frame_tag exercise_set do %>
+<% disable_edit = false if local_assigns[:disable_edit].nil? %>
+
+<%= turbo_frame_tag(exercise_set) do %>
   <div class="row border-bottom border-secondary p-2">
     <div class="col d-flex align-items-center">
       <div class="ps-2"><%= number_with_precision(exercise_set.weight, strip_insignificant_zeros: true) %></div>
@@ -7,13 +9,15 @@
       <div class="ps-2"><%= exercise_set.repetitions %></div>
     </div>
     <div class="col">
-      <div class="d-flex justify-content-end">
-        <%= link_to(edit_workout_exercise_exercise_set_path(workout, exercise, exercise_set),
-                    data: { turbo_frame: dom_id(exercise_set) },
-                    class: "btn btn-secondary me-2") do %>
-          <i class="bi bi-pencil"></i>
-        <% end %>
-      </div>
+      <% unless disable_edit %>
+        <div class="d-flex justify-content-end">
+          <%= link_to(edit_workout_exercise_exercise_set_path(workout, exercise, exercise_set),
+                      data: { turbo_frame: dom_id(exercise_set) },
+                      class: "btn btn-secondary me-2") do %>
+            <i class="bi bi-pencil"></i>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% end %>
