@@ -10,7 +10,10 @@ class ExerciseTypesController < ApplicationController
 
   # GET /exercise_types/1
   def show
-    @exercise_type = policy_scope(ExerciseType).includes(:equipment).find(params[:id])
+    @exercise_type =
+      policy_scope(ExerciseType)
+      .includes(:equipment, exercises: [:workout, :exercise_sets])
+      .find(params[:id])
   end
 
   # GET /exercise_types/new

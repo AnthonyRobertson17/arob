@@ -2,18 +2,69 @@
 
 <h1 class="mb-3"><%= @exercise_type.name %></h1>
 
-<div class="d-flex flex-wrap justify-content-between mb-3">
-  <div class="d-flex align-items-center">
-    <h3 class="mb-0 me-2"><%= ExerciseType.human_attribute_name("equipment") %></h3>
-    <span class="badge rounded-pill bg-secondary px-2">
-      <div class="px-2">
-        <%= @exercise_type.equipment.count %>
+<div class="accordion mb-3" id="exerciseTypeAccordion">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <div class="d-flex align-items-center">
+          <h3 class="mb-0 me-2"><%= ExerciseType.human_attribute_name("equipment") %></h3>
+          <span class="badge rounded-pill bg-secondary px-2">
+            <div class="px-2">
+              <%= @exercise_type.equipment.count %>
+            </div>
+          </span>
+        </div>
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+      <div class="accordion-body">
+        <ul class="mb-0">
+          <% @exercise_type.equipment.each do |equipment| %>
+            <li><%= equipment.name %></li>
+          <% end %>
+        </ul>
       </div>
-    </span>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+        <div class="d-flex align-items-center">
+          <h3 class="mb-0 me-2"><%= ExerciseType.human_attribute_name("exercises") %></h3>
+          <span class="badge rounded-pill bg-secondary px-2">
+            <div class="px-2">
+              <%= @exercise_type.exercises.count %>
+            </div>
+          </span>
+        </div>
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
+      <div class="accordion-body">
+        <% last_index = @exercise_type.exercises.length - 1 %>
+        <% @exercise_type.exercises.each_with_index do |exercise, i| %>
+          <div class="card flex-grow-1 me-2<%= " mb-3" unless i == last_index %>">
+            <div class="card-body">
+              <h4 class="mb-3 flex-grow-1"><%= exercise.workout.name %></h4>
+              <% unless exercise.note.blank? %>
+                <div class="mb-3">
+                  <p class="fw-bold mb-1"><%= Exercise.human_attribute_name("note") %>:</p>
+                  <%= simple_format(exercise.note) %>
+                </div>
+              <% end %>
+
+              <div class="container">
+                <div class="row border-bottom border-2 border-secondary pb-1">
+                  <div class="col-4 fw-bold"><%= ExerciseSet.human_attribute_name("weight") %></div>
+                  <div class="col-8 fw-bold"><%= ExerciseSet.human_attribute_name("repetitions") %></div>
+                </div>
+
+                <%= render(exercise.exercise_sets, workout: exercise.workout, exercise:, disable_edit: true) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
-<ul>
-  <% @exercise_type.equipment.each do |equipment| %>
-    <li><%= equipment.name %></li>
-  <% end %>
-</ul>
