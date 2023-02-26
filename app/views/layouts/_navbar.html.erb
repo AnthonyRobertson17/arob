@@ -27,11 +27,12 @@
               class: "nav-link #{active_class(profile_path)}"
           %>
         </div>
-        <%= button_to t("navbar.logout"),
+        <%= button_to(
+            t("navbar.logout"),
             destroy_user_session_path,
             method: :delete,
-            class: "btn btn-outline-danger",
-            "data-turbo": "false" # TODO figure out how to get devise to work well with turbo
+            class: "btn btn-outline-danger"
+          )
         %>
       </div>
     </div>
