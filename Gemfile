@@ -15,7 +15,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.5"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 6.2"
+gem "puma", "~> 6.3"
 
 # https://github.com/brendon/acts_as_list
 gem "acts_as_list"
