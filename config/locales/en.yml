@@ -81,6 +81,7 @@ en:
     index:
       fitness: "Fitness"
       wishlists: "Wishlists"
+      nutrition: "Nutrition"
   fitness:
     index:
       title: "Fitness"
@@ -213,7 +214,6 @@ en:
       title: "Edit Wishlist Item"
     destroy_confirmation: "Are you sure you want to destroy this item?"
   navbar:
-    logout: "Logout"
     fitness_navbar:
       workouts: "Workouts"
       tags: "Tags"
@@ -222,5 +222,11 @@ en:
       equipment: "Equipment"
       exercise_types: "Exercise Types"
       exercise_type_tags: "Exercise Type Tags"
+    logout: "Logout"
+    nutrition_navbar:
+      nutrition: "Nutrition"
     wishlists:
       wishlists: "Wishlists"
+  nutrition:
+    index:
+      title: "Nutrition"

@@ -15,6 +15,9 @@ module ApplicationHelper
     wishlists: [
       "/wishlists",
     ],
+    nutrition: [
+      "/nutrition",
+    ],
   }.freeze
 
   def active_class(paths)

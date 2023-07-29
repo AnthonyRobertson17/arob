@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   patch "profile", to: "users/profile#update"
 
   get "fitness", to: "fitness#index"
+  get "nutrition", to: "nutrition#index"
 
   resources :equipment
   resources :workout_tags

@@ -19,6 +19,8 @@
             <%= render "layouts/fitness_navbar" %>
           <% elsif show_navbar?(:wishlists) %>
             <%= render "layouts/wishlists_navbar" %>
+          <% elsif show_navbar?(:nutrition) %>
+            <%= render "layouts/nutrition_navbar" %>
           <% end %>
         </ul>
         <div id="user_email" class="mx-2">
