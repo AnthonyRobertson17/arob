@@ -17,6 +17,7 @@ module ApplicationHelper
     ],
     nutrition: [
       "/nutrition",
+      "/food_groups",
     ],
   }.freeze
 

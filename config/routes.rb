@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :food_groups
+
   authenticated :user do
     root to: "home#index", as: :authenticated_root
   end

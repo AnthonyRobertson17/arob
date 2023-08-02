@@ -5,3 +5,10 @@
       "aria-current": "page"
   %>
 </li>
+<li class="nav-item">
+  <%= link_to t("navbar.nutrition_navbar.food_groups"),
+      food_groups_path,
+      class: "nav-link #{active_class(food_groups_path)}",
+      "aria-current": "page"
+  %>
+</li>

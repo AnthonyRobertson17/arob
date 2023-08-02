@@ -8,6 +8,8 @@ class CreateFoodGroups < ActiveRecord::Migration[7.0]
 
       t.belongs_to(:user)
 
+      t.index([:user_id, :name], unique: true)
+
       t.timestamps
     end
   end
