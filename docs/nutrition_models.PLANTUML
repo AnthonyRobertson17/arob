@@ -1,0 +1,39 @@
+@startuml arob nutrition
+
+title arob nutrition
+
+
+class MealPlan {
+  boolean from_nutitionist
+}
+
+class Meal {
+  Enum type
+  String name
+  Date date
+}
+
+class FoodGroup {
+  String name
+}
+
+class Food {
+  String name
+  Enum unit
+  bigint food_group_id
+}
+
+class Portion {
+  Float servings
+  Bigint food_group_id
+  Bigint meal_id
+}
+
+
+Meal  *--> Portion : has_many
+Portion --> FoodGroup : has_one
+Portion <--> Food : has_many
+Food --> FoodGroup : has_one
+MealPlan o--> Meal : has_many
+
+@enduml

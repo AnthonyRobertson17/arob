@@ -1,0 +1,4 @@
+<h1 class="mb-3"><%= t(".title") %></h1>
+<%= turbo_frame_tag(@food_group) do %>
+  <%= render("form", food_group: @food_group) %>
+<% end %>

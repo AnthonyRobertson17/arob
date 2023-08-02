@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   patch "profile", to: "users/profile#update"
 
   get "fitness", to: "fitness#index"
+  get "nutrition", to: "nutrition#index"
 
   resources :equipment
   resources :workout_tags
@@ -36,6 +37,8 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  resources :food_groups
 
   authenticated :user do
     root to: "home#index", as: :authenticated_root
