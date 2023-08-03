@@ -18,6 +18,8 @@ en:
       exercise_type:
         tag_ids: "Tags"
         equipment_ids: "Equipment Options"
+      food:
+        food_group_ids: "Food Groups"
   helpers:
     submit:
       workout_tag:

@@ -44,6 +44,7 @@ en:
       exercise_type_tag: "Exercise Type Tag"
       exercise_set: "Set"
       exercise: "Exercise"
+      food: "Food"
       food_group: "Food Group"
       gym: "Gym"
       equipment: "Equipment"
@@ -64,6 +65,9 @@ en:
       exercise_set:
         repetitions: "Reps"
         weight: "Weight"
+      food:
+        name: "Name"
+        food_groups: "Food Groups"
       food_group:
         name: "Name"
         emoji: "Emoji"
@@ -161,6 +165,18 @@ en:
       title: "Edit Exercise Type"
     exercise_type:
       destroy_confirmation: "Are you sure you want to destroy this exercise type?"
+  foods:
+    index:
+      title: "Food"
+      create_food: "Create Food"
+    show:
+      back: "Back to Food"
+    new:
+      title: "New Food"
+    edit:
+      title: "Edit Food"
+    food:
+      destroy_confirmation: "Are you sure you want to destroy this food?"
   food_groups:
     index:
       title: "Food Groups"
@@ -242,6 +258,7 @@ en:
     nutrition_navbar:
       nutrition: "Nutrition"
       food_groups: "Food Groups"
+      foods: "Food"
     wishlists:
       wishlists: "Wishlists"
   nutrition:

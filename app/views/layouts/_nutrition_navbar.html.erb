@@ -12,3 +12,10 @@
       "aria-current": "page"
   %>
 </li>
+<li class="nav-item">
+  <%= link_to t("navbar.nutrition_navbar.foods"),
+      foods_path,
+      class: "nav-link #{active_class(foods_path)}",
+      "aria-current": "page"
+  %>
+</li>
