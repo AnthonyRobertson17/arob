@@ -19,8 +19,6 @@ class FoodGroup {
 
 class Food {
   String name
-  Enum unit
-  bigint food_group_id
 }
 
 class Portion {
@@ -29,11 +27,26 @@ class Portion {
   Bigint meal_id
 }
 
+class ServingDefinitons {
+  Bigint food_group_id
+  Bigint food_id
+  Bigint serving_unit_id
+  Float serving_quantity
+}
+
+class ServingUnits {
+  String name
+  String abbreviation
+}
+
 
 Meal  *--> Portion : has_many
 Portion --> FoodGroup : has_one
 Portion <--> Food : has_many
-Food --> FoodGroup : has_one
+Food --> ServingDefinitons : has_many
+FoodGroup --> ServingDefinitons : has_many
+ServingDefinitons --> ServingUnits : has_one
+
 MealPlan o--> Meal : has_many
 
 @enduml
