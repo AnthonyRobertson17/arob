@@ -1,0 +1,13 @@
+<div class="d-flex mb-3 align-items-end">
+  <h1 class="mb-0 me-3"><%= t(".title") %></h1>
+  <%= link_to(t(".create_serving_unit"),
+              new_serving_unit_path,
+              class: "btn btn-primary",
+              data: { turbo_frame: dom_id(ServingUnit.new) }) %>
+</div>
+
+<%= turbo_frame_tag(ServingUnit.new) %>
+
+<%= turbo_frame_tag("serving_units") do %>
+  <%= render(@serving_units) %>
+<% end %>

@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   resources :food_groups
   resources :foods
+  resources :serving_units
 
   authenticated :user do
     root to: "home#index", as: :authenticated_root

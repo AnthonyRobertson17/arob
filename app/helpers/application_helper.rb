@@ -19,6 +19,7 @@ module ApplicationHelper
       "/nutrition",
       "/food_groups",
       "/foods",
+      "/serving_units",
     ],
   }.freeze
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_02_125716) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_28_004731) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,6 +110,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_125716) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable"
+  end
+
+  create_table "serving_units", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "abbreviation"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "name"], name: "index_serving_units_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_serving_units_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|

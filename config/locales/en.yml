@@ -1,8 +1,258 @@
+---
+en:
+  activerecord:
+    attributes:
+      equipment:
+        name: Name
+      exercise:
+        note: Note
+      exercise_set:
+        repetitions: Reps
+        weight: Weight
+      exercise_type:
+        equipment: Equipment
+        exercises: Exercises
+      food:
+        food_groups: Food Groups
+        name: Name
+      food_group:
+        emoji: Emoji
+        name: Name
+      gym:
+        equipment: Equipment
+        name: Name
+      wishlist:
+        name: Name
+      wishlist_item:
+        description: Description
+        links: Links
+        name: Name
+        price: Price
+      workout:
+        completed_at: Completed At
+        name: Name
+        started_at: Started At
+    models:
+      equipment: Equipment
+      exercise: Exercise
+      exercise_set: Set
+      exercise_type: Exercise Type
+      exercise_type_tag: Exercise Type Tag
+      food: Food
+      food_group: Food Group
+      gym: Gym
+      serving_unit: Serving Unit
+      wishlist: Wishlist
+      wishlist_item: Wishlist Item
+      workout: Workout
+      workout_tag: Workout Tag
+  app_name: arob
+  back: Back
+  cancel: Cancel
+  equipment:
+    edit:
+      title: Edit Equipment
+    equipment:
+      destroy_confirmation: Are you sure you want to destroy this equipment?
+    index:
+      create_equipment: Create Equipment
+      title: Equipment
+    new:
+      title: New Equipment
+    show:
+      back: Back to All Equipment
+  exercise_sets:
+    destroy_confirmation: Are you sure you want to destroy this set?
+    edit:
+      title: Edit Set
+    new:
+      title: New Set
+  exercise_type_tags:
+    edit:
+      title: Edit Exercise Type Tag
+    exercise_type_tag:
+      destroy_confirmation: Are you sure you want to destroy this exercise type tag?
+    index:
+      create_exercise_type_tag: Create Exercise Type Tag
+      title: Exercise Type Tags
+    new:
+      title: New Exercise Type Tag
+    show:
+      back: Back to Exercise Type Tags
+  exercise_types:
+    edit:
+      title: Edit Exercise Type
+    exercise_type:
+      destroy_confirmation: Are you sure you want to destroy this exercise type?
+    index:
+      create_exercise_type: Create Exercise Type
+      title: Exercise Types
+    new:
+      title: New Exercise Type
+    show:
+      back: Back to Exercise Types
+  exercises:
+    destroy_confirmation: Are you sure you want to destroy this exercise?
+    edit:
+      title: Edit Exercise
+    exercise:
+      create_exercise_set: Add Set
+    new:
+      title: New Exercise
+  fitness:
+    index:
+      create_workout: Create Workout
+      in_progress_workouts: In-Progress Workouts
+      recent_workouts: Recently Completed Workouts
+      title: Fitness
+  food_groups:
+    edit:
+      title: Edit Food Group
+    food_group:
+      destroy_confirmation: Are you sure you want to destroy this food group?
+    index:
+      create_food_group: Create Food Group
+      title: Food Groups
+    new:
+      title: New Food Group
+    show:
+      back: Back to Food Groups
+  foods:
+    edit:
+      title: Edit Food
+    food:
+      destroy_confirmation: Are you sure you want to destroy this food?
+    index:
+      create_food: Create Food
+      title: Food
+    new:
+      title: New Food
+    show:
+      back: Back to Food
+  form_error_heading:
+    one: '1 error:'
+    other: '%{count} errors:'
+    zero: No errors
+  gyms:
+    edit:
+      title: Edit Gym
+    gym:
+      destroy_confirmation: Are you sure you want to destroy this gym?
+      equipment_count: Equipment Count
+    index:
+      create_gym: Create Gym
+      title: Gyms
+    new:
+      title: New Gym
+    show:
+      back: Back to Gyms
+  home:
+    index:
+      fitness: Fitness
+      nutrition: Nutrition
+      wishlists: Wishlists
+  log_in: Log In
+  navbar:
+    fitness_navbar:
+      equipment: Equipment
+      exercise_type_tags: Exercise Type Tags
+      exercise_types: Exercise Types
+      gyms: Gyms
+      tags: Tags
+      workout_tags: Workout Tags
+      workouts: Workouts
+    logout: Logout
+    nutrition_navbar:
+      food_groups: Food Groups
+      foods: Food
+      nutrition: Nutrition
+      serving_units: Serving Units
+    wishlists:
+      wishlists: Wishlists
+  nutrition:
+    index:
+      title: Nutrition
+  save: Save
+  serving_units:
+    edit:
+      title: Edit Serving Unit
+    serving_unit:
+      destroy_confirmation: Are you sure you want to destroy this serving unit?
+    index:
+      create_serving_unit: Create Serving Unit
+      title: Serving Units
+    new:
+      title: New Serving Unit
+    show:
+      back: Back to Serving Unit
+  sign_up: Sign Up
+  users:
+    profile:
+      edit:
+        title: Edit Profile
+      show:
+        title: Profile
+  wishlist_items:
+    destroy_confirmation: Are you sure you want to destroy this item?
+    edit:
+      title: Edit Wishlist Item
+    new:
+      title: New Wishlist Item
+  wishlists:
+    destroy_confirmation: Are you sure you want to destroy this wishlist?
+    edit:
+      title: Edit Wishlist
+    index:
+      create_wishlist: Create Wishlist
+      title: Wishlists
+    new:
+      title: New Wishlist
+    show:
+      quick_create_wishlist_item: Quick Add
+    wishlist:
+      create_wishlist_item: Add New Item
+  workout_tags:
+    edit:
+      title: Edit Workout Tag
+    index:
+      create_workout_tag: Create Workout Tag
+      title: Workout Tags
+    new:
+      title: New Workout Tag
+    show:
+      back: Back to Workout Tags
+    workout_tag:
+      destroy_confirmation: Are you sure you want to destroy this workout tag?
+  workouts:
+    destroy_confirmation: Are you sure you want to destroy this workout?
+    edit:
+      title: Edit Workout
+    flash:
+      error:
+        already_completed: Workout has already been completed.
+        already_started: Workout has already started.
+        not_started: Workout has not been started.
+    index:
+      create_workout: Create Workout
+      title: Workouts
+    new:
+      title: New Workout
+    show:
+      create_exercise: New Exercise
+      exercises: Exercises
+    statuses:
+      completed: Completed
+      draft: Draft
+      in_progress: In Progress
+    workout:
+      complete: Complete
+      complete_confirmation: Are you sure you want to complete this workout?
+      start: Start#
+#
+# To use the locales, use `I18n.t`:
 # Files in the config/locales directory are used for internationalization
 # and are automatically loaded by Rails. If you want to use locales other
 # than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
 #
 #     I18n.t "hello"
 #
@@ -25,242 +275,5 @@
 #
 # en:
 #   "true": "foo"
-#
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
-
-en:
-  app_name: "arob"
-  log_in: "Log In"
-  sign_up: "Sign Up"
-  back: "Back"
-  save: "Save"
-  cancel: "Cancel"
-  activerecord:
-    models:
-      workout: "Workout"
-      workout_tag: "Workout Tag"
-      exercise_type: "Exercise Type"
-      exercise_type_tag: "Exercise Type Tag"
-      exercise_set: "Set"
-      exercise: "Exercise"
-      food: "Food"
-      food_group: "Food Group"
-      gym: "Gym"
-      equipment: "Equipment"
-      wishlist: "Wishlist"
-      wishlist_item: "Wishlist Item"
-    attributes:
-      workout:
-        started_at: "Started At"
-        completed_at: "Completed At"
-        name: "Name"
-      equipment:
-        name: "Name"
-      exercise:
-        note: "Note"
-      exercise_type:
-        equipment: "Equipment"
-        exercises: "Exercises"
-      exercise_set:
-        repetitions: "Reps"
-        weight: "Weight"
-      food:
-        name: "Name"
-        food_groups: "Food Groups"
-      food_group:
-        name: "Name"
-        emoji: "Emoji"
-      gym:
-        name: "Name"
-        equipment: "Equipment"
-      wishlist:
-        name: "Name"
-      wishlist_item:
-        name: "Name"
-        price: "Price"
-        links: "Links"
-        description: "Description"
-  form_error_heading:
-    zero: "No errors"
-    one: "1 error:"
-    other: "%{count} errors:"
-  home:
-    index:
-      fitness: "Fitness"
-      wishlists: "Wishlists"
-      nutrition: "Nutrition"
-  fitness:
-    index:
-      title: "Fitness"
-      recent_workouts: "Recently Completed Workouts"
-      in_progress_workouts: "In-Progress Workouts"
-      create_workout: "Create Workout"
-  users:
-    profile:
-      show:
-        title: "Profile"
-      edit:
-        title: "Edit Profile"
-  workouts:
-    index:
-      title: "Workouts"
-      create_workout: "Create Workout"
-    new:
-      title: "New Workout"
-    edit:
-      title: "Edit Workout"
-    show:
-      exercises: "Exercises"
-      create_exercise: "New Exercise"
-    workout:
-      start: "Start"
-      complete: "Complete"
-      complete_confirmation: "Are you sure you want to complete this workout?"
-    destroy_confirmation: "Are you sure you want to destroy this workout?"
-    statuses:
-      completed: "Completed"
-      in_progress: "In Progress"
-      draft: "Draft"
-    flash:
-      error:
-        already_started: "Workout has already started."
-        already_completed: "Workout has already been completed."
-        not_started: "Workout has not been started."
-  equipment:
-    index:
-      title: "Equipment"
-      create_equipment: "Create Equipment"
-    show:
-      back: "Back to All Equipment"
-    new:
-      title: "New Equipment"
-    edit:
-      title: "Edit Equipment"
-    equipment:
-      destroy_confirmation: "Are you sure you want to destroy this equipment?"
-  exercises:
-    edit:
-      title: "Edit Exercise"
-    new:
-      title: "New Exercise"
-    exercise:
-      create_exercise_set: "Add Set"
-    destroy_confirmation: "Are you sure you want to destroy this exercise?"
-  exercise_sets:
-    new:
-      title: "New Set"
-    edit:
-      title: "Edit Set"
-    destroy_confirmation: "Are you sure you want to destroy this set?"
-  exercise_types:
-    index:
-      title: "Exercise Types"
-      create_exercise_type: "Create Exercise Type"
-    show:
-      back: "Back to Exercise Types"
-    new:
-      title: "New Exercise Type"
-    edit:
-      title: "Edit Exercise Type"
-    exercise_type:
-      destroy_confirmation: "Are you sure you want to destroy this exercise type?"
-  foods:
-    index:
-      title: "Food"
-      create_food: "Create Food"
-    show:
-      back: "Back to Food"
-    new:
-      title: "New Food"
-    edit:
-      title: "Edit Food"
-    food:
-      destroy_confirmation: "Are you sure you want to destroy this food?"
-  food_groups:
-    index:
-      title: "Food Groups"
-      create_food_group: "Create Food Group"
-    show:
-      back: "Back to Food Groups"
-    new:
-      title: "New Food Group"
-    edit:
-      title: "Edit Food Group"
-    food_group:
-      destroy_confirmation: "Are you sure you want to destroy this food group?"
-  gyms:
-    index:
-      title: "Gyms"
-      create_gym: "Create Gym"
-    show:
-      back: "Back to Gyms"
-    new:
-      title: "New Gym"
-    edit:
-      title: "Edit Gym"
-    gym:
-      equipment_count: "Equipment Count"
-      destroy_confirmation: "Are you sure you want to destroy this gym?"
-  exercise_type_tags:
-    index:
-      title: "Exercise Type Tags"
-      create_exercise_type_tag: "Create Exercise Type Tag"
-    new:
-      title: "New Exercise Type Tag"
-    edit:
-      title: "Edit Exercise Type Tag"
-    show:
-      back: "Back to Exercise Type Tags"
-    exercise_type_tag:
-      destroy_confirmation: "Are you sure you want to destroy this exercise type tag?"
-  workout_tags:
-    index:
-      title: "Workout Tags"
-      create_workout_tag: "Create Workout Tag"
-    new:
-      title: "New Workout Tag"
-    edit:
-      title: "Edit Workout Tag"
-    show:
-      back: "Back to Workout Tags"
-    workout_tag:
-      destroy_confirmation: "Are you sure you want to destroy this workout tag?"
-  wishlists:
-    new:
-      title: "New Wishlist"
-    edit:
-      title: "Edit Wishlist"
-    show:
-      quick_create_wishlist_item: "Quick Add"
-    index:
-      title: "Wishlists"
-      create_wishlist: "Create Wishlist"
-    wishlist:
-      create_wishlist_item: "Add New Item"
-    destroy_confirmation: "Are you sure you want to destroy this wishlist?"
-  wishlist_items:
-    new:
-      title: "New Wishlist Item"
-    edit:
-      title: "Edit Wishlist Item"
-    destroy_confirmation: "Are you sure you want to destroy this item?"
-  navbar:
-    fitness_navbar:
-      workouts: "Workouts"
-      tags: "Tags"
-      workout_tags: "Workout Tags"
-      gyms: "Gyms"
-      equipment: "Equipment"
-      exercise_types: "Exercise Types"
-      exercise_type_tags: "Exercise Type Tags"
-    logout: "Logout"
-    nutrition_navbar:
-      nutrition: "Nutrition"
-      food_groups: "Food Groups"
-      foods: "Food"
-    wishlists:
-      wishlists: "Wishlists"
-  nutrition:
-    index:
-      title: "Nutrition"
