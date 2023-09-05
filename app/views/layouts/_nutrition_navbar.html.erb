@@ -26,3 +26,10 @@
       "aria-current": "page"
   %>
 </li>
+<li class="nav-item">
+  <%= link_to t("navbar.nutrition_navbar.serving_definitions"),
+      serving_definitions_path,
+      class: "nav-link #{active_class(serving_definitions_path)}",
+      "aria-current": "page"
+  %>
+</li>

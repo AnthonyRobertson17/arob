@@ -20,6 +20,7 @@ module ApplicationHelper
       "/food_groups",
       "/foods",
       "/serving_units",
+      "/serving_definitions",
     ],
   }.freeze
 

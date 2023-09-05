@@ -38,6 +38,9 @@ en:
       food_group:
         create: Create
         update: Update
+      serving_definition:
+        create: Create
+        update: Update
       serving_unit:
         create: Create
         update: Update

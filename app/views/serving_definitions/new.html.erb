@@ -1,0 +1,4 @@
+<h1 class="mb-3"><%= t(".title") %></h1>
+<%= turbo_frame_tag(@serving_definition) do %>
+  <%= render("form", serving_definition: @serving_definition) %>
+<% end %>

@@ -21,6 +21,11 @@ en:
       gym:
         equipment: Equipment
         name: Name
+      serving_definition:
+        serving_unit: Units
+        serving_quantity: Quantity
+        food: Food
+        food_group: Food Group
       wishlist:
         name: Name
       wishlist_item:
@@ -41,6 +46,7 @@ en:
       food: Food
       food_group: Food Group
       gym: Gym
+      serving_definition: Serving Definition
       serving_unit: Serving Unit
       wishlist: Wishlist
       wishlist_item: Wishlist Item
@@ -166,6 +172,7 @@ en:
       food_groups: Food Groups
       foods: Food
       nutrition: Nutrition
+      serving_definitions: Serving Definitions
       serving_units: Serving Units
     wishlists:
       wishlists: Wishlists
@@ -173,6 +180,18 @@ en:
     index:
       title: Nutrition
   save: Save
+  serving_definitions:
+    edit:
+      title: Edit Serving Definition
+    serving_definition:
+      destroy_confirmation: Are you sure you want to destroy this serving definition?
+    index:
+      create_serving_definition: Create Serving Definition
+      title: Serving Definition
+    new:
+      title: New Serving Definition
+    show:
+      back: Back to Serving Definitions
   serving_units:
     edit:
       title: Edit Serving Unit
@@ -184,7 +203,7 @@ en:
     new:
       title: New Serving Unit
     show:
-      back: Back to Serving Unit
+      back: Back to Serving Units
   sign_up: Sign Up
   users:
     profile:

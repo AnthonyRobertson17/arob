@@ -25,6 +25,7 @@ class Portion {
   Float servings
   Bigint food_group_id
   Bigint meal_id
+  Bigint food_id
 }
 
 class ServingDefinitons {
