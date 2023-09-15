@@ -21,6 +21,16 @@ en:
       gym:
         equipment: Equipment
         name: Name
+      meal:
+        date: Date
+        name: Name
+        meal_type: Meal type
+        meal_types:
+          breakfast: Breakfast
+          dessert: Dessert
+          dinner: Dinner
+          lunch: Lunch
+          snack: Snack
       serving_definition:
         serving_unit: Units
         serving_quantity: Quantity
@@ -46,6 +56,7 @@ en:
       food: Food
       food_group: Food Group
       gym: Gym
+      meal: Meal
       serving_definition: Serving Definition
       serving_unit: Serving Unit
       wishlist: Wishlist
@@ -158,6 +169,18 @@ en:
       nutrition: Nutrition
       wishlists: Wishlists
   log_in: Log In
+  meals:
+    edit:
+      title: Edit Meal
+    index:
+      create_meal: Create Meal
+      title: Meals
+    meal:
+      destroy_confirmation: Are you sure you want to destroy this meal?
+    new:
+      title: New Meal
+    show:
+      back: Back to Meals
   navbar:
     fitness_navbar:
       equipment: Equipment
@@ -171,6 +194,7 @@ en:
     nutrition_navbar:
       food_groups: Food Groups
       foods: Food
+      meals: Meals
       nutrition: Nutrition
       serving_definitions: Serving Definitions
       serving_units: Serving Units

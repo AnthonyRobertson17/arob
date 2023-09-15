@@ -1,0 +1,13 @@
+<div class="d-flex mb-3 align-items-end">
+  <h1 class="mb-0 me-3"><%= t(".title") %></h1>
+  <%= link_to(t(".create_meal"),
+              new_meal_path,
+              class: "btn btn-primary",
+              data: { turbo_frame: dom_id(Meal.new) }) %>
+</div>
+
+<%= turbo_frame_tag(Meal.new) %>
+
+<%= turbo_frame_tag("meals") do %>
+  <%= render(@meals) %>
+<% end %>

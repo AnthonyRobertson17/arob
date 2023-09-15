@@ -21,6 +21,7 @@ module ApplicationHelper
       "/foods",
       "/serving_units",
       "/serving_definitions",
+      "/meals",
     ],
   }.freeze
 

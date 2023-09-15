@@ -58,6 +58,8 @@ en:
         tag_ids: Tags
       food:
         food_group_ids: Food Groups
+      meal:
+        name: Name (Defaults to meal type)
       workout:
         tag_ids: Tags
     'no': 'No'

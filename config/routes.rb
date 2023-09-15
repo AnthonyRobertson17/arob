@@ -40,6 +40,7 @@ Rails.application.routes.draw do
 
   resources :food_groups
   resources :foods
+  resources :meals
   resources :serving_units
   resources :serving_definitions, except: [:show]
 
