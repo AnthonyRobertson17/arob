@@ -11,6 +11,7 @@ class MealsController < ApplicationController
 
   def new
     @meal = Meal.new
+    @meal.date = Time.zone.now
   end
 
   def edit

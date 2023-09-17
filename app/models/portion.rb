@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-class ServingDefinition < ApplicationRecord
+class Portion < ApplicationRecord
   belongs_to(:user)
-  belongs_to(:food_group)
+  belongs_to(:meal)
   belongs_to(:food)
-  belongs_to(:serving_unit)
+  belongs_to(:food_group)
+  has_many :serving_definitons, -> { where(food_group:) }, through: :food
 
-  validates(:serving_quantity, presence: true, numericality: { greater_than_or_equal_to: 0 })
+  validates(:serving_quantity, presence: true, numericality: { greater_than: 0 })
 
   validate :food_belongs_to_food_group
 

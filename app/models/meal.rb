@@ -3,6 +3,8 @@
 class Meal < ApplicationRecord
   belongs_to :user
 
+  has_many :portions, dependent: :destroy
+
   enum :meal_type, [:breakfast, :lunch, :dinner, :dessert, :snack]
 
   validates :meal_type, presence: true

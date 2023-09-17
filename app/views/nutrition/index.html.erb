@@ -1,1 +1,18 @@
 <h1 class="display-3 mb-4"><%= t(".title") %></h1>
+
+<% formatted_datetime = @datetime.to_fs(:date) %>
+
+<h1 class="mb-4">
+  <%= @datetime.today? ? t(".meals_today", date: formatted_datetime) : t(".meals", date: formatted_datetime) %>
+</h1>
+
+<% if @datetime.today? %>
+  <%= link_to(t(".create_meal"), new_meal_path, class: "mb-3 btn btn-primary", data: { turbo_frame: dom_id(Meal.new) }) %>
+<% end %>
+
+<%= turbo_frame_tag("meals") do %>
+  <%= turbo_frame_tag(Meal.new) %>
+  <% @meals.each do |meal| %>
+    <%= render("meals/meal_card", meal:) %>
+  <% end %>
+<% end %>

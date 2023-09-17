@@ -181,6 +181,8 @@ en:
       title: New Meal
     show:
       back: Back to Meals
+      create_portion: New portion
+      portions: Portions
   navbar:
     fitness_navbar:
       equipment: Equipment
@@ -203,6 +205,15 @@ en:
   nutrition:
     index:
       title: Nutrition
+      create_meal: New Meal
+      meals: Meals - %{date}
+      meals_today: Today's Meals - %{date}
+  portions:
+    destroy_confirmation: Are you sure you want to destroy this portion?
+    edit:
+      title: Edit Portion
+    new:
+      title: New Portion
   save: Save
   serving_definitions:
     edit:

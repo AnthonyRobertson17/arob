@@ -1,2 +1,5 @@
-<%= turbo_stream.prepend("meals", @meal) %>
-<%= turbo_stream.update(Meal.new, "") %>
+<%= turbo_stream.update Meal.new, "" %>
+
+<%= turbo_stream.prepend "meals" do %>
+  <%= render "meal_card", meal: @meal %>
+<% end %>

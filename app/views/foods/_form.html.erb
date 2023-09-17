@@ -2,7 +2,7 @@
   <div class="card-body">
     <%= simple_form_for(food) do |f| %>
       <%= f.input(:name) %>
-      <%= f.input(:food_group_ids, as: :check_boxes, collection: food_groups) %>
+      <%= f.input(:food_group_ids, as: :check_boxes, collection: current_user.food_groups) %>
       <%= f.button(:submit) %>
       <%= link_to(t(:cancel), foods_path, class: "btn btn-secondary") %>
     <% end %>

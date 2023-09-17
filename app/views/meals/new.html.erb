@@ -1,4 +1,4 @@
 <h1 class="mb-3"><%= t(".title") %></h1>
 <%= turbo_frame_tag(@meal) do %>
-  <%= render("form", meal: @meal) %>
+  <%= render("form", meal: @meal, cancel_path: meals_path) %>
 <% end %>

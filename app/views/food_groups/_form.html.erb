@@ -3,6 +3,7 @@
     <%= simple_form_for(food_group) do |f| %>
       <%= f.input(:name) %>
       <%= f.input(:emoji) %>
+      <%= f.input(:food_ids, as: :check_boxes, collection: current_user.foods) %>
       <%= f.button(:submit) %>
       <%= link_to(t(:cancel), food_groups_path, class: "btn btn-secondary") %>
     <% end %>
