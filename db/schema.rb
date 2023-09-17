@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_02_030951) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_15_161444) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -81,6 +81,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_030951) do
     t.index ["user_id"], name: "index_food_groups_on_user_id"
   end
 
+  create_table "food_groups_foods", id: false, force: :cascade do |t|
+    t.bigint "food_group_id", null: false
+    t.bigint "food_id", null: false
+  end
+
+  create_table "foods", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id", "name"], name: "index_foods_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_foods_on_user_id"
+  end
+
   create_table "gyms", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "user_id"
@@ -96,6 +110,54 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_02_030951) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "date"
+    t.integer "meal_type", default: 0, null: false
+    t.string "name"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_meals_on_user_id"
+  end
+
+  create_table "portions", force: :cascade do |t|
+    t.decimal "serving_quantity", null: false
+    t.bigint "user_id"
+    t.bigint "food_group_id"
+    t.bigint "meal_id"
+    t.bigint "food_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["food_group_id"], name: "index_portions_on_food_group_id"
+    t.index ["food_id"], name: "index_portions_on_food_id"
+    t.index ["meal_id"], name: "index_portions_on_meal_id"
+    t.index ["user_id"], name: "index_portions_on_user_id"
+  end
+
+  create_table "serving_definitions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "serving_quantity"
+    t.bigint "user_id"
+    t.bigint "food_id"
+    t.bigint "food_group_id"
+    t.bigint "serving_unit_id"
+    t.index ["food_group_id"], name: "index_serving_definitions_on_food_group_id"
+    t.index ["food_id"], name: "index_serving_definitions_on_food_id"
+    t.index ["serving_unit_id"], name: "index_serving_definitions_on_serving_unit_id"
+    t.index ["user_id"], name: "index_serving_definitions_on_user_id"
+  end
+
+  create_table "serving_units", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "abbreviation"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "name"], name: "index_serving_units_on_user_id_and_name", unique: true
+    t.index ["user_id"], name: "index_serving_units_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|

@@ -12,4 +12,9 @@ class User < ApplicationRecord
   has_many :exercise_type_tags, dependent: :destroy
   has_many :wishlists, dependent: :destroy
   has_many :food_groups, dependent: :destroy
+  has_many :foods, dependent: :destroy
+  has_many :meals, dependent: :destroy
+  has_many :portions, dependent: :destroy
+  has_many :serving_units, dependent: :destroy
+  has_many :serving_definitions, dependent: :destroy
 end

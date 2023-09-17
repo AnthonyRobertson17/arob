@@ -10,11 +10,8 @@ Rails.application.routes.draw do
   get "fitness", to: "fitness#index"
   get "nutrition", to: "nutrition#index"
 
-  resources :equipment
-  resources :workout_tags
-  resources :exercise_types
-  resources :gyms
-  resources :exercise_type_tags
+  resources :equipment, :workout_tags, :exercise_types, :gyms, :exercise_type_tags
+
   resources :workouts do
     member do
       patch "start", to: "workouts/start#update"
@@ -38,7 +35,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :food_groups
+  resources :food_groups, :foods, :serving_units
+  resources :serving_definitions, except: [:show]
+  resources :meals do
+    resources :portions, except: [:index, :show]
+  end
 
   authenticated :user do
     root to: "home#index", as: :authenticated_root

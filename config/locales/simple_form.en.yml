@@ -1,34 +1,7 @@
+---
 en:
-  simple_form:
-    "yes": 'Yes'
-    "no": 'No'
-    required:
-      text: 'required'
-      mark: '*'
-      # You can uncomment the line below if you need to overwrite the whole required html.
-      # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
-    error_notification:
-      default_message: "Please review the problems below:"
-    labels:
-      workout:
-        tag_ids: "Tags"
-      equipment:
-        gym_ids: "Available Gyms"
-      exercise_type:
-        tag_ids: "Tags"
-        equipment_ids: "Equipment Options"
   helpers:
     submit:
-      workout_tag:
-        create: Create
-        update: Update
-      exercise_type_tag:
-        create: Create
-        update: Update
-      workout:
-        create: Create
-        update: Update
       equipment:
         create: Create
         update: Update
@@ -41,6 +14,9 @@ en:
       exercise_type:
         create: Create
         update: Update
+      exercise_type_tag:
+        create: Create
+        update: Update
       gym:
         create: Create
         update: Update
@@ -50,3 +26,48 @@ en:
       wishlist_item:
         create: Create
         update: Update
+      workout:
+        create: Create
+        update: Update
+      workout_tag:
+        create: Create
+        update: Update
+      food:
+        create: Create
+        update: Update
+      food_group:
+        create: Create
+        update: Update
+      serving_definition:
+        create: Create
+        update: Update
+      serving_unit:
+        create: Create
+        update: Update
+  simple_form:
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: 'Please review the problems below:'
+    labels:
+      equipment:
+        gym_ids: Available Gyms
+      exercise_type:
+        equipment_ids: Equipment Options
+        tag_ids: Tags
+      food:
+        food_group_ids: Food Groups
+      food_group:
+        food_ids: Foods
+      portion:
+        serving_quantity: Servings
+      meal:
+        name: Name (Defaults to meal type)
+      workout:
+        tag_ids: Tags
+    'no': 'No'
+    required:
+      mark: '*'
+      text: required
+    'yes': 'Yes'

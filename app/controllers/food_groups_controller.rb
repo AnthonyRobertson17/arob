@@ -54,6 +54,6 @@ class FoodGroupsController < ApplicationController
   private
 
   def food_group_params
-    params.require(:food_group).permit([:name, :emoji])
+    params.require(:food_group).permit(:name, :emoji, { food_ids: [] })
   end
 end

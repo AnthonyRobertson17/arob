@@ -2,6 +2,7 @@
 
 class FoodGroup < ApplicationRecord
   belongs_to(:user)
+  has_and_belongs_to_many(:food)
 
   validates(:name, presence: true, uniqueness: { scope: :user_id })
   validates(:emoji, length: { maximum: 1 })

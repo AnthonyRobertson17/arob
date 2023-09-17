@@ -1,0 +1,32 @@
+<%= turbo_frame_tag(serving_definition) do %>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="d-flex flex-wrap justify-content-between">
+        <div class="d-flex align-items-center">
+          <h3>
+            <%= "#{serving_definition.food_group.name} - #{serving_definition.food.name} - #{serving_definition.serving_unit.name}" %>
+          </h3>
+        </div>
+        <div class="d-flex align-items-center">
+          <%= link_to(edit_serving_definition_path(serving_definition), class: "btn btn-secondary me-2") do %>
+            <i class="bi bi-pencil"></i>
+          <% end %>
+          <%= button_to(serving_definition,
+                        method: :delete,
+                        form: { data: { turbo_confirm: t(".destroy_confirmation") } },
+                        class: "btn btn-danger" ) do %>
+            <i class="bi bi-trash3"></i>
+          <% end %>
+        </div>
+      </div>
+      <table class="table xxsmall-width mt-3">
+        <tbody>
+          <tr>
+            <th scope="row"><%= ServingDefinition.human_attribute_name("serving_quantity") %></th>
+            <td><%= serving_definition.serving_quantity %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

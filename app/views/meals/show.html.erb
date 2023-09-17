@@ -1,0 +1,18 @@
+<%= render(@meal) %>
+
+<h3><%= t(".portions") %></h3>
+
+<%= turbo_frame_tag("portions") do %>
+  <%= render(@meal.portions, meal: @meal) %>
+<% end %>
+
+<%= turbo_frame_tag(Portion.new) %>
+
+<div class="mb-5">
+  <%= link_to(
+    t(".create_portion"),
+    new_meal_portion_path(@meal),
+    class: "btn btn-primary me-2",
+    data: { turbo_frame: dom_id(Portion.new) }
+  ) %>
+</div>
