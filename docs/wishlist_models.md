@@ -3,6 +3,7 @@
 title: Wishlist Models
 ---
 classDiagram
+  direction LR
 
   class User {
     String email
