@@ -5,7 +5,7 @@ class WishlistsController < ApplicationController
 
   # GET /wishlists
   def index
-    @wishlists = policy_scope(Wishlist).all.order(id: :desc)
+    @wishlists = policy_scope(Wishlist).order(id: :desc)
   end
 
   # GET /wishlists/1
