@@ -13,6 +13,8 @@ module Arob
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    config.active_support.cache_format_version = 7.0
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -20,9 +22,5 @@ module Arob
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-
-    config.action_view.prefix_partial_path_with_controller_namespace = false
-
-    config.action_view.field_error_proc = Proc.new { |html_tag, _| html_tag.html_safe }
   end
 end
