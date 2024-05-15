@@ -1,0 +1,16 @@
+= turbo_frame_tag(exercise_type) do
+  .card.mb-3
+    .card-body
+      %h3= exercise_type.name
+      - exercise_type.equipment.each do |equipment|
+        %h5= equipment.name
+      .d-flex
+        = link_to(exercise_type, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do
+          %i.bi.bi-arrows-angle-expand
+        = link_to(edit_exercise_type_path(exercise_type), class: "btn btn-secondary me-2") do
+          %i.bi.bi-pencil
+        = button_to(exercise_type,                                       |
+          method: :delete,                                               |
+          form: { data: { turbo_confirm: t(".destroy_confirmation") } }, |
+          class: "btn btn-danger" ) do                                   |
+          %i.bi.bi-trash3

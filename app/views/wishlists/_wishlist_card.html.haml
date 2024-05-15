@@ -1,0 +1,9 @@
+= turbo_frame_tag(wishlist) do
+  .card.mb-3
+    .card-body
+      .d-flex.flex-wrap.justify-content-between
+        .d-flex.align-items-center
+          %h3.mb-0.me-2= wishlist.name
+        .d-flex.align-items-center
+          = link_to(wishlist, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do
+            %i.bi.bi-arrows-angle-expand

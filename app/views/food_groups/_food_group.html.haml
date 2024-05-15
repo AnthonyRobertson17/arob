@@ -1,0 +1,16 @@
+= turbo_frame_tag(food_group) do
+  .card.mb-3
+    .card-body
+      .d-flex.flex-wrap.justify-content-between
+        .d-flex.align-items-center
+          %h3= food_group.name_with_emoji
+        .d-flex.align-items-center
+          = link_to(food_group, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do
+            %i.bi.bi-arrows-angle-expand
+          = link_to(edit_food_group_path(food_group), class: "btn btn-secondary me-2") do
+            %i.bi.bi-pencil
+          = button_to(food_group,                                          |
+            method: :delete,                                               |
+            form: { data: { turbo_confirm: t(".destroy_confirmation") } }, |
+            class: "btn btn-danger" ) do                                   |
+            %i.bi.bi-trash3

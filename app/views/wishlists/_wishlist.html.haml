@@ -1,0 +1,11 @@
+= turbo_frame_tag(wishlist) do
+  .d-flex.flex-wrap.justify-content-between.mb-3
+    .d-flex.align-items-center
+      %h1.mb-0.me-2= wishlist.name
+    .d-flex.align-items-center
+      = link_to(t(".create_wishlist_item"),       |
+        new_wishlist_wishlist_item_url(wishlist), |
+        class: "btn btn-primary me-2",            |
+        data: { turbo_frame: "_top" })            |
+      = link_to(edit_wishlist_path(wishlist), class: "btn btn-secondary me-2") do
+        %i.bi.bi-pencil

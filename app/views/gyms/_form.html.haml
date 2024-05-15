@@ -1,0 +1,6 @@
+.card.mb-3
+  .card-body
+    = simple_form_for(gym) do |f|
+      = f.input(:name)
+      = f.button(:submit)
+      = link_to(t(:cancel), gyms_path, class: "btn btn-secondary")

@@ -1,0 +1,14 @@
+= turbo_frame_tag exercise_type_tag do
+  .card.mb-3
+    .card-body
+      %h3= exercise_type_tag.name
+      .d-flex
+        = link_to(exercise_type_tag, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do
+          %i.bi.bi-arrows-angle-expand
+        = link_to(edit_exercise_type_tag_path(exercise_type_tag), class: "btn btn-secondary me-2") do
+          %i.bi.bi-pencil
+        = button_to(exercise_type_tag,                                   |
+          method: :delete,                                               |
+          form: { data: { turbo_confirm: t(".destroy_confirmation") } }, |
+          class: "btn btn-danger") do                                    |
+          %i.bi.bi-trash3

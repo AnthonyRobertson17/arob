@@ -1,0 +1,14 @@
+= content_tag(:div, class: "nested-fields", data: { new_record: form.object.new_record? }) do
+  - invalid = form.object.errors.include?(:url)
+  .form-group.row.mb-3
+    .col-10.col-sm-11
+      = form.text_field(:url, class: "form-control #{"is-invalid" if invalid}")
+      - if invalid
+        .invalid-feedback.d-block
+          - form.object.errors.full_messages_for(:url).each do |error_message|
+            = error_message
+            \.
+    .col-2.col-sm-1
+      = link_to("#", class: "btn btn-danger", data: { action: "click->nested-form#remove_association" }) do
+        %i.bi.bi-trash3
+    = form.hidden_field :_destroy

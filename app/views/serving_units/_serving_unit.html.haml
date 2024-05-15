@@ -1,0 +1,21 @@
+= turbo_frame_tag(serving_unit) do
+  .card.mb-3
+    .card-body
+      .d-flex.flex-wrap.justify-content-between
+        .d-flex.align-items-center
+          %h3
+            - if serving_unit.abbreviated?
+              = serving_unit.name
+              (#{serving_unit.abbreviated_name})
+            - else
+              = serving_unit.name
+        .d-flex.align-items-center
+          = link_to(serving_unit, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do
+            %i.bi.bi-arrows-angle-expand
+          = link_to(edit_serving_unit_path(serving_unit), class: "btn btn-secondary me-2") do
+            %i.bi.bi-pencil
+          = button_to(serving_unit,                                        |
+            method: :delete,                                               |
+            form: { data: { turbo_confirm: t(".destroy_confirmation") } }, |
+            class: "btn btn-danger" ) do                                   |
+            %i.bi.bi-trash3

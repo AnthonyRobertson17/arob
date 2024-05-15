@@ -1,0 +1,40 @@
+= turbo_frame_tag exercise do
+  .d-flex.align-items-center.mb-4
+    .card.flex-grow-1.me-2
+      .card-body
+        = turbo_frame_tag dom_id(exercise, :edit) do
+          .d-flex.align-items-center.mb-3
+            %h4.mb-0.flex-grow-1= exercise.name
+            = link_to([:edit, workout, exercise], class: "btn btn-secondary me-2") do
+              %i.bi.bi-pencil
+          - unless exercise.note.blank?
+            .mb-3
+              %p.fw-bold.mb-1
+                = Exercise.human_attribute_name("note")
+                \:
+              = simple_format(exercise.note)
+        .container
+          .row.border-bottom.border-2.border-secondary.pb-1
+            .col-4.fw-bold= ExerciseSet.human_attribute_name("weight")
+            .col-8.fw-bold= ExerciseSet.human_attribute_name("repetitions")
+          = turbo_frame_tag nested_dom_id(exercise, "exercise_sets") do
+            = render exercise.exercise_sets, workout: workout, exercise: exercise
+          - unless workout.completed?
+            = turbo_frame_tag nested_dom_id(exercise, ExerciseSet.new) do
+              .pt-2
+                = link_to t(".create_exercise_set"),        |
+                  [:new, workout, exercise, :exercise_set], |
+                  class: "btn btn-primary"                  |
+    %div
+      = button_to(move_higher_workout_exercise_path(workout, exercise), |
+        method: :patch,                                                 |
+        form: { data: { turbo_frame: dom_id(exercise), } },             |
+        disabled: exercise.first?,                                      |
+        class: "btn btn-secondary mb-3") do                             |
+        %i.bi.bi-arrow-up
+      = button_to(move_lower_workout_exercise_path(workout, exercise), |
+        method: :patch,                                                |
+        form: { data: { turbo_frame: dom_id(exercise), } },            |
+        disabled: exercise.last?,                                      |
+        class: "btn btn-secondary") do                                 |
+        %i.bi.bi-arrow-down

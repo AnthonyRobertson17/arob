@@ -1,0 +1,9 @@
+.card.mb-3
+  .card-body
+    = simple_form_for(serving_definition) do |f|
+      = f.association(:food_group)
+      = f.association(:food)
+      = f.association(:serving_unit)
+      = f.input(:serving_quantity)
+      = f.button(:submit)
+      = link_to(t(:cancel), serving_definitions_path, class: "btn btn-secondary")

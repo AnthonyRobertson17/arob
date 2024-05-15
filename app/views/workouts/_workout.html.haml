@@ -1,0 +1,31 @@
+= turbo_frame_tag(workout) do
+  .d-flex.flex-wrap.justify-content-between.mb-3
+    .d-flex.align-items-center
+      %h1.mb-0.me-2= workout.name
+      - if workout.completed?
+        %span.badge.rounded-pill.bg-success.mx-1= t("workouts.statuses.completed")
+      - elsif workout.in_progress?
+        %span.badge.rounded-pill.bg-primary.mx-1= t("workouts.statuses.in_progress")
+      - else
+        %span.badge.rounded-pill.bg-secondary.mx-1= t("workouts.statuses.draft")
+    .d-flex.align-items-center
+      - if workout.draft?
+        = button_to(t(".start"), start_workout_path(workout), method: :patch, class: "btn btn-primary me-2")
+      - if workout.in_progress?
+        = button_to(t(".complete"),                                       |
+          complete_workout_path(workout),                                 |
+          method: :patch,                                                 |
+          form: { data: { turbo_confirm: t(".complete_confirmation") } }, |
+          class: "btn btn-success me-2")                                  |
+      = link_to(edit_workout_path(workout), class: "btn btn-secondary me-2") do
+        %i.bi.bi-pencil
+  - if workout.started?
+    %table.table.xxsmall-width
+      %tbody
+        %tr
+          %th{:scope => "row"}= Workout.human_attribute_name("started_at")
+          %td= workout.started_at&.to_fs(:timestamp)
+        - if workout.completed?
+          %tr
+            %th{:scope => "row"}= Workout.human_attribute_name("completed_at")
+            %td= workout.completed_at&.to_fs(:timestamp)

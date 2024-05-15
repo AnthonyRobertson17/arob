@@ -1,0 +1,42 @@
+= link_to(t(".back"), exercise_types_path, class: "mb-3 btn btn-primary")
+%h1.mb-3= @exercise_type.name
+#exerciseTypeAccordion.accordion.mb-3
+  .accordion-item
+    %h2#headingOne.accordion-header
+      %button.accordion-button{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-bs-target" => "#collapseOne", "data-bs-toggle" => "collapse", :type => "button"}
+        .d-flex.align-items-center
+          %h3.mb-0.me-2= ExerciseType.human_attribute_name("equipment")
+          %span.badge.rounded-pill.bg-secondary.px-2
+            .px-2
+              = @exercise_type.equipment.count
+    #collapseOne.accordion-collapse.collapse.show{"aria-labelledby" => "headingOne"}
+      .accordion-body
+        %ul.mb-0
+          - @exercise_type.equipment.each do |equipment|
+            %li= equipment.name
+  .accordion-item
+    %h2#headingTwo.accordion-header
+      %button.accordion-button{"aria-controls" => "collapseTwo", "aria-expanded" => "true", "data-bs-target" => "#collapseTwo", "data-bs-toggle" => "collapse", :type => "button"}
+        .d-flex.align-items-center
+          %h3.mb-0.me-2= ExerciseType.human_attribute_name("exercises")
+          %span.badge.rounded-pill.bg-secondary.px-2
+            .px-2
+              = @exercise_type.exercises.count
+    #collapseTwo.accordion-collapse.collapse.show{"aria-labelledby" => "headingTwo"}
+      .accordion-body
+        - last_index = @exercise_type.exercises.length - 1
+        - @exercise_type.exercises.each_with_index do |exercise, i|
+          %div{:class => "card flex-grow-1 me-2#{" mb-3" unless i == last_index}"}
+            .card-body
+              %h4.mb-3.flex-grow-1= exercise.workout.name
+              - unless exercise.note.blank?
+                .mb-3
+                  %p.fw-bold.mb-1
+                    = Exercise.human_attribute_name("note")
+                    \:
+                  = simple_format(exercise.note)
+              .container
+                .row.border-bottom.border-2.border-secondary.pb-1
+                  .col-4.fw-bold= ExerciseSet.human_attribute_name("weight")
+                  .col-8.fw-bold= ExerciseSet.human_attribute_name("repetitions")
+                = render(exercise.exercise_sets, workout: exercise.workout, exercise:, disable_edit: true)

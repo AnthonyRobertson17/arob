@@ -1,0 +1,7 @@
+.card.mb-3
+  .card-body
+    = simple_form_for(serving_unit) do |f|
+      = f.input(:name)
+      = f.input(:abbreviation)
+      = f.button(:submit)
+      = link_to(t(:cancel), serving_units_path, class: "btn btn-secondary")

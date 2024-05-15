@@ -1,0 +1,19 @@
+= turbo_frame_tag(gym) do
+  .card.mb-3
+    .card-body
+      %h3= gym.name
+      %table.table.xxsmall-width.mt-3
+        %tbody
+          %tr
+            %th{:scope => "row"}= t(".equipment_count")
+            %td= gym.equipment.count
+      .d-flex
+        = link_to(gym, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do
+          %i.bi.bi-arrows-angle-expand
+        = link_to(edit_gym_path(gym), class: "btn btn-secondary me-2") do
+          %i.bi.bi-pencil
+        = button_to(gym,                                                 |
+          method: :delete,                                               |
+          form: { data: { turbo_confirm: t(".destroy_confirmation") } }, |
+          class: "btn btn-danger" ) do                                   |
+          %i.bi.bi-trash3

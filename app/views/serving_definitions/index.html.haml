@@ -1,0 +1,9 @@
+.d-flex.mb-3.align-items-end
+  %h1.mb-0.me-3= t(".title")
+  = link_to(t(".create_serving_definition"),              |
+    new_serving_definition_path,                          |
+    class: "btn btn-primary",                             |
+    data: { turbo_frame: dom_id(ServingDefinition.new) }) |
+= turbo_frame_tag(ServingDefinition.new)
+= turbo_frame_tag("serving_definitions") do
+  = render(@serving_definitions)

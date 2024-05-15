@@ -1,0 +1,6 @@
+= simple_form_for(current_user, method: :patch, url: "/profile" ) do |f|
+  %p
+    %strong Email:
+    = current_user.email
+  = f.input :time_zone
+  = f.button :submit

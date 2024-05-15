@@ -1,0 +1,3 @@
+%h1.mb-3= t(".title")
+= turbo_frame_tag(@serving_definition) do
+  = render("form", serving_definition: @serving_definition)

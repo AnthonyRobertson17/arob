@@ -1,0 +1,4 @@
+%h1.mb-4= t(".title")
+= render "profile"
+= button_to(profile_edit_path, method: :get, class: "btn btn-secondary") do
+  %i.bi.bi-pencil

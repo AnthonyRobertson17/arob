@@ -1,0 +1,14 @@
+= turbo_frame_tag workout_tag do
+  .card.mb-3
+    .card-body
+      %h3= workout_tag.name
+      .d-flex
+        = link_to(workout_tag, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do
+          %i.bi.bi-arrows-angle-expand
+        = link_to(edit_workout_tag_path(workout_tag), class: "btn btn-secondary me-2") do
+          %i.bi.bi-pencil
+        = button_to(workout_tag,                                         |
+          method: :delete,                                               |
+          form: { data: { turbo_confirm: t(".destroy_confirmation") } }, |
+          class: "btn btn-danger") do                                    |
+          %i.bi.bi-trash3

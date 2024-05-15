@@ -1,0 +1,22 @@
+.justify-content-center.align-items-center.mt-5.mx-auto.px-4.small-width
+  %h1.text-primary.text-center.mb-4= t(:app_name)
+  %h3.text-secondary.text-center= t(:log_in)
+  = form_for(                           |
+      resource,                         |
+      as: resource_name,                |
+      url: session_path(resource_name), |
+    ) do |f|                            |
+    .mb-3
+      = f.label :email , class: "form-label text-primary d-block"
+      = render "devise/shared/form_error", attribute: :email
+      = f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email"
+    .mb-3
+      = f.label :password, class: "form-label text-primary d-block"
+      = f.password_field :password, class: "form-control", autocomplete: "current-password"
+    - if devise_mapping.rememberable?
+      .mb-3.form-check
+        = f.check_box :remember_me, class: "form-check-input"
+        = f.label :remember_me, class: "form-check-label"
+    .actions
+      = f.submit t(:log_in), class: "btn btn-primary"
+  = render "devise/shared/links"
