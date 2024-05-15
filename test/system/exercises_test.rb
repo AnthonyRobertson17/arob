@@ -13,7 +13,7 @@ class ExercisesTest < ApplicationSystemTestCase
   end
 
   def assert_page_order(first, second)
-    assert(page.body.index(first) < page.body.index(second))
+    assert_operator(page.body.index(first), :<, page.body.index(second))
   end
 
   test "creating a new exercise" do

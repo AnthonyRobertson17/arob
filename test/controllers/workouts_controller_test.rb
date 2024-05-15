@@ -40,8 +40,8 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     second = response.body.index("BBB")
     third = response.body.index("CCCCCCCCCCCC")
 
-    assert(first > second, "workouts are not in reverse chronological order")
-    assert(second > third, "workouts are not in reverse chronological order")
+    assert_operator(first, :>, second, "workouts are not in reverse chronological order")
+    assert_operator(second, :>, third, "workouts are not in reverse chronological order")
   end
 
   test "get new" do

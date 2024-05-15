@@ -40,8 +40,8 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
     second = response.body.index("BBB")
     third = response.body.index("CCCCCCCCCCCC")
 
-    assert(first > second, "wishlists are not in reverse chronological order")
-    assert(second > third, "wishlists are not in reverse chronological order")
+    assert_operator(first, :>, second, "wishlists are not in reverse chronological order")
+    assert_operator(second, :>, third, "wishlists are not in reverse chronological order")
   end
 
   test "get new" do
