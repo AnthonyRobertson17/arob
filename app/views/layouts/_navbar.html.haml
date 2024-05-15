@@ -13,12 +13,5 @@
           - elsif show_navbar?(:nutrition)
             = render "layouts/nutrition_navbar"
         #user_email.mx-2
-          = link_to current_user.email,                     |
-            profile_path,                                   |
-            class: "nav-link #{active_class(profile_path)}" |
-        = button_to(                        |
-            t("navbar.logout"),             |
-            destroy_user_session_path,      |
-            method: :delete,                |
-            class: "btn btn-outline-danger" |
-          )                                 |
+          = link_to(current_user.email, profile_path, class: "nav-link #{active_class(profile_path)}")
+        = button_to(t("navbar.logout"), destroy_user_session_path, method: :delete, class: "btn btn-outline-danger")
