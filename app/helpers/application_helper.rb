@@ -2,6 +2,10 @@
 
 module ApplicationHelper
   NAVBAR_PATHS = {
+    golf: [
+      "/golf",
+      "/putting_practice_sessions",
+    ],
     fitness: [
       "/equipment",
       "/exercise_type_tags",

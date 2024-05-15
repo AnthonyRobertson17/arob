@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   patch "profile", to: "users/profile#update"
 
   get "fitness", to: "fitness#index"
+  get "golf", to: "golf#index"
   get "nutrition", to: "nutrition#index"
 
   resources :equipment, :workout_tags, :exercise_types, :gyms, :exercise_type_tags
@@ -33,6 +34,10 @@ Rails.application.routes.draw do
         post "quick_create"
       end
     end
+  end
+
+  resources :putting_practice_sessions do
+    post "putt", to: "putting_practice_sessions#putt"
   end
 
   resources :food_groups, :foods, :serving_units

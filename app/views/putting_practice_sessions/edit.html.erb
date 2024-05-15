@@ -1,0 +1,4 @@
+<h1 class="mb-3"><%= t(".title") %></h1>
+<%= turbo_frame_tag @putting_practice_session do %>
+  <%= render "form", workout: @putting_practice_session, cancel_path: putting_practice_session_path(@putting_practice_session) %>
+<% end %>

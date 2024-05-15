@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_01_022027) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_28_224620) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -134,6 +134,25 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_01_022027) do
     t.index ["food_id"], name: "index_portions_on_food_id"
     t.index ["meal_id"], name: "index_portions_on_meal_id"
     t.index ["user_id"], name: "index_portions_on_user_id"
+  end
+
+  create_table "practice_putts", force: :cascade do |t|
+    t.boolean "sunk", default: false, null: false
+    t.integer "distance", default: 0, null: false
+    t.integer "direction", default: 0, null: false
+    t.bigint "putting_practice_session_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["putting_practice_session_id"], name: "index_practice_putts_on_putting_practice_session_id"
+  end
+
+  create_table "putting_practice_sessions", force: :cascade do |t|
+    t.decimal "hole_distance", default: "3.0", null: false
+    t.integer "hole_size", default: 0, null: false
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_putting_practice_sessions_on_user_id"
   end
 
   create_table "serving_definitions", force: :cascade do |t|

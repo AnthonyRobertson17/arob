@@ -1,0 +1,9 @@
+<div class="d-flex mb-3 align-items-end">
+  <h1 class="mb-0 me-3"><%= t(".title") %></h1>
+  <%= link_to(t(".create_putting_practice_session"), new_putting_practice_session_path, class: "btn btn-primary") %>
+</div>
+<div id="putting_practice_sessions">
+  <% @putting_practice_sessions.each do |putting_practice_session| %>
+    <%= render("putting_practice_session_card", putting_practice_session:) %>
+  <% end %>
+</div>

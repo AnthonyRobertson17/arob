@@ -23,7 +23,6 @@ en:
         name: Name
       meal:
         date: Date
-        name: Name
         meal_type: Meal type
         meal_types:
           breakfast: Breakfast
@@ -31,11 +30,12 @@ en:
           dinner: Dinner
           lunch: Lunch
           snack: Snack
+        name: Name
       serving_definition:
-        serving_unit: Units
-        serving_quantity: Quantity
         food: Food
         food_group: Food Group
+        serving_quantity: Quantity
+        serving_unit: Units
       wishlist:
         name: Name
       wishlist_item:
@@ -150,6 +150,10 @@ en:
     one: '1 error:'
     other: '%{count} errors:'
     zero: No errors
+  golf:
+    index:
+      putting_practice_sessions: Putting Practice
+      title: Golf
   gyms:
     edit:
       title: Edit Gym
@@ -166,6 +170,7 @@ en:
   home:
     index:
       fitness: Fitness
+      golf: Golf
       nutrition: Nutrition
       wishlists: Wishlists
   log_in: Log In
@@ -202,12 +207,15 @@ en:
       serving_units: Serving Units
     wishlists:
       wishlists: Wishlists
+    golf:
+      golf: Golf
+      putting_practice_sessions: Putting Practice
   nutrition:
     index:
-      title: Nutrition
       create_meal: New Meal
       meals: Meals - %{date}
       meals_today: Today's Meals - %{date}
+      title: Nutrition
   portions:
     destroy_confirmation: Are you sure you want to destroy this portion?
     edit:
@@ -218,25 +226,25 @@ en:
   serving_definitions:
     edit:
       title: Edit Serving Definition
-    serving_definition:
-      destroy_confirmation: Are you sure you want to destroy this serving definition?
     index:
       create_serving_definition: Create Serving Definition
       title: Serving Definition
     new:
       title: New Serving Definition
+    serving_definition:
+      destroy_confirmation: Are you sure you want to destroy this serving definition?
     show:
       back: Back to Serving Definitions
   serving_units:
     edit:
       title: Edit Serving Unit
-    serving_unit:
-      destroy_confirmation: Are you sure you want to destroy this serving unit?
     index:
       create_serving_unit: Create Serving Unit
       title: Serving Units
     new:
       title: New Serving Unit
+    serving_unit:
+      destroy_confirmation: Are you sure you want to destroy this serving unit?
     show:
       back: Back to Serving Units
   sign_up: Sign Up
@@ -301,4 +309,16 @@ en:
     workout:
       complete: Complete
       complete_confirmation: Are you sure you want to complete this workout?
-      start: Start#
+      start: Start
+  putting_practice_sessions:
+    destroy_confirmation: Are you sure you want to destroy this practice session?
+    edit:
+      title: Edit Practice Session
+    index:
+      create_putting_practice_session: Create Practice Session
+      title: Putting Practice
+    new:
+      title: New Putting Practice Session
+    show:
+      create_practice_putt: New Putt
+      practice_putts: Putts

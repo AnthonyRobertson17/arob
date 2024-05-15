@@ -1,0 +1,249 @@
+<%= render(@putting_practice_session) %>
+
+<% putt_path = putting_practice_session_putt_path(@putting_practice_session) %>
+
+<div class="row gx-1 my-1 text-end">
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "long", direction: "far_left" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 0, distance: "long", direction: "left" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "long", direction: "left_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "long", direction: "left_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "long", direction: "straight" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "long", direction: "right_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "long", direction: "right_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 0, distance: "long", direction: "right" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "long", direction: "far_right" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+</div>
+
+<div class="row gx-1 my-1 text-end">
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_long", direction: "far_left" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_long", direction: "left" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_long", direction: "left_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-success w-100 h-100", method: :post, params: { sunk: 1, distance: "slightly_long", direction: "left_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-success w-100 h-100", method: :post, params: { sunk: 1, distance: "slightly_long", direction: "straight" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-success w-100 h-100", method: :post, params: { sunk: 1, distance: "slightly_long", direction: "right_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_long", direction: "right_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_long", direction: "right" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_long", direction: "far_right" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+</div>
+
+<div class="row gx-1 my-1 text-end">
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "perfect_distance", direction: "far_left" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 0, distance: "perfect_distance", direction: "left" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "perfect_distance", direction: "left_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-success w-100 h-100", method: :post, params: { sunk: 1, distance: "perfect_distance", direction: "left_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-primary w-100 h-100", method: :post, params: { sunk: 1, distance: "perfect_distance", direction: "straight" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-success w-100 h-100", method: :post, params: { sunk: 1, distance: "perfect_distance", direction: "right_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "perfect_distance", direction: "right_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 0, distance: "perfect_distance", direction: "right" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "perfect_distance", direction: "far_right" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+</div>
+
+<div class="row gx-1 my-1 text-end">
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_short", direction: "far_left" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_short", direction: "left" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_short", direction: "left_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 1, distance: "slightly_short", direction: "left_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 1, distance: "slightly_short", direction: "straight" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 1, distance: "slightly_short", direction: "right_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_short", direction: "right_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_short", direction: "right" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "slightly_short", direction: "far_right" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+</div>
+
+<div class="row gx-1 my-1 text-end">
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "short", direction: "far_left" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "short", direction: "left" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 0, distance: "short", direction: "left_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 1, distance: "short", direction: "left_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-secondary w-100 h-100", method: :post, params: { sunk: 1, distance: "short", direction: "straight" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 1, distance: "short", direction: "right_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-warning w-100 h-100", method: :post, params: { sunk: 0, distance: "short", direction: "right_lip" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "short", direction: "right" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+  <div class="col">
+    <%= button_to(putt_path, class: "btn btn-danger w-100 h-100", method: :post, params: { sunk: 0, distance: "short", direction: "far_right" }) do %>
+      &nbsp;
+    <% end %>
+  </div>
+</div>
+
+<h4><%= t(".practice_putts") %></h4>
+
+<%= turbo_frame_tag("practice_putts") do %>
+  <%= render(@putting_practice_session.practice_putts, putting_practice_session: @putting_practice_session) %>
+<% end %>

@@ -44,6 +44,9 @@ en:
       serving_unit:
         create: Create
         update: Update
+      putting_practice_session:
+        create: Create
+        update: Update
   simple_form:
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.

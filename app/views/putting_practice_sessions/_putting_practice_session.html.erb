@@ -1,0 +1,15 @@
+<%= turbo_frame_tag(putting_practice_session) do %>
+  <div class="d-flex flex-wrap justify-content-between mb-3">
+    <div class="d-flex align-items-center">
+      <h1 class="mb-0 me-2"><%= putting_practice_session.created_at.to_fs(:date) %></h1>
+      <span class="badge rounded-pill bg-success mx-1"><%= putting_practice_session.hole_size %></span>
+      <span class="badge rounded-pill bg-primary mx-1"><%= putting_practice_session.hole_distance %></span>
+    </div>
+
+    <div class="d-flex align-items-center">
+      <%= link_to(edit_putting_practice_session_path(putting_practice_session), class: "btn btn-secondary me-2") do %>
+        <i class="bi bi-pencil"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
