@@ -1,0 +1,10 @@
+.d-flex.mb-3.align-items-end
+  %h1.mb-0.me-3= t(".title")
+  = link_to(t(".create_meal"),               |
+    new_meal_path,                           |
+    class: "btn btn-primary",                |
+    data: { turbo_frame: dom_id(Meal.new) }) |
+= turbo_frame_tag(Meal.new)
+= turbo_frame_tag("meals") do
+  - @meals.each do |meal|
+    = render("meal_card", meal:)

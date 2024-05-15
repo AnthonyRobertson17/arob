@@ -1,0 +1,6 @@
+= turbo_stream.replace @exercise do
+  = turbo_frame_tag "temporary_swap"
+= turbo_stream.replace @other_exercise do
+  = render @exercise, workout: @workout
+= turbo_stream.replace "temporary_swap" do
+  = render @other_exercise, workout: @workout

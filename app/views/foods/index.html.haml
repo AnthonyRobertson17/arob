@@ -1,0 +1,9 @@
+.d-flex.mb-3.align-items-end
+  %h1.mb-0.me-3= t(".title")
+  = link_to(t(".create_food"),               |
+    new_food_path,                           |
+    class: "btn btn-primary",                |
+    data: { turbo_frame: dom_id(Food.new) }) |
+= turbo_frame_tag(Food.new)
+= turbo_frame_tag("foods") do
+  = render(@foods)

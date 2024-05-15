@@ -1,0 +1,12 @@
+%h1.display-3.mb-4= t(".title")
+= link_to(t(".create_workout"), new_workout_path, class: "btn btn-lg btn-primary mb-4")
+- if @in_progress_workouts.any?
+  %h2= t(".in_progress_workouts")
+  #in_progress_workouts.mb-4
+    - @in_progress_workouts.each do |workout|
+      = render("workouts/workout_card", workout:)
+- if @recent_workouts.any?
+  %h2= t(".recent_workouts")
+  #recent_workouts.mb-4
+    - @recent_workouts.each do |workout|
+      = render("workouts/workout_card", workout:)

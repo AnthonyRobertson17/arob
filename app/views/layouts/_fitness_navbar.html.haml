@@ -1,0 +1,32 @@
+%li.nav-item
+  = link_to t("navbar.fitness_navbar.workouts"),      |
+    workouts_path,                                    |
+    class: "nav-link #{active_class(workouts_path)}", |
+    "aria-current": "page"                            |
+%li.nav-item
+  = link_to t("navbar.fitness_navbar.exercise_types"),      |
+    exercise_types_path,                                    |
+    class: "nav-link #{active_class(exercise_types_path)}", |
+    "aria-current": "page"                                  |
+%li.nav-item
+  = link_to t("navbar.fitness_navbar.equipment"),            |
+    equipment_index_path,                                    |
+    class: "nav-link #{active_class(equipment_index_path)}", |
+    "aria-current": "page"                                   |
+%li.nav-item
+  = link_to t("navbar.fitness_navbar.gyms"),      |
+    gyms_path,                                    |
+    class: "nav-link #{active_class(gyms_path)}", |
+    "aria-current": "page"                        |
+%li.nav-item.dropdown
+  %a{"aria-expanded" => "false", :class => "nav-link dropdown-toggle #{active_class([workout_tags_path, exercise_type_tags_path])}", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
+    = t("navbar.fitness_navbar.tags")
+  %ul.dropdown-menu
+    %li
+      = link_to t("navbar.fitness_navbar.workout_tags"),          |
+        workout_tags_path,                                        |
+        class: "dropdown-item #{active_class(workout_tags_path)}" |
+    %li
+      = link_to t("navbar.fitness_navbar.exercise_type_tags"),          |
+        exercise_type_tags_path,                                        |
+        class: "dropdown-item #{active_class(exercise_type_tags_path)}" |

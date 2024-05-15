@@ -1,0 +1,21 @@
+= turbo_frame_tag(wishlist_item) do
+  .d-flex.flex-wrap.justify-content-between.mb-3
+    .d-flex.align-items-center
+      %h1.mb-0.me-2= wishlist_item.name
+    .d-flex.align-items-center
+      = link_to(edit_wishlist_wishlist_item_path(wishlist, wishlist_item), class: "btn btn-secondary me-2") do
+        %i.bi.bi-pencil
+  %p.fw-bold.mb-0
+    = WishlistItem.human_attribute_name("description")
+    \:
+  = simple_format(wishlist_item.description)
+  %p.fw-bold.mb-0
+    = WishlistItem.human_attribute_name("price")
+    \:
+  %p= number_to_currency(wishlist_item.price)
+  %p.fw-bold.mb-0
+    = WishlistItem.human_attribute_name("links")
+    \:
+  .list-group
+    - wishlist_item.links.each do |link|
+      = link_to(link.url, link.url, target: :_blank)

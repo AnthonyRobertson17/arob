@@ -1,0 +1,25 @@
+.justify-content-center.align-items-center.mt-5.mx-auto.px-4.small-width
+  %h1.text-primary.text-center.mb-4= t(:app_name)
+  %h3.text-secondary.text-center= t(:sign_up)
+  = form_for(                                |
+      resource,                              |
+      as: resource_name,                     |
+      url: registration_path(resource_name), |
+    ) do |f|                                 |
+    .mb-3
+      = f.label :email, class: "form-label text-primary d-block"
+      = render "devise/shared/form_error", attribute: :email
+      = f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email"
+    .mb-3
+      .text-primary
+        = f.label :password, class: "form-label"
+        - if @minimum_password_length
+          %em
+            (#{@minimum_password_length} #{t(".characters_minimum")})
+      = render "devise/shared/form_error", attribute: :password
+      = f.password_field :password, class: "form-control", autocomplete: "new-password"
+    .mb-3
+      = f.label :password_confirmation, class: "form-label d-block text-primary"
+      = f.password_field :password_confirmation, class: "form-control", autocomplete: "new-password"
+    = f.submit t(:sign_up), class: "btn btn-primary"
+  = render "devise/shared/links"

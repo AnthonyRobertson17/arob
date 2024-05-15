@@ -1,0 +1,14 @@
+- disable_edit = false if local_assigns[:disable_edit].nil?
+= turbo_frame_tag(exercise_set) do
+  .row.border-bottom.border-secondary.p-2
+    .col.d-flex.align-items-center
+      .ps-2= number_with_precision(exercise_set.weight, strip_insignificant_zeros: true)
+    .col.d-flex.align-items-center
+      .ps-2= exercise_set.repetitions
+    .col
+      - unless disable_edit
+        .d-flex.justify-content-end
+          = link_to(edit_workout_exercise_exercise_set_path(workout, exercise, exercise_set), |
+            data: { turbo_frame: dom_id(exercise_set) },                                      |
+            class: "btn btn-secondary me-2") do                                               |
+            %i.bi.bi-pencil

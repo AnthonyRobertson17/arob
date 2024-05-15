@@ -1,0 +1,17 @@
+= turbo_frame_tag(meal) do
+  .card.mb-3
+    .card-body
+      .d-flex.flex-wrap.justify-content-between
+        .d-flex.align-items-center
+          %h3.mb-0.me-2= meal.full_name
+        .d-flex.align-items-center
+          = link_to(meal, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do
+            %i.bi.bi-arrows-angle-expand
+      %table.table.xxsmall-width.mt-3
+        %tbody
+          %tr
+            %th{:scope => "row"}= Meal.human_attribute_name(:meal_type)
+            %td= meal.meal_type
+          %tr
+            %th{:scope => "row"}= Meal.human_attribute_name(:date)
+            %td= meal.date&.to_fs(:timestamp)

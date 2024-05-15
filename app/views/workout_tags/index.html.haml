@@ -1,0 +1,9 @@
+.d-flex.mb-3.align-items-end
+  %h1.mb-0.me-3= t(".title")
+  = link_to t(".create_workout_tag"),             |
+    new_workout_tag_path,                         |
+    class: "btn btn-primary",                     |
+    data: { turbo_frame: dom_id(WorkoutTag.new) } |
+= turbo_frame_tag WorkoutTag.new
+= turbo_frame_tag "workout_tags" do
+  = render @workout_tags

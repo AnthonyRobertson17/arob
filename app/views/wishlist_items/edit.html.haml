@@ -1,0 +1,4 @@
+= turbo_frame_tag(@wishlist_item) do
+  .mb-3
+    %h1.mb-3= t(".title")
+    = render("form", wishlist_item: @wishlist_item, wishlist: @wishlist)

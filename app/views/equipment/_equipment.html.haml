@@ -1,0 +1,14 @@
+= turbo_frame_tag(equipment) do
+  .card.mb-3
+    .card-body
+      %h3= equipment.name
+      .d-flex
+        = link_to(equipment, class: "btn btn-secondary me-2", data: { turbo_frame: "_top" }) do
+          %i.bi.bi-arrows-angle-expand
+        = link_to(edit_equipment_path(equipment), class: "btn btn-secondary me-2") do
+          %i.bi.bi-pencil
+        = button_to(equipment,                                           |
+          method: :delete,                                               |
+          form: { data: { turbo_confirm: t(".destroy_confirmation") } }, |
+          class: "btn btn-danger" ) do                                   |
+          %i.bi.bi-trash3

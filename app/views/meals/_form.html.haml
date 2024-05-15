@@ -1,0 +1,8 @@
+.card.mb-3
+  .card-body
+    = simple_form_for(meal) do |f|
+      = f.input(:name)
+      = f.input(:date, html5: true, input_html: { step: 1 } )
+      = f.input :meal_type, collection: Meal.meal_types.keys, include_blank: false
+      = f.button(:submit)
+      = link_to(t(:cancel), cancel_path, class: "btn btn-secondary")

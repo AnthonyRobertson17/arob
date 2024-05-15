@@ -1,0 +1,9 @@
+= turbo_frame_tag portion do
+  .d-flex.align-items-center.mb-4
+    .card.flex-grow-1.me-2
+      .card-body
+        = turbo_frame_tag dom_id(portion, :edit) do
+          .d-flex.align-items-center.mb-3
+            %h4.mb-0.flex-grow-1= "#{portion.food.name} - #{portion.serving_quantity}"
+            = link_to([:edit, meal, portion], class: "btn btn-secondary me-2") do
+              %i.bi.bi-pencil
