@@ -165,7 +165,7 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     mini_portile2 (2.8.6)
-    minitest (5.22.3)
+    minitest (5.23.1)
     minitest-reporters (1.6.1)
       ansi
       builder
@@ -205,7 +205,7 @@ GEM
       nio4r (~> 2.0)
     pundit (2.3.1)
       activesupport (>= 3.0.0)
-    racc (1.7.3)
+    racc (1.8.0)
     rack (2.2.9)
     rack-session (1.0.2)
       rack (< 3)
@@ -296,7 +296,7 @@ GEM
     sentry-ruby (5.17.3)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    simple_form (5.2.0)
+    simple_form (5.3.1)
       actionpack (>= 5.2)
       activemodel (>= 5.2)
     sprockets (4.0.3)
