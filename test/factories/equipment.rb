@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :equipment do
-    user
+    association :user
+
     sequence(:name) { |n| "equipment-#{n}" }
   end
 end

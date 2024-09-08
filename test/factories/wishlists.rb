@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :wishlist do
-    user
+    association :user
+
     sequence(:name) { |n| "wishlist-#{n}" }
   end
 end

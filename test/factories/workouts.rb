@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :workout do
-    user
+    association :user
+
     sequence(:name) { |n| "workout-#{n}" }
 
     trait :started do

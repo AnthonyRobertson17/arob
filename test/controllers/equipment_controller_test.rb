@@ -56,10 +56,7 @@ class EquipmentControllerTest < ActionDispatch::IntegrationTest
   test "create equipment assigns the gyms based on the selected gym ids" do
     sign_in(user)
 
-    gym_ids = [
-      create(:gym, user:),
-      create(:gym, user:),
-    ].map(&:id)
+    gym_ids = Array.new(2) { create(:gym, user:).id }
 
     post(equipment_index_url, params: { equipment: { name: "Test", gym_ids: } })
 
@@ -133,12 +130,8 @@ class EquipmentControllerTest < ActionDispatch::IntegrationTest
 
   test "can update gyms" do
     sign_in(user)
-
     equipment = create(:equipment, user:)
-    gym_ids = [
-      create(:gym, user:),
-      create(:gym, user:),
-    ].map(&:id)
+    gym_ids = Array.new(2) { create(:gym, user:).id }
 
     patch(equipment_url(equipment), params: { equipment: { name: "funny workout", gym_ids: } })
 

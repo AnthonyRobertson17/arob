@@ -2,11 +2,8 @@
 
 FactoryBot.define do
   factory :exercise_type_tag_assignment do
-    transient do
-      user { build(:user) }
-    end
-
-    exercise_type { build(:exercise_type, user:) }
-    tag { build(:exercise_type_tag, user:) }
+    association :user
+    association :exercise_type, user: user
+    association :tag, factory: :exercise_type_tag, user: user
   end
 end

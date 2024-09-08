@@ -2,12 +2,10 @@
 
 FactoryBot.define do
   factory :exercise do
-    transient do
-      user { build(:user) }
-    end
+    association :user
+    association :exercise_type, user: user
+    association :workout, user: user
 
-    exercise_type { build(:exercise_type, user:) }
-    workout { build(:workout, user:) }
     note { "this is the default note for an exercise that was generated via the exercises factory" }
   end
 end

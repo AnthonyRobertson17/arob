@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory :exercise_set do
-    exercise
+    association :exercise
+
     repetitions { 10 }
     weight { 12.5 }
   end

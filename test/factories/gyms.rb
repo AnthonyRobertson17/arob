@@ -2,7 +2,8 @@
 
 FactoryBot.define do
   factory(:gym) do
-    user
+    association :user
+
     sequence(:name) { |n| "gym-#{n}" }
   end
 end

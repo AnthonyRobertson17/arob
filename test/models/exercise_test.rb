@@ -19,7 +19,7 @@ class ExerciseTest < ActiveSupport::TestCase
 
   test "can access exercise_sets through association" do
     exercise = create(:exercise)
-    3.times { create(:exercise_set, exercise:) }
+    create_list(:exercise_set, 3, exercise:)
 
     assert_equal 3, exercise.exercise_sets.count
   end

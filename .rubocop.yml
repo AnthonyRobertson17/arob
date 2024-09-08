@@ -3,9 +3,11 @@ require:
   - rubocop-rails
   - rubocop-rake
   - rubocop-performance
+  - rubocop-factory_bot
+  - rubocop-capybara
 
 AllCops:
-  TargetRubyVersion: 3.1.0
+  TargetRubyVersion: 3.3.5
   NewCops: enable
   Exclude:
     - db/schema.rb
@@ -14,6 +16,9 @@ AllCops:
     - vendor/**/*
     - node_modules/**/*
     - config/**/*
+
+FactoryBot/AssociationStyle:
+  EnforcedStyle: explicit
 
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
@@ -42,6 +47,10 @@ Rails/NotNullColumn:
 
 Style/Documentation:
   Enabled: false
+
+Style/HashSyntax:
+  Exclude:
+    - test/factories/**/* # Parser thinks that the hash shorthand is a syntax error in factories
 
 Style/MethodCallWithArgsParentheses:
   Enabled: true
