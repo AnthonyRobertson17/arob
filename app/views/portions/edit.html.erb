@@ -1,4 +1,0 @@
-<h1 class="mb-3"><%= t(".title") %></h1>
-<%= turbo_frame_tag dom_id(@portion, :edit) do %>
-  <%= render "form", portion: @portion, meal: @meal %>
-<% end %>

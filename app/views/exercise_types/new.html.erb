@@ -1,9 +1,0 @@
-<h1 class="mb-3"><%= t(".title") %></h1>
-<%= turbo_frame_tag(@exercise_type) do %>
-  <%= render(
-    "form",
-    exercise_type: @exercise_type,
-    exercise_type_tags: @exercise_type_tags,
-    equipment: @equipment,
-  ) %>
-<% end %>

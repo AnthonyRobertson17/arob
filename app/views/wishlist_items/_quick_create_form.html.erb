@@ -1,9 +1,0 @@
-<div class="card mb-3">
-  <div class="card-body">
-    <%= simple_form_for([wishlist, wishlist_item], url: quick_create_wishlist_wishlist_items_path(wishlist)) do |f| %>
-      <%= f.input(:name) %>
-      <%= f.submit(class: "btn btn-primary me-2") %>
-      <%= link_to(t(:cancel), wishlist, class: "btn btn-secondary me-2") %>
-    <% end %>
-  </div>
-</div>
