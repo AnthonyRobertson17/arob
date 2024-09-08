@@ -16,7 +16,7 @@ class ExercisesIntegrationTest < ActionDispatch::IntegrationTest
 
     get(workout_url(@workout))
 
-    assert_select("p", { text: /Note:/, count: 1 })
+    assert_select("p", { text: /Note\n:/, count: 1 })
     assert_select("p", { text: exercise.note, count: 1 })
   end
 
