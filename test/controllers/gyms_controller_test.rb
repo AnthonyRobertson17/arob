@@ -102,13 +102,13 @@ class GymsControllerTest < ActionDispatch::IntegrationTest
     assert_select("li", "dumbbell")
   end
 
-  test "show gym raises not found if the gym belongs to another user" do
+  test "show gym returns not found if the gym belongs to another user" do
     sign_in(user)
     gym = create(:gym)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(gym_url(gym))
-    end
+    get(gym_url(gym))
+
+    assert_response(:not_found)
   end
 
   test "get edit" do
@@ -119,13 +119,13 @@ class GymsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "get edit raises not found if the gym belongs to another user" do
+  test "get edit returns not found if the gym belongs to another user" do
     sign_in(user)
     gym = create(:gym)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(edit_gym_url(gym))
-    end
+    get(edit_gym_url(gym))
+
+    assert_response(:not_found)
   end
 
   test "update gym name" do
@@ -155,13 +155,13 @@ class GymsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:ok)
   end
 
-  test "update gym raises not found if the gym belongs to another user" do
+  test "update gym returns not found if the gym belongs to another user" do
     sign_in(user)
     gym = create(:gym)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch(gym_url(gym), params: { gym: { name: "Updated gym name" } })
-    end
+    patch(gym_url(gym), params: { gym: { name: "Updated gym name" } })
+
+    assert_response(:not_found)
   end
 
   test "destroy gym" do
@@ -174,12 +174,12 @@ class GymsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to(gyms_url)
   end
 
-  test "destroy gym raises not found if the gym belongs to another user" do
+  test "destroy gym returns not found if the gym belongs to another user" do
     sign_in(user)
     gym = create(:gym)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete(gym_url(gym))
-    end
+    delete(gym_url(gym))
+
+    assert_response(:not_found)
   end
 end

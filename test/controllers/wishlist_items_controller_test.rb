@@ -161,14 +161,14 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "get edit raises not found if corresponding wishlist does not belong to the current user" do
+  test "get edit returns not found if corresponding wishlist does not belong to the current user" do
     other_user = create(:user)
     other_wishlist = create(:wishlist, user: other_user)
     other_wishlist_item = create(:wishlist_item, wishlist: other_wishlist)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(edit_wishlist_wishlist_item_url(other_wishlist, other_wishlist_item))
-    end
+    get(edit_wishlist_wishlist_item_url(other_wishlist, other_wishlist_item))
+
+    assert_response(:not_found)
   end
 
   test "updating wishlist item name" do
@@ -288,22 +288,22 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:ok)
   end
 
-  test "update wishlist item raises not found if associated wishlist belongs to another user" do
+  test "update wishlist item returns not found if associated wishlist belongs to another user" do
     other_user = create(:user)
     other_wishlist = create(:wishlist, user: other_user)
     other_wishlist_item = create(:wishlist_item, wishlist: other_wishlist)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch(
-        wishlist_wishlist_item_url(other_wishlist, other_wishlist_item),
-        params: {
-          wishlist_item: {
-            name: "This is a fancy new name",
-            price: 12.5,
-          },
+    patch(
+      wishlist_wishlist_item_url(other_wishlist, other_wishlist_item),
+      params: {
+        wishlist_item: {
+          name: "This is a fancy new name",
+          price: 12.5,
         },
-      )
-    end
+      },
+    )
+
+    assert_response(:not_found)
   end
 
   test "destroy wishlist item destroys the record" do
@@ -322,13 +322,13 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to(wishlist_path(@wishlist))
   end
 
-  test "destroy wishlist item raises not found if associated wishlist belongs to another user" do
+  test "destroy wishlist item returns not found if associated wishlist belongs to another user" do
     other_user = create(:user)
     other_wishlist = create(:wishlist, user: other_user)
     other_wishlist_item = create(:wishlist_item, wishlist: other_wishlist)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete(wishlist_wishlist_item_url(other_wishlist, other_wishlist_item))
-    end
+    delete(wishlist_wishlist_item_url(other_wishlist, other_wishlist_item))
+
+    assert_response(:not_found)
   end
 end

@@ -99,9 +99,9 @@ class EquipmentControllerTest < ActionDispatch::IntegrationTest
     sign_in(user)
     other_equipment = create(:equipment)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(equipment_url(other_equipment))
-    end
+    get(equipment_url(other_equipment))
+
+    assert_response(:not_found)
   end
 
   test "get edit" do
@@ -113,13 +113,13 @@ class EquipmentControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "get edit raises not found if the equipment belongst to another user" do
+  test "get edit returns not found if the equipment belongst to another user" do
     sign_in(user)
     other_equipment = create(:equipment)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(edit_equipment_url(other_equipment))
-    end
+    get(edit_equipment_url(other_equipment))
+
+    assert_response(:not_found)
   end
 
   test "update equipment updates the record" do
@@ -170,13 +170,13 @@ class EquipmentControllerTest < ActionDispatch::IntegrationTest
     assert_response(:ok)
   end
 
-  test "update equipment raises not found if the equipment belongs to another user" do
+  test "update equipment returns not found if the equipment belongs to another user" do
     sign_in(user)
     other_equipment = create(:equipment)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch(equipment_url(other_equipment), params: { equipment: { name: "Updated equipment name" } })
-    end
+    patch(equipment_url(other_equipment), params: { equipment: { name: "Updated equipment name" } })
+
+    assert_response(:not_found)
   end
 
   test "destroy equipment destroys the record" do
@@ -197,12 +197,12 @@ class EquipmentControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to(equipment_index_url)
   end
 
-  test "destroy equipment raises not found if the equipment belongs to another user" do
+  test "destroy equipment returns not found if the equipment belongs to another user" do
     sign_in(user)
     other_equipment = create(:equipment)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete(equipment_url(other_equipment))
-    end
+    delete(equipment_url(other_equipment))
+
+    assert_response(:not_found)
   end
 end

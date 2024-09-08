@@ -33,9 +33,9 @@ module Workouts
       sign_in(user)
       workout = create(:workout)
 
-      assert_raises(ActiveRecord::RecordNotFound) do
-        patch(start_workout_url(workout))
-      end
+      patch(start_workout_url(workout))
+
+      assert_response(:not_found)
     end
   end
 end

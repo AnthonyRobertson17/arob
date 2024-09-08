@@ -68,12 +68,12 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "show workout_tag raises not found if workout_tag belongs to another user" do
+  test "show workout_tag returns not found if workout_tag belongs to another user" do
     workout_tag = create(:workout_tag)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(workout_tag_url(workout_tag))
-    end
+    get(workout_tag_url(workout_tag))
+
+    assert_response(:not_found)
   end
 
   test "get edit" do
@@ -84,12 +84,12 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "get edit raises not found if workout_tag is not for the current user" do
+  test "get edit returns not found if workout_tag is not for the current user" do
     workout_tag = create(:workout_tag)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(edit_workout_tag_url(workout_tag))
-    end
+    get(edit_workout_tag_url(workout_tag))
+
+    assert_response(:not_found)
   end
 
   test "update workout_tag with html format redirects to show" do
@@ -108,12 +108,12 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:ok)
   end
 
-  test "update workout_tag raises not found if workout_tag belongs to another user" do
+  test "update workout_tag returns not found if workout_tag belongs to another user" do
     workout_tag = create(:workout_tag)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch(workout_tag_url(workout_tag), params: { workout_tag: { name: "New Workout Name" } })
-    end
+    patch(workout_tag_url(workout_tag), params: { workout_tag: { name: "New Workout Name" } })
+
+    assert_response(:not_found)
   end
 
   test "destroy workout_tag destroys the record" do
@@ -143,8 +143,8 @@ class WorkoutTagsControllerTest < ActionDispatch::IntegrationTest
   test "destroy workout_tag raises not found if workout_tag belongs to another user" do
     workout_tag = create(:workout_tag)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete(workout_tag_url(workout_tag))
-    end
+    delete(workout_tag_url(workout_tag))
+
+    assert_response(:not_found)
   end
 end
