@@ -5,7 +5,7 @@ source "https://rubygems.org"
 ruby "3.3.5"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1"
+gem "rails", "~> 7.2"
 
 # [https://github.com/haml/haml]
 gem "haml", "~> 6.3"
