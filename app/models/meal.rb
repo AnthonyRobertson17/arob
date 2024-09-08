@@ -5,7 +5,7 @@ class Meal < ApplicationRecord
 
   has_many :portions, dependent: :destroy
 
-  enum :meal_type, [:breakfast, :lunch, :dinner, :dessert, :snack]
+  enum :meal_type, { breakfast: 0, lunch: 1, dinner: 2, dessert: 3, snack: 4 }
 
   validates :meal_type, presence: true
 
