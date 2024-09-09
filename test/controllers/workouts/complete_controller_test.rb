@@ -39,13 +39,13 @@ module Workouts
       assert_equal("Workout has not been started.", flash[:alert])
     end
 
-    test "trying to complete a workout that belongs to another user raises not found" do
+    test "trying to complete a workout that belongs to another user returns not found" do
       sign_in(user)
       workout = create(:workout, :started)
 
-      assert_raises(ActiveRecord::RecordNotFound) do
-        patch(complete_workout_url(workout))
-      end
+      patch(complete_workout_url(workout))
+
+      assert_response(:not_found)
     end
   end
 end

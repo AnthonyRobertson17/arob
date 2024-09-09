@@ -190,13 +190,13 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     assert_select("div", "15")
   end
 
-  test "show exercise_type raises not found if the exercise_type belongs to another user" do
+  test "show exercise_type returns not found if the exercise_type belongs to another user" do
     sign_in(user)
     other_exercise_type = create(:exercise_type)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(exercise_type_url(other_exercise_type))
-    end
+    get(exercise_type_url(other_exercise_type))
+
+    assert_response(:not_found)
   end
 
   test "get edit" do
@@ -208,13 +208,13 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "get edit raises not found if the exercise_type belongst to another user" do
+  test "get edit returns not found if the exercise_type belongst to another user" do
     sign_in(user)
     other_exercise_type = create(:exercise_type)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(edit_exercise_type_url(other_exercise_type))
-    end
+    get(edit_exercise_type_url(other_exercise_type))
+
+    assert_response(:not_found)
   end
 
   test "update exercise_type updates the record" do
@@ -284,13 +284,13 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "update exercise_type raises not found if the exercise_type belongs to another user" do
+  test "update exercise_type returns not found if the exercise_type belongs to another user" do
     sign_in(user)
     other_exercise_type = create(:exercise_type)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch(exercise_type_url(other_exercise_type), params: { exercise_type: { name: "Updated exercise_type name" } })
-    end
+    patch(exercise_type_url(other_exercise_type), params: { exercise_type: { name: "Updated exercise_type name" } })
+
+    assert_response(:not_found)
   end
 
   test "destroy exercise_type destroys the record" do
@@ -320,12 +320,12 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
     assert_response(:ok)
   end
 
-  test "destroy exercise_type raises not found if the exercise_type belongs to another user" do
+  test "destroy exercise_type returns not found if the exercise_type belongs to another user" do
     sign_in(user)
     other_exercise_type = create(:exercise_type)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete(exercise_type_url(other_exercise_type))
-    end
+    delete(exercise_type_url(other_exercise_type))
+
+    assert_response(:not_found)
   end
 end

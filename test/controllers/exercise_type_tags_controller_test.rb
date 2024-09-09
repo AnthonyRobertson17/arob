@@ -68,12 +68,12 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "show exercise_type_tag raises not found if exercise_type_tag belongs to another user" do
+  test "show exercise_type_tag returns not found if exercise_type_tag belongs to another user" do
     exercise_type_tag = create(:exercise_type_tag)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(exercise_type_tag_url(exercise_type_tag))
-    end
+    get(exercise_type_tag_url(exercise_type_tag))
+
+    assert_response(:not_found)
   end
 
   test "get edit" do
@@ -84,12 +84,12 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:success)
   end
 
-  test "get edit raises not found if exercise_type_tag is not for the current user" do
+  test "get edit returns not found if exercise_type_tag is not for the current user" do
     exercise_type_tag = create(:exercise_type_tag)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(edit_exercise_type_tag_url(exercise_type_tag))
-    end
+    get(edit_exercise_type_tag_url(exercise_type_tag))
+
+    assert_response(:not_found)
   end
 
   test "update exercise_type_tag with html format redirects to show" do
@@ -111,12 +111,12 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:ok)
   end
 
-  test "update exercise_type_tag raises not found if exercise_type_tag belongs to another user" do
+  test "update exercise_type_tag returns not found if exercise_type_tag belongs to another user" do
     exercise_type_tag = create(:exercise_type_tag)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch(exercise_type_tag_url(exercise_type_tag), params: { exercise_type_tag: { name: "New ExerciseType Name" } })
-    end
+    patch(exercise_type_tag_url(exercise_type_tag), params: { exercise_type_tag: { name: "New ExerciseType Name" } })
+
+    assert_response(:not_found)
   end
 
   test "destroy exercise_type_tag destroys the record" do
@@ -143,11 +143,11 @@ class ExerciseTypeTagsControllerTest < ActionDispatch::IntegrationTest
     assert_response(:ok)
   end
 
-  test "destroy exercise_type_tag raises not found if exercise_type_tag belongs to another user" do
+  test "destroy exercise_type_tag returns not found if exercise_type_tag belongs to another user" do
     exercise_type_tag = create(:exercise_type_tag)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete(exercise_type_tag_url(exercise_type_tag))
-    end
+    delete(exercise_type_tag_url(exercise_type_tag))
+
+    assert_response(:not_found)
   end
 end

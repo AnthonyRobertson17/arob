@@ -78,9 +78,9 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
   test "show wishlist raises not found if the wishlist belongs to another user" do
     wishlist = create(:wishlist)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(wishlist_url(wishlist))
-    end
+    get(wishlist_url(wishlist))
+
+    assert_response(:not_found)
   end
 
   test "get edit" do
@@ -93,9 +93,9 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
   test "get edit raises not found if the wishlist belongs to another user" do
     wishlist = create(:wishlist)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      get(edit_wishlist_url(wishlist))
-    end
+    get(edit_wishlist_url(wishlist))
+
+    assert_response(:not_found)
   end
 
   test "update wishlist name" do
@@ -125,9 +125,9 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
   test "update wishlist raises not found if the wishlist belongs to another user" do
     wishlist = create(:wishlist)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      patch(wishlist_url(wishlist), params: { wishlist: { name: "Updated wishlist name" } })
-    end
+    patch(wishlist_url(wishlist), params: { wishlist: { name: "Updated wishlist name" } })
+
+    assert_response(:not_found)
   end
 
   test "destroy wishlist" do
@@ -142,8 +142,8 @@ class WishlistsControllerTest < ActionDispatch::IntegrationTest
   test "destroy wishlist raises not found if the wishlist belongs to another user" do
     wishlist = create(:wishlist)
 
-    assert_raises(ActiveRecord::RecordNotFound) do
-      delete(wishlist_url(wishlist))
-    end
+    delete(wishlist_url(wishlist))
+
+    assert_response(:not_found)
   end
 end
