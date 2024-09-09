@@ -17,9 +17,6 @@ AllCops:
     - node_modules/**/*
     - config/**/*
 
-FactoryBot/AssociationStyle:
-  EnforcedStyle: explicit
-
 Layout/FirstHashElementIndentation:
   EnforcedStyle: consistent
 
@@ -47,10 +44,6 @@ Rails/NotNullColumn:
 
 Style/Documentation:
   Enabled: false
-
-Style/HashSyntax:
-  Exclude:
-    - test/factories/**/* # Parser thinks that the hash shorthand is a syntax error in factories
 
 Style/MethodCallWithArgsParentheses:
   Enabled: true

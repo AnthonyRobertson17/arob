@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :exercise_type do
-    association :user
+    user
 
     sequence(:name) { |n| "exercise_type_#{n}" }
   end
