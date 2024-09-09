@@ -85,10 +85,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
 
   test "create exercise_type links the tags based on the selected tag ids" do
     sign_in(user)
-    exercise_type_tag_ids = [
-      create(:exercise_type_tag, user:),
-      create(:exercise_type_tag, user:),
-    ].map(&:id)
+    exercise_type_tag_ids = Array.new(2) { create(:exercise_type_tag, user:).id }
 
     post(exercise_types_url, params: { exercise_type: { name: "Test", tag_ids: exercise_type_tag_ids } })
 
@@ -101,10 +98,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
 
   test "create exercise_type links the equipment based on the selected equipment ids" do
     sign_in(user)
-    equipment_ids = [
-      create(:equipment, user:),
-      create(:equipment, user:),
-    ].map(&:id)
+    equipment_ids = Array.new(2) { create(:equipment, user:).id }
 
     post(exercise_types_url, params: { exercise_type: { name: "Test", equipment_ids: } })
 
@@ -250,10 +244,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
   test "can update exercise_type tags" do
     sign_in(user)
     exercise_type = create(:exercise_type, user:)
-    exercise_type_tag_ids = [
-      create(:exercise_type_tag, user:),
-      create(:exercise_type_tag, user:),
-    ].map(&:id)
+    exercise_type_tag_ids = Array.new(2) { create(:exercise_type_tag, user:).id }
 
     patch(
       exercise_type_url(exercise_type),
@@ -270,10 +261,7 @@ class ExerciseTypesControllerTest < ActionDispatch::IntegrationTest
   test "can update exercise_type equipment" do
     sign_in(user)
     exercise_type = create(:exercise_type, user:)
-    equipment_ids = [
-      create(:equipment, user:),
-      create(:equipment, user:),
-    ].map(&:id)
+    equipment_ids = Array.new(2) { create(:equipment, user:).id }
 
     patch(exercise_type_url(exercise_type), params: { exercise_type: { name: "Test", equipment_ids: } })
 

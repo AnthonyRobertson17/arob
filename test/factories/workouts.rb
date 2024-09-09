@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :workout do
     user
+
     sequence(:name) { |n| "workout-#{n}" }
 
     trait :started do

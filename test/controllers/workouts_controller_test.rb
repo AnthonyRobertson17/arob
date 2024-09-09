@@ -67,10 +67,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "create workout links the tags based on the selected tag ids" do
-    workout_tag_ids = [
-      create(:workout_tag, user:),
-      create(:workout_tag, user:),
-    ].map(&:id)
+    workout_tag_ids = Array.new(2) { create(:workout_tag, user:).id }
 
     post(workouts_url, params: { workout: { name: "Test", tag_ids: workout_tag_ids } })
 
@@ -181,10 +178,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
 
   test "can update workout tags" do
     workout = create(:workout, user:)
-    workout_tag_ids = [
-      create(:workout_tag, user:),
-      create(:workout_tag, user:),
-    ].map(&:id)
+    workout_tag_ids = Array.new(2) { create(:workout_tag, user:).id }
 
     patch(workout_url(workout), params: { workout: { name: "funny workout", tag_ids: workout_tag_ids } })
 

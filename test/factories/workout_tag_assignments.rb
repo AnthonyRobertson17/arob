@@ -3,10 +3,10 @@
 FactoryBot.define do
   factory :workout_tag_assignment do
     transient do
-      user { build(:user) }
+      user { association :user }
     end
 
-    workout { build(:workout, user:) }
-    tag { build(:workout_tag, user:) }
+    workout { association :workout, user: }
+    tag { association :workout_tag, user: }
   end
 end

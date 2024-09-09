@@ -42,7 +42,7 @@ class ExercisesTest < ApplicationSystemTestCase
     user = login
 
     squat = create(:exercise_type, user:, name: "squat")
-    create :exercise_type, user:, name: "deadlift"
+    create(:exercise_type, user:, name: "deadlift")
     workout = create(:workout, :started, user:)
     exercise = create(:exercise, workout:, exercise_type: squat)
 
