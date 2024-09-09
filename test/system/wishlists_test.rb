@@ -53,7 +53,11 @@ class WishlistsTest < ApplicationSystemTestCase
     wishlist = create(:wishlist, user:)
 
     visit(edit_wishlist_url(wishlist))
+
+    fill_in("Name", with: "something else")
     click_on("Cancel")
+
+    assert_no_text("something else")
   end
 
   test "destroying Wishlist" do

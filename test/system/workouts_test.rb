@@ -65,7 +65,11 @@ class WorkoutsTest < ApplicationSystemTestCase
     workout = create(:workout, user:)
 
     visit(edit_workout_url(workout))
+
+    fill_in("Name", with: "something else")
     click_on("Cancel")
+
+    assert_no_text("something else")
   end
 
   test "destroying Workout" do
