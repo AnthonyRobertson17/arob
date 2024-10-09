@@ -291,10 +291,10 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.3.1)
-    sentry-rails (5.19.0)
+    sentry-rails (5.21.0)
       railties (>= 5.0)
-      sentry-ruby (~> 5.19.0)
-    sentry-ruby (5.19.0)
+      sentry-ruby (~> 5.21.0)
+    sentry-ruby (5.21.0)
       bigdecimal
       concurrent-ruby (~> 1.0, >= 1.0.2)
     simple_form (5.3.1)
@@ -373,7 +373,7 @@ DEPENDENCIES
   rubocop-rake (~> 0.6.0)
   sassc-rails (~> 2.1)
   sentry-rails (~> 5.19)
-  sentry-ruby (~> 5.19)
+  sentry-ruby (~> 5.21)
   simple_form (~> 5.3)
   sprockets-rails (~> 3.5)
   stimulus-rails (~> 1.3)
