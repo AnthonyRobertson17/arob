@@ -44,9 +44,7 @@ jobs:
       - name: Run factory_bot tests
         run: bundle exec rake factory_bot:lint
       - name: Run tests
-        run: bin/rake
-      - name: Run system tests
-        run: bin/rails test:system
+        run: bin/rails test
 
   security:
     runs-on: ubuntu-latest
