@@ -3,9 +3,11 @@
 module Workouts
   class CompleteController < ApplicationController
     before_action :set_workout
+
     rescue_from Workout::NotStartedError do
       redirect_to @workout, alert: I18n.t("workouts.flash.error.not_started")
     end
+
     rescue_from Workout::AlreadyCompletedError do
       redirect_to @workout, alert: I18n.t("workouts.flash.error.already_completed")
     end

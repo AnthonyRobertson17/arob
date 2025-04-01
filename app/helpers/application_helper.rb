@@ -1,29 +1,38 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  NAVBAR_PATHS = {
-    fitness: [
-      "/equipment",
-      "/exercise_type_tags",
-      "/exercise_types",
-      "/fitness",
-      "/gyms",
-      "/workouts",
-      "/workout_types",
-      "/workout_tags",
-    ],
-    wishlists: [
-      "/wishlists",
-    ],
-    nutrition: [
-      "/nutrition",
-      "/food_groups",
-      "/foods",
-      "/serving_units",
-      "/serving_definitions",
-      "/meals",
-    ],
-  }.freeze
+  NAVBAR_LOOKUP = [
+    {
+      partial: "layouts/fitness_navbar",
+      paths: [
+        "/equipment",
+        "/exercise_type_tags",
+        "/exercise_types",
+        "/fitness",
+        "/gyms",
+        "/workouts",
+        "/workout_types",
+        "/workout_tags",
+      ],
+    },
+    {
+      partial: "layouts/wishlists_navbar",
+      paths: [
+        "/wishlists",
+      ],
+    },
+    {
+      partial: "layouts/nutrition_navbar",
+      paths: [
+        "/nutrition",
+        "/food_groups",
+        "/foods",
+        "/serving_units",
+        "/serving_definitions",
+        "/meals",
+      ],
+    },
+  ].freeze
 
   def active_class(paths)
     paths = Array(paths)
@@ -32,9 +41,10 @@ module ApplicationHelper
     ""
   end
 
-  def show_navbar?(section)
-    paths = NAVBAR_PATHS[section]
-    paths&.any? { |p| request.path.include?(p) }
+  def render_navbar
+    section = NAVBAR_LOOKUP.find { |section| section[:paths]&.any? { |p| request.path.include?(p) } }
+
+    render(section[:partial]) if section.present?
   end
 
   def nested_dom_id(*args)

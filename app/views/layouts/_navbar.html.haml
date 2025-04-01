@@ -6,12 +6,7 @@
         %span.navbar-toggler-icon
       #main_navbar.collapse.navbar-collapse
         %ul.navbar-nav.me-auto.mb-2.mb-lg-0
-          - if show_navbar?(:fitness)
-            = render "layouts/fitness_navbar"
-          - elsif show_navbar?(:wishlists)
-            = render "layouts/wishlists_navbar"
-          - elsif show_navbar?(:nutrition)
-            = render "layouts/nutrition_navbar"
+          = render_navbar
         #user_email.mx-2
           = link_to(current_user.email, profile_path, class: "nav-link #{active_class(profile_path)}")
         = button_to(t("navbar.logout"), destroy_user_session_path, method: :delete, class: "btn btn-outline-danger")
