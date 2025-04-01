@@ -34,7 +34,7 @@ group :development, :test do
   gem "mocha", "~> 2.7"
   gem "rubocop", "~> 1.75"
   gem "rubocop-capybara", "~> 2.21"
-  gem "rubocop-factory_bot", "~> 2.26"
+  gem "rubocop-factory_bot", "~> 2.27"
   gem "rubocop-minitest", "~> 0.36.0"
   gem "rubocop-performance", "~> 1.24"
   gem "rubocop-rails", "~> 2.28"
