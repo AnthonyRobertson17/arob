@@ -3,6 +3,7 @@
 module Workouts
   class StartController < ApplicationController
     before_action :set_workout
+
     rescue_from Workout::AlreadyStartedError do
       redirect_to @workout, alert: I18n.t("workouts.flash.error.already_started")
     end
