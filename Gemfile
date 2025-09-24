@@ -33,7 +33,7 @@ group :development, :test do
   gem "minitest-reporters", "~> 1.7"
   gem "mocha", "~> 2.7"
   gem "rubocop", "~> 1.75"
-  gem "rubocop-capybara", "~> 2.21"
+  gem "rubocop-capybara", "~> 2.22"
   gem "rubocop-factory_bot", "~> 2.27"
   gem "rubocop-minitest", "~> 0.38.0"
   gem "rubocop-performance", "~> 1.25"
