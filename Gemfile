@@ -29,7 +29,7 @@ group :development, :test do
   gem "debug", "~> 1.9", platforms: [:mri, :mingw, :x64_mingw]
   gem "dotenv-rails", "~> 3.1"
   gem "factory_bot", "~> 6.5"
-  gem "factory_bot_rails", "~> 6.4"
+  gem "factory_bot_rails", "~> 6.5"
   gem "minitest-reporters", "~> 1.7"
   gem "mocha", "~> 2.7"
   gem "rubocop", "~> 1.75"
