@@ -24,7 +24,7 @@ gem "turbo-rails", "~> 2.0"
 gem "tzinfo-data", "~> 1.2024", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
-  gem "brakeman", "~> 6.2"
+  gem "brakeman", "~> 7.1"
   gem "bundler-audit", "~> 0.9.2"
   gem "debug", "~> 1.9", platforms: [:mri, :mingw, :x64_mingw]
   gem "dotenv-rails", "~> 3.1"
