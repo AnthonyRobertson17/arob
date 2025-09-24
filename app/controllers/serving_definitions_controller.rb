@@ -50,6 +50,6 @@ class ServingDefinitionsController < ApplicationController
   private
 
   def serving_definition_params
-    params.require(:serving_definition).permit(:food_id, :food_group_id, :serving_unit_id, :serving_quantity)
+    params.expect(serving_definition: [:food_id, :food_group_id, :serving_unit_id, :serving_quantity])
   end
 end

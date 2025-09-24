@@ -63,6 +63,6 @@ class WorkoutTagsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def workout_tag_params
-    params.require(:workout_tag).permit(:name)
+    params.expect(workout_tag: [:name])
   end
 end

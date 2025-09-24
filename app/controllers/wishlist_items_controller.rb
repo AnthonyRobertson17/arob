@@ -63,7 +63,7 @@ class WishlistItemsController < ApplicationController
   end
 
   def wishlist_item_params
-    params.require(:wishlist_item).permit(:name, :price, :description, links_attributes: [:id, :url, :_destroy])
+    params.expect(wishlist_item: [:name, :price, :description, { links_attributes: [:id, :url, :_destroy] }])
   end
 
   def set_wishlist

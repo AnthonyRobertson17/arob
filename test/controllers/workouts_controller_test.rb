@@ -84,7 +84,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     get(workout_url(workout))
 
     assert_response(:success)
-    assert_select("td", { text: /#{workout.started_at.to_fs(:timestamp)}/, count: 1 })
+    assert_select("td", { text: workout.started_at.to_fs(:timestamp), count: 1 })
   end
 
   test "show workout includes completed_at time" do
@@ -93,7 +93,7 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
     get(workout_url(workout))
 
     assert_response(:success)
-    assert_select("td", { text: /#{workout.completed_at.to_fs(:timestamp)}/, count: 1 })
+    assert_select("td", { text: workout.completed_at.to_fs(:timestamp), count: 1 })
   end
 
   test "show workout includes exercises for workout" do

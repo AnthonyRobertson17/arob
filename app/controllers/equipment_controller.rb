@@ -67,6 +67,6 @@ class EquipmentController < ApplicationController
   end
 
   def equipment_params
-    params.require(:equipment).permit(:name, { gym_ids: [] })
+    params.expect(equipment: [:name, { gym_ids: [] }])
   end
 end

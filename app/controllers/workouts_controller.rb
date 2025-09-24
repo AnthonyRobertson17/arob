@@ -64,6 +64,6 @@ class WorkoutsController < ApplicationController
   end
 
   def workout_params
-    params.require(:workout).permit([:name, :started_at, :completed_at, { tag_ids: [] }])
+    params.expect(workout: [[:name, :started_at, :completed_at, { tag_ids: [] }]])
   end
 end

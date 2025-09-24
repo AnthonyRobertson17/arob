@@ -54,6 +54,6 @@ class ServingUnitsController < ApplicationController
   private
 
   def serving_unit_params
-    params.require(:serving_unit).permit(:name, :abbreviation)
+    params.expect(serving_unit: [:name, :abbreviation])
   end
 end

@@ -14,7 +14,7 @@ module Users
 
       assert_response :success
 
-      assert_select "p", { text: "Email:\n#{@user.email}", count: 1 }
+      assert_select "p", { text: "Email: #{@user.email}", count: 1 }
     end
 
     test "get edit" do
