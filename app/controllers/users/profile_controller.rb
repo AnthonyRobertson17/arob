@@ -21,7 +21,7 @@ module Users
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.expect(user: [[:time_zone]])
+      params.expect(user: [:time_zone])
     end
   end
 end

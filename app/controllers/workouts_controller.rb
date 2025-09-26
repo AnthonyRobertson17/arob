@@ -24,7 +24,7 @@ class WorkoutsController < ApplicationController
 
   # POST /workouts
   def create
-    @workout = Workout.new(workout_params.merge(user: current_user))
+    @workout = Workout.new(params.expect(workout: [:name, { tag_ids: [] }]).merge(user: current_user))
 
     if @workout.save
       redirect_to(@workout)
@@ -36,7 +36,7 @@ class WorkoutsController < ApplicationController
 
   # PATCH/PUT /workouts/1
   def update
-    if @workout.update(workout_params)
+    if @workout.update(params.expect(workout: [:name, :started_at, :completed_at, { tag_ids: [] }]))
       respond_to do |format|
         format.html { redirect_to(@workout) }
         format.turbo_stream
@@ -61,9 +61,5 @@ class WorkoutsController < ApplicationController
 
   def set_workout
     @workout = policy_scope(Workout).find(params[:id])
-  end
-
-  def workout_params
-    params.expect(workout: [[:name, :started_at, :completed_at, { tag_ids: [] }]])
   end
 end

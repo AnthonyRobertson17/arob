@@ -74,6 +74,6 @@ class ExerciseTypesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def exercise_type_params
-    params.expect(exercise_type: [[:name, { tag_ids: [], equipment_ids: [] }]])
+    params.expect(exercise_type: [:name, { tag_ids: [], equipment_ids: [] }])
   end
 end

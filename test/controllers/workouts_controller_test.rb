@@ -143,23 +143,27 @@ class WorkoutsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "update workout started_at time" do
-    workout = create(:workout, :started, user:)
-    started_at = 2.hours.ago.round
-    patch(workout_url(workout), params: { workout: { started_at: } })
+    freeze_time do
+      workout = create(:workout, :started, user:)
+      started_at = 2.hours.ago.round
+      patch(workout_url(workout), params: { workout: { started_at: } })
 
-    workout.reload
+      workout.reload
 
-    assert_equal(started_at, workout.started_at)
+      assert_equal(started_at, workout.started_at)
+    end
   end
 
   test "update workout completed_at time" do
-    workout = create(:workout, :completed, user:)
-    completed_at = 1.hour.ago.round
-    patch(workout_url(workout), params: { workout: { completed_at: } })
+    freeze_time do
+      workout = create(:workout, :completed, user:)
+      completed_at = 1.hour.ago.round
+      patch(workout_url(workout), params: { workout: { completed_at: } })
 
-    workout.reload
+      workout.reload
 
-    assert_equal(completed_at, workout.completed_at)
+      assert_equal(completed_at, workout.completed_at)
+    end
   end
 
   test "update workout with html format redirects to the workout show page" do
