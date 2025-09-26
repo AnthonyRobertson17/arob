@@ -47,5 +47,5 @@ end
 
 group :test do
   gem "capybara", "~> 3.40"
-  gem "cuprite", "~> 0.15.1"
+  gem "cuprite", "~> 0.17"
 end
