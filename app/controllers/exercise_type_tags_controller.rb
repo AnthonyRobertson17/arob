@@ -63,6 +63,6 @@ class ExerciseTypeTagsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def exercise_type_tag_params
-    params.require(:exercise_type_tag).permit(:name)
+    params.expect(exercise_type_tag: [:name])
   end
 end

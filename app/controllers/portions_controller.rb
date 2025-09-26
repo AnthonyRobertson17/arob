@@ -45,7 +45,7 @@ class PortionsController < ApplicationController
   private
 
   def portion_params
-    params.require(:portion).permit(:food_id, :food_group_id, :serving_quantity)
+    params.expect(portion: [:food_id, :food_group_id, :serving_quantity])
   end
 
   def set_portion

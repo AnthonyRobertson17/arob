@@ -72,6 +72,6 @@ class FoodsController < ApplicationController
   end
 
   def food_params
-    params.require(:food).permit(:name, { food_group_ids: [] })
+    params.expect(food: [:name, { food_group_ids: [] }])
   end
 end

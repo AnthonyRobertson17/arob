@@ -59,6 +59,6 @@ class ExerciseSetsController < ApplicationController
   end
 
   def exercise_set_params
-    params.require(:exercise_set).permit(:weight, :repetitions)
+    params.expect(exercise_set: [:weight, :repetitions])
   end
 end

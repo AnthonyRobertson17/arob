@@ -89,7 +89,7 @@ class WishlistItemsTest < ApplicationSystemTestCase
     visit(wishlist_wishlist_item_url(wishlist, wishlist_item))
     find(".bi-pencil").click
 
-    all(".bi-trash3").first.click
+    first(".bi-trash3").click
     click_on("Update")
 
     assert_current_path(wishlist_wishlist_item_path(wishlist, wishlist_item))

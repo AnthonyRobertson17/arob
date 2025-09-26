@@ -55,6 +55,6 @@ class MealsController < ApplicationController
   private
 
   def meal_params
-    @meal_params ||= params.require(:meal).permit(:name, :meal_type, :date)
+    @meal_params ||= params.expect(meal: [:name, :meal_type, :date])
   end
 end

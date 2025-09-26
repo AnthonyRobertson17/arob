@@ -65,7 +65,7 @@ class ExercisesController < ApplicationController
   end
 
   def exercise_params
-    params.require(:exercise).permit(:exercise_type_id, :note)
+    params.expect(exercise: [:exercise_type_id, :note])
   end
 
   def set_workout
