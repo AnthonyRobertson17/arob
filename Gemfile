@@ -9,7 +9,7 @@ gem "bcrypt", "~> 3.1"
 gem "bootsnap", "~> 1.18", require: false
 gem "bootstrap", "~> 5.3"
 gem "dartsass-rails", "~> 0.5.1"
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
 gem "haml", "~> 6.3"
 gem "importmap-rails", "~> 2.0"
 gem "pg", "~> 1.6"
