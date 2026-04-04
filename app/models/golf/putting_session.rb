@@ -5,7 +5,7 @@ module Golf
     self.table_name = "golf_putting_sessions"
 
     belongs_to :user
-    has_many :putts, class_name: "Golf::Putt", foreign_key: :putting_session_id, dependent: :destroy
+    has_many :putts, class_name: "Golf::Putt", dependent: :destroy
 
     enum :session_type, { putting_mat: 0, practice_green: 1 }
 
@@ -35,7 +35,7 @@ module Golf
     end
 
     def complete!
-      raise AlreadyCompletedError if completed?
+      raise(AlreadyCompletedError) if completed?
 
       update!(completed_at: Time.current)
     end

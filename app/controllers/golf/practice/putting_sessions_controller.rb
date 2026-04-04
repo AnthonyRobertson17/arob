@@ -22,7 +22,8 @@ module Golf
           type_putts = all_putts.joins(:putting_session).where(golf_putting_sessions: { session_type: type })
           next if type_putts.empty?
 
-          { label: type.humanize, pct: make_pct(type_putts.where(holed: true).count, type_putts.count), count: type_putts.count }
+          { label: type.humanize, pct: make_pct(type_putts.where(holed: true).count, type_putts.count),
+            count: type_putts.count, }
         end
 
         # By distance (only distances with 3+ putts)
@@ -30,7 +31,11 @@ module Golf
                                 .group(:distance_feet)
                                 .having("count(*) >= 3")
                                 .order(:distance_feet)
-                                .pluck(:distance_feet, Arel.sql("count(*) as total"), Arel.sql("sum(case when holed then 1 else 0 end) as made"))
+                                .pluck(
+                                  :distance_feet,
+                                  Arel.sql("count(*) as total"),
+                                  Arel.sql("sum(case when holed then 1 else 0 end) as made"),
+                                )
                                 .map { |dist, total, made| { dist:, total:, pct: make_pct(made, total) } }
 
         # Miss breakdown
@@ -45,7 +50,8 @@ module Golf
 
         # Session trend (all completed sessions in chronological order)
         @session_trend = sessions.map do |s|
-          { date: s.started_at.to_date, type: s.session_type.humanize, count: s.putts.size, pct: s.make_percentage || 0 }
+          { date: s.started_at.to_date, type: s.session_type.humanize, count: s.putts.size,
+            pct: s.make_percentage || 0, }
         end
 
         # Chart configs
@@ -56,39 +62,45 @@ module Golf
               labels: @session_trend.map { |s| s[:date].strftime("%-d %b") },
               datasets: [{
                 label: "Make %",
-                data: @session_trend.map { |s| s[:pct] },
+                data: @session_trend.pluck(:pct),
                 borderColor: "#198754",
                 backgroundColor: "rgba(25,135,84,0.1)",
                 fill: true,
                 tension: 0.4,
                 pointRadius: 5,
-                pointBackgroundColor: "#198754"
-              }]
+                pointBackgroundColor: "#198754",
+              }],
             },
             options: {
               scales: { y: { min: 0, max: 100 } },
-              plugins: { legend: { display: false } }
-            }
+              plugins: { legend: { display: false } },
+            },
           }
         end
 
         unless @by_distance.empty?
-          dist_colors = @by_distance.map { |r| r[:pct] >= 70 ? "rgba(25,135,84,0.8)" : r[:pct] >= 40 ? "rgba(255,193,7,0.8)" : "rgba(220,53,69,0.8)" }
+          dist_colors = @by_distance.map do |r|
+            if r[:pct] >= 70
+              "rgba(25,135,84,0.8)"
+            else
+              r[:pct] >= 40 ? "rgba(255,193,7,0.8)" : "rgba(220,53,69,0.8)"
+            end
+          end
           @dist_chart_config = {
             type: "bar",
             data: {
               labels: @by_distance.map { |r| "#{r[:dist]} ft" },
               datasets: [{
                 label: "Make %",
-                data: @by_distance.map { |r| r[:pct] },
+                data: @by_distance.pluck(:pct),
                 backgroundColor: dist_colors,
-                borderRadius: 6
-              }]
+                borderRadius: 6,
+              }],
             },
             options: {
               scales: { y: { min: 0, max: 100 } },
-              plugins: { legend: { display: false } }
-            }
+              plugins: { legend: { display: false } },
+            },
           }
         end
 
@@ -98,12 +110,12 @@ module Golf
             data: {
               labels: @by_type.map { |r| "#{r[:label]} #{r[:pct]}%" },
               datasets: [{
-                data: @by_type.map { |r| r[:count] },
+                data: @by_type.pluck(:count),
                 backgroundColor: ["rgba(13,110,253,0.8)", "rgba(25,135,84,0.8)"],
-                borderWidth: 2
-              }]
+                borderWidth: 2,
+              }],
             },
-            options: { plugins: { legend: { position: "bottom" } }, cutout: "60%" }
+            options: { plugins: { legend: { position: "bottom" } }, cutout: "60%" },
           }
         end
 
@@ -115,27 +127,27 @@ module Golf
               datasets: [{
                 data: @miss_direction.map { |_, d| d[:count] },
                 backgroundColor: ["rgba(220,53,69,0.8)", "rgba(108,117,125,0.8)", "rgba(255,193,7,0.8)"],
-                borderWidth: 2
-              }]
+                borderWidth: 2,
+              }],
             },
-            options: { plugins: { legend: { position: "bottom" } }, cutout: "60%" }
+            options: { plugins: { legend: { position: "bottom" } }, cutout: "60%" },
           }
         end
 
-        unless @miss_pace.empty?
-          @pace_chart_config = {
-            type: "doughnut",
-            data: {
-              labels: @miss_pace.map { |label, d| "#{label} #{d[:pct]}%" },
-              datasets: [{
-                data: @miss_pace.map { |_, d| d[:count] },
-                backgroundColor: ["rgba(13,202,240,0.8)", "rgba(253,126,20,0.8)", "rgba(108,117,125,0.8)"],
-                borderWidth: 2
-              }]
-            },
-            options: { plugins: { legend: { position: "bottom" } }, cutout: "60%" }
-          }
-        end
+        return if @miss_pace.empty?
+
+        @pace_chart_config = {
+          type: "doughnut",
+          data: {
+            labels: @miss_pace.map { |label, d| "#{label} #{d[:pct]}%" },
+            datasets: [{
+              data: @miss_pace.map { |_, d| d[:count] },
+              backgroundColor: ["rgba(13,202,240,0.8)", "rgba(253,126,20,0.8)", "rgba(108,117,125,0.8)"],
+              borderWidth: 2,
+            }],
+          },
+          options: { plugins: { legend: { position: "bottom" } }, cutout: "60%" },
+        }
       end
 
       def show
@@ -150,7 +162,7 @@ module Golf
 
       def create
         @putting_session = Golf::PuttingSession.new(
-          putting_session_params.merge(user: current_user, started_at: Time.current)
+          putting_session_params.merge(user: current_user, started_at: Time.current),
         )
 
         if @putting_session.save

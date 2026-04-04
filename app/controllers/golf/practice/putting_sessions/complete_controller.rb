@@ -8,7 +8,7 @@ module Golf
 
         rescue_from Golf::PuttingSession::AlreadyCompletedError do
           redirect_to(golf_practice_putting_session_path(@putting_session),
-            alert: t("golf.putting_sessions.flash.error.already_completed"))
+                      alert: t("golf.putting_sessions.flash.error.already_completed"),)
         end
 
         def update

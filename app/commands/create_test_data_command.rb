@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/AbcSize, Metrics/MethodLength, Metrics/ClassLength
+# rubocop:disable Metrics/ClassLength
 class CreateTestDataCommand < BaseCommand
   def execute
     users
@@ -312,4 +312,4 @@ class CreateTestDataCommand < BaseCommand
     }
   end
 end
-# rubocop:enable Metrics/AbcSize, Metrics/MethodLength, Metrics/ClassLength
+# rubocop:enable Metrics/ClassLength

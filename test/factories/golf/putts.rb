@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :"golf/putt" do
-    association :putting_session, factory: :"golf/putting_session"
+    putting_session factory: [:"golf/putting_session"]
     holed { false }
     distance_feet { 6 }
 
