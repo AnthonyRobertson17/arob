@@ -1,0 +1,14 @@
+- total = @putts.size
+- holed_count = @putts.count(&:holed?)
+- pct = @putting_session.make_percentage
+
+= turbo_stream.replace "session-tally" do
+  = render "golf/practice/putting_sessions/tally", total:, holed_count:, pct:
+
+= turbo_stream.prepend "putts-tbody" do
+  = render "putt", putt: @putt, index: total, session: @putting_session
+
+= turbo_stream.remove "no-putts"
+
+= turbo_stream.replace "putt-entry" do
+  = render "form", putting_session: @putting_session, putt: @new_putt, next_distance: @next_distance

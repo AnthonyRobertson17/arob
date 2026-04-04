@@ -4,5 +4,11 @@
 
 import { application } from "controllers/application"
 
+import ChartController from "controllers/chart_controller"
+application.register("chart", ChartController)
+
 import NestedFormController from "controllers/nested_form_controller"
 application.register("nested-form", NestedFormController)
+
+import PuttFormController from "controllers/putt_form_controller"
+application.register("putt-form", PuttFormController)

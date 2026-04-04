@@ -41,6 +41,21 @@ Rails.application.routes.draw do
     resources :portions, except: [:index, :show]
   end
 
+  namespace :golf do
+    get "/", to: "golf#index", as: :root
+    namespace :practice do
+      resources :putting_sessions do
+        collection do
+          get :stats
+        end
+        member do
+          patch "complete", to: "putting_sessions/complete#update"
+        end
+        resources :putts, only: [:create, :destroy]
+      end
+    end
+  end
+
   authenticated :user do
     root to: "home#index", as: :authenticated_root
   end

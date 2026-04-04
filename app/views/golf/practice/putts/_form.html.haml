@@ -1,0 +1,20 @@
+#putt-entry{data: { controller: "putt-form" }}
+  .d-flex.align-items-center.gap-2.mb-3
+    %label.text-muted.small.mb-0= Golf::Putt.human_attribute_name("distance_feet")
+    %input.form-control.form-control-sm{
+      type: "number", min: 1, value: next_distance,
+      style: "width: 5rem",
+      data: { action: "input->putt-form#syncDistance" }
+    }
+    %span.text-muted.small ft
+
+  .putt-grid
+    = render "golf/practice/putts/outcome_button", putting_session:, label: "↖️",  holed: false, pace: :too_hard, direction: :left,      next_distance:, full_width: false
+    = render "golf/practice/putts/outcome_button", putting_session:, label: "⬆️",  holed: false, pace: :too_hard, direction: :on_target, next_distance:, full_width: false
+    = render "golf/practice/putts/outcome_button", putting_session:, label: "↗️",  holed: false, pace: :too_hard, direction: :right,     next_distance:, full_width: false
+    = render "golf/practice/putts/outcome_button", putting_session:, label: "⬅️",  holed: false, pace: :perfect,  direction: :left,      next_distance:, full_width: false
+    = render "golf/practice/putts/outcome_button", putting_session:, label: "⛳",  holed: true,  pace: :perfect,  direction: :on_target, next_distance:, full_width: false
+    = render "golf/practice/putts/outcome_button", putting_session:, label: "➡️",  holed: false, pace: :perfect,  direction: :right,     next_distance:, full_width: false
+    = render "golf/practice/putts/outcome_button", putting_session:, label: "↙️",  holed: false, pace: :too_soft, direction: :left,      next_distance:, full_width: false
+    = render "golf/practice/putts/outcome_button", putting_session:, label: "⬇️",  holed: false, pace: :too_soft, direction: :on_target, next_distance:, full_width: false
+    = render "golf/practice/putts/outcome_button", putting_session:, label: "↘️",  holed: false, pace: :too_soft, direction: :right,     next_distance:, full_width: false

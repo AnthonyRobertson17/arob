@@ -1,0 +1,8 @@
+= button_to golf_practice_putting_session_putts_path(putting_session),
+    class: "btn btn-sm #{holed ? 'btn-outline-success' : 'btn-outline-secondary'}",
+    form_class: full_width ? "putt-form-full" : "" do
+  = hidden_field_tag "golf_putt[holed]", holed
+  = hidden_field_tag "golf_putt[pace]", pace
+  = hidden_field_tag "golf_putt[direction]", direction
+  = hidden_field_tag "golf_putt[distance_feet]", next_distance, data: { putt_form_target: "distance" }
+  = label

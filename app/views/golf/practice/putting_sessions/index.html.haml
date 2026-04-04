@@ -1,0 +1,8 @@
+.d-flex.justify-content-between.align-items-center.mb-4
+  %h1.mb-0= t(".title")
+  = link_to "Stats", stats_golf_practice_putting_sessions_path, class: "btn btn-outline-secondary btn-sm"
+= link_to t(".new_session"), new_golf_practice_putting_session_path, class: "btn btn-primary mb-4"
+
+- if @putting_sessions.any?
+  - @putting_sessions.each do |putting_session|
+    = render("putting_session", putting_session:)

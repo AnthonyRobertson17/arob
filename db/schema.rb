@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_01_022027) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_04_040312) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "equipment", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "user_id"
     t.datetime "created_at", null: false
+    t.string "name", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_equipment_on_user_id"
   end
 
@@ -33,50 +33,50 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_01_022027) do
   end
 
   create_table "exercise_sets", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.bigint "exercise_id"
     t.integer "repetitions"
-    t.decimal "weight"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "weight"
     t.index ["exercise_id"], name: "index_exercise_sets_on_exercise_id"
   end
 
   create_table "exercise_type_tag_assignments", force: :cascade do |t|
-    t.bigint "tag_id", null: false
-    t.bigint "exercise_type_id", null: false
     t.datetime "created_at", null: false
+    t.bigint "exercise_type_id", null: false
+    t.bigint "tag_id", null: false
     t.datetime "updated_at", null: false
     t.index ["exercise_type_id"], name: "index_exercise_type_tag_assignments_on_exercise_type_id"
     t.index ["tag_id"], name: "index_exercise_type_tag_assignments_on_tag_id"
   end
 
   create_table "exercise_types", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "user_id"
     t.datetime "created_at", null: false
+    t.string "name", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["name"], name: "index_exercise_types_on_name"
     t.index ["user_id", "name"], name: "index_exercise_types_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_exercise_types_on_user_id"
   end
 
   create_table "exercises", force: :cascade do |t|
-    t.bigint "workout_id"
-    t.bigint "exercise_type_id"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "exercise_type_id"
     t.text "note"
     t.integer "position", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "workout_id"
     t.index ["exercise_type_id"], name: "index_exercises_on_exercise_type_id"
     t.index ["workout_id"], name: "index_exercises_on_workout_id"
   end
 
   create_table "food_groups", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "emoji", limit: 1, null: false
-    t.bigint "user_id"
     t.datetime "created_at", null: false
+    t.string "emoji", limit: 1, null: false
+    t.string "name", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["user_id", "name"], name: "index_food_groups_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_food_groups_on_user_id"
   end
@@ -87,49 +87,70 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_01_022027) do
   end
 
   create_table "foods", force: :cascade do |t|
-    t.string "name", null: false
     t.datetime "created_at", null: false
+    t.string "name", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id", "name"], name: "index_foods_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
-  create_table "gyms", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "user_id"
+  create_table "golf_putting_sessions", force: :cascade do |t|
+    t.datetime "completed_at"
     t.datetime "created_at", null: false
+    t.integer "session_type", null: false
+    t.datetime "started_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_golf_putting_sessions_on_user_id"
+  end
+
+  create_table "golf_putts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "direction"
+    t.integer "distance_feet"
+    t.boolean "holed", default: false, null: false
+    t.integer "pace"
+    t.bigint "putting_session_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["putting_session_id"], name: "index_golf_putts_on_putting_session_id"
+  end
+
+  create_table "gyms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_gyms_on_user_id"
   end
 
   create_table "links", force: :cascade do |t|
-    t.string "url", null: false
-    t.string "linkable_type"
-    t.bigint "linkable_id"
     t.datetime "created_at", null: false
+    t.bigint "linkable_id"
+    t.string "linkable_type"
     t.datetime "updated_at", null: false
+    t.string "url", null: false
     t.index ["linkable_type", "linkable_id"], name: "index_links_on_linkable"
   end
 
   create_table "meals", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.datetime "date"
     t.integer "meal_type", default: 0, null: false
     t.string "name"
+    t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_meals_on_user_id"
   end
 
   create_table "portions", force: :cascade do |t|
-    t.decimal "serving_quantity", null: false
-    t.bigint "user_id"
-    t.bigint "food_group_id"
-    t.bigint "meal_id"
-    t.bigint "food_id"
     t.datetime "created_at", null: false
+    t.bigint "food_group_id"
+    t.bigint "food_id"
+    t.bigint "meal_id"
+    t.decimal "serving_quantity", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["food_group_id"], name: "index_portions_on_food_group_id"
     t.index ["food_id"], name: "index_portions_on_food_id"
     t.index ["meal_id"], name: "index_portions_on_meal_id"
@@ -138,12 +159,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_01_022027) do
 
   create_table "serving_definitions", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.decimal "serving_quantity"
-    t.bigint "user_id"
-    t.bigint "food_id"
     t.bigint "food_group_id"
+    t.bigint "food_id"
+    t.decimal "serving_quantity"
     t.bigint "serving_unit_id"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["food_group_id"], name: "index_serving_definitions_on_food_group_id"
     t.index ["food_id"], name: "index_serving_definitions_on_food_id"
     t.index ["serving_unit_id"], name: "index_serving_definitions_on_serving_unit_id"
@@ -151,21 +172,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_01_022027) do
   end
 
   create_table "serving_units", force: :cascade do |t|
-    t.string "name", null: false
     t.string "abbreviation"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
+    t.string "name", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["user_id", "name"], name: "index_serving_units_on_user_id_and_name", unique: true
     t.index ["user_id"], name: "index_serving_units_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "name", null: false
     t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.string "type"
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.string "type"
     t.index ["name", "user_id"], name: "index_tags_on_name_and_user_id"
     t.index ["name"], name: "index_tags_on_name"
     t.index ["user_id", "name", "type"], name: "index_tags_on_user_id_and_name_and_type", unique: true
@@ -173,48 +194,48 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_01_022027) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "time_zone", default: "UTC"
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "wishlist_items", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "wishlist_id"
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.decimal "price", precision: 8, scale: 2
     t.text "description"
+    t.string "name", null: false
+    t.decimal "price", precision: 8, scale: 2
+    t.datetime "updated_at", null: false
+    t.bigint "wishlist_id"
     t.index ["wishlist_id"], name: "index_wishlist_items_on_wishlist_id"
   end
 
   create_table "wishlists", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "user_id"
     t.datetime "created_at", null: false
+    t.string "name", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_wishlists_on_user_id"
   end
 
   create_table "workout_tag_assignments", force: :cascade do |t|
-    t.bigint "tag_id", null: false
-    t.bigint "workout_id", null: false
     t.datetime "created_at", null: false
+    t.bigint "tag_id", null: false
     t.datetime "updated_at", null: false
+    t.bigint "workout_id", null: false
     t.index ["tag_id"], name: "index_workout_tag_assignments_on_tag_id"
     t.index ["workout_id"], name: "index_workout_tag_assignments_on_workout_id"
   end
 
   create_table "workouts", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.datetime "started_at"
     t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.datetime "started_at"
+    t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["name"], name: "index_workouts_on_name"
     t.index ["user_id"], name: "index_workouts_on_user_id"
@@ -222,6 +243,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_01_022027) do
 
   add_foreign_key "exercise_type_tag_assignments", "exercise_types"
   add_foreign_key "exercise_type_tag_assignments", "tags"
+  add_foreign_key "golf_putting_sessions", "users"
+  add_foreign_key "golf_putts", "golf_putting_sessions", column: "putting_session_id"
   add_foreign_key "tags", "users"
   add_foreign_key "workout_tag_assignments", "tags"
   add_foreign_key "workout_tag_assignments", "workouts"

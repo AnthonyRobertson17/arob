@@ -1,0 +1,14 @@
+= turbo_frame_tag(dom_id(putting_session)) do
+  = link_to golf_practice_putting_session_path(putting_session), class: "card mb-3 text-decoration-none text-reset", data: { turbo_frame: "_top" } do
+    .card-body
+      .d-flex.justify-content-between.align-items-start
+        %strong= putting_session.session_type.humanize
+        - if putting_session.in_progress?
+          %span.badge.rounded-pill.bg-primary= t("golf.practice.putting_sessions.show.statuses.in_progress")
+        - else
+          %span.badge.rounded-pill.bg-success= t("golf.practice.putting_sessions.show.statuses.completed")
+      %small.text-muted= putting_session.started_at.strftime("%b %-d, %Y")
+      .mt-2
+        - total = putting_session.putts.size
+        - pct = putting_session.make_percentage
+        %span.text-muted.small= "#{total} putts#{pct ? " · #{pct}% made" : ""}"
