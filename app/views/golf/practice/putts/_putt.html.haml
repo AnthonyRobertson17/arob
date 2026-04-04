@@ -1,0 +1,16 @@
+%tr{id: dom_id(putt)}
+  %td= index
+  %td= putt.distance_feet ? "#{putt.distance_feet} ft" : "—"
+  %td
+    - if putt.holed?
+      %span.badge.bg-success= t("golf.practice.putting_sessions.putt.yes")
+    - else
+      %span.badge.bg-danger= t("golf.practice.putting_sessions.putt.no")
+  %td= putt.pace ? Golf::Putt.human_attribute_name("paces.#{putt.pace}") : "—"
+  %td= putt.direction ? Golf::Putt.human_attribute_name("directions.#{putt.direction}") : "—"
+  - if session.in_progress?
+    %td
+      = button_to golf_practice_putting_session_putt_path(session, putt),
+          method: :delete,
+          class: "btn btn-sm btn-outline-danger" do
+        %i.bi.bi-trash

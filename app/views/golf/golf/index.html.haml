@@ -1,0 +1,18 @@
+%h1.display-3.mb-4 Golf
+
+= link_to golf_practice_putting_sessions_path, class: "card mb-4 text-decoration-none text-reset" do
+  .card-body
+    %h5.card-title Putting
+    - if @putting_stats[:sessions] > 0
+      .d-flex.justify-content-around
+        .text-center
+          .fs-3.fw-bold= @putting_stats[:sessions]
+          %small.text-muted Sessions
+        .text-center
+          .fs-3.fw-bold= @putting_stats[:total_putts]
+          %small.text-muted Total Putts
+        .text-center
+          .fs-3.fw-bold= "#{@putting_stats[:make_pct]}%"
+          %small.text-muted Make %
+    - else
+      %p.text-muted.mb-0 No sessions yet.

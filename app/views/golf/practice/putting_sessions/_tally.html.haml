@@ -1,0 +1,12 @@
+.card.mb-3{id: "session-tally"}
+  .card-body
+    .d-flex.justify-content-around
+      .text-center
+        .fs-3.fw-bold= total
+        %small.text-muted Putts
+      .text-center
+        .fs-3.fw-bold= holed_count
+        %small.text-muted Made
+      .text-center
+        .fs-3.fw-bold= "#{pct || 0}%"
+        %small.text-muted Make %

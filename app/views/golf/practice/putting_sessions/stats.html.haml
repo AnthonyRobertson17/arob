@@ -1,0 +1,86 @@
+= link_to "← Putting Sessions", golf_practice_putting_sessions_path, class: "btn btn-outline-secondary btn-sm mb-4"
+
+%h2.mb-4 Putting Stats
+
+- if @total_sessions.zero?
+  %p.text-muted No completed sessions yet.
+- else
+
+  -# ─── Summary ───────────────────────────────────────────────────────────────
+  .row.g-3.mb-4
+    .col-4
+      .card.text-center.h-100
+        .card-body
+          .display-5.fw-bold= @total_sessions
+          %small.text-muted Sessions
+    .col-4
+      .card.text-center.h-100
+        .card-body
+          .display-5.fw-bold= @total_putts
+          %small.text-muted Putts
+    .col-4
+      .card.text-center.h-100
+        .card-body
+          .display-5.fw-bold= "#{@overall_make_pct}%"
+          %small.text-muted Make %
+
+  -# ─── Trend ──────────────────────────────────────────────────────────────────
+  - if @trend_chart_config
+    .card.mb-4
+      .card-body
+        %h5.card-title Make % Over Time
+        %canvas{data: { controller: "chart", chart_config_value: @trend_chart_config.to_json }}
+
+  -# ─── Distance ────────────────────────────────────────────────────────────────
+  - if @dist_chart_config
+    .card.mb-4
+      .card-body
+        %h5.card-title Make % by Distance
+        %canvas{data: { controller: "chart", chart_config_value: @dist_chart_config.to_json }}
+
+  -# ─── Surface + Miss breakdown ───────────────────────────────────────────────
+  .row.g-3.mb-4
+    - if @type_chart_config
+      .col-md-4
+        .card.h-100
+          .card-body
+            %h5.card-title Surface
+            %canvas{data: { controller: "chart", chart_config_value: @type_chart_config.to_json }}
+
+    - if @dir_chart_config
+      .col-md-4
+        .card.h-100
+          .card-body
+            %h5.card-title Miss Direction
+            %canvas{data: { controller: "chart", chart_config_value: @dir_chart_config.to_json }}
+
+    - if @pace_chart_config
+      .col-md-4
+        .card.h-100
+          .card-body
+            %h5.card-title Miss Pace
+            %canvas{data: { controller: "chart", chart_config_value: @pace_chart_config.to_json }}
+
+  -# ─── Session log ─────────────────────────────────────────────────────────────
+  .card.mb-4
+    .card-body
+      %h5.card-title Session Log
+      %table.table.table-sm.mb-0
+        %thead
+          %tr
+            %th Date
+            %th Surface
+            %th Putts
+            %th Make %
+            %th.w-40
+        %tbody
+          - @session_trend.reverse.each do |s|
+            %tr
+              %td= s[:date].strftime("%b %-d, %Y")
+              %td= s[:type]
+              %td= s[:count]
+              %td= "#{s[:pct]}%"
+              %td
+                .progress{style: "height: 0.6rem"}
+                  - bar_color = s[:pct] >= 70 ? "bg-success" : s[:pct] >= 40 ? "bg-warning" : "bg-danger"
+                  .progress-bar{class: bar_color, role: "progressbar", style: "width: #{s[:pct]}%"}

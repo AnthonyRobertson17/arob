@@ -2,6 +2,26 @@
 en:
   activerecord:
     attributes:
+      golf/putting_session:
+        session_type: Type
+        session_types:
+          putting_mat: Putting Mat
+          practice_green: Practice Green
+        started_at: Started At
+        completed_at: Completed At
+      golf/putt:
+        holed: Holed
+        pace: Pace
+        paces:
+          perfect: Perfect
+          too_hard: Too Hard
+          too_soft: Too Soft
+        direction: Direction
+        directions:
+          on_target: On Target
+          left: Left
+          right: Right
+        distance_feet: Distance (ft)
       equipment:
         name: Name
       exercise:
@@ -116,6 +136,38 @@ en:
       create_exercise_set: Add Set
     new:
       title: New Exercise
+  golf:
+    index:
+      title: Golf
+      putting: Putting Sessions
+    putting_sessions:
+      flash:
+        error:
+          already_completed: Session has already been completed.
+    practice:
+      putting_sessions:
+        index:
+          title: Putting Sessions
+          new_session: New Session
+        new:
+          title: New Putting Session
+        show:
+          back: Back to Sessions
+          complete: Complete Session
+          complete_confirmation: Are you sure you want to complete this session?
+          delete: Delete Session
+          delete_confirmation: Are you sure you want to delete this session? This cannot be undone.
+          putts: Putts
+          stats: Session Stats
+          statuses:
+            in_progress: In Progress
+            completed: Completed
+          add_putt: Add Putt
+        putting_session:
+          destroy_confirmation: Are you sure you want to delete this session?
+        putt:
+          no: No
+          yes: Yes
   fitness:
     index:
       create_workout: Create Workout
@@ -166,6 +218,7 @@ en:
   home:
     index:
       fitness: Fitness
+      golf: Golf
       nutrition: Nutrition
       wishlists: Wishlists
   log_in: Log In
@@ -200,6 +253,8 @@ en:
       nutrition: Nutrition
       serving_definitions: Serving Definitions
       serving_units: Serving Units
+    golf_navbar:
+      putting: Putting
     wishlists:
       wishlists: Wishlists
   nutrition:

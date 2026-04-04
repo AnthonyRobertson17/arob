@@ -22,6 +22,12 @@ module ApplicationHelper
       ],
     },
     {
+      partial: "layouts/golf_navbar",
+      paths: [
+        "/golf",
+      ],
+    },
+    {
       partial: "layouts/nutrition_navbar",
       paths: [
         "/nutrition",

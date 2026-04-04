@@ -1,0 +1,7 @@
+- url = putting_session.new_record? ? golf_practice_putting_sessions_path : golf_practice_putting_session_path(putting_session)
+= simple_form_for putting_session, url:, as: :golf_putting_session do |f|
+  = f.input :session_type,
+      as: :radio_buttons,
+      collection: Golf::PuttingSession.session_types.keys.map { |t| [Golf::PuttingSession.human_attribute_name("session_types.#{t}"), t] },
+      label: Golf::PuttingSession.human_attribute_name("session_type")
+  = f.button :submit, t("save"), class: "btn btn-primary"

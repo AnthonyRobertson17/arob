@@ -1,0 +1,51 @@
+.d-flex.justify-content-between.align-items-center.mb-3
+  = link_to t(".back"), golf_practice_putting_sessions_path, class: "btn btn-outline-secondary btn-sm"
+  .d-flex.gap-2
+    - if @putting_session.in_progress?
+      = button_to t(".complete"),
+          complete_golf_practice_putting_session_path(@putting_session),
+          method: :patch,
+          form: { data: { turbo_confirm: t(".complete_confirmation") } },
+          class: "btn btn-success btn-sm"
+    = button_to t(".delete"),
+        golf_practice_putting_session_path(@putting_session),
+        method: :delete,
+        form: { data: { turbo_confirm: t(".delete_confirmation") } },
+        class: "btn btn-outline-danger btn-sm"
+
+.d-flex.align-items-center.gap-2.mb-1
+  %h2.mb-0= @putting_session.session_type.humanize
+  - if @putting_session.in_progress?
+    %span.badge.rounded-pill.bg-primary= t(".statuses.in_progress")
+  - else
+    %span.badge.rounded-pill.bg-success= t(".statuses.completed")
+%p.text-muted.small.mb-3= @putting_session.started_at.strftime("%b %-d, %Y")
+
+- total = @putts.size
+- holed_count = @putts.count(&:holed?)
+- pct = @putting_session.make_percentage
+= render "tally", total:, holed_count:, pct:
+
+- if @putting_session.in_progress?
+  .card.mb-3
+    .card-body
+      = render "golf/practice/putts/form", putting_session: @putting_session, putt: @new_putt, next_distance: @next_distance
+
+%h3.mb-2= t(".putts")
+%table.table.table-sm
+  %thead
+    %tr
+      %th #
+      %th= Golf::Putt.human_attribute_name("distance_feet")
+      %th= Golf::Putt.human_attribute_name("holed")
+      %th= Golf::Putt.human_attribute_name("pace")
+      %th= Golf::Putt.human_attribute_name("direction")
+      - if @putting_session.in_progress?
+        %th
+  %tbody#putts-tbody
+    - if @putts.any?
+      - @putts.each_with_index do |putt, i|
+        = render "golf/practice/putts/putt", putt:, index: (@putts.size - i), session: @putting_session
+    - else
+      %tr#no-putts
+        %td.text-muted{colspan: @putting_session.in_progress? ? 6 : 5} No putts recorded yet.
