@@ -6,7 +6,7 @@ ruby "3.3.5"
 
 gem "acts_as_list", "~> 1.2"
 gem "bcrypt", "~> 3.1"
-gem "bootsnap", "~> 1.18", require: false
+gem "bootsnap", "~> 1.23", require: false
 gem "bootstrap", "~> 5.3"
 gem "dartsass-rails", "~> 0.5.1"
 gem "devise", "~> 5.0"
