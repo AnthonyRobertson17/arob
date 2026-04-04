@@ -10,7 +10,7 @@ gem "bootsnap", "~> 1.23", require: false
 gem "bootstrap", "~> 5.3"
 gem "dartsass-rails", "~> 0.5.1"
 gem "devise", "~> 5.0"
-gem "haml", "~> 6.3"
+gem "haml", "~> 7.2"
 gem "importmap-rails", "~> 2.0"
 gem "pg", "~> 1.6"
 gem "propshaft", "~> 1.1"
