@@ -1,0 +1,15 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}
+    %title arob — Offline
+    %meta{content: "width=device-width,initial-scale=1", name: "viewport"}
+    = stylesheet_link_tag "application"
+  %body
+    .container.mt-4
+      .text-center.py-5
+        %h1.display-4 You're Offline
+        %p.lead.text-muted
+          It looks like you don't have an internet connection.
+          Connect and try again.
+        %a.btn.btn-primary{href: "/"} Try Again
