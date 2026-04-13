@@ -1,7 +1,7 @@
 - if user_signed_in?
   %nav.navbar.sticky-top.navbar-expand-lg.navbar-light.bg-light
     .container-fluid
-      = link_to t("app_name"), root_path, class: "navbar-brand"
+      = link_to navbar_brand_name, root_path, class: "navbar-brand"
       %button.navbar-toggler{"aria-controls" => "main_navbar", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#main_navbar", "data-bs-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
       #main_navbar.collapse.navbar-collapse

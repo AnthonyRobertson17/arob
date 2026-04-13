@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# rubocop:disable Metrics/ClassLength
 class CreateTestDataCommand < BaseCommand
   def execute
     users
@@ -312,4 +311,3 @@ class CreateTestDataCommand < BaseCommand
     }
   end
 end
-# rubocop:enable Metrics/ClassLength
