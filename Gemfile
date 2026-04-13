@@ -18,7 +18,7 @@ gem "puma", "~> 7.2"
 gem "pundit", "~> 2.5"
 gem "rack-timeout", "~> 0.7.0"
 gem "rails", "~> 8.1"
-gem "simple_form", "~> 5.3"
+gem "simple_form", "~> 5.4"
 gem "stimulus-rails", "~> 1.3"
 gem "turbo-rails", "~> 2.0"
 gem "tzinfo-data", "~> 1.2024", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
