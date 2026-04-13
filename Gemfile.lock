@@ -159,7 +159,7 @@ GEM
       tilt
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
-    importmap-rails (2.2.2)
+    importmap-rails (2.2.3)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
@@ -395,7 +395,7 @@ DEPENDENCIES
   factory_bot (~> 6.5)
   factory_bot_rails (~> 6.4)
   haml (~> 7.2)
-  importmap-rails (~> 2.0)
+  importmap-rails (~> 2.2)
   minitest-reporters (~> 1.7)
   mocha (~> 2.7)
   pg (~> 1.6)
