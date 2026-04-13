@@ -33,7 +33,7 @@ class EquipmentController < ApplicationController
       end
     else
       set_gyms
-      render(:new, status: :unprocessable_entity)
+      render(:new, status: :unprocessable_content)
     end
   end
 
@@ -46,7 +46,7 @@ class EquipmentController < ApplicationController
       end
     else
       set_gyms
-      render(:edit, status: :unprocessable_entity)
+      render(:edit, status: :unprocessable_content)
     end
   end
 
