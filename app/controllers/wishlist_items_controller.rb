@@ -22,7 +22,7 @@ class WishlistItemsController < ApplicationController
     if @wishlist_item.save
       redirect_to([@wishlist, @wishlist_item], status: :see_other)
     else
-      render(:new, status: :unprocessable_entity)
+      render(:new, status: :unprocessable_content)
     end
   end
 
@@ -35,7 +35,7 @@ class WishlistItemsController < ApplicationController
         format.turbo_stream
       end
     else
-      render(:quick_new, status: :unprocessable_entity)
+      render(:quick_new, status: :unprocessable_content)
     end
   end
 
@@ -46,7 +46,7 @@ class WishlistItemsController < ApplicationController
         format.turbo_stream
       end
     else
-      render(:edit, status: :unprocessable_entity)
+      render(:edit, status: :unprocessable_content)
     end
   end
 

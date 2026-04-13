@@ -43,7 +43,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
           wishlist_item: {
             name: "New wishlist item",
             links_attributes: [
-              url: "https://google.com",
+              { url: "https://google.com" },
             ],
           },
         },
@@ -224,7 +224,7 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           links_attributes: [
-            url: "https://foobar.com",
+            { url: "https://foobar.com" },
           ],
         },
       },
@@ -244,8 +244,10 @@ class WishlistItemsControllerTest < ActionDispatch::IntegrationTest
       params: {
         wishlist_item: {
           links_attributes: [
-            id: link.id,
-            _destroy: 1,
+            {
+              id: link.id,
+              _destroy: 1,
+            },
           ],
         },
       },

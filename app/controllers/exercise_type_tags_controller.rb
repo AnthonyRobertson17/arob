@@ -29,7 +29,7 @@ class ExerciseTypeTagsController < ApplicationController
         format.turbo_stream
       end
     else
-      render(:new, status: :unprocessable_entity)
+      render(:new, status: :unprocessable_content)
     end
   end
 
@@ -41,7 +41,7 @@ class ExerciseTypeTagsController < ApplicationController
         format.turbo_stream
       end
     else
-      render(:edit, status: :unprocessable_entity)
+      render(:edit, status: :unprocessable_content)
     end
   end
 
