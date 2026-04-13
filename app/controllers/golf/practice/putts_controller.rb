@@ -17,7 +17,7 @@ module Golf
             format.html { redirect_to(golf_practice_putting_session_path(@putting_session)) }
           end
         else
-          redirect_to(golf_practice_putting_session_path(@putting_session), status: :unprocessable_entity)
+          redirect_to(golf_practice_putting_session_path(@putting_session), status: :unprocessable_content)
         end
       end
 

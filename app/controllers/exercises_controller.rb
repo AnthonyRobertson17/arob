@@ -21,7 +21,7 @@ class ExercisesController < ApplicationController
       end
     else
       set_exercise_types
-      render(:new, status: :unprocessable_entity)
+      render(:new, status: :unprocessable_content)
     end
   end
 
@@ -33,7 +33,7 @@ class ExercisesController < ApplicationController
       end
     else
       set_exercise_types
-      render(:edit, status: :unprocessable_entity)
+      render(:edit, status: :unprocessable_content)
     end
   end
 

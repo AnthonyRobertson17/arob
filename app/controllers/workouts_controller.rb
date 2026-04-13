@@ -30,7 +30,7 @@ class WorkoutsController < ApplicationController
       redirect_to(@workout)
     else
       set_workout_tags
-      render(:new, status: :unprocessable_entity)
+      render(:new, status: :unprocessable_content)
     end
   end
 
@@ -43,7 +43,7 @@ class WorkoutsController < ApplicationController
       end
     else
       set_workout_tags
-      render(:edit, status: :unprocessable_entity)
+      render(:edit, status: :unprocessable_content)
     end
   end
 
