@@ -80,7 +80,7 @@ GEM
       activesupport (>= 6.1)
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
-    ansi (1.5.0)
+    ansi (1.6.0)
     ast (2.4.3)
     base64 (0.3.0)
     bcrypt (3.1.22)
@@ -189,10 +189,10 @@ GEM
     minitest (6.0.3)
       drb (~> 2.0)
       prism (~> 1.5)
-    minitest-reporters (1.7.1)
+    minitest-reporters (1.8.0)
       ansi
       builder
-      minitest (>= 5.0)
+      minitest (>= 5.0, < 7)
       ruby-progressbar
     mocha (2.7.1)
       ruby2_keywords (>= 0.0.5)
@@ -396,7 +396,7 @@ DEPENDENCIES
   factory_bot_rails (~> 6.4)
   haml (~> 7.2)
   importmap-rails (~> 2.2)
-  minitest-reporters (~> 1.7)
+  minitest-reporters (~> 1.8)
   mocha (~> 2.7)
   pg (~> 1.6)
   propshaft (~> 1.1)
