@@ -144,7 +144,7 @@ module Golf
         if @putting_session.save
           redirect_to(golf_practice_putting_session_path(@putting_session))
         else
-          render(:new, status: :unprocessable_entity)
+          render(:new, status: :unprocessable_content)
         end
       end
 
