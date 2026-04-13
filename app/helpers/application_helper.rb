@@ -3,6 +3,7 @@
 module ApplicationHelper
   NAVBAR_LOOKUP = [
     {
+      name: "Fitness",
       partial: "layouts/fitness_navbar",
       paths: [
         "/equipment",
@@ -16,18 +17,21 @@ module ApplicationHelper
       ],
     },
     {
+      name: "Wishlists",
       partial: "layouts/wishlists_navbar",
       paths: [
         "/wishlists",
       ],
     },
     {
+      name: "Golf",
       partial: "layouts/golf_navbar",
       paths: [
         "/golf",
       ],
     },
     {
+      name: "Nutrition",
       partial: "layouts/nutrition_navbar",
       paths: [
         "/nutrition",
@@ -45,6 +49,11 @@ module ApplicationHelper
     return "active" if paths.include?(request.path)
 
     ""
+  end
+
+  def navbar_brand_name
+    section = NAVBAR_LOOKUP.find { |s| s[:paths]&.any? { |p| request.path.include?(p) } }
+    section&.dig(:name) || t("app_name")
   end
 
   def render_navbar

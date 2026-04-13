@@ -1,67 +1,284 @@
 = link_to "← Putting Sessions", golf_practice_putting_sessions_path, class: "btn btn-outline-secondary btn-sm mb-4"
 
-%h2.mb-4 Putting Stats
+%h2.mb-3 Putting Stats
+
+-# ─── Tab navigation + distance view toggle ───────────────────────────────────
+.d-flex.justify-content-between.align-items-end.border-bottom.mb-4
+  %ul.nav.nav-tabs.border-0.mb-0
+    %li.nav-item
+      = link_to "Putting Mat",
+          stats_golf_practice_putting_sessions_path(tab: "putting_mat", distance_view: @distance_view),
+          class: "nav-link #{'active' if @active_tab == 'putting_mat'}"
+    %li.nav-item
+      = link_to "Practice Green",
+          stats_golf_practice_putting_sessions_path(tab: "practice_green", distance_view: @distance_view),
+          class: "nav-link #{'active' if @active_tab == 'practice_green'}"
+  .btn-group.mb-1
+    = link_to "Buckets",
+        stats_golf_practice_putting_sessions_path(tab: @active_tab, distance_view: "buckets"),
+        class: "btn btn-sm #{'btn-secondary' if @distance_view == 'buckets'}#{'btn-outline-secondary' unless @distance_view == 'buckets'}"
+    = link_to "Per foot",
+        stats_golf_practice_putting_sessions_path(tab: @active_tab, distance_view: "feet"),
+        class: "btn btn-sm #{'btn-secondary' if @distance_view == 'feet'}#{'btn-outline-secondary' unless @distance_view == 'feet'}"
 
 - if @total_sessions.zero?
-  %p.text-muted No completed sessions yet.
+  %p.text-muted No completed #{@active_tab.humanize.downcase} sessions yet.
 - else
 
-  -# ─── Summary ───────────────────────────────────────────────────────────────
+  -# ─── Summary ─────────────────────────────────────────────────────────────
   .row.g-3.mb-4
-    .col-4
+    .col-6.col-md-3
       .card.text-center.h-100
         .card-body
           .display-5.fw-bold= @total_sessions
           %small.text-muted Sessions
-    .col-4
+    .col-6.col-md-3
       .card.text-center.h-100
         .card-body
           .display-5.fw-bold= @total_putts
           %small.text-muted Putts
-    .col-4
+    .col-6.col-md-3
       .card.text-center.h-100
         .card-body
-          .display-5.fw-bold= "#{@overall_make_pct}%"
-          %small.text-muted Make %
+          - pct_class = @overall_make_pct >= 70 ? "text-success" : @overall_make_pct >= 40 ? "text-warning" : "text-danger"
+          .display-5.fw-bold{class: pct_class}= "#{@overall_make_pct}%"
+          %small.text-muted Overall Make %
+    .col-6.col-md-3
+      .card.text-center.h-100
+        .card-body
+          - if @scoring_range[:count] > 0
+            - sr_class = @scoring_range[:pct] >= 70 ? "text-success" : @scoring_range[:pct] >= 40 ? "text-warning" : "text-danger"
+            .display-5.fw-bold{class: sr_class}= "#{@scoring_range[:pct]}%"
+            %small.text-muted Inside 8 ft (#{@scoring_range[:count]} putts)
+          - else
+            .display-5.fw-bold.text-muted —
+            %small.text-muted Inside 8 ft
 
-  -# ─── Trend ──────────────────────────────────────────────────────────────────
-  - if @trend_chart_config
+  -# ─── BUCKETS MODE ─────────────────────────────────────────────────────────
+  - if @distance_view == "buckets"
+
+    -# Bucket stat cards
+    - col_class = @buckets.size == 2 ? "col-6" : "col-md-4"
+    .row.g-3.mb-4
+      - @bucket_stats.each do |bs|
+        %div{class: col_class}
+          .card.h-100
+            .card-body.text-center
+              %h5.card-title= bs[:label]
+              - if bs[:total] > 0
+                - pct_class = bs[:pct] >= 70 ? "text-success" : bs[:pct] >= 40 ? "text-warning" : "text-danger"
+                .display-5.fw-bold{class: pct_class}= "#{bs[:pct]}%"
+                %small.text-muted.d-block= "#{bs[:made]}/#{bs[:total]} putts"
+              - else
+                %p.text-muted.mb-0 No data
+
+    -# Make % over time, split by distance range
+    - if @trend_chart_config
+      .card.mb-4
+        .card-body
+          %h5.card-title Make % Over Time by Distance Range
+          %canvas{data: { controller: "chart", chart_config_value: @trend_chart_config.to_json }}
+
+    -# Miss patterns per bucket
+    - if @miss_by_bucket.any? { |mb| mb[:miss_total] > 0 }
+      .card.mb-4
+        .card-body
+          %h5.card-title Miss Patterns by Distance Range
+          - @miss_by_bucket.each do |mb|
+            - next if mb[:miss_total].zero?
+            %h6.mt-3= "#{mb[:label]} — #{mb[:miss_total]} #{'miss'.pluralize(mb[:miss_total])}"
+            .row.g-3
+              - unless mb[:direction].empty?
+                .col-md-6
+                  %small.fw-semibold.d-block.mb-2 Direction
+                  - mb[:direction].sort_by { |_, d| -d[:count] }.each do |label, data|
+                    .mb-2
+                      .d-flex.justify-content-between
+                        %small= label
+                        %small= "#{data[:pct]}%"
+                      .progress{style: "height: 6px"}
+                        .progress-bar.bg-secondary{role: "progressbar", style: "width: #{data[:pct]}%"}
+              - unless mb[:pace].empty?
+                .col-md-6
+                  %small.fw-semibold.d-block.mb-2 Pace
+                  - mb[:pace].sort_by { |_, d| -d[:count] }.each do |label, data|
+                    .mb-2
+                      .d-flex.justify-content-between
+                        %small= label
+                        %small= "#{data[:pct]}%"
+                      .progress{style: "height: 6px"}
+                        .progress-bar.bg-secondary{role: "progressbar", style: "width: #{data[:pct]}%"}
+
+    -# Practice distribution vs make %
+    - if @distribution_chart_config
+      .card.mb-4
+        .card-body
+          %h5.card-title Practice Distribution vs Make %
+          %small.text-muted.d-block.mb-3 Compare where you spend practice time vs where you perform best
+          %canvas{data: { controller: "chart", chart_config_value: @distribution_chart_config.to_json }}
+
+    -# Personal bests (bucket-level detail)
+    - if @best_session
+      .card.mb-4
+        .card-body
+          %h5.card-title Personal Bests
+          .row.g-3
+            .col-6.col-sm-3
+              %small.text-muted.d-block Best session
+              .fs-3.fw-bold= "#{@best_session[:pct]}%"
+              %small.text-muted= @best_session[:date].strftime("%b %-d, %Y")
+            - @best_by_bucket.each do |bb|
+              - next unless bb[:best_pct]
+              .col-6.col-sm-3
+                %small.text-muted.d-block= "Best #{bb[:label].split('(').first.strip.downcase}"
+                .fs-3.fw-bold= "#{bb[:best_pct]}%"
+            - if @longest_streak > 0
+              .col-6.col-sm-3
+                %small.text-muted.d-block Longest streak ≥ 60%
+                .fs-3.fw-bold= "#{@longest_streak} sessions"
+            - if @current_streak > 0
+              .col-6.col-sm-3
+                %small.text-muted.d-block Current streak ≥ 60%
+                .fs-3.fw-bold= "#{@current_streak} sessions"
+
+  -# ─── PER FOOT MODE ────────────────────────────────────────────────────────
+  - if @distance_view == "feet"
+
+    -# Make % by foot bar chart
+    - if @foot_make_chart_config
+      .card.mb-4
+        .card-body
+          %h5.card-title Make % by Distance
+          %canvas{data: { controller: "chart", chart_config_value: @foot_make_chart_config.to_json }}
+
+    -# Per-foot stats table + miss summary
+    - if @foot_stats&.any?
+      .card.mb-4
+        .card-body
+          %h5.card-title Stats by Distance
+          %table.table.table-sm.mb-0
+            %thead
+              %tr
+                %th Distance
+                %th Putts
+                %th Make %
+                %th Miss direction
+                %th Miss pace
+                %th
+            %tbody
+              - @foot_stats.each do |fs|
+                - miss = @miss_by_foot&.find { |m| m[:dist] == fs[:dist] }
+                %tr
+                  %td= "#{fs[:dist]} ft"
+                  %td= "#{fs[:made]}/#{fs[:total]}"
+                  %td
+                    - pct_class = fs[:pct] >= 70 ? "text-success fw-bold" : fs[:pct] >= 40 ? "text-warning fw-bold" : "text-danger fw-bold"
+                    %span{class: pct_class}= "#{fs[:pct]}%"
+                  %td
+                    - if miss && miss[:dominant_dir]
+                      = miss[:dominant_dir][:label]
+                      %small.text-muted= "(#{miss[:dominant_dir][:pct]}%)"
+                    - else
+                      %span.text-muted —
+                  %td
+                    - if miss && miss[:dominant_pace]
+                      = miss[:dominant_pace][:label]
+                      %small.text-muted= "(#{miss[:dominant_pace][:pct]}%)"
+                    - else
+                      %span.text-muted —
+                  %td
+                    .progress{style: "height: 6px; width: 60px"}
+                      - bar_class = fs[:pct] >= 70 ? "bg-success" : fs[:pct] >= 40 ? "bg-warning" : "bg-danger"
+                      .progress-bar{class: bar_class, role: "progressbar", style: "width: #{fs[:pct]}%"}
+
+    -# Make % over time, split by foot
+    - if @trend_chart_config
+      .card.mb-4
+        .card-body
+          %h5.card-title Make % Over Time by Distance
+          %canvas{data: { controller: "chart", chart_config_value: @trend_chart_config.to_json }}
+
+    -# Personal bests (session-level only in foot mode)
+    - if @best_session
+      .card.mb-4
+        .card-body
+          %h5.card-title Personal Bests
+          .row.g-3
+            .col-6.col-sm-3
+              %small.text-muted.d-block Best session
+              .fs-3.fw-bold= "#{@best_session[:pct]}%"
+              %small.text-muted= @best_session[:date].strftime("%b %-d, %Y")
+            - if @longest_streak > 0
+              .col-6.col-sm-3
+                %small.text-muted.d-block Longest streak ≥ 60%
+                .fs-3.fw-bold= "#{@longest_streak} sessions"
+            - if @current_streak > 0
+              .col-6.col-sm-3
+                %small.text-muted.d-block Current streak ≥ 60%
+                .fs-3.fw-bold= "#{@current_streak} sessions"
+
+  -# ─── SHARED SECTIONS (both modes) ────────────────────────────────────────
+
+  -# Miss consistency
+  - if @direction_consistency || @pace_consistency
+    .row.g-3.mb-4
+      - if @direction_consistency
+        .col-md-6
+          .card.h-100
+            .card-body
+              %h5.card-title Miss Direction
+              - badge_class = @direction_consistency[:systematic] ? "bg-warning text-dark" : "bg-secondary"
+              %span.badge.mb-2{class: badge_class}= @direction_consistency[:systematic] ? "Systematic" : "Mixed"
+              %p.mb-0= @direction_consistency[:message]
+      - if @pace_consistency
+        .col-md-6
+          .card.h-100
+            .card-body
+              %h5.card-title Miss Pace
+              - badge_class = @pace_consistency[:systematic] ? "bg-warning text-dark" : "bg-secondary"
+              %span.badge.mb-2{class: badge_class}= @pace_consistency[:systematic] ? "Systematic" : "Mixed"
+              %p.mb-0= @pace_consistency[:message]
+
+  -# Practice frequency
+  - if @avg_days_between
     .card.mb-4
       .card-body
-        %h5.card-title Make % Over Time
-        %canvas{data: { controller: "chart", chart_config_value: @trend_chart_config.to_json }}
+        %h5.card-title Practice Frequency
+        .row.g-3
+          .col-6
+            %small.text-muted.d-block Avg days between sessions
+            .fs-3.fw-bold= @avg_days_between
+          .col-6
+            %small.text-muted.d-block Sessions in last 28 days
+            .fs-3.fw-bold= @sessions_last_28_days
 
-  -# ─── Distance ────────────────────────────────────────────────────────────────
-  - if @dist_chart_config
+  -# Volume vs performance
+  - if @volume_chart_config
     .card.mb-4
       .card-body
-        %h5.card-title Make % by Distance
-        %canvas{data: { controller: "chart", chart_config_value: @dist_chart_config.to_json }}
+        %h5.card-title Session Volume vs Make %
+        %small.text-muted.d-block.mb-3 Does more putts per session correlate with better performance?
+        %canvas{data: { controller: "chart", chart_config_value: @volume_chart_config.to_json }}
 
-  -# ─── Surface + Miss breakdown ───────────────────────────────────────────────
-  .row.g-3.mb-4
-    - if @type_chart_config
-      .col-md-4
-        .card.h-100
-          .card-body
-            %h5.card-title Surface
-            %canvas{data: { controller: "chart", chart_config_value: @type_chart_config.to_json }}
+  -# Cross-tab transfer comparison
+  - if @cross_tab[:has_data]
+    .card.mb-4
+      .card-body
+        %h5.card-title Mat vs Green Transfer (1–9 ft)
+        %small.text-muted.d-block.mb-3 Is mat practice translating to the practice green?
+        .row.g-3.mb-3
+          .col-6
+            %small.text-muted.d-block Putting Mat
+            .fs-3.fw-bold= "#{@cross_tab[:mat_pct]}%"
+            %small.text-muted= "#{@cross_tab[:mat_n]} putts"
+          .col-6
+            %small.text-muted.d-block Practice Green
+            .fs-3.fw-bold= "#{@cross_tab[:green_pct]}%"
+            %small.text-muted= "#{@cross_tab[:green_n]} putts"
+        - if @cross_tab_chart_config
+          %canvas{data: { controller: "chart", chart_config_value: @cross_tab_chart_config.to_json }}
 
-    - if @dir_chart_config
-      .col-md-4
-        .card.h-100
-          .card-body
-            %h5.card-title Miss Direction
-            %canvas{data: { controller: "chart", chart_config_value: @dir_chart_config.to_json }}
-
-    - if @pace_chart_config
-      .col-md-4
-        .card.h-100
-          .card-body
-            %h5.card-title Miss Pace
-            %canvas{data: { controller: "chart", chart_config_value: @pace_chart_config.to_json }}
-
-  -# ─── Session log ─────────────────────────────────────────────────────────────
+  -# Session log
   .card.mb-4
     .card-body
       %h5.card-title Session Log
@@ -69,7 +286,6 @@
         %thead
           %tr
             %th Date
-            %th Surface
             %th Putts
             %th Make %
             %th.w-40
@@ -77,7 +293,6 @@
           - @session_trend.reverse.each do |s|
             %tr
               %td= s[:date].strftime("%b %-d, %Y")
-              %td= s[:type]
               %td= s[:count]
               %td= "#{s[:pct]}%"
               %td
