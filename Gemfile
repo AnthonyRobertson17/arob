@@ -27,7 +27,7 @@ group :development, :test do
   gem "brakeman", "~> 8.0"
   gem "bundler-audit", "~> 0.9.3"
   gem "debug", "~> 1.11", platforms: [:mri, :mingw, :x64_mingw]
-  gem "dotenv-rails", "~> 3.1"
+  gem "dotenv-rails", "~> 3.2"
   gem "factory_bot", "~> 6.5"
   gem "factory_bot_rails", "~> 6.4"
   gem "minitest-reporters", "~> 1.8"
