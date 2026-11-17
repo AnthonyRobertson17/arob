@@ -32,7 +32,7 @@ group :development, :test do
   gem "factory_bot_rails", "~> 6.4"
   gem "minitest-reporters", "~> 1.8"
   gem "mocha", "~> 2.7"
-  gem "rubocop", "~> 1.81"
+  gem "rubocop", "~> 1.86"
   gem "rubocop-capybara", "~> 2.21"
   gem "rubocop-factory_bot", "~> 2.28"
   gem "rubocop-minitest", "~> 0.39.1"
